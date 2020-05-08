@@ -1,0 +1,15 @@
+<div class="p-grid ui-g-12">
+
+  <div *ngIf="displayProgressSpinner">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}"
+                       strokeWidth="8" fill="#EEEEEE"
+                       animationDuration=".5s">
+    </p-progressSpinner>
+  </div>
+
+  <div *ngFor="let book of anish">
+    <div class="p-col" style="width: 300px">
+      <app-individual-grocery [individualGrocery]="book" [orderedGroceryList]="orderedList"></app-individual-grocery>
+    </div>
+  </div>
+</div>

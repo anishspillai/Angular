@@ -1,0 +1,43 @@
+<p-dialog header="Godfather I" visible="true" resizable="false" responsive="false">
+
+
+  <div class="ui-g-12">
+    User Name
+  </div>
+
+  <div class="ui-g-6 u-margin-none u-padding-none">
+    <input type="text" size="50" pInputText [(ngModel)]="userId">
+  </div>
+  <br>
+
+  <div class="ui-g-12">
+    Password
+  </div>
+
+  <div class="ui-g-6 u-margin-none u-padding-none">
+    <input type="password" pPassword size="50" [(ngModel)]="password">
+  </div>
+
+  <br>
+
+  <div class="ui-g-12">
+
+    <div *ngIf="isLoginOperation" class="ui-g-6">
+      <button pButton label="Login" (click)="loginUser()"></button>
+    </div>
+
+    <div *ngIf="!isLoginOperation" class="ui-g-6">
+      <button pButton label="Register"></button>
+    </div>
+
+    <div *ngIf="isLoginOperation" class="ui-g-6">
+      <a (click)="registerNewUser()">Register new user?</a>
+    </div>
+
+    <div *ngIf="!isLoginOperation" class="ui-g-6">
+      <button (click)="isLoginOperation = true" pButton label="Cancel"></button>
+    </div>
+
+  </div>
+
+</p-dialog>

@@ -1,0 +1,108 @@
+<p-panel header={{individualGrocery.brandName}} class="p-col-fixed">
+
+  <div (click)="displayDialog()">
+
+    <img src="assets/img/groceries.png"
+         style="width: 150px; height: 200px" class="center-align">
+
+    <p *ngIf="individualGrocery.offerPrice > 0"
+       style="border-radius: 50%; color:red; padding-top: 20px;" class="bold-center-aligned-text">{{individualGrocery.offerPrice}}</p>
+    <p style="color:blue; text-align: center; text-decoration: line-through ">{{individualGrocery.actualPrice}}</p>
+
+    <p style="text-align: center">
+      <b>{{individualGrocery.type}}</b> {{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}</p>
+
+  </div>
+
+  <div class="box" style="text-align:center; padding-top: 10px">
+
+    <div *ngIf="isDisplayAddButton">
+      <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
+                (click)="addItemToCart()"></p-button>
+    </div>
+
+    <div *ngIf="!isDisplayAddButton" class="ui-inputgroup center-align">
+      <button pButton type="button" icon="pi pi-minus" class="ui-button-success"
+              (click)="decrementNoOfItems()"></button>
+      <input type="text" pInputText placeholder="Vote" style="font-size: 15px" [(ngModel)]="noOfItems">
+      <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
+              (click)="incrementNoOfItems()"></button>
+    </div>
+  </div>
+
+</p-panel>
+
+<p-dialog *ngIf="isDisplayDetails"
+          header="{{individualGrocery.type}}"
+          [(visible)]="isDisplayDetails"
+          [style]="{width: '50vw'}"
+          [baseZIndex]="10000">
+
+  <div class="ui-g ui-fluid">
+
+    <div class="ui-g-12 ui-md-4">
+
+      <div class="p-col-fixed">
+        <img src="assets/img/groceries.png"
+             style="width: 150px; height: 200px; display: block; margin-left: auto; margin-right: auto">
+      </div>
+
+      <div class="p-col-fixed">
+        <div class="box">
+          <div *ngIf="isDisplayAddButton" style="text-align:center; padding-top: 10px">
+            <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
+                      (click)="addItemToCart()"></p-button>
+          </div>
+
+          <div *ngIf="!isDisplayAddButton" class="ui-inputgroup">
+            <button pButton type="button" icon="pi pi-minus" class="ui-button-success"
+                    (click)="decrementNoOfItems()"></button>
+            <input type="text" pInputText placeholder="Vote" style="font-size: 20px" [(ngModel)]="noOfItems">
+            <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
+                    (click)="incrementNoOfItems()"></button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="ui-g-12 ui-md-8">
+
+      <div class="p-col-fixed">
+        <div class="box">
+          <b> {{individualGrocery.brandName}} </b></div>
+      </div>
+
+      <hr>
+      <div class="p-col">
+        <div *ngIf="individualGrocery.offerPrice > 0" class="box">
+          {{individualGrocery.offerPrice}} Kr
+        </div>
+        <div *ngIf="individualGrocery.offerPrice > 0" class="box" style="text-decoration: line-through">
+          {{individualGrocery.actualPrice}} Kr
+        </div>
+
+        <div *ngIf="individualGrocery.offerPrice == 0" class="box">
+          {{individualGrocery.actualPrice}} kr
+        </div>
+      </div>
+      <hr>
+
+      <div class="p-col">
+        <div class="box">
+          {{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="p-col-fixed">
+        <div class="box">{{individualGrocery.brandName}}</div>
+      </div>
+
+    </div>
+    <hr>
+  </div>
+</p-dialog>

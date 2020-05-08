@@ -1,0 +1,81 @@
+import {Component, OnInit} from "@angular/core";
+import {NavigatorService} from "./navigator.service";
+import {GroceryMenuItem} from "./model/GroceryMenuItem";
+import {ActivatedRoute, Router} from "@angular/router";
+import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
+
+@Component({
+  selector: 'app-navigator',
+  templateUrl: './navigator.component.html',
+  styleUrls: ['./navigator.component.css']
+})
+export class NavigatorComponent  {
+
+  menuItems: GroceryMenuItem[] = []
+
+  menuSubItems: GroceryMenuItem[] = []
+
+  expandSubMenuItems: Boolean = false
+
+  searchCategoryType: string
+
+  constructor(
+    private readonly navigatorService: NavigatorService,
+    private readonly router: Router,
+    private readonly breadCrumbService: BreadCrumbService
+  ) {
+  }
+
+  ngOnInit(): void {
+
+    this.navigatorService.fetchCategories().subscribe(snapshots => {
+      snapshots.forEach(childSnapshot => {
+        // key will be "ada" the first time and "alan" the second time
+        var key = childSnapshot.key;
+        // childData will be the actual contents of the child
+        var childData = childSnapshot.payload;
+
+
+        if (!Array.isArray(childData.val())) {
+
+          let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.val())
+          this.menuItems.push(menuItem)
+        } else {
+          {
+            let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.key)
+            this.menuSubItems = []
+            childData.val().forEach(childData => {
+              let menuItem: GroceryMenuItem = new GroceryMenuItem(childData)
+              this.menuSubItems.push(menuItem)
+            })
+            menuItem.items = this.menuSubItems
+            this.menuItems.push(menuItem)
+          }
+        }
+
+
+        // console.log(this.menuItems)
+      });
+    });
+  }
+
+  isSubMenuOpened(item: GroceryMenuItem) {
+    if(item.items.length > 0) {
+      this.expandSubMenuItems = !this.expandSubMenuItems
+    }
+  }
+
+  navigateToSubMenu($event: MouseEvent) {
+    console.log()
+  }
+
+  navigateToGroceryMain(item: GroceryMenuItem) {
+    this.router.navigate(['/first-component'], {queryParams: {groceryType: item.label + '/' + item.label}}).then(r => console.log(r));
+    this.breadCrumbService.updateBreadCrumb([{label: item.label}])
+  }
+
+  navigateToGrocerySubMenu(item: GroceryMenuItem, subItem) {
+    this.router.navigate(['/first-component'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
+    this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
+  }
+}

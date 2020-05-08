@@ -1,0 +1,56 @@
+<br>
+<br>
+<br>
+
+
+<h3>Your Order History</h3>
+
+<p-accordion [multiple]="true">
+  <div *ngFor="let oh of orderHistory">
+
+    <p-accordionTab header={{oh.orderedTimestamp}}>
+      <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
+               [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
+        <ng-template pTemplate="caption">
+           Grocery Order List
+          <div style="float: right">
+            {{oh.orderedTimestamp}}
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of cols">
+              {{col.header}}
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-grocery>
+          <tr style="height:30px">
+            <td>
+              {{grocery.groceryName}}
+            </td>
+            <td>
+              {{grocery.type}}
+            </td>
+            <td>
+              {{grocery.grossWeight}}
+            </td>
+            <td>
+              {{grocery.unitOfWeight}}
+            </td>
+            <td>
+              {{grocery.noOfItems}}
+            </td>
+            <td>
+              {{grocery.price}}
+            </td>
+          </tr>
+        </ng-template>
+        <p-footer>Tst</p-footer>
+      </p-table>
+    </p-accordionTab>
+
+  </div>
+</p-accordion>
