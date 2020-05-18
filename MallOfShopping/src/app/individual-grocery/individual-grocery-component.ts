@@ -15,6 +15,10 @@ export class IndividualGroceryComponent {
 
   noOfItems: number = 1
 
+  displayMaxShoppingAlert: boolean = false
+
+  displayMaxShoppingAlertInDialog: boolean = false
+
   isDisplayDetails: Boolean = false
 
   @Input() individualGrocery: IndividualGrocery
@@ -33,9 +37,20 @@ export class IndividualGroceryComponent {
     this.addGroceryToListObservableService.addGroceryToTheOrderList(order)
   }
 
-  incrementNoOfItems(): void {
+  incrementNoOfItems(isMainPage: boolean): void {
     this.noOfItems++
+    if(this.individualGrocery.maxShoppingIsRestricted) {
+      if(this.noOfItems - this.individualGrocery.maxShoppingCount == 1) {
+        if(isMainPage) {
+          this.displayMaxShoppingAlert = true
+        } else {
+          this.displayMaxShoppingAlertInDialog = true
+        }
+      }
+    }
     this.updateCountOfItems()
+
+
 
     this.addGroceryToListObservableService.incrementNoOfItems(this.noOfItems, this.individualGrocery.id)
   }
@@ -60,5 +75,9 @@ export class IndividualGroceryComponent {
 
   displayDialog() {
     this.isDisplayDetails = true
+  }
+
+  getAlertMessage() {
+    return "Offer price is applicable for maximum " + this.individualGrocery.maxShoppingCount+  " per customer. Actual price is applicable after "+ this.individualGrocery.maxShoppingCount
   }
 }

@@ -41,6 +41,8 @@ import {GroceryService} from "./grocery-grid/grocery.service";
 import {TableModule} from "primeng/table";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {BreadCrumbService} from "./bread-crumb/bread-crumb.service";
+import {MessagesModule} from "primeng/messages";
+import { ReviewOrderedItemsComponent } from './review-ordered-items/review-ordered-items.component';
 
 const routes: Routes = [
   { path: 'first-component', component: GroceryGridComponent },
@@ -63,37 +65,39 @@ const routes: Routes = [
     SignInComponent,
     RegisterComponent,
     BreadCrumbComponent,
-    NavigationItemComponent
+    NavigationItemComponent,
+    ReviewOrderedItemsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    PanelModule,
-    BrowserAnimationsModule,
-    ButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    InputTextModule,
-    FormsModule,
-    SplitButtonModule,
-    DialogModule,
-    SidebarModule,
-    CardModule,
-    ToolbarModule,
-    ListboxModule,
-    BreadcrumbModule,
-    AppRoutingModule,
-    RouterModule.forRoot(
-      routes
-      //,{enableTracing: true} // <-- debugging purposes only
-    ),
-    AccordionModule,
-    InputTextareaModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    TableModule,
-    ProgressSpinnerModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        PanelModule,
+        BrowserAnimationsModule,
+        ButtonModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        InputTextModule,
+        FormsModule,
+        SplitButtonModule,
+        DialogModule,
+        SidebarModule,
+        CardModule,
+        ToolbarModule,
+        ListboxModule,
+        BreadcrumbModule,
+        AppRoutingModule,
+        RouterModule.forRoot(
+            routes
+            //,{enableTracing: true} // <-- debugging purposes only
+        ),
+        AccordionModule,
+        InputTextareaModule,
+        PasswordModule,
+        ReactiveFormsModule,
+        TableModule,
+        ProgressSpinnerModule,
+        MessagesModule
 
-  ],
+    ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
   bootstrap: [AppComponent]
 })

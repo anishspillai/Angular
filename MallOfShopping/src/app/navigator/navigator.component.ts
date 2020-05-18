@@ -27,6 +27,10 @@ export class NavigatorComponent  {
   }
 
   ngOnInit(): void {
+    //this.fetchNavigationItems()
+  }
+
+  fetchNavigationItems(): void {
 
     this.navigatorService.fetchCategories().subscribe(snapshots => {
       snapshots.forEach(childSnapshot => {

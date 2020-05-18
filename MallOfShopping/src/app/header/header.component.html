@@ -24,7 +24,7 @@
 
           <button pButton type="button" icon="pi pi-check" label="Check Out"
                   class="ui-button-rounded ui-button-success" iconPos="right" (click)="placeOrder()"></button> <br>
-          {{getCostOfItems()}} Kr
+          {{getCostOfItem()}} Kr
         </div>
 
 
@@ -62,6 +62,8 @@
 
   </div>
 </div>
+
+<app-review-ordered-items [displaySideMenuBar]="displaySideMenuBar"></app-review-ordered-items>
 
 
           <!--div class="p-col-1">

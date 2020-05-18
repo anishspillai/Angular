@@ -34,6 +34,8 @@ export class HeaderComponent implements OnInit {
 
   ordersAddedByUser: Order[] = []
 
+  displaySideMenuBar: boolean = false
+
 
   constructor(appComponent: AppComponent,
               router: Router,
@@ -102,22 +104,61 @@ export class HeaderComponent implements OnInit {
     return this.auth.isLoggedIn
   }
 
-  getCostOfItems() {
-    const sum = this.ordersAddedByUser.reduce((sum, current) => sum + (current.price * current.noOfItems), 0);
+  /**getCostOfItems() {
+    const sum = this.ordersAddedByUser.reduce((sum, current) =>
+      sum + (current.price * current.noOfItems), 0)
+
     return sum
+  }*/
+
+
+
+  getCostOfItem() {
+    let sumOfItems = 0
+
+    this.ordersAddedByUser.forEach(function (element) {
+
+      console.log(element)
+
+      if (element.bulkPurchaseOfferAvailable) {
+
+        let totalSet = element.noOfItems / element.bulkPurchaseOfferCount
+        sumOfItems += totalSet * element.bulkPurchaseOfferPrice
+
+        let extraItems = element.noOfItems % element.bulkPurchaseOfferCount
+        sumOfItems += extraItems * element.actualPrice
+
+      } else if (element.maxShoppingIsRestricted) {
+
+        if (element.noOfItems <= element.maxShoppingCount) {
+          sumOfItems += element.noOfItems * element.offerPrice
+        } else {
+          let a = element.noOfItems - element.maxShoppingCount
+          sumOfItems += (a * element.actualPrice) + (element.maxShoppingCount * element.offerPrice)
+        }
+
+      } else {
+        console.log("Snish " + element.actualPrice)
+        sumOfItems += element.noOfItems * element.actualPrice
+      }
+    });
+
+    return sumOfItems
   }
 
   getCountOfItems() {
-    return this.ordersAddedByUser.length
+    const sum = this.ordersAddedByUser.reduce((sum, current) =>
+      sum + current.noOfItems, 0)
+
+    return sum
   }
 
   placeOrder() {
-    const user: User = JSON.parse(localStorage.getItem('user'))
-    const anish = new Date().getTime()
-    console.log(anish)
-    console.log(new Date(anish).toString())
+    //const user: User = JSON.parse(localStorage.getItem('user'))
+    //this.groceryService.placeOrderForTheUser(this.ordersAddedByUser, user.uid)
 
-    this.groceryService.placeOrderForTheUser(this.ordersAddedByUser, user.uid)
+    this.displaySideMenuBar = true
+
   }
 
 }

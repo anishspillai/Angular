@@ -1,16 +1,76 @@
-<p-panel header={{individualGrocery.brandName}} class="p-col-fixed">
+<p-panel header={{individualGrocery.type}} class="p-col-fixed">
 
   <div (click)="displayDialog()">
 
-    <img src="assets/img/groceries.png"
-         style="width: 150px; height: 200px" class="center-align">
+    <div class="boxfd">
+      <img src="assets/img/groceries.png"
+           style="width: 150px; height: 200px" class="center-align">
+      <div class="circlefd">
+        <!--p> <a> 2 For </a>454<span>Kr</span></p-->
 
-    <p *ngIf="individualGrocery.offerPrice > 0"
-       style="border-radius: 50%; color:red; padding-top: 20px;" class="bold-center-aligned-text">{{individualGrocery.offerPrice}}</p>
-    <p style="color:blue; text-align: center; text-decoration: line-through ">{{individualGrocery.actualPrice}}</p>
+        <!--p> <a> 2 For </a>454</p-->
+
+        <div *ngIf="individualGrocery.bulkPurchaseOfferAvailable">
+          <p><a style="color: white"> {{individualGrocery.bulkPurchaseOfferCount}}
+            For </a> {{individualGrocery.bulkPurchaseOfferPrice}} <span>Kr</span></p>
+        </div>
+
+        <div *ngIf="!individualGrocery.bulkPurchaseOfferAvailable">
+
+          <p *ngIf="individualGrocery.offerPrice > 0"> {{individualGrocery.offerPrice}} <span>Kr</span></p>
+
+          <p *ngIf="individualGrocery.offerPrice == 0"> {{individualGrocery.actualPrice}} <span>Kr</span></p>
+        </div>
+
+        <!---p *ngIf="individualGrocery.offerPrice > 0"> {{individualGrocery.offerPrice}} <span>Kr</span></p>
+
+        <p *ngIf="individualGrocery.offerPrice == 0"> {{individualGrocery.actualPrice}} <span>Kr</span></p-->
+
+      </div>
+    </div>
+
+    <!--p *ngIf="individualGrocery.offerPrice > 0" class="circle">{{individualGrocery.offerPrice}}</p>
+
+    <p *ngIf="individualGrocery.offerPrice == 0"
+       style="border-radius: 50%; color:red; padding-top: 20px;" class="bold-center-aligned-text">&nbsp;</p>
+
+
+    <p style="color:blue; text-align: center" [class.text-decoration-line-through]="individualGrocery.offerPrice > 0">{{individualGrocery.actualPrice}}</p>
 
     <p style="text-align: center">
-      <b>{{individualGrocery.type}}</b> {{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}</p>
+      <b>{{individualGrocery.type}}</b> {{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}
+    </p>
+
+      <div style="text-align: center" class="circle">5</div>
+
+    <div class="circle1">
+      <div class="number">+2</div>
+      <div>dex</div>
+    </div-->
+
+    <div *ngIf="individualGrocery.maxShoppingIsRestricted" style="flex-direction: column; color: red">
+      MAX SHOPPING / {{individualGrocery.maxShoppingCount}}
+    </div>
+
+    <div *ngIf="!individualGrocery.maxShoppingIsRestricted" style="flex-direction: column; color: red">
+      &nbsp;
+    </div>
+
+    {{individualGrocery.brandName}}
+    <br>
+    {{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}
+
+    <div
+      *ngIf="individualGrocery.maxShoppingIsRestricted || individualGrocery.bulkPurchaseOfferAvailable || individualGrocery.actualPrice != 0"
+      style="flex-direction: column; color: purple">
+      Actual Price:  {{individualGrocery.actualPrice}} Kr
+    </div>
+
+    <div
+      *ngIf="!individualGrocery.maxShoppingIsRestricted && individualGrocery.bulkPurchaseOfferAvailable && individualGrocery.actualPrice != 0"
+      style="flex-direction: column; color: purple">
+      &nbsp;
+    </div>
 
   </div>
 
@@ -26,7 +86,7 @@
               (click)="decrementNoOfItems()"></button>
       <input type="text" pInputText placeholder="Vote" style="font-size: 15px" [(ngModel)]="noOfItems">
       <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
-              (click)="incrementNoOfItems()"></button>
+              (click)="incrementNoOfItems(true)"></button>
     </div>
   </div>
 
@@ -40,11 +100,45 @@
 
   <div class="ui-g ui-fluid">
 
+    <div *ngIf="displayMaxShoppingAlertInDialog" class="ui-g-12">
+
+    <p-messages severity="warn">
+      <ng-template pTemplate>
+        <span class="custom-message">{{getAlertMessage()}}</span>
+      </ng-template>
+    </p-messages>
+    </div>
+
     <div class="ui-g-12 ui-md-4">
 
       <div class="p-col-fixed">
-        <img src="assets/img/groceries.png"
-             style="width: 150px; height: 200px; display: block; margin-left: auto; margin-right: auto">
+
+        <div class="boxfd">
+          <img src="assets/img/groceries.png"
+               style="width: 150px; height: 200px" class="center-align">
+          <div class="circlefd">
+
+            <div *ngIf="individualGrocery.bulkPurchaseOfferAvailable">
+              <p><a style="color: white"> {{individualGrocery.bulkPurchaseOfferCount}}
+                For </a> {{individualGrocery.bulkPurchaseOfferPrice}} <span>Kr</span></p>
+            </div>
+
+            <div *ngIf="!individualGrocery.bulkPurchaseOfferAvailable">
+
+              <p *ngIf="individualGrocery.offerPrice > 0"> {{individualGrocery.offerPrice}} <span>Kr</span></p>
+
+              <p *ngIf="individualGrocery.offerPrice == 0"> {{individualGrocery.actualPrice}} <span>Kr</span></p>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div *ngIf="individualGrocery.maxShoppingIsRestricted" style="text-align: center; color: red">
+          MAX SHOPPING / {{individualGrocery.maxShoppingCount}}
+        </div>
+
+
       </div>
 
       <div class="p-col-fixed">
@@ -59,7 +153,7 @@
                     (click)="decrementNoOfItems()"></button>
             <input type="text" pInputText placeholder="Vote" style="font-size: 20px" [(ngModel)]="noOfItems">
             <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
-                    (click)="incrementNoOfItems()"></button>
+                    (click)="incrementNoOfItems(false)"></button>
           </div>
 
         </div>
@@ -78,15 +172,9 @@
       <hr>
       <div class="p-col">
         <div *ngIf="individualGrocery.offerPrice > 0" class="box">
-          {{individualGrocery.offerPrice}} Kr
-        </div>
-        <div *ngIf="individualGrocery.offerPrice > 0" class="box" style="text-decoration: line-through">
-          {{individualGrocery.actualPrice}} Kr
+          Actual Price {{individualGrocery.actualPrice}} Kr
         </div>
 
-        <div *ngIf="individualGrocery.offerPrice == 0" class="box">
-          {{individualGrocery.actualPrice}} kr
-        </div>
       </div>
       <hr>
 
@@ -106,3 +194,9 @@
     <hr>
   </div>
 </p-dialog>
+
+<p-dialog *ngIf="displayMaxShoppingAlert"
+          [(visible)]="displayMaxShoppingAlert" header="Information Message">
+  <div>{{getAlertMessage()}}</div>
+</p-dialog>
+

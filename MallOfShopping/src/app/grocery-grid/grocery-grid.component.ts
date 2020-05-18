@@ -39,7 +39,7 @@ export class GroceryGridComponent implements OnInit{
   ngOnInit() {
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      this.fetchGroceries()
+      //this.fetchGroceries()
     })
   }
 

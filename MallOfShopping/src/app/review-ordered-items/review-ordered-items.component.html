@@ -1,0 +1,29 @@
+<p-sidebar [(visible)]="displaySideMenuBar" position="right" [baseZIndex]="10000" [style]="{width:'30em'}">
+  <h1 style="font-weight:normal">Right Sidebar</h1>
+  <button pButton type="button" (click)="displaySideMenuBar = false" label="Save" class="ui-button-success"></button>
+  <button pButton type="button" (click)="displaySideMenuBar = false" label="Cancel" class="ui-button-secondary"></button>
+
+  <ul>
+
+    <li *ngFor="let order of ordersAddedByUser; let i = index">
+      <div class="ui-g-12 ui-md-5">
+        {{order.groceryName}}
+        {{order.type}}
+      </div>
+
+      <div class="ui-g-12 ui-md-5">
+        <i class="pi pi-minus-circle" (click)="decrement(order.noOfItems, order.id)"> </i>
+        {{order.noOfItems}}
+        <i class="pi pi-plus-circle" (click)="increment(order.noOfItems, order.id)"> </i>
+      </div>
+
+      <div class="ui-g-12 ui-md-2">
+        {{order.actualPrice}}
+      </div>
+    </li>
+
+  </ul>
+
+
+
+</p-sidebar>

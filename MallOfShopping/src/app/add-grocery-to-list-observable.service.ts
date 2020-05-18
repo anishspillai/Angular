@@ -39,6 +39,7 @@ export class AddGroceryToListObservableService {
   }
 
   private notifySubscribers() {
+    console.log(this.orders)
     this._orders.next(this.orders)
   }
 }
