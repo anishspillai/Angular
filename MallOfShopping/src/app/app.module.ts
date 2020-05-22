@@ -43,6 +43,9 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {BreadCrumbService} from "./bread-crumb/bread-crumb.service";
 import {MessagesModule} from "primeng/messages";
 import { ReviewOrderedItemsComponent } from './review-ordered-items/review-ordered-items.component';
+import { OrderConfirmationWizardComponent } from './order-confirmation-wizard/order-confirmation-wizard.component';
+import {ToastModule} from "primeng/toast";
+import {StepsModule} from "primeng/steps"
 
 const routes: Routes = [
   { path: 'first-component', component: GroceryGridComponent },
@@ -66,38 +69,41 @@ const routes: Routes = [
     RegisterComponent,
     BreadCrumbComponent,
     NavigationItemComponent,
-    ReviewOrderedItemsComponent
+    ReviewOrderedItemsComponent,
+    OrderConfirmationWizardComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        PanelModule,
-        BrowserAnimationsModule,
-        ButtonModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        InputTextModule,
-        FormsModule,
-        SplitButtonModule,
-        DialogModule,
-        SidebarModule,
-        CardModule,
-        ToolbarModule,
-        ListboxModule,
-        BreadcrumbModule,
-        AppRoutingModule,
-        RouterModule.forRoot(
-            routes
-            //,{enableTracing: true} // <-- debugging purposes only
-        ),
-        AccordionModule,
-        InputTextareaModule,
-        PasswordModule,
-        ReactiveFormsModule,
-        TableModule,
-        ProgressSpinnerModule,
-        MessagesModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PanelModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    InputTextModule,
+    FormsModule,
+    SplitButtonModule,
+    DialogModule,
+    SidebarModule,
+    CardModule,
+    ToolbarModule,
+    ListboxModule,
+    BreadcrumbModule,
+    AppRoutingModule,
+    RouterModule.forRoot(
+      routes
+      //,{enableTracing: true} // <-- debugging purposes only
+    ),
+    AccordionModule,
+    InputTextareaModule,
+    PasswordModule,
+    ReactiveFormsModule,
+    TableModule,
+    ProgressSpinnerModule,
+    MessagesModule,
+    ToastModule,
+    StepsModule
 
-    ],
+  ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
   bootstrap: [AppComponent]
 })

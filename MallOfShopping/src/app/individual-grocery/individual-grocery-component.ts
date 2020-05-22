@@ -29,15 +29,47 @@ export class IndividualGroceryComponent {
   }
 
   addItemToCart() {
-    this.isDisplayAddButton = false
+    this.isDisplayAddButton = this.isNotAddedIntoTheList()
 
     const order = Order.createThisObjectFromIndividualGrocerObject(this.individualGrocery)
 
-    this.orderedGroceryList.push(order)
     this.addGroceryToListObservableService.addGroceryToTheOrderList(order)
   }
 
+  getOrders() {
+    return this.addGroceryToListObservableService.orders.length > 0
+  }
+
+
+  isNotAddedIntoTheList() {
+    if ( this.addGroceryToListObservableService.orders.length == 0 ) {
+      return true
+    } else {
+      const individualGroceryFromOrderedList = this.addGroceryToListObservableService.orders.find(element => element.id == this.individualGrocery.id)
+      if(individualGroceryFromOrderedList) {
+        return false
+      }
+    return true
+    }
+  }
+
+  getNoOfOrders() {
+    if ( !( this.addGroceryToListObservableService.orders.length == 0 ) ) {
+      const individualGroceryFromOrderedList = this.addGroceryToListObservableService.orders.find(element => element.id == this.individualGrocery.id)
+      if( individualGroceryFromOrderedList ) {
+        this.noOfItems = individualGroceryFromOrderedList.noOfItems
+      }
+    }
+
+    return this.noOfItems
+  }
+
+  consoleData() {
+    console.log(this.addGroceryToListObservableService.orders)
+  }
+
   incrementNoOfItems(isMainPage: boolean): void {
+
     this.noOfItems++
     if(this.individualGrocery.maxShoppingIsRestricted) {
       if(this.noOfItems - this.individualGrocery.maxShoppingCount == 1) {
@@ -48,9 +80,6 @@ export class IndividualGroceryComponent {
         }
       }
     }
-    this.updateCountOfItems()
-
-
 
     this.addGroceryToListObservableService.incrementNoOfItems(this.noOfItems, this.individualGrocery.id)
   }
@@ -63,13 +92,13 @@ export class IndividualGroceryComponent {
       this.addGroceryToListObservableService.decrementNoOfItems(this.noOfItems, this.individualGrocery.id)
     } else {
       this.noOfItems--
-      this.updateCountOfItems()
+      //this.updateCountOfItems()
       this.addGroceryToListObservableService.decrementNoOfItems(this.noOfItems, this.individualGrocery.id)
     }
   }
 
   private updateCountOfItems() {
-    const individualGroceryFromOrderedList = this.orderedGroceryList.find(element => element.id = this.individualGrocery.id)
+    const individualGroceryFromOrderedList = this.orderedGroceryList.find(element => element.id == this.individualGrocery.id)
     individualGroceryFromOrderedList.noOfItems = this.noOfItems
   }
 
@@ -79,5 +108,12 @@ export class IndividualGroceryComponent {
 
   getAlertMessage() {
     return "Offer price is applicable for maximum " + this.individualGrocery.maxShoppingCount+  " per customer. Actual price is applicable after "+ this.individualGrocery.maxShoppingCount
+  }
+
+  getNOOfOrders() {
+    if(this.addGroceryToListObservableService.orders)
+    return this.addGroceryToListObservableService.orders.length
+
+    return 100
   }
 }

@@ -5,6 +5,7 @@ import {UserDetailsComponent} from "./user-details/user-details.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {OrderHistoryComponent} from "./order-history/order-history.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/order-confirmation-wizard.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'user-details', component: UserDetailsComponent },
   { path: 'order-history', component: OrderHistoryComponent },
   { path: 'log-in', component: SignInComponent },
+  { path: 'order-confirmation', component: OrderConfirmationWizardComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -34,7 +34,6 @@ export class BreadCrumbComponent implements OnInit {
   }
 
   navigateToPage(menuItem: MenuItem) {
-    console.log(menuItem)
     this.router.navigate([menuItem.url]).then(r => console.log(r));
   }
 

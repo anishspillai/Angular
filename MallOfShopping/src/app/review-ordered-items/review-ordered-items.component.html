@@ -1,29 +1,41 @@
-<p-sidebar [(visible)]="displaySideMenuBar" position="right" [baseZIndex]="10000" [style]="{width:'30em'}">
-  <h1 style="font-weight:normal">Right Sidebar</h1>
-  <button pButton type="button" (click)="displaySideMenuBar = false" label="Save" class="ui-button-success"></button>
-  <button pButton type="button" (click)="displaySideMenuBar = false" label="Cancel" class="ui-button-secondary"></button>
+<p-sidebar [(visible)]="displaySideMenuBar" position="right" [baseZIndex]="10000" [style]="{width:'30em'}" (onHide)="sendCloseEvent()">
 
-  <ul>
+  <div class="p-grid">
+    <div class="p-col-7">
+  <h2 > Order Overview </h2>
+    </div>
+    <div class="p-col-5">
+      <button pButton type="button" icon="pi pi-check" label="Place Order"
+              style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right" (click)="moveToConfirmationPage()"></button>
+    </div>
+  </div>
 
-    <li *ngFor="let order of ordersAddedByUser; let i = index">
-      <div class="ui-g-12 ui-md-5">
-        {{order.groceryName}}
-        {{order.type}}
+  <div *ngFor="let order of ordersAddedByUser; let i = index">
+
+
+    <div class="p-grid">
+      <div class="p-col-4">
+        <div class="box" style="border: black"> {{order.groceryName}} <br>
+          {{order.type}}</div>
       </div>
 
-      <div class="ui-g-12 ui-md-5">
-        <i class="pi pi-minus-circle" (click)="decrement(order.noOfItems, order.id)"> </i>
-        {{order.noOfItems}}
-        <i class="pi pi-plus-circle" (click)="increment(order.noOfItems, order.id)"> </i>
+
+      <div class="p-col-4">
+        <button pButton type="button" icon="pi pi-minus" class="ui-button-danger" (click)="decrement(order)"></button>
+        &nbsp;&nbsp;{{order.noOfItems}}&nbsp;&nbsp;
+        <button pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
       </div>
 
-      <div class="ui-g-12 ui-md-2">
-        {{order.actualPrice}}
+
+      <div class="center">
+        <h3>{{order.actualPrice * order.noOfItems}}</h3>
       </div>
-    </li>
 
-  </ul>
+    </div>
+
+    <hr>
 
 
+  </div>
 
 </p-sidebar>

@@ -1,36 +1,23 @@
-
-
 <h1>User Details</h1>
-<div class="ui-g-12">
+<div *ngIf="!user"> Please log in and try again!!!</div>
+<div *ngIf="!user">
+<div class="ui-g">
   <div class="ui-g-12 ui-md-4">
     <div class="ui-inputgroup">
       User Name
     </div>
   </div>
 
-  <div class="ui-g-12 ui-md-4">
+  <div class="ui-g-12 ui-md-8">
     <div class="ui-inputgroup">
-      anishspillai@gmail.com
+      {{userDetailsModel.firstName}}  {{userDetailsModel.lastName}}
     </div>
   </div>
 </div>
-<hr>
-<div class="ui-g-12">
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      Password
-    </div>
-  </div>
 
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      anishspillai@gmail.com
-    </div>
-  </div>
-</div>
 <hr>
 
-<div class="ui-g-12">
+<div class="ui-g">
   <div class="ui-g-12 ui-md-4">
     <div class="ui-inputgroup">
       Telephone No
@@ -39,137 +26,154 @@
 
   <div class="ui-g-12 ui-md-4">
     <div class="ui-inputgroup">
-      anishspillai@gmail.com
+      {{userDetailsModel.telephoneNumber}}
     </div>
   </div>
 </div>
 <hr>
 
 
-<div class="ui-g">
-
-  <div class="ui-g-4">Ansih</div>
-  <div class="ui-g-8 ui-g-nopad">
-    <div class="ui-g-6">Adfdf</div>
-    <div class="ui-g-6">fdfdfdfdfdfdfdfdf</div>
+  <div class="p-grid nested-grid">
 
 
-    <div class="ui-g-6">Adfdf</div>
-    <div class="ui-g-6">fdfdfdfdfdfdfdfdf</div>
+    <div class="p-col-4">
+      <div class="box box-stretched">  &nbsp;&nbsp;Address</div>
+    </div>
+
+    <div class="p-col-8">
+      <div class="p-grid">
+        <div class="p-col-6">
+           Apartment Number
+        </div>
+        <div class="p-col-6">
+          {{userDetailsModel.apartmentNo}}
+        </div>
 
 
-    <div class="ui-g-6">Adfdf</div>
-    <div class="ui-g-6">fdfdfdfdfdfdfdfdf</div>
-  </div>
-</div>
+
+        <div class="p-col-6">
+          Street Name
+        </div>
+        <div class="p-col-6">
+          {{userDetailsModel.streetName}}
+        </div>
 
 
-<hr>
+        <div class="p-col-6">
+          Post Number
+        </div>
+        <div class="p-col-6">
+          {{userDetailsModel.postNumber}}
+        </div>
 
-<div class="ui-g-12">
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      User Name
+      </div>
     </div>
   </div>
 
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      anishspillai@gmail.com
-    </div>
-  </div>
-</div>
+  <hr>
 
-<hr>
+
+
 <p-footer>
   <button pButton type="button" label="Edit" icon="pi pi-check" style="margin-right: .25em"
           (click)="displayBasic = true"></button>
 </p-footer>
-
+</div>
 
 <p-dialog header="Edit User" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
 
-  <div class="ui-g-12">
+  <div class="ui-g">
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        User Name
+        First Name <span style="color: red" > &nbsp;( Required ) </span>
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-8">
+      <div class="ui-inputgroup">
+        <input type="text" pInputText  [(ngModel)]="userDetailsModel.firstName"/>
+      </div>
+    </div>
+
+
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+        Last Name <span style="color: green" > &nbsp;( Optional ) </span>
       </div>
     </div>
 
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        <input type="text" pInputText value="anishspillai@gmail.com"/>
+        <input type="text" pInputText [(ngModel)]="userDetailsModel.lastName"/>
       </div>
     </div>
+
   </div>
+
   <hr>
-  <div class="ui-g-12">
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup">
-        Password
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup">
-        <input type="text" pInputText value="anishspillai@gmail.com"/>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <div class="ui-g-12">
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup">
-        Telephone No
-      </div>
-    </div>
-
-    <div class="ui-g-12 ui-md-4">
-      <div class="ui-inputgroup">
-        <input type="text" pInputText value="anishspillai@gmail.com"/>
-      </div>
-    </div>
-  </div>
-  <hr>
-
 
   <div class="ui-g">
-
-    <div class="ui-g-4">Address</div>
-    <div class="ui-g-8 ui-g-nopad">
-      <div class="ui-g-2">Address 1</div>
-      <input class="ui-g-10" type="text" pInputText value="anishspillai@gmail.com"/>
-
-      <div class="ui-g-2">Address 1</div>
-      <input class="ui-g-10" type="text" pInputText value="anishspillai@gmail.com"/>
-
-      <div class="ui-g-2">Address 1</div>
-      <input class="ui-g-10" type="text" pInputText value="anishspillai@gmail.com"/>
-    </div>
-  </div>
-
-
-  <hr>
-
-  <div class="ui-g-12">
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        User Name
+        Telephone No <span style="color: red" > &nbsp;( Required ) </span>
       </div>
     </div>
 
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        anishspillai@gmail.com
+        <input type="text" pInputText  [(ngModel)]="userDetailsModel.telephoneNumber"/>
       </div>
     </div>
   </div>
+
+<hr>
+
+
+  <div class="p-grid nested-grid">
+
+
+    <div class="p-col-4">
+      <div class="box box-stretched">  &nbsp;&nbsp;Address  <span style="color: red" > &nbsp;( Required ) </span> </div>
+    </div>
+
+    <div class="p-col-8">
+      <div class="p-grid">
+        <div class="p-col-6">
+          <div class="box">Apartment Number <span style="color: red" > &nbsp;* </span></div>
+        </div>
+        <div class="p-col-6">
+          <div class="box"><input size="30" type="text" pInputText [(ngModel)]="userDetailsModel.apartmentNo"/></div>
+        </div>
+
+
+        <div class="p-col-6">
+          <div class="box">Street Name <span style="color: red" > &nbsp;* </span> </div>
+        </div>
+        <div class="p-col-6">
+          <div class="box"><input type="text" size="30" required pInputText [(ngModel)]="userDetailsModel.streetName"/></div>
+        </div>
+
+        <div class="p-col-6">
+          <div class="box">Post Number  <span style="color: red" > &nbsp;* </span></div>
+        </div>
+        <div class="p-col-6">
+          <div class="box"><input type="text" size="30" pInputText [(ngModel)]="userDetailsModel.postNumber"/></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 
 
   <p-footer>
-    <button type="button" pButton icon="pi pi-check" (click)="displayBasic=false" label="Save"></button>
+    <button type="button" pButton icon="pi pi-check" (click)="storeUserDetails()" label="Save"></button>
     <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="Cancel"
             class="ui-button-secondary"></button>
   </p-footer>
+</p-dialog>
+
+
+<p-dialog header="Input Error" [(visible)]="displayErrorDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+  Please fill all required fields and try again
 </p-dialog>

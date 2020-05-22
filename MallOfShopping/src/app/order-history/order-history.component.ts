@@ -29,7 +29,6 @@ export class OrderHistoryComponent implements OnInit{
   constructor(private readonly groceryService: GroceryService) { }
 
   ngOnInit() {
-    console.log(this.groceryService)
     this.groceryService.getOrderHistory('syftEw7PqXdcoAHvtGVwEROEyW23').subscribe(value =>
       {
         value.forEach(childSnapshot => {
@@ -45,7 +44,6 @@ export class OrderHistoryComponent implements OnInit{
 
           this.orderHistory.push(orderHistoryComponent)
         })
-        console.log(this.orderHistory[0].orderHistory[0])
       }
     )
 

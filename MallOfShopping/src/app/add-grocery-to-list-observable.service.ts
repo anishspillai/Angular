@@ -7,7 +7,7 @@ import {Order} from "./individual-grocery/model/Order";
 })
 export class AddGroceryToListObservableService {
   private _orders = new BehaviorSubject<Order[]>([])
-  private orders: Order[] = []
+  orders: Order[] = []
 
   getOrders() {
     return this._orders.asObservable()
@@ -30,16 +30,18 @@ export class AddGroceryToListObservableService {
     } else {
       this.updateCountOfItems(noOfItems, id)
     }
+
   }
 
   private updateCountOfItems(noOfItems: number, id: string) {
-    const individualGroceryFromOrderedList = this.orders.find(element => element.id = id)
+    const individualGroceryFromOrderedList = this.orders.find(element => element.id == id)
     individualGroceryFromOrderedList.noOfItems = noOfItems
+
+
     this.notifySubscribers()
   }
 
-  private notifySubscribers() {
-    console.log(this.orders)
+  public notifySubscribers() {
     this._orders.next(this.orders)
   }
 }

@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
     this.cars = [
       {label: 'My Details', value: 'user-details'},
       {label: 'Order History', value: 'order-history'},
-      {label: 'Favorites', value: 'Favorites'}
+      {label: 'Favorites', value: 'order-confirmation'}
     ];
 
   }
@@ -118,7 +118,6 @@ export class HeaderComponent implements OnInit {
 
     this.ordersAddedByUser.forEach(function (element) {
 
-      console.log(element)
 
       if (element.bulkPurchaseOfferAvailable) {
 
@@ -138,7 +137,6 @@ export class HeaderComponent implements OnInit {
         }
 
       } else {
-        console.log("Snish " + element.actualPrice)
         sumOfItems += element.noOfItems * element.actualPrice
       }
     });
@@ -158,6 +156,9 @@ export class HeaderComponent implements OnInit {
     //this.groceryService.placeOrderForTheUser(this.ordersAddedByUser, user.uid)
 
     this.displaySideMenuBar = true
+
+
+    this.router.navigate(['order-confirmation']);
 
   }
 

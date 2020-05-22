@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {AppComponent} from "../app.component";
 import {Router} from "@angular/router";
@@ -17,12 +17,20 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
   @Input() displaySideMenuBar: boolean
 
+  @Output() closeSideBarMenuEvent = new EventEmitter()
+
   ordersAddedByUser: Order[] = []
 
 
-  constructor(private readonly addGroceryToListObservableService: AddGroceryToListObservableService) {
+  constructor(private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
+              private readonly router: Router) {
   }
 
+
+  moveToConfirmationPage() {
+    this.sendCloseEvent()
+    this.router.navigate(['order-confirmation']);
+  }
 
   ngOnInit(): void {
     this.addGroceryToListObservableService.getOrders().subscribe(value => {
@@ -30,12 +38,22 @@ export class ReviewOrderedItemsComponent implements OnInit {
     })
   }
 
-  increment(noOfItems: number, id: string) {
-    this.addGroceryToListObservableService.incrementNoOfItems(noOfItems, id)
+  increment(order: Order) {
+    order.noOfItems = order.noOfItems += 1
+    this.addGroceryToListObservableService.notifySubscribers()
   }
 
-  decrement(noOfItems: number, id: string) {
-    this.addGroceryToListObservableService.decrementNoOfItems(noOfItems, id)
+  decrement(order: Order) {
+    if(order.noOfItems == 1) {
+      this.addGroceryToListObservableService.decrementNoOfItems(order.noOfItems, order.id)
+    } else {
+      order.noOfItems -= 1
+      this.addGroceryToListObservableService.notifySubscribers()
+    }
+  }
+
+  sendCloseEvent() {
+    this.closeSideBarMenuEvent.emit(false)
   }
 
 }

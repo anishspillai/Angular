@@ -22,7 +22,7 @@ export class GroceryGridComponent implements OnInit{
 
   orderedList: Order[] = []
 
-  displayProgressSpinner = true
+  displayProgressSpinner = false
 
 
   seen:[] = []
@@ -37,6 +37,29 @@ export class GroceryGridComponent implements OnInit{
   home: MenuItem;
 
   ngOnInit() {
+
+    var one: IndividualGrocery = new IndividualGrocery()
+    one.brandName = "One"
+    one.actualPrice = 897
+    one.offerPrice = 0
+    one.weight = 7.8
+    one.unitOfWeight = "Kg"
+    one.type = "rice"
+    one.id = "One"
+
+    this.anish.push(one)
+
+    var two: IndividualGrocery = new IndividualGrocery()
+    two.brandName = "One"
+    two.actualPrice = 897
+    two.offerPrice = 0
+    two.weight = 7.8
+    two.unitOfWeight = "Kg"
+    two.type = "rice"
+    two.id = "Two"
+
+    this.anish.push(two)
+
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
       //this.fetchGroceries()

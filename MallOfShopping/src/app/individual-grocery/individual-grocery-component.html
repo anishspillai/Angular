@@ -76,15 +76,18 @@
 
   <div class="box" style="text-align:center; padding-top: 10px">
 
-    <div *ngIf="isDisplayAddButton">
+    <div *ngIf="isNotAddedIntoTheList()">
       <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
                 (click)="addItemToCart()"></p-button>
     </div>
 
-    <div *ngIf="!isDisplayAddButton" class="ui-inputgroup center-align">
+    <div *ngIf="!isNotAddedIntoTheList()" class="ui-inputgroup; center-align">
+
       <button pButton type="button" icon="pi pi-minus" class="ui-button-success"
               (click)="decrementNoOfItems()"></button>
-      <input type="text" pInputText placeholder="Vote" style="font-size: 15px" [(ngModel)]="noOfItems">
+
+       &nbsp;&nbsp;<span class="bold-center-aligned-text"> {{ getNoOfOrders() }} </span>&nbsp;&nbsp;
+
       <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
               (click)="incrementNoOfItems(true)"></button>
     </div>
@@ -171,8 +174,9 @@
 
       <hr>
       <div class="p-col">
+        Actual Price
         <div *ngIf="individualGrocery.offerPrice > 0" class="box">
-          Actual Price {{individualGrocery.actualPrice}} Kr
+          {{individualGrocery.actualPrice}} Kr
         </div>
 
       </div>

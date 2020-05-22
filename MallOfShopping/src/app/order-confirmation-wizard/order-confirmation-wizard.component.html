@@ -1,0 +1,101 @@
+<!--h3 class="first">Order Confirmation</h3>
+<div class="ui-g">
+  <div class="p-col-6" style="border:1px solid red">
+    <div class="box">
+      <app-user-details></app-user-details>
+    </div>
+  </div>
+
+  <div class="p-col-6">
+    <div class="box">
+
+      <h1> Order Summary </h1>
+
+      <div class="p-grid">
+        <div class="p-col-7">
+          <h4> Total Amount </h4>
+        </div>
+        <div class="p-col-5">
+          <h3>Tse</h3>
+        </div>
+      </div>
+
+      <button style="float: right" pButton type="button" icon="pi pi-check" label="Check Out"
+              class="ui-button-rounded ui-button-success" iconPos="right"></button>
+      <br>
+    </div>
+  </div>
+</div-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial;
+      color: white;
+    }
+
+    .split {
+      height: 100%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    .left {
+      width: 78%;
+      left: 0;
+      background-color: #111;
+    }
+
+    .right {
+      width: 22%;
+      right: 0;
+      background-color: #FF6B33;
+    }
+
+    .centered {
+      position: absolute;
+      margin-left: 10em;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="split left">
+  <div class="centered">
+    <app-user-details></app-user-details>
+  </div>
+</div>
+
+<div class="split right">
+
+  <h1> Order Summary </h1>
+
+  <div class="p-grid">
+    <div class="p-col-7">
+      <h4> Total Amount </h4>
+    </div>
+    <div class="p-col-5">
+      <h3>Tse</h3>
+    </div>
+  </div>
+
+  <div class="p-grid">
+    <div class="p-col-7; center-align">
+      <button pButton type="button" label="Success" class="ui-button-rounded ui-button-success"></button>
+    </div>
+    <div class="p-col-5; center-align">
+      <button (click)="cancelThisPage()" pButton type="button" label="Danger" class="ui-button-rounded ui-button-danger"></button>
+    </div>
+  </div>
+
+
+</div>
+
+</body>
