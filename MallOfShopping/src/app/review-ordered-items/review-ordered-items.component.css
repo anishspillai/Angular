@@ -2,3 +2,23 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  border-radius: 20px;
+  margin: auto;
+}
+
+
+.arrange-horizontally > * {
+  display: inline-block;
+  text-align: center;
+}

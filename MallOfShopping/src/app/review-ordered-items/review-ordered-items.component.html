@@ -1,24 +1,41 @@
-<p-sidebar [(visible)]="displaySideMenuBar" position="right" [baseZIndex]="10000" [style]="{width:'30em'}" (onHide)="sendCloseEvent()">
+<p-sidebar [(visible)]="displaySideMenuBar"
+           position="right"
+           [baseZIndex]="10000"
+           [style]="{width:'30em'}"
+           (onHide)="sendCloseEvent()">
 
   <div class="p-grid">
-    <div class="p-col-7">
-  <h2 > Order Overview </h2>
+
+    <div class="p-col-7; center-align">
+      <h4> Order Overview </h4>
     </div>
-    <div class="p-col-5">
-      <button pButton type="button" icon="pi pi-check" label="Place Order"
-              style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right" (click)="moveToConfirmationPage()"></button>
+    <div class="p-col-5; block" (click)="moveToConfirmationPage()">
+      <!--button  pButton type="button" icon="pi pi-check" label="Place Order"
+              style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right"
+              (click)="moveToConfirmationPage()"></button-->
+      Proceed to Check out
     </div>
   </div>
 
+  <br>
+
   <div *ngFor="let order of ordersAddedByUser; let i = index">
-
-
     <div class="p-grid">
-      <div class="p-col-4">
-        <div class="box" style="border: black"> {{order.groceryName}} <br>
-          {{order.type}}</div>
+
+      <div class="p-col-6">
+
+        <div class="arrange-horizontally">
+
+        <img src="assets/img/groceries.png"
+             style="width: 30px; height: 30px" class="center-align">
+
+        <div class="box" style="border: black">
+          {{order.groceryName}} <br>
+          {{order.type}}
+        </div>
       </div>
 
+      </div>
 
       <div class="p-col-4">
         <button pButton type="button" icon="pi pi-minus" class="ui-button-danger" (click)="decrement(order)"></button>
@@ -26,16 +43,25 @@
         <button pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
       </div>
 
-
       <div class="center">
-        <h3>{{order.actualPrice * order.noOfItems}}</h3>
+        <h4>{{order.actualPrice * order.noOfItems}} Kr</h4>
       </div>
-
     </div>
-
     <hr>
+  </div>
 
 
+  <div class="p-grid p-justify-end">
+    <div class="p-col-2">
+      <div class="box">
+        <h3>Total</h3>
+      </div>
+    </div>
+    <div class="p-col-4">
+      <div class="box" style="float: right">
+        <h3>{{  addGroceryToListObservableService.getTotalAmount() }} Kr</h3>
+      </div>
+    </div>
   </div>
 
 </p-sidebar>

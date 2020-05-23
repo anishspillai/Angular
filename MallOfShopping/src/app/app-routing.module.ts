@@ -9,7 +9,7 @@ import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/orde
 
 
 const routes: Routes = [
-  { path: 'first-component', component: GroceryGridComponent },
+  { path: 'first-component', component: GroceryGridComponent, runGuardsAndResolvers: 'always' },
   { path: '',   redirectTo: '/first-component', pathMatch: 'full' },
   { path: 'user-details', component: UserDetailsComponent },
   { path: 'order-history', component: OrderHistoryComponent },
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

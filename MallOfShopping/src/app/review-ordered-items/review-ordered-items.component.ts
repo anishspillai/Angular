@@ -22,7 +22,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
   ordersAddedByUser: Order[] = []
 
 
-  constructor(private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
+  constructor(readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly router: Router) {
   }
 
@@ -30,6 +30,9 @@ export class ReviewOrderedItemsComponent implements OnInit {
   moveToConfirmationPage() {
     this.sendCloseEvent()
     this.router.navigate(['order-confirmation']);
+    /**this.router.navigateByUrl('/order-confirmation', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['order-confirmation']);
+    });*/
   }
 
   ngOnInit(): void {

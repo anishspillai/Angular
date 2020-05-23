@@ -30,18 +30,21 @@ export class AddGroceryToListObservableService {
     } else {
       this.updateCountOfItems(noOfItems, id)
     }
-
   }
 
   private updateCountOfItems(noOfItems: number, id: string) {
     const individualGroceryFromOrderedList = this.orders.find(element => element.id == id)
     individualGroceryFromOrderedList.noOfItems = noOfItems
-
-
     this.notifySubscribers()
   }
 
   public notifySubscribers() {
     this._orders.next(this.orders)
   }
+
+  public getTotalAmount() {
+    return this.orders
+      .reduce((sum, current) => sum + (current.noOfItems * current.actualPrice), 0);
+  }
+
 }

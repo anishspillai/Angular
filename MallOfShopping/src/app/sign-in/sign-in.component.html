@@ -1,42 +1,90 @@
-<p-dialog header="Godfather I" visible="true" resizable="false" responsive="false">
+<p-dialog header="{{dialogHeader}}"
+          [(visible)]="loadLoginPage"
+          resizable="false"
+          responsive="false"
+          (onHide)="triggerEventForClosingDialog()">
 
-
-  <div class="ui-g-12">
-    User Name
+  <div *ngIf="errorMessage" class="isa_error">
+    <i class="pi pi-times-circle"></i>
+    {{errorMessage}}
   </div>
 
-  <div class="ui-g-6 u-margin-none u-padding-none">
-    <input type="text" size="50" pInputText [(ngModel)]="userId">
-  </div>
-  <br>
-
-  <div class="ui-g-12">
-    Password
+  <div *ngIf="successMessage" class="isa_success">
+    <i class="pi pi-check-circle"></i>
+    {{successMessage}}
   </div>
 
-  <div class="ui-g-6 u-margin-none u-padding-none">
-    <input type="password" pPassword size="50" [(ngModel)]="password">
+  <div *ngIf="!isResetPasswordDialog">
+    <div class="ui-g-12">
+      <h4 style="margin: 0px"> User Name </h4>
+    </div>
+
+    <div class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="50" pInputText [(ngModel)]="userId">
+    </div>
+    <br>
+
+    <div class="ui-g-12">
+      <h4 style="margin: 0px"> Password </h4>
+    </div>
+
+    <div class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px;" type="password" pPassword size="50" [(ngModel)]="password">
+    </div>
+
+    <br>
+
+    <div class="ui-g-12">
+
+      <div *ngIf="isLoginOperation" class="ui-g-6">
+        <button pButton type="button" label="Login" class="ui-button-rounded ui-button-success"
+                (click)="loginUser()"></button>
+      </div>
+
+      <div *ngIf="!isLoginOperation" class="ui-g-6">
+        <button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
+                (click)="registerUser()"></button>
+      </div>
+
+      <div *ngIf="isLoginOperation" class="ui-g-6">
+        <a (click)="setRegisterUserPageProperties()" style="text-decoration: underline">Register new user?</a>
+      </div>
+
+      <div *ngIf="isLoginOperation" class="ui-g-6">
+        <a (click)="setPasswordResetProperties()" style="text-decoration: underline">Forget Password?</a>
+      </div>
+
+      <div *ngIf="!isLoginOperation" class="ui-g-6">
+        <button pButton type="button" label="Cancel" class="ui-button-rounded ui-button-danger"
+                (click)="loadLoginPageProperties()"></button>
+      </div>
+
+    </div>
   </div>
 
-  <br>
 
-  <div class="ui-g-12">
 
-    <div *ngIf="isLoginOperation" class="ui-g-6">
-      <button pButton label="Login" (click)="loginUser()"></button>
+  <div *ngIf="isResetPasswordDialog">
+
+    <div class="ui-g-12">
+      <h4 style="margin: 0px"> User Name </h4>
     </div>
 
-    <div *ngIf="!isLoginOperation" class="ui-g-6">
-      <button pButton label="Register"></button>
+    <div class="ui-g-12 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="50" pInputText [(ngModel)]="userId">
+    </div>
+    <br>
+
+    <div class="ui-g-6">
+      <button pButton type="button" label="Send mail" class="ui-button-rounded ui-button-success"
+              (click)="resetUserPassword()"></button>
     </div>
 
-    <div *ngIf="isLoginOperation" class="ui-g-6">
-      <a (click)="registerNewUser()">Register new user?</a>
+    <div class="ui-g-6">
+      <button pButton type="button" label="Cancel" class="ui-button-rounded ui-button-danger"
+              (click)="cancelPasswordResetDialog()"></button>
     </div>
 
-    <div *ngIf="!isLoginOperation" class="ui-g-6">
-      <button (click)="isLoginOperation = true" pButton label="Cancel"></button>
-    </div>
 
   </div>
 

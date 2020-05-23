@@ -3,6 +3,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {MessageService} from "primeng/api";
 import {Route, Router} from "@angular/router";
+import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -17,10 +18,12 @@ export class OrderConfirmationWizardComponent implements OnInit {
 
   activeIndex: number = 0;
 
-  constructor(private messageService: MessageService, private readonly router: Router) {}
+  constructor(private messageService: MessageService,
+              private readonly router: Router,
+              private readonly addGroceryToListObservableService: AddGroceryToListObservableService) {}
 
   cancelThisPage() {
-
+    localStorage.setItem('foo', 'no reload')
     this.router.navigate(['first-component']);
   }
 
@@ -30,7 +33,7 @@ export class OrderConfirmationWizardComponent implements OnInit {
 
 
 
-    this.router.navigate(['order-confirmation']);
+    this.router.navigate(['']);
 
   }
   ngOnInit() {

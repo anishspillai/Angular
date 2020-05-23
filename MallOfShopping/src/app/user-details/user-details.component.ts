@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserDetailsService} from "./user.details.service";
 import {UserDetailsModel} from "./model/user.details.model";
 import {User} from "firebase";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-user-details',
@@ -15,7 +16,8 @@ export class UserDetailsComponent implements OnInit {
 
   displayErrorDialog: boolean = false
 
-  constructor(private readonly  userDetailsService: UserDetailsService) {
+  constructor(private readonly  userDetailsService: UserDetailsService,
+              private readonly authService: AuthService) {
   }
 
   displayBasic = false
@@ -23,8 +25,9 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user != null) {
+    this.user = this.authService.getUser()
+
+    if (this.user) {
       this.userDetailsService.getUserDetails(this.user.uid).subscribe(value => {
         value.forEach(childSnapshot => {
           this.userDetailsModel = childSnapshot.payload.val()[0]

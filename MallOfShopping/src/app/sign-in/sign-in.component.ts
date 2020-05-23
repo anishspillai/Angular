@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {AuthService} from "../auth/auth.service";
 
@@ -14,8 +14,26 @@ export class SignInComponent implements OnInit {
   auth: AuthService
 
   userId: string
+
   password: string
 
+  dialogHeader: string = "Login user"
+
+  errorMessage: string
+
+  successMessage: string
+
+
+  isResetPasswordDialog: boolean = false
+
+
+  @Input() loadLoginPage: boolean
+
+  @Output() closeLoginDialogEvent = new EventEmitter()
+
+  triggerEventForClosingDialog() {
+    this.closeLoginDialogEvent.emit(false)
+  }
 
   userEmails = new FormGroup({
     primaryEmail: new FormControl('')
@@ -26,14 +44,67 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
-  registerNewUser(): void {
+  setPasswordResetProperties() {
+    this.isResetPasswordDialog = true
+  }
+
+  setRegisterUserPageProperties(): void {
     this.isLoginOperation = false
+    this.dialogHeader = "Register new user"
+  }
+
+  cancelPasswordResetDialog() {
+    this.successMessage = null
+    this.isResetPasswordDialog = false
+    this.loadLoginPageProperties()
+  }
+
+  loadLoginPageProperties() {
+    this.isLoginOperation = true
+    this.dialogHeader = "Login user"
   }
 
   loginUser() : void {
-    this.auth.login(this.userId, this.password).then(r => console.log(JSON.parse(localStorage.getItem('user'))))
+
+    this.errorMessage = null
+
+    this.auth.login(this.userId, this.password)
+      .then(() => {
+        this.triggerEventForClosingDialog()
+      })
+      .catch((serverLoginError: any) => {
+        this.errorMessage = serverLoginError.toString()
+      });
+  }
+
+  registerUser() : void {
+
+    this.errorMessage = null
+
+    this.auth.register(this.userId, this.password)
+      .then(() => {
+        this.triggerEventForClosingDialog()
+      })
+      .catch((serverLoginError: any) => {
+        this.errorMessage = serverLoginError.toString()
+      });
+  }
+
+  resetUserPassword() {
+
+    this.errorMessage = null
+    this.successMessage = null
+
+    this.auth.sendPasswordResetEmail(this.userId)
+      .then(() => {
+        this.successMessage = "Password reset link is sent to the email id"
+      })
+      .catch((serverLoginError: any) => {
+        this.errorMessage = serverLoginError.toString()
+      });
   }
 
 }

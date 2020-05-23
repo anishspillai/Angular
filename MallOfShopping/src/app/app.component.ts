@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {GroceryResponse, IndividualGrocery} from "./individual-grocery/model/IndividualGrocery";
@@ -6,6 +6,7 @@ import {map} from "rxjs/operators";
 import {IndividualGroceryComponent} from "./individual-grocery/individual-grocery-component";
 import {Order} from "./individual-grocery/model/Order";
 import {MenuItem} from "primeng/api";
+import {NavigationEnd, Router} from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {MenuItem} from "primeng/api";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'MallOfShopping';
   items: Observable<any[]>;
   anish: IndividualGrocery[] = [new IndividualGrocery()]
@@ -25,10 +26,18 @@ export class AppComponent {
 
 seen:[] = []
 
-  constructor(firestore: AngularFireDatabase) {
+  navigationSubscription;
+
+
+  constructor(firestore: AngularFireDatabase, private readonly router: Router) {
     this.seen = []
 
-
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
       /**firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
 
 
@@ -46,6 +55,25 @@ seen:[] = []
           }
       ))*/
 
+  }
+
+  initialiseInvites() {
+    if (localStorage.getItem('foo')) {
+      alert('Here I ama')
+      location.reload()
+      localStorage.removeItem('foo')
+    }
+  }
+  ngOnDestroy() {
+    // avoid memory leaks here by cleaning up after ourselves. If we
+    // don't then we will continue to run our initialiseInvites()
+    // method on every navigationEnd event.
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
+  }
+
+  ngOnInit() {
   }
 
   callMe(): void {

@@ -55,7 +55,7 @@
     .right {
       width: 22%;
       right: 0;
-      background-color: #FF6B33;
+      background-color: darkorange;
     }
 
     .centered {
@@ -68,31 +68,35 @@
 <body>
 
 <div class="split left">
-  <div class="centered">
+  <div class="centered" style="width: 70%">
     <app-user-details></app-user-details>
   </div>
 </div>
 
 <div class="split right">
 
-  <h1> Order Summary </h1>
+  <h1 style="padding-left: 10px"> Order Summary </h1>
 
-  <div class="p-grid">
+  <div class="p-grid" style="padding: 20px">
     <div class="p-col-7">
       <h4> Total Amount </h4>
     </div>
     <div class="p-col-5">
-      <h3>Tse</h3>
+      <h3>{{ addGroceryToListObservableService.getTotalAmount() }} Kr</h3>
     </div>
   </div>
 
-  <div class="p-grid">
-    <div class="p-col-7; center-align">
-      <button pButton type="button" label="Success" class="ui-button-rounded ui-button-success"></button>
-    </div>
-    <div class="p-col-5; center-align">
-      <button (click)="cancelThisPage()" pButton type="button" label="Danger" class="ui-button-rounded ui-button-danger"></button>
-    </div>
+
+
+  <div class="p-col-5; block">
+    Proceed to Check out
+  </div>
+
+
+<br>
+
+  <div class="p-col-5; blockRed" (click)="cancelThisPage()">
+    Cancel Order
   </div>
 
 

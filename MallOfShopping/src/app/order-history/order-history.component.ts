@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {OrderHistoryModel} from "./OrderHistory.model";
 import {Order} from "../individual-grocery/model/Order";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-order-history',
@@ -26,7 +27,8 @@ export class OrderHistoryComponent implements OnInit{
   public columnOptions: any[];
   private colsTempor: any[] = [];
 
-  constructor(private readonly groceryService: GroceryService) { }
+  constructor(private readonly groceryService: GroceryService,
+              private readonly authService: AuthService) { }
 
   ngOnInit() {
     this.groceryService.getOrderHistory('syftEw7PqXdcoAHvtGVwEROEyW23').subscribe(value =>

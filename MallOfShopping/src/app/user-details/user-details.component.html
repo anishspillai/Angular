@@ -1,54 +1,52 @@
 <h1>User Details</h1>
 <div *ngIf="!user"> Please log in and try again!!!</div>
-<div *ngIf="!user">
-<div class="ui-g">
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      User Name
+<div *ngIf="user">
+  <div class="ui-g" style="width: 100%">
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+        User Name
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-8">
+      <div class="ui-inputgroup">
+        {{userDetailsModel.firstName}}  {{userDetailsModel.lastName}}
+      </div>
     </div>
   </div>
 
-  <div class="ui-g-12 ui-md-8">
-    <div class="ui-inputgroup">
-      {{userDetailsModel.firstName}}  {{userDetailsModel.lastName}}
+  <hr>
+
+  <div class="ui-g">
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+        Telephone No
+      </div>
+    </div>
+
+    <div class="ui-g-12 ui-md-4">
+      <div class="ui-inputgroup">
+        {{userDetailsModel.telephoneNumber}}
+      </div>
     </div>
   </div>
-</div>
-
-<hr>
-
-<div class="ui-g">
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      Telephone No
-    </div>
-  </div>
-
-  <div class="ui-g-12 ui-md-4">
-    <div class="ui-inputgroup">
-      {{userDetailsModel.telephoneNumber}}
-    </div>
-  </div>
-</div>
-<hr>
+  <hr>
 
 
   <div class="p-grid nested-grid">
 
-
     <div class="p-col-4">
-      <div class="box box-stretched">  &nbsp;&nbsp;Address</div>
+      <div class="box box-stretched"> &nbsp;&nbsp;Address</div>
     </div>
 
     <div class="p-col-8">
       <div class="p-grid">
         <div class="p-col-6">
-           Apartment Number
+          Apartment Number
         </div>
         <div class="p-col-6">
           {{userDetailsModel.apartmentNo}}
         </div>
-
 
 
         <div class="p-col-6">
@@ -73,11 +71,10 @@
   <hr>
 
 
-
-<p-footer>
-  <button pButton type="button" label="Edit" icon="pi pi-check" style="margin-right: .25em"
-          (click)="displayBasic = true"></button>
-</p-footer>
+  <p-footer>
+    <button pButton type="button" label="Edit" icon="pi pi-check" style="margin-right: .25em"
+            (click)="displayBasic = true"></button>
+  </p-footer>
 </div>
 
 <p-dialog header="Edit User" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -85,20 +82,20 @@
   <div class="ui-g">
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        First Name <span style="color: red" > &nbsp;( Required ) </span>
+        First Name <span style="color: red"> &nbsp;( Required ) </span>
       </div>
     </div>
 
     <div class="ui-g-12 ui-md-8">
       <div class="ui-inputgroup">
-        <input type="text" pInputText  [(ngModel)]="userDetailsModel.firstName"/>
+        <input type="text" pInputText [(ngModel)]="userDetailsModel.firstName"/>
       </div>
     </div>
 
 
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        Last Name <span style="color: green" > &nbsp;( Optional ) </span>
+        Last Name <span style="color: green"> &nbsp;( Optional ) </span>
       </div>
     </div>
 
@@ -115,31 +112,31 @@
   <div class="ui-g">
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        Telephone No <span style="color: red" > &nbsp;( Required ) </span>
+        Telephone No <span style="color: red"> &nbsp;( Required ) </span>
       </div>
     </div>
 
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
-        <input type="text" pInputText  [(ngModel)]="userDetailsModel.telephoneNumber"/>
+        <input type="text" pInputText [(ngModel)]="userDetailsModel.telephoneNumber"/>
       </div>
     </div>
   </div>
 
-<hr>
+  <hr>
 
 
   <div class="p-grid nested-grid">
 
 
     <div class="p-col-4">
-      <div class="box box-stretched">  &nbsp;&nbsp;Address  <span style="color: red" > &nbsp;( Required ) </span> </div>
+      <div class="box box-stretched"> &nbsp;&nbsp;Address <span style="color: red"> &nbsp;( Required ) </span></div>
     </div>
 
     <div class="p-col-8">
       <div class="p-grid">
         <div class="p-col-6">
-          <div class="box">Apartment Number <span style="color: red" > &nbsp;* </span></div>
+          <div class="box">Apartment Number <span style="color: red"> &nbsp;* </span></div>
         </div>
         <div class="p-col-6">
           <div class="box"><input size="30" type="text" pInputText [(ngModel)]="userDetailsModel.apartmentNo"/></div>
@@ -147,14 +144,15 @@
 
 
         <div class="p-col-6">
-          <div class="box">Street Name <span style="color: red" > &nbsp;* </span> </div>
+          <div class="box">Street Name <span style="color: red"> &nbsp;* </span></div>
         </div>
         <div class="p-col-6">
-          <div class="box"><input type="text" size="30" required pInputText [(ngModel)]="userDetailsModel.streetName"/></div>
+          <div class="box"><input type="text" size="30" required pInputText [(ngModel)]="userDetailsModel.streetName"/>
+          </div>
         </div>
 
         <div class="p-col-6">
-          <div class="box">Post Number  <span style="color: red" > &nbsp;* </span></div>
+          <div class="box">Post Number <span style="color: red"> &nbsp;* </span></div>
         </div>
         <div class="p-col-6">
           <div class="box"><input type="text" size="30" pInputText [(ngModel)]="userDetailsModel.postNumber"/></div>
@@ -163,7 +161,6 @@
       </div>
     </div>
   </div>
-
 
 
   <p-footer>

@@ -39,18 +39,18 @@ export class GroceryGridComponent implements OnInit{
   ngOnInit() {
 
     var one: IndividualGrocery = new IndividualGrocery()
-    one.brandName = "One"
+    one.brandName = "Anish S PIllai"
     one.actualPrice = 897
     one.offerPrice = 0
     one.weight = 7.8
     one.unitOfWeight = "Kg"
-    one.type = "rice"
+    one.type = "Pongal Rice"
     one.id = "One"
 
     this.anish.push(one)
 
     var two: IndividualGrocery = new IndividualGrocery()
-    two.brandName = "One"
+    two.brandName = "Anish S PIllai Anish"
     two.actualPrice = 897
     two.offerPrice = 0
     two.weight = 7.8

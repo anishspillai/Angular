@@ -1,11 +1,9 @@
-<br>
-<br>
-<br>
+<h1>Order History</h1>
+
+<div *ngIf="!authService.isLoggedIn"> Please log in and try again!!!</div>
 
 
-<h3>Your Order History</h3>
-
-<p-accordion [multiple]="true">
+<p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
   <div *ngFor="let oh of orderHistory">
 
     <p-accordionTab header={{oh.orderedTimestamp}}>

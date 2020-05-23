@@ -36,6 +36,8 @@ export class HeaderComponent implements OnInit {
 
   displaySideMenuBar: boolean = false
 
+  displayLoginPage: boolean = false
+
 
   constructor(appComponent: AppComponent,
               router: Router,
@@ -82,9 +84,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logIn() {
-    console.log(this.ordersAddedByUser)
-    console.log(new Date().toLocaleTimeString())
-    this.router.navigate(['log-in']);
+    this.displayLoginPage = true
+  }
+
+  proceedToNextPage() {
+    if(this.auth.isLoggedIn) {
+      this.displaySideMenuBar = true
+    } else {
+      this.logIn()
+    }
   }
 
   logOut() {
@@ -158,7 +166,11 @@ export class HeaderComponent implements OnInit {
     this.displaySideMenuBar = true
 
 
-    this.router.navigate(['order-confirmation']);
+    //this.router.navigate(['order-confirmation']);
+
+    this.router.navigateByUrl('/order-confirmation', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['order-confirmation']);
+    });
 
   }
 
