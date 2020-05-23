@@ -46,6 +46,7 @@ import { ReviewOrderedItemsComponent } from './review-ordered-items/review-order
 import { OrderConfirmationWizardComponent } from './order-confirmation-wizard/order-confirmation-wizard.component';
 import {ToastModule} from "primeng/toast";
 import {StepsModule} from "primeng/steps"
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 const routes: Routes = [
   { path: 'first-component', component: GroceryGridComponent },
@@ -101,7 +102,8 @@ const routes: Routes = [
     ProgressSpinnerModule,
     MessagesModule,
     ToastModule,
-    StepsModule
+    StepsModule,
+    ConfirmDialogModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],

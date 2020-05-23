@@ -4,18 +4,33 @@
            [style]="{width:'30em'}"
            (onHide)="sendCloseEvent()">
 
+  <h4> Order Overview </h4>
+
+  <div *ngIf="addGroceryToListObservableService.getTotalAmount() <= 400" class="isa_info">
+    Needs delivery charge. Free delivery for more than 400 Kr
+  </div>
+
+  <div *ngIf="addGroceryToListObservableService.getTotalAmount() > 400" class="isa_success">
+    This order is free of delivery charge
+  </div>
+
   <div class="p-grid">
 
-    <div class="p-col-7; center-align">
-      <h4> Order Overview </h4>
+      <div class="p-col-5; block" (click)="moveToConfirmationPage()">
+        <!--button  pButton type="button" icon="pi pi-check" label="Place Order"
+                style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right"
+                (click)="moveToConfirmationPage()"></button-->
+        Check out
     </div>
-    <div class="p-col-5; block" (click)="moveToConfirmationPage()">
+    <div class="p-col-5; redblock" (click)="emptyCart()">
       <!--button  pButton type="button" icon="pi pi-check" label="Place Order"
               style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right"
               (click)="moveToConfirmationPage()"></button-->
-      Proceed to Check out
+      Empty cart
     </div>
   </div>
+
+  <hr>
 
   <br>
 
@@ -51,8 +66,22 @@
   </div>
 
 
+  <div *ngIf="addGroceryToListObservableService.getTotalAmount() <= 400" class="p-grid p-justify-end">
+    <div class="p-col-8">
+      <div class="box">
+        Delivery Charge
+      </div>
+    </div>
+    <div class="p-col-4">
+      <div class="box" style="float: right">
+        {{  addGroceryToListObservableService.getTotalAmount() }} Kr
+      </div>
+    </div>
+  </div>
+
+
   <div class="p-grid p-justify-end">
-    <div class="p-col-2">
+    <div class="p-col-8">
       <div class="box">
         <h3>Total</h3>
       </div>

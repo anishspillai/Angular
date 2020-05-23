@@ -2,6 +2,10 @@
 
 <div *ngIf="!authService.isLoggedIn"> Please log in and try again!!!</div>
 
+<div *ngIf="orderHistory.length == 0">
+  <i class="pi pi-info-circle"></i>
+  Your order history is empty
+</div>
 
 <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
   <div *ngFor="let oh of orderHistory">
@@ -10,7 +14,7 @@
       <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
         <ng-template pTemplate="caption">
-           Grocery Order List
+          Grocery Order List
           <div style="float: right">
             {{oh.orderedTimestamp}}
           </div>

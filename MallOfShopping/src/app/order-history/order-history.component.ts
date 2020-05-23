@@ -28,10 +28,13 @@ export class OrderHistoryComponent implements OnInit{
   private colsTempor: any[] = [];
 
   constructor(private readonly groceryService: GroceryService,
-              private readonly authService: AuthService) { }
+              readonly authService: AuthService) { }
 
   ngOnInit() {
-    this.groceryService.getOrderHistory('syftEw7PqXdcoAHvtGVwEROEyW23').subscribe(value =>
+
+    const user = this.authService.getUser()
+
+    this.groceryService.getOrderHistory(user.uid).subscribe(value =>
       {
         value.forEach(childSnapshot => {
 

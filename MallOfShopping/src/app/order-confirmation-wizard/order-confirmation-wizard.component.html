@@ -88,8 +88,8 @@
 
 
 
-  <div class="p-col-5; block">
-    Proceed to Check out
+  <div class="p-col-5; block" (click)="placeOrder()">
+    Confirm
   </div>
 
 
@@ -101,5 +101,8 @@
 
 
 </div>
+
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 </body>

@@ -29,8 +29,8 @@ export class AuthService {
   }
 
   async register(email: string, password: string) {
-    var result = await this.afAuth.createUserWithEmailAndPassword(email, password)
-    this.sendEmailVerification();
+    await this.afAuth.createUserWithEmailAndPassword(email, password)
+    //this.sendEmailVerification();
   }
 
   // https://www.techiediaries.com/angular-firebase/angular-9-firebase-authentication-email-google-and-password/
@@ -54,7 +54,7 @@ export class AuthService {
     return  user  !==  null;
   }
 
-  get getUser() {
+  getUser() : User {
     return  JSON.parse(localStorage.getItem('user'));
   }
 }

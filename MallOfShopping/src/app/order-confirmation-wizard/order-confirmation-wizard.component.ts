@@ -1,70 +1,58 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 //import {MenuItem, MessageService} from "primeng";
-import {MenuItem} from "primeng/api";
+import {ConfirmationService, MenuItem} from "primeng/api";
 import {MessageService} from "primeng/api";
 import {Route, Router} from "@angular/router";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
+import {User} from "firebase";
+import {GroceryService} from "../grocery-grid/grocery.service";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
   templateUrl: './order-confirmation-wizard.component.html',
-  providers: [MessageService],
+  providers: [ConfirmationService],
   styleUrls: ['./order-confirmation-wizard.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class OrderConfirmationWizardComponent implements OnInit {
+export class OrderConfirmationWizardComponent {
 
   items: MenuItem[];
 
   activeIndex: number = 0;
 
-  constructor(private messageService: MessageService,
+  constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
-              private readonly addGroceryToListObservableService: AddGroceryToListObservableService) {}
+              readonly addGroceryToListObservableService: AddGroceryToListObservableService,
+              private readonly groceryService: GroceryService) {
+  }
 
   cancelThisPage() {
-    localStorage.setItem('foo', 'no reload')
-    this.router.navigate(['first-component']);
+
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to cancel placing this order?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        localStorage.setItem('foo', 'no reload')
+        this.router.navigate(['first-component']);
+      },
+      reject: () => {
+
+      }
+    });
+
+    //localStorage.setItem('foo', 'no reload')
+    //this.router.navigate(['first-component']);
   }
 
   placeOrder() {
-    //const user: User = JSON.parse(localStorage.getItem('user'))
-    //this.groceryService.placeOrderForTheUser(this.ordersAddedByUser, user.uid)
-
-
-
-    this.router.navigate(['']);
-
-  }
-  ngOnInit() {
-    this.items = [{
-      label: 'Personal',
-      command: (event: any) => {
-        this.activeIndex = 0;
-        this.messageService.add({severity:'info', summary:'First Step', detail: event.item.label});
-      }
-    },
-      {
-        label: 'Seat',
-        command: (event: any) => {
-          this.activeIndex = 1;
-          this.messageService.add({severity:'info', summary:'Seat Selection', detail: event.item.label});
-        }
-      },
-      {
-        label: 'Payment',
-        command: (event: any) => {
-          this.activeIndex = 2;
-          this.messageService.add({severity:'info', summary:'Pay with CC', detail: event.item.label});
-        }
-      },
-      {
-        label: 'Confirmation',
-        command: (event: any) => {
-          this.activeIndex = 3;
-          this.messageService.add({severity:'info', summary:'Last Step', detail: event.item.label});
-        }
-      }
-    ];
+    const user: User = JSON.parse(localStorage.getItem('user'))
+    this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
+      this.cancelThisPage()
+      alert("Thank you for placing the order!!!")
+    })
+      .catch(err => {
+        alert("Sorry, we could not take the order now!!!")
+      });
   }
 }

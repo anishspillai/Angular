@@ -13,6 +13,11 @@ export class AddGroceryToListObservableService {
     return this._orders.asObservable()
   }
 
+  emptyCart() {
+    this.orders = []
+    this.notifySubscribers()
+  }
+
   addGroceryToTheOrderList(order: Order) {
     this.orders.push(order)
     this._orders.next(this.orders)

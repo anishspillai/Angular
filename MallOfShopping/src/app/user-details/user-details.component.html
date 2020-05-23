@@ -77,7 +77,7 @@
   </p-footer>
 </div>
 
-<p-dialog header="Edit User" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog *ngIf="userDetailsModel" header="Edit User" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
 
   <div class="ui-g">
     <div class="ui-g-12 ui-md-4">

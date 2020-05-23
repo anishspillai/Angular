@@ -1,12 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
-import {AppComponent} from "../app.component";
 import {Router} from "@angular/router";
-import {AuthService} from "../auth/auth.service";
-import {GroceryService} from "../grocery-grid/grocery.service";
-import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {Order} from "../individual-grocery/model/Order";
-import {IndividualGroceryComponent} from "../individual-grocery/individual-grocery-component";
 
 @Component({
   selector: 'app-review-ordered-items',
@@ -28,11 +23,21 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
 
   moveToConfirmationPage() {
-    this.sendCloseEvent()
-    this.router.navigate(['order-confirmation']);
+    if(this.addGroceryToListObservableService.orders.length > 0) {
+      this.sendCloseEvent()
+      this.router.navigate(['order-confirmation']);
+    }
+
+
+
+
     /**this.router.navigateByUrl('/order-confirmation', { skipLocationChange: true }).then(() => {
       this.router.navigate(['order-confirmation']);
     });*/
+  }
+
+  emptyCart() {
+    //this.addGroceryToListObservableService.emptyCart()
   }
 
   ngOnInit(): void {
