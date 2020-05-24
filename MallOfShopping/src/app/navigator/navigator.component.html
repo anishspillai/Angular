@@ -1,26 +1,30 @@
-  <h3>Navigate Items</h3>
-  <nav>
+<h3>Navigate Items</h3>
+<nav>
 
-    <ul>
-      <li *ngFor="let item of menuItems">
-        <div (click)="isSubMenuOpened(item)">
-          <a style="color: black" (click)="navigateToGroceryMain(item)">{{item.label}} <div *ngIf="item.items.length > 0" class="pi pi-chevron-down"></div> </a>
-        </div>
+  <ul>
+    <li *ngFor="let item of menuItems">
+      <div *ngIf="item.items.length == 0">
+        <a style="color: black" (click)="navigateToGroceryMain(item)">{{item.label}} </a>
+      </div>
 
+      <div *ngIf="item.items.length != 0">
+        <p-accordion>
+          <p-accordionTab header="{{item.label}}">
 
-        <div *ngIf="expandSubMenuItems" style="padding-left: 10px">
-          <p-listbox  [options]="item.items">
-
-            <ng-template let-subItem  pTemplate="item">
-              <span style="color: white"  (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</span>
-            </ng-template>
-
-          </p-listbox>
-        </div>
-      </li>
-    </ul>
+            <ul>
+              <li *ngFor="let subItem of item.items">
+                <span (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</span>
+              </li>
+            </ul>
 
 
-  </nav>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </li>
+  </ul>
+
+
+</nav>
 
 
