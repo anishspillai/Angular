@@ -17,8 +17,6 @@ export class NavigatorComponent  {
 
   expandSubMenuItems: Boolean = false
 
-  searchCategoryType: string
-
   constructor(
     private readonly navigatorService: NavigatorService,
     private readonly router: Router,
@@ -27,7 +25,7 @@ export class NavigatorComponent  {
   }
 
   ngOnInit(): void {
-    //this.fetchNavigationItems()
+    this.fetchNavigationItems()
   }
 
   fetchNavigationItems(): void {

@@ -7,6 +7,7 @@ import {AddGroceryToListObservableService} from "../add-grocery-to-list-observab
 import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
+import {GroceryGridComponent} from "../grocery-grid/grocery-grid.component";
 
 
 @Component({
@@ -15,20 +16,10 @@ import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  private applicationComponent: AppComponent
-  private router: Router
-  private auth: AuthService
-  private addGroceryToListObservableService: AddGroceryToListObservableService
 
   searchString: string
 
-  cities: City[];
-
   cars: Cars[];
-
-  selectedCity: City;
-
-  selectedCities: City[];
 
   selectedCar: string = 'BMW';
 
@@ -39,33 +30,16 @@ export class HeaderComponent implements OnInit {
   displayLoginPage: boolean = false
 
 
-  constructor(appComponent: AppComponent,
-              router: Router,
-              auth: AuthService,
-              addGroceryToListObservableService: AddGroceryToListObservableService,
+  constructor(private readonly router: Router,
+              private readonly auth: AuthService,
+              private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
               private readonly breadCrumbService: BreadCrumbService) {
-    this.applicationComponent = appComponent
-    this.router = router
-    this.auth = auth
-    this.addGroceryToListObservableService = addGroceryToListObservableService
-
-
-    this.cities = [
-      {name: 'New York', code: 'NY'},
-      {name: 'Rome', code: 'RM'},
-      {name: 'London', code: 'LDN'},
-      {name: 'Istanbul', code: 'IST'},
-      {name: 'Paris', code: 'PRS'}
-    ];
-
-
     this.cars = [
       {label: 'My Details', value: 'user-details'},
       {label: 'Order History', value: 'order-history'},
       {label: 'Favorites', value: 'order-confirmation'}
     ];
-
   }
 
   ngOnInit(): void {
@@ -75,7 +49,7 @@ export class HeaderComponent implements OnInit {
   }
 
   filterProduct(): void {
-    this.applicationComponent.filterProduct(this.searchString)
+    //this.gridComponent.filterProduct(this.searchString)
   }
 
   navigateToThePage(car: Cars) {

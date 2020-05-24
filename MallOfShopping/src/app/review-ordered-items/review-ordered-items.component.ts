@@ -37,7 +37,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
   }
 
   emptyCart() {
-    //this.addGroceryToListObservableService.emptyCart()
+    this.addGroceryToListObservableService.emptyCart()
   }
 
   ngOnInit(): void {

@@ -1,8 +1,8 @@
 <p-sidebar [(visible)]="displaySideMenuBar"
            position="right"
-           [baseZIndex]="10000"
-           [style]="{width:'30em'}"
-           (onHide)="sendCloseEvent()">
+           styleClass="ui-sidebar-lg"
+           (onHide)="sendCloseEvent()"
+           [style]="{'overflow': 'scroll', width:'40em', right: 0}">
 
   <h4> Order Overview </h4>
 

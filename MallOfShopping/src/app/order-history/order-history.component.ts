@@ -34,11 +34,11 @@ export class OrderHistoryComponent implements OnInit{
 
     const user = this.authService.getUser()
 
-    this.groceryService.getOrderHistory(user.uid).subscribe(value =>
-      {
+    if(user) {
+    this.groceryService.getOrderHistory(user.uid).subscribe(value => {
         value.forEach(childSnapshot => {
 
-          const orderHistoryComponent:  OrderHistoryModel = new OrderHistoryModel()
+          const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
 
           // @ts-ignore
           childSnapshot.payload.val().forEach(value => {
@@ -52,7 +52,7 @@ export class OrderHistoryComponent implements OnInit{
       }
     )
 
-
+  }
 
     this.cols = [
       { field: 'groceryName', header: 'Brand Name', index: 1 },
