@@ -19,11 +19,13 @@ export class BreadCrumbComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.home = {icon: 'pi pi-home'};
+    this.home = {label: 'home'};
   }
 
-  navigateToPage(menuItem: MenuItem) {
-    this.router.navigate([menuItem.url]).then(r => console.log(r));
+  navigateToPage($event) {
+    if($event.item.label == "home" ) {
+      this.router.navigate(['first-component']).then(r => console.log(r));
+    }
   }
 
   getItems() {
