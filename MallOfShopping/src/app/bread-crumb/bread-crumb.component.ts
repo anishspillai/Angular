@@ -19,7 +19,7 @@ export class BreadCrumbComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.home = {icon: 'pi pi-home', url : 'first-component'};
+    this.home = {icon: 'pi pi-home'};
   }
 
   navigateToPage(menuItem: MenuItem) {

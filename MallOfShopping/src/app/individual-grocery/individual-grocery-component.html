@@ -1,9 +1,9 @@
 <p-panel header={{individualGrocery.type}} class="p-col-fixed">
 
-  <div (click)="displayDialog()">
-
+  <!--div (click)="displayDialog()"-->
+    <div>
     <div class="boxfd">
-      <img src="assets/img/groceries.png"
+      <img src="{{individualGrocery.imagePath}}"
            style="width: 150px; height: 200px" class="center-align">
       <div class="circlefd">
         <!--p> <a> 2 For </a>454<span>Kr</span></p-->
@@ -77,8 +77,12 @@
   <div class="box" style="text-align:center; padding-top: 10px">
 
     <div *ngIf="isNotAddedIntoTheList()">
-      <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
-                (click)="addItemToCart()"></p-button>
+      <!--p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
+                (click)="addItemToCart()"></p-button-->
+
+
+      <button pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
+              (click)="addItemToCart()"></button>
     </div>
 
     <div *ngIf="!isNotAddedIntoTheList()" class="ui-inputgroup; center-align">

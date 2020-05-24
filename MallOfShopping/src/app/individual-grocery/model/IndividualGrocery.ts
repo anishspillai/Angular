@@ -5,7 +5,6 @@ export class IndividualGrocery {
   id: string = "Ansih";
   imagePath: string = "Anish";
   offerPrice: number  = 5;
-  subType: string = "Anish sub";
   type: string = "Wheat";
   unitOfWeight: string = "Kg";
   weight: number = 7.5;

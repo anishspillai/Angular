@@ -26,7 +26,7 @@ export class Order {
     return new Order(individualGrocery.actualPrice,
       individualGrocery.brandName,
       individualGrocery.id,
-      "",
+      individualGrocery.imagePath,
       "",
       individualGrocery.type,
       individualGrocery.unitOfWeight,
