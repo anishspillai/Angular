@@ -44,7 +44,7 @@
         <img src="{{order.imagePath}}"
              style="width: 30px; height: 30px" class="center-align">
 
-        <div class="box" style="border: black">
+        <div class="box" style="text-align: left; padding-left: 5px">
           {{order.groceryName}} <br>
           {{order.type}}
         </div>
@@ -58,8 +58,8 @@
         <button pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
       </div>
 
-      <div class="center">
-        <h4>{{order.actualPrice * order.noOfItems}} Kr</h4>
+      <div style="text-align: right">
+        <h4 style="font-weight: normal">{{order.actualPrice * order.noOfItems}} Kr</h4>
       </div>
     </div>
     <hr>
@@ -81,13 +81,13 @@
 
 
   <div class="p-grid p-justify-end">
-    <div class="p-col-8">
+    <div class="p-col-10">
       <div class="box">
         <h3>Total</h3>
       </div>
     </div>
-    <div class="p-col-4">
-      <div class="box" style="float: right">
+    <div class="p-col-2">
+      <div class="box">
         <h3>{{  addGroceryToListObservableService.getTotalAmount() }} Kr</h3>
       </div>
     </div>

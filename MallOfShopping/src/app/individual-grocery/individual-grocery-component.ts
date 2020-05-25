@@ -46,15 +46,12 @@ export class IndividualGroceryComponent {
       return true
     } else {
       const individualGroceryFromOrderedList = this.addGroceryToListObservableService.orders.find(element => element.id == this.individualGrocery.id)
-      if(individualGroceryFromOrderedList) {
-        return false
-      }
-    return true
+      return individualGroceryFromOrderedList == null
     }
   }
 
   getNoOfOrders() {
-    if ( !( this.addGroceryToListObservableService.orders.length == 0 ) ) {
+    if (! ( this.addGroceryToListObservableService.orders.length == 0 ) ) {
       const individualGroceryFromOrderedList = this.addGroceryToListObservableService.orders.find(element => element.id == this.individualGrocery.id)
       if( individualGroceryFromOrderedList ) {
         this.noOfItems = individualGroceryFromOrderedList.noOfItems
@@ -62,10 +59,6 @@ export class IndividualGroceryComponent {
     }
 
     return this.noOfItems
-  }
-
-  consoleData() {
-    console.log(this.addGroceryToListObservableService.orders)
   }
 
   incrementNoOfItems(isMainPage: boolean): void {
