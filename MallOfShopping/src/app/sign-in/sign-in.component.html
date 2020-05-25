@@ -1,7 +1,5 @@
 <p-dialog header="{{dialogHeader}}"
           [(visible)]="loadLoginPage"
-          resizable="false"
-          responsive="false"
           (onHide)="triggerEventForClosingDialog()">
 
   <div *ngIf="errorMessage" class="isa_error">

@@ -71,13 +71,20 @@
   <hr>
 
 
-  <p-footer>
-    <button pButton type="button" label="Edit" icon="pi pi-check" style="margin-right: .25em"
-            (click)="displayBasic = true"></button>
+  <p-footer style="float: right">
+
+    <button pButton type="button" label="Edit" class="ui-button-rounded ui-button-success"
+            (click)="displayEditUserDialog = true"></button>
   </p-footer>
 </div>
 
-<p-dialog *ngIf="userDetailsModel" header="Edit User" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<app-edit-user *ngIf="displayEditUserDialog" [displayEditUserDialog] = "displayEditUserDialog"
+               [userDetailsModel] = "userDetailsModel"
+               (closeEditUserDialog) = "displayEditUserDialog=  $event">
+</app-edit-user>
+
+
+<!--p-dialog *ngIf="userDetailsModel" header="Edit User" [(visible)]="displayEditUserDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
 
   <div class="ui-g">
     <div class="ui-g-12 ui-md-4">
@@ -165,7 +172,7 @@
 
   <p-footer>
     <button type="button" pButton icon="pi pi-check" (click)="storeUserDetails()" label="Save"></button>
-    <button type="button" pButton icon="pi pi-times" (click)="displayBasic=false" label="Cancel"
+    <button type="button" pButton icon="pi pi-times" (click)="displayEditUserDialog=false" label="Cancel"
             class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
@@ -173,4 +180,4 @@
 
 <p-dialog header="Input Error" [(visible)]="displayErrorDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
   Please fill all required fields and try again
-</p-dialog>
+</p-dialog-->

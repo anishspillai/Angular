@@ -25,7 +25,7 @@ export class UserDetailsComponent implements OnInit {
               private readonly authService: AuthService) {
   }
 
-  displayBasic = false
+  displayEditUserDialog = false
 
 
   ngOnInit(): void {
@@ -82,7 +82,7 @@ export class UserDetailsComponent implements OnInit {
     }
 
     this.userDetailsService.saveUserDetails(this.userDetailsModel, this.user.uid).then(() => {
-      this.displayBasic = false
+      this.displayEditUserDialog = false
       this.fetchUserDetails()
     })
       .catch(err => {

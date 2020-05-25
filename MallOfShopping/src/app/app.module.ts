@@ -47,6 +47,7 @@ import { OrderConfirmationWizardComponent } from './order-confirmation-wizard/or
 import {ToastModule} from "primeng/toast";
 import {StepsModule} from "primeng/steps"
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: 'first-component', component: GroceryGridComponent },
@@ -71,7 +72,8 @@ const routes: Routes = [
     BreadCrumbComponent,
     NavigationItemComponent,
     ReviewOrderedItemsComponent,
-    OrderConfirmationWizardComponent
+    OrderConfirmationWizardComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

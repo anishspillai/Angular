@@ -59,7 +59,6 @@ seen:[] = []
 
   initialiseInvites() {
     if (localStorage.getItem('foo')) {
-      alert('Here I ama')
       location.reload()
       localStorage.removeItem('foo')
     }

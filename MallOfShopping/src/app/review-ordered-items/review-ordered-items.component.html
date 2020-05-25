@@ -44,8 +44,9 @@
         <img src="{{order.imagePath}}"
              style="width: 30px; height: 30px" class="center-align">
 
-        <div class="box" style="text-align: left; padding-left: 5px">
-          {{order.groceryName}} <br>
+        <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
+          <span>{{order.groceryName}}, {{order.grossWeight}} {{order.unitOfWeight}} </span>
+          <br>
           {{order.type}}
         </div>
       </div>
@@ -53,9 +54,9 @@
       </div>
 
       <div class="p-col-4">
-        <button pButton type="button" icon="pi pi-minus" class="ui-button-danger" (click)="decrement(order)"></button>
-        &nbsp;&nbsp;{{order.noOfItems}}&nbsp;&nbsp;
-        <button pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
+        <button class="p-col-1" pButton type="button" icon="pi pi-minus" class="ui-button-danger" (click)="decrement(order)"></button>
+        <span class="p-col-2 p-col-fixed">  {{order.noOfItems}}&nbsp;&nbsp;</span>
+        <button class="p-col-1" pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
       </div>
 
       <div style="text-align: right">

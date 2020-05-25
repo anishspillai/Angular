@@ -25,7 +25,7 @@ export class NavigatorComponent  {
   }
 
   ngOnInit(): void {
-    this.fetchNavigationItems()
+    //this.fetchNavigationItems()
   }
 
   fetchNavigationItems(): void {
