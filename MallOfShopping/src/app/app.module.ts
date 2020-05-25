@@ -33,10 +33,8 @@ import { TestHeaderComponent } from './test-header/test-header.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { SignInComponent } from './sign-in/sign-in.component';
 import {PasswordModule} from "primeng/password";
-import { RegisterComponent } from './register/register.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import {NavigatorService} from "./navigator/navigator.service";
-import { NavigationItemComponent } from './navigation-item/navigation-item.component';
 import {GroceryService} from "./grocery-grid/grocery.service";
 import {TableModule} from "primeng/table";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
@@ -61,9 +59,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     PageNotFoundComponent,
     TestHeaderComponent,
     SignInComponent,
-    RegisterComponent,
     BreadCrumbComponent,
-    NavigationItemComponent,
     ReviewOrderedItemsComponent,
     OrderConfirmationWizardComponent,
     EditUserComponent

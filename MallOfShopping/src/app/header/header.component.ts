@@ -8,6 +8,7 @@ import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {GroceryGridComponent} from "../grocery-grid/grocery-grid.component";
+import {MenuItem} from "primeng/api";
 
 
 @Component({
@@ -18,15 +19,9 @@ import {GroceryGridComponent} from "../grocery-grid/grocery-grid.component";
 export class HeaderComponent implements OnInit {
 
   searchString: string
-
-  cars: Cars[];
-
-  selectedCar: string = 'BMW';
-
+  menuItems: MenuItem[];
   ordersAddedByUser: Order[] = []
-
   displaySideMenuBar: boolean = false
-
   displayLoginPage: boolean = false
 
 
@@ -35,10 +30,9 @@ export class HeaderComponent implements OnInit {
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
               private readonly breadCrumbService: BreadCrumbService) {
-    this.cars = [
-      {label: 'My Details', value: 'user-details'},
-      {label: 'Order History', value: 'order-history'},
-      {label: 'Favorites', value: 'order-confirmation'}
+    this.menuItems = [
+      {label: 'My Details', target: 'user-details'},
+      {label: 'Order History', target: 'order-history'}
     ];
   }
 
@@ -52,9 +46,9 @@ export class HeaderComponent implements OnInit {
     //this.gridComponent.filterProduct(this.searchString)
   }
 
-  navigateToThePage(car: Cars) {
-    this.router.navigate([car.value]);
-    this.breadCrumbService.updateBreadCrumb([{label: car.label}])
+  navigateToThePage(menuItem: MenuItem) {
+    this.router.navigate([menuItem.target]);
+    this.breadCrumbService.updateBreadCrumb([{label: menuItem.label}])
   }
 
   logIn() {
@@ -70,7 +64,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logOut() {
-    console.log(this.ordersAddedByUser)
     this.auth.logout().then(r => console.log(r))
   }
 
@@ -85,15 +78,6 @@ export class HeaderComponent implements OnInit {
   isLoggedIn(): Boolean {
     return this.auth.isLoggedIn
   }
-
-  /**getCostOfItems() {
-    const sum = this.ordersAddedByUser.reduce((sum, current) =>
-      sum + (current.price * current.noOfItems), 0)
-
-    return sum
-  }*/
-
-
 
   getCostOfItem() {
     let sumOfItems = 0
@@ -133,30 +117,4 @@ export class HeaderComponent implements OnInit {
     return sum
   }
 
-  placeOrder() {
-    //const user: User = JSON.parse(localStorage.getItem('user'))
-    //this.groceryService.placeOrderForTheUser(this.ordersAddedByUser, user.uid)
-
-    this.displaySideMenuBar = true
-
-
-    //this.router.navigate(['order-confirmation']);
-
-    this.router.navigateByUrl('/order-confirmation', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['order-confirmation']);
-    });
-
-  }
-
-}
-  export
-  class
-  City {
-  name: string
-  code: string
-}
-
-export class Cars {
-  label: string
-  value: string
 }

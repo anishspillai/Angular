@@ -1,10 +1,10 @@
-<h3>Navigate Items</h3>
+<h3>Navigate Groceries</h3>
 <nav>
 
   <ul>
     <li *ngFor="let item of menuItems">
       <div *ngIf="item.items.length == 0">
-        <a style="color: black" (click)="navigateToGroceryMain(item)">{{item.label}} </a>
+        <a style="color: black" (click)="navigateToGroceryMain(item)"> {{item.label}} </a>
       </div>
 
       <div *ngIf="item.items.length != 0">
@@ -17,14 +17,11 @@
               </li>
             </ul>
 
-
           </p-accordionTab>
         </p-accordion>
       </div>
     </li>
   </ul>
-
-
 </nav>
 
 

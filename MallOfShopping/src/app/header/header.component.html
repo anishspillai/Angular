@@ -45,16 +45,25 @@
 
 
         <div class="header-right" style="text-align: center">
+
           <i class="pi pi-user-plus"> </i> <br>
+
           <div class="dropdown">
-            <span style="text-decoration: underline">{{getUser()}}</span>
+
+            <span style="text-decoration: underline">{{ getUser() }}</span>
+
             <div class="dropdown-content">
-              <p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'max-height':'250px'}">
-                <ng-template let-car pTemplate="item">
+
+              <p-listbox [options]="menuItems" [listStyle]="{'max-height':'250px'}">
+
+                <ng-template let-menuItem pTemplate="item">
                   <div class="ui-helper-clearfix">
-                    <span style="float: left; padding: 2px" (click)="navigateToThePage(car)"> {{car.label}}</span>
+
+                    <span (click)="navigateToThePage(menuItem)"> {{menuItem.label}}</span>
+
                   </div>
                 </ng-template>
+
                 <p-footer>
                   <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded"
                           (click)="logOut()"></button>
@@ -66,8 +75,6 @@
             </div>
           </div>
         </div>
-
-
       </h4>
     </div>
 
@@ -75,130 +82,13 @@
 </div>
 
 <div *ngIf="displayLoginPage">
-<app-sign-in [loadLoginPage]="displayLoginPage" (closeLoginDialogEvent)= "displayLoginPage =  $event"></app-sign-in>
+  <app-sign-in
+  [loadLoginPage]="displayLoginPage"
+  (closeLoginDialogEvent)= "displayLoginPage = $event">
+</app-sign-in>
+
 </div>
 
 <app-review-ordered-items [displaySideMenuBar]="displaySideMenuBar"
-                          (closeSideBarMenuEvent)="displaySideMenuBar = $event"></app-review-ordered-items>
-
-
-<!--div class="p-col-1">
-<h4>
-
-<div class="header-right" style="text-align: center">
-<i class="pi pi-user-plus"> </i> <br>
-<div class="dropdown">
-  <span style="text-decoration: underline">{{getUser()}}</span>
-  <div class="dropdown-content">
-    <p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'max-height':'250px'}">
-      <ng-template let-car pTemplate="item">
-        <div class="ui-helper-clearfix">
-          <span style="float: left; padding: 2px" (click)="navigateToGroceryMain(car)"> {{car.value}}</span>
-        </div>
-      </ng-template>
-      <p-footer>
-        <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded"
-                (click)="logOut()"></button>
-        <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded"
-                (click)="logIn()"></button>
-      </p-footer>
-    </p-listbox>
-
-  </div>
-</div>
-</div>
-
-
-</h4>
-</div>
-
-</div>
-</div>
-
-
-</h4>
-</div>
-
-
-<!--div class="p-col-1">
-<h4>
-<div [style]="{'float':'right'}" class="tooltip"><i class="pi pi-shopping-cart" style="line-height: 1.25;"></i>
-<span class="tooltiptext">10</span>
-</div>
-</h4>
-</div-->
-
-<!--div class="p-col-1">
-  <h4>
-
-    <div class="header-right" style="text-align: center">
-      <i class="pi pi-user-plus"> </i> <br>
-      <div class="dropdown">
-        <span style="text-decoration: underline">{{getUser()}}</span>
-        <div class="dropdown-content">
-          <p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'max-height':'250px'}">
-            <ng-template let-car pTemplate="item">
-              <div class="ui-helper-clearfix">
-                <span style="float: left; padding: 2px" (click)="navigateToGroceryMain(car)"> {{car.value}}</span>
-              </div>
-            </ng-template>
-            <p-footer>
-              <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded"
-                      (click)="logOut()"></button>
-              <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded"
-                      (click)="logIn()"></button>
-            </p-footer>
-          </p-listbox>
-
-        </div>
-      </div>
-    </div>
-
-
-  </h4>
-</div>
-
-</div-->
-
-
-<!--div style="clear: both"-->
-
-<!--h2 style="float: left; padding-left: 10px">Mall Of </h2>
-
-<div class="ui-g-12 ui-md-4 p-col-fixed">
-  <div class="ui-inputgroup ">
-    <input type="text" pInputText placeholder="enter item or brand name" [(ngModel)]="searchString"
-           style="width: 100%; border-radius: 25px">
-    <button pButton type="button" label="Search" style="border-radius: 25px" (click)="filterProduct()"></button>
-  </div>
-</div>
-
-<div class="header-right" style="text-align: center; margin: 10px;">
-
-  <button pButton type="button" icon="pi pi-check" label="Check Out {{getCostOfItems()}} Kr"
-          class="ui-button-rounded ui-button-success" iconPos="right"></button>
-</div>
-
-
-<div class="header-right" style="text-align: center; margin: 10px">
-  <i class="pi pi-user-plus"> </i> <br>
-  <div class="dropdown">
-    <span style="text-decoration: underline">{{getUser()}}</span>
-    <div class="dropdown-content">
-      <p-listbox [options]="cars" [(ngModel)]="selectedCar" [listStyle]="{'max-height':'250px'}">
-        <ng-template let-car pTemplate="item">
-          <div class="ui-helper-clearfix">
-            <span style="float: left; padding: 2px" (click)="navigateToGroceryMain(car)"> {{car.value}}</span>
-          </div>
-        </ng-template>
-        <p-footer>
-          <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded" (click)="logOut()"></button>
-          <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded" (click)="logIn()"></button>
-        </p-footer>
-      </p-listbox>
-
-    </div>
-  </div>
-</div>
-
-<div style="clear: both"-->
+                          (closeSideBarMenuEvent)="displaySideMenuBar = $event">
+</app-review-ordered-items>

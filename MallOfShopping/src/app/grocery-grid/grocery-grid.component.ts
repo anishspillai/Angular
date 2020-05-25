@@ -17,22 +17,10 @@ export class GroceryGridComponent implements OnInit{
   items: Observable<any[]>;
   groceryList: IndividualGrocery[] = [new IndividualGrocery()]
   nonFilteredList: IndividualGrocery[] = []
-
   orderedList: Order[] = []
-
   displayProgressSpinner = false
-
-
-  seen:[] = []
-
   name: string;
-
   searchCategoryType: string
-
-
-  crumbTrails: MenuItem[];
-
-  home: MenuItem;
 
   ngOnInit() {
 
@@ -60,32 +48,12 @@ export class GroceryGridComponent implements OnInit{
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      this.fetchGroceries()
+      //this.fetchGroceries()
     })
   }
 
-  constructor(private  readonly firestore: AngularFireDatabase, private activatedRoute: ActivatedRoute) {
-    this.seen = []
-
-
-
-    this.crumbTrails = [
-      {label:'Categories'},
-      {label:'Sports'},
-      {label:'Football'},
-      {label:'Countries'},
-      {label:'Spain'},
-      {label:'F.C. Barcelona'},
-      {label:'Squad'},
-      {label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi', icon: 'pi pi-external-link'}
-    ];
-
-
-
-  }
-
-  callMe(): void {
-    alert(this.orderedList.length)
+  constructor(private  readonly firestore: AngularFireDatabase,
+              private activatedRoute: ActivatedRoute) {
   }
 
   filterProduct(searchString: string) {
@@ -109,7 +77,6 @@ export class GroceryGridComponent implements OnInit{
         }
       )).then(r => console.log(r))
     } else {
-
       this.firestore.list('admin/Catagories/' + this.searchCategoryType).valueChanges().forEach(grocery => {
         grocery.forEach(grocery1 => {
           var anish: IndividualGrocery = grocery1 as IndividualGrocery
