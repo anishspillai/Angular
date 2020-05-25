@@ -49,13 +49,6 @@ import {StepsModule} from "primeng/steps"
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
 
-const routes: Routes = [
-  { path: 'first-component', component: GroceryGridComponent },
-  { path: 'user-details', component: UserDetailsComponent }
-];
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,10 +85,6 @@ const routes: Routes = [
     ListboxModule,
     BreadcrumbModule,
     AppRoutingModule,
-    RouterModule.forRoot(
-      routes
-      //,{enableTracing: true} // <-- debugging purposes only
-    ),
     AccordionModule,
     InputTextareaModule,
     PasswordModule,

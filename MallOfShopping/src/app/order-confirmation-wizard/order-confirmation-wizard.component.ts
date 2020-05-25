@@ -18,8 +18,6 @@ export class OrderConfirmationWizardComponent {
 
   items: MenuItem[];
 
-  activeIndex: number = 0;
-
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -34,7 +32,7 @@ export class OrderConfirmationWizardComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         localStorage.setItem('foo', 'no reload')
-        this.router.navigate(['first-component']);
+        this.router.navigate(['grocery-list']);
       },
       reject: () => {
 

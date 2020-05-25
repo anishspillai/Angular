@@ -75,34 +75,34 @@
 
 <div class="split right">
 
-  <h1 style="padding-left: 10px"> Order Summary </h1>
+  <!--div *ngIf="displayErrorMessage">
 
-  <div class="p-grid" style="padding: 20px">
-    <div class="p-col-7">
-      <h4> Total Amount </h4>
+  </div-->
+
+  <h1 style="text-align: center; text-decoration: underline"> Order Summary </h1>
+
+  <div class="p-grid">
+
+
+    <div class="p-col-7" style="text-align: center">
+      <h4 style="font-style: italic"> Total Amount </h4>
     </div>
-    <div class="p-col-5">
+    <div class="p-col-5" style="text-align: center">
       <h3>{{ addGroceryToListObservableService.getTotalAmount() }} Kr</h3>
     </div>
+
   </div>
-
-
 
   <div class="p-col-5; block" (click)="placeOrder()">
     Confirm
   </div>
 
-
-<br>
+  <br>
 
   <div class="p-col-5; blockRed" (click)="cancelThisPage()">
     Cancel Order
   </div>
-
-
 </div>
 
-
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-
 </body>

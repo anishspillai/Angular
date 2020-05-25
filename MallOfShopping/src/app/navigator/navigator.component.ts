@@ -25,7 +25,7 @@ export class NavigatorComponent  {
   }
 
   ngOnInit(): void {
-    //this.fetchNavigationItems()
+    this.fetchNavigationItems()
   }
 
   fetchNavigationItems(): void {
@@ -72,12 +72,12 @@ export class NavigatorComponent  {
   }
 
   navigateToGroceryMain(item: GroceryMenuItem) {
-    this.router.navigate(['/first-component'], {queryParams: {groceryType: item.label + '/' + item.label}}).then(r => console.log(r));
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}}).then(r => console.log(r));
     this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 
   navigateToGrocerySubMenu(item: GroceryMenuItem, subItem) {
-    this.router.navigate(['/first-component'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
     this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
 }

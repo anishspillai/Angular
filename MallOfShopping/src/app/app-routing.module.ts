@@ -9,8 +9,8 @@ import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/orde
 
 
 const routes: Routes = [
-  { path: 'first-component', component: GroceryGridComponent, runGuardsAndResolvers: 'always' },
-  { path: '',   redirectTo: '/first-component', pathMatch: 'full' },
+  { path: 'grocery-list', component: GroceryGridComponent },
+  { path: '',   redirectTo: '/grocery-list', pathMatch: 'full' },
   { path: 'user-details', component: UserDetailsComponent },
   { path: 'order-history', component: OrderHistoryComponent },
   { path: 'log-in', component: SignInComponent },

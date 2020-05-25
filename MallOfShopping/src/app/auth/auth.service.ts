@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { Router } from  "@angular/router";
-import { auth } from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { User } from  'firebase';
 
@@ -25,7 +24,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-    await this.router.navigate(['first-component']);
+    await this.router.navigate(['grocery-list']);
   }
 
   async register(email: string, password: string) {
@@ -46,7 +45,7 @@ export class AuthService {
   async logout(){
     await this.afAuth.signOut();
     localStorage.removeItem('user');
-    await this.router.navigate(['first-component']);
+    await this.router.navigate(['grocery-list']);
   }
 
   get isLoggedIn(): boolean {

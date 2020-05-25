@@ -24,7 +24,7 @@ export class BreadCrumbComponent implements OnInit {
 
   navigateToPage($event) {
     if($event.item.label == "home" ) {
-      this.router.navigate(['first-component']).then(r => console.log(r));
+      this.router.navigate(['grocery-list']).then(r => console.log(r));
     }
   }
 
