@@ -1,11 +1,10 @@
-import {Component, OnInit} from "@angular/core";
-import {Observable} from "rxjs";
-import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery";
-import {Order} from "../individual-grocery/model/Order";
-import {MenuItem} from "primeng/api";
-import {AngularFireDatabase} from "@angular/fire/database";
-import {ActivatedRoute} from "@angular/router";
-import {firestore} from "firebase";
+import {Component, OnInit} from "@angular/core"
+import {Observable} from "rxjs"
+import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
+import {Order} from "../individual-grocery/model/Order"
+import {MenuItem} from "primeng/api"
+import {AngularFireDatabase} from "@angular/fire/database"
+import {ActivatedRoute} from "@angular/router"
 
 @Component({
   selector: 'app-grocery-grid',
@@ -16,8 +15,7 @@ export class GroceryGridComponent implements OnInit{
 
   title = 'MallOfShopping';
   items: Observable<any[]>;
-  anish: IndividualGrocery[] = [new IndividualGrocery()]
-  kooi: IndividualGrocery[] = []
+  groceryList: IndividualGrocery[] = [new IndividualGrocery()]
   nonFilteredList: IndividualGrocery[] = []
 
   orderedList: Order[] = []
@@ -47,7 +45,7 @@ export class GroceryGridComponent implements OnInit{
     one.type = "Pongal Rice"
     one.id = "One"
 
-    this.anish.push(one)
+    this.groceryList.push(one)
 
     var two: IndividualGrocery = new IndividualGrocery()
     two.brandName = "Anish S PIllai Anish"
@@ -58,7 +56,7 @@ export class GroceryGridComponent implements OnInit{
     two.type = "rice"
     two.id = "Two"
 
-    this.anish.push(two)
+    this.groceryList.push(two)
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
@@ -91,19 +89,19 @@ export class GroceryGridComponent implements OnInit{
   }
 
   filterProduct(searchString: string) {
-    this.anish = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
+    this.groceryList = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
   }
 
   fetchGroceries() {
   this.displayProgressSpinner = true
-  this.anish = []
+  this.groceryList = []
     if(!this.searchCategoryType) {
 
       this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
             val.forEach(value2 => {
               var anish: IndividualGrocery = value2 as IndividualGrocery
-              this.anish.push(anish)
+              this.groceryList.push(anish)
               this.nonFilteredList.push(anish)
             })
           }
@@ -115,7 +113,7 @@ export class GroceryGridComponent implements OnInit{
       this.firestore.list('admin/Catagories/' + this.searchCategoryType).valueChanges().forEach(grocery => {
         grocery.forEach(grocery1 => {
           var anish: IndividualGrocery = grocery1 as IndividualGrocery
-          this.anish.push(anish)
+          this.groceryList.push(anish)
         })
 
         this.displayProgressSpinner = false

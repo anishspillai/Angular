@@ -38,22 +38,6 @@ seen:[] = []
         this.initialiseInvites();
       }
     });
-      /**firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
-
-
-        for (let val of Object.values(value1)) {
-
-          this.kooi = val;
-
-          this.kooi.forEach(value2 => {
-            var anish: IndividualGrocery = value2 as IndividualGrocery
-            this.anish.push(anish)
-            console.log(anish.actualPrice)
-            this.nonFilteredList.push(anish)
-          })
-        }
-          }
-      ))*/
 
   }
 
