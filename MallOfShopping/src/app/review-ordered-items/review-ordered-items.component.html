@@ -2,7 +2,7 @@
            position="right"
            styleClass="ui-sidebar-lg"
            (onHide)="sendCloseEvent()"
-           [style]="{'overflow': 'scroll', width:'40%', right: 0}">
+           [style]="{'overflow': 'scroll', width:'30%', right: 0}">
 
   <h4> Order Overview </h4>
 
@@ -66,15 +66,15 @@
   </div>
 
 
-  <div *ngIf="addGroceryToListObservableService.getTotalAmount() <= 400" class="p-grid p-justify-end">
-    <div class="p-col-8">
+  <div *ngIf="addGroceryToListObservableService.getTotalAmount() <= 400" class="p-grid p-justify-end" style="color: darkred">
+    <div class="p-col-10">
       <div class="box">
-        Delivery Charge
+        <h4 style="font-weight: normal">Delivery Charge</h4>
       </div>
     </div>
-    <div class="p-col-4">
-      <div class="box" style="float: right">
-        {{  addGroceryToListObservableService.getTotalAmount() }} Kr
+    <div class="p-col-2">
+      <div>
+        <h4 style="font-weight: normal;"> 30 Kr</h4>
       </div>
     </div>
   </div>
