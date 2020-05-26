@@ -54,9 +54,6 @@ export class NavigatorComponent  {
             this.menuItems.push(menuItem)
           }
         }
-
-
-        // console.log(this.menuItems)
       });
     });
   }
