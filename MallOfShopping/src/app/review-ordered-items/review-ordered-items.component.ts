@@ -27,13 +27,6 @@ export class ReviewOrderedItemsComponent implements OnInit {
       this.sendCloseEvent()
       this.router.navigate(['order-confirmation']);
     }
-
-
-
-
-    /**this.router.navigateByUrl('/order-confirmation', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['order-confirmation']);
-    });*/
   }
 
   emptyCart() {

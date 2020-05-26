@@ -1,13 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AngularFireDatabase} from "@angular/fire/database";
-import {GroceryResponse, IndividualGrocery} from "./individual-grocery/model/IndividualGrocery";
-import {map} from "rxjs/operators";
-import {IndividualGroceryComponent} from "./individual-grocery/individual-grocery-component";
-import {Order} from "./individual-grocery/model/Order";
-import {MenuItem} from "primeng/api";
 import {NavigationEnd, Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-root',
@@ -15,22 +9,11 @@ import {NavigationEnd, Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'MallOfShopping';
   items: Observable<any[]>;
-  anish: IndividualGrocery[] = [new IndividualGrocery()]
-  kooi: IndividualGrocery[] = []
-  nonFilteredList: IndividualGrocery[] = []
-
-  orderedList: Order[] = []
-
-
-seen:[] = []
-
   navigationSubscription;
 
-
-  constructor(firestore: AngularFireDatabase, private readonly router: Router) {
-    this.seen = []
+  constructor(private readonly firestore: AngularFireDatabase,
+              private readonly router: Router) {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -57,13 +40,5 @@ seen:[] = []
   }
 
   ngOnInit() {
-  }
-
-  callMe(): void {
-    alert(this.orderedList.length)
-  }
-
-  filterProduct(searchString: string) {
-    this.anish = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
   }
 }

@@ -24,12 +24,10 @@ import {ListboxModule} from "primeng/listbox";
 import {BreadcrumbModule} from "primeng/breadcrumb"
 import {GroceryGridComponent} from "./grocery-grid/grocery-grid.component";
 import {NavigatorComponent} from "./navigator/navigator.component";
-import {RouterModule, Routes} from "@angular/router";
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {AccordionModule} from "primeng/accordion";
-import { TestHeaderComponent } from './test-header/test-header.component';
 import {InputTextareaModule} from "primeng/inputtextarea";
 import { SignInComponent } from './sign-in/sign-in.component';
 import {PasswordModule} from "primeng/password";
@@ -57,7 +55,6 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     UserDetailsComponent,
     OrderHistoryComponent,
     PageNotFoundComponent,
-    TestHeaderComponent,
     SignInComponent,
     BreadCrumbComponent,
     ReviewOrderedItemsComponent,

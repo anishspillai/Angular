@@ -24,7 +24,10 @@ export class BreadCrumbComponent implements OnInit {
 
   navigateToPage($event) {
     if($event.item.label == "home" ) {
-      this.router.navigate(['grocery-list'])
+
+      this.breadCrumbService.clearBreadCrumb() // clear the current links in breadcrumb
+      this.router.navigate(['grocery-list']) // Navigate to main page
+
     }
   }
 

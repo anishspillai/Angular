@@ -54,17 +54,24 @@ export class SignInComponent implements OnInit {
   setRegisterUserPageProperties(): void {
     this.isLoginOperation = false
     this.dialogHeader = "Register new user"
+    this.clearMessages()
   }
 
   cancelPasswordResetDialog() {
-    this.successMessage = null
     this.isResetPasswordDialog = false
     this.loadLoginPageProperties()
+    this.clearMessages()
   }
 
   loadLoginPageProperties() {
     this.isLoginOperation = true
     this.dialogHeader = "Login user"
+    this.clearMessages()
+  }
+
+  private clearMessages() {
+    this.errorMessage = null
+    this.successMessage = null
   }
 
   loginUser() : void {

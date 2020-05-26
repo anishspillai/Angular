@@ -6,6 +6,7 @@ import {Order} from "./individual-grocery/model/Order";
   providedIn: 'root'
 })
 export class AddGroceryToListObservableService {
+
   private _orders = new BehaviorSubject<Order[]>([])
   orders: Order[] = []
 
@@ -20,7 +21,7 @@ export class AddGroceryToListObservableService {
 
   addGroceryToTheOrderList(order: Order) {
     this.orders.push(order)
-    this._orders.next(this.orders)
+    this.notifySubscribers()
   }
 
   incrementNoOfItems(noOfItems: number, id: string): void {
@@ -51,5 +52,4 @@ export class AddGroceryToListObservableService {
     return this.orders
       .reduce((sum, current) => sum + (current.noOfItems * current.actualPrice), 0);
   }
-
 }

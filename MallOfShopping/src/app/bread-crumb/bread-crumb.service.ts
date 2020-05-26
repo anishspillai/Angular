@@ -10,6 +10,10 @@ export class BreadCrumbService {
     this.items = menuItems
   }
 
+  clearBreadCrumb() {
+    this.items = []
+  }
+
   getMenuItems() {
     return this.items
   }
