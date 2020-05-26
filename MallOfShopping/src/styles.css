@@ -4,6 +4,10 @@
 @import '../node_modules/primeicons/primeicons.css';
 @import "../node_modules/primeflex/primeflex.css";
 
+body {
+  background-color: #E3E5E9;
+}
+
 .center-align {
   display: block;
   margin-left: auto;
