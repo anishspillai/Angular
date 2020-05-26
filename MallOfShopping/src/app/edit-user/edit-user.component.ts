@@ -11,7 +11,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class EditUserComponent implements OnInit {
 
-  private registerForm: FormGroup;
+  registerForm: FormGroup;
   submitted = false;
 
   @Input() userDetailsModel: UserDetailsModel

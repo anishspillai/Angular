@@ -44,6 +44,7 @@ import {ToastModule} from "primeng/toast";
 import {StepsModule} from "primeng/steps"
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     BreadCrumbComponent,
     ReviewOrderedItemsComponent,
     OrderConfirmationWizardComponent,
-    EditUserComponent
+    EditUserComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,

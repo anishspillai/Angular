@@ -6,9 +6,11 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {OrderHistoryComponent} from "./order-history/order-history.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/order-confirmation-wizard.component";
+import {LandingPageComponent} from "./landing-page/landing-page.component";
 
 
 const routes: Routes = [
+  { path: 'landing-page', component: LandingPageComponent },
   { path: 'grocery-list', component: GroceryGridComponent },
   { path: '',   redirectTo: '/grocery-list', pathMatch: 'full' },
   { path: 'user-details', component: UserDetailsComponent },

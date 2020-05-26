@@ -1,7 +1,8 @@
 <app-header></app-header>
 
-<br>
-<br><br><br>
+<!--div style="display: flex">
+<app-landing-page></app-landing-page>
+
 <app-bread-crumb></app-bread-crumb>
 
 <div class="p-grid ui-g-12 ui-md-2">
@@ -11,4 +12,32 @@
 <div class="p-grid ui-g-12 ui-md-10" style="float: right;">
   <router-outlet></router-outlet>
 </div>
+</div-->
 
+
+
+<div class="p-grid p-dir-col">
+  <div class="p-col-12">
+
+      <app-landing-page></app-landing-page>
+  </div>
+  <div class="p-col">
+    <div class="box">
+      <app-bread-crumb></app-bread-crumb>
+
+    </div>
+  </div>
+  <div class="p-col">
+    <div class="box">
+
+      <div class="p-grid ui-g-12 ui-md-2">
+        <app-navigator></app-navigator>
+      </div>
+
+      <div class="p-grid ui-g-12 ui-md-10" style="float: right;">
+        <router-outlet></router-outlet>
+      </div>
+
+    </div>
+  </div>
+</div>

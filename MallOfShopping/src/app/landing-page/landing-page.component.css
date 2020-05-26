@@ -1,0 +1,28 @@
+.nav-bar {
+  width: 100%; /* Full width */
+  height: 30%;
+  background-color:lightsteelblue;
+  color: black;
+  text-align: center;
+  margin-top: 0;
+  border-radius: 50px;
+}
+
+.bannerText-with-Top-Margin {
+  text-align: center;
+  margin-top: 5%;
+  font-size: xx-large
+}
+
+.bannerText {
+  padding-top: 5px;
+  text-align: center;
+  font-size: xx-large
+}
+
+.bannerText-small-font {
+  padding-top: 5px;
+  text-align: center;
+  font-size: x-large;
+  font-style: italic;
+}
