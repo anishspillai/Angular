@@ -48,7 +48,7 @@ export class GroceryGridComponent implements OnInit{
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      //this.fetchGroceries()
+      this.fetchGroceries()
     })
   }
 
@@ -65,7 +65,16 @@ export class GroceryGridComponent implements OnInit{
   this.groceryList = []
     if(!this.searchCategoryType) {
 
-      this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
+      this.firestore.list('admin/Campaign').valueChanges().forEach(grocery => {
+        grocery.forEach(grocery1 => {
+          var anish: IndividualGrocery = grocery1 as IndividualGrocery
+          this.groceryList.push(anish)
+        })
+
+        this.displayProgressSpinner = false
+      }).then(r => console.log(r))
+
+      /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
             val.forEach(value2 => {
               var anish: IndividualGrocery = value2 as IndividualGrocery
@@ -75,7 +84,7 @@ export class GroceryGridComponent implements OnInit{
           }
           this.displayProgressSpinner = false
         }
-      )).then(r => console.log(r))
+      )).then(r => console.log(r))*/
     } else {
       this.firestore.list('admin/Catagories/' + this.searchCategoryType).valueChanges().forEach(grocery => {
         grocery.forEach(grocery1 => {

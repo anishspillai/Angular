@@ -45,6 +45,7 @@ import {StepsModule} from "primeng/steps"
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import {ProgressBarModule} from "primeng/progressbar";
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     MessagesModule,
     ToastModule,
     StepsModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ProgressBarModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
