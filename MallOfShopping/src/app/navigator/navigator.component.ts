@@ -17,6 +17,8 @@ export class NavigatorComponent  {
 
   expandSubMenuItems: Boolean = false
 
+  expandableListElements: String[] = []
+
   constructor(
     private readonly navigatorService: NavigatorService,
     private readonly router: Router,
@@ -25,7 +27,7 @@ export class NavigatorComponent  {
   }
 
   ngOnInit(): void {
-    this.fetchNavigationItems()
+    //this.fetchNavigationItems()
   }
 
   fetchNavigationItems(): void {
@@ -77,4 +79,19 @@ export class NavigatorComponent  {
     this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
     this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
+
+  expandListBox(label: string) {
+    const index = this.expandableListElements.indexOf(label)
+    if (index == -1) {
+      this.expandableListElements.push(label)
+    } else {
+      this.expandableListElements.splice(index, 1)
+    }
+  }
+
+  displayDropDown(label: string) {
+    const index = this.expandableListElements.indexOf(label)
+    return index > -1
+  }
+
 }

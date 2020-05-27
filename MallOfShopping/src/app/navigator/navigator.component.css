@@ -4,6 +4,25 @@ ul {
 }
 
 li {
-  padding: 5px
+  padding: 5px;
+  width: 100%
+
 }
 
+li:hover  {
+  background-color: brown;
+  color: white;
+}
+
+li::selection {
+  background-color: red;
+  color: white;
+}
+
+.border-list {
+  border-bottom: 1px solid #ddd;
+}
+
+.anish {
+  background-color: orangered;
+}

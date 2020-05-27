@@ -1,27 +1,67 @@
-<h3>Navigate Groceries</h3>
-<nav>
-
+<nav
+  style="height: 1500px; width: 260px; background-color:whitesmoke; border-radius: 4px; font-style: normal; padding-left: 10px">
   <ul>
-    <li *ngFor="let item of menuItems">
+    <div *ngFor="let item of menuItems">
       <div *ngIf="item.items.length == 0">
-        <a style="color: black" (click)="navigateToGroceryMain(item)"> {{item.label}} </a>
+        <li class="border-list" (click)="navigateToGroceryMain(item)"> {{item.label}} </li>
       </div>
 
       <div *ngIf="item.items.length != 0">
-        <p-accordion>
-          <p-accordionTab header="{{item.label}}">
 
-            <ul>
-              <li *ngFor="let subItem of item.items">
-                <span (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</span>
-              </li>
-            </ul>
+        <li class="border-list" (click)="expandListBox(item.label); navigateToGroceryMain(item)">
+          <div class="ui-inputgroup"><label style="text-align: center">{{item.label}} </label> <i
+            class="pi pi-chevron-circle-down"> </i></div>
+        </li>
 
-          </p-accordionTab>
-        </p-accordion>
+
+        <p-listbox *ngIf="displayDropDown(item.label)" [options]="item.items" class="anish">
+
+          <ng-template let-subItem pTemplate="item">
+            <li (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</li>
+          </ng-template>
+
+        </p-listbox>
+
+
       </div>
-    </li>
+    </div>
   </ul>
+
+  <!--ul>
+    <li class="borderlist">
+      Wheat
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+    <li class="borderlist">
+      Rice
+    </li>
+  </ul-->
 </nav>
 
 
