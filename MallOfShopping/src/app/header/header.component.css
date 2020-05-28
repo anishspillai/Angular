@@ -132,6 +132,13 @@ div.anish {
   margin-top: -12px !important;
 }
 
+.box,
+.sample-layout > div {
+  text-align: center;
+  border-radius: 4px;
+}
 
-
+.sample-layout {
+  margin: 0;
+}
 

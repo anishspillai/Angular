@@ -2,7 +2,7 @@
            position="right"
            styleClass="ui-sidebar-lg"
            (onHide)="sendCloseEvent()"
-           [style]="{'overflow': 'scroll', width:'30%', right: 0}">
+           [style]=" isDesktopApplication ? {'overflow': 'scroll', width:'30%', right: 0} : {'overflow': 'scroll', width:'100%', right: 0}">
 
   <h4> Order Overview </h4>
 

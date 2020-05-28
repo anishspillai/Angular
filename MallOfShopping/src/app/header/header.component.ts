@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ordersAddedByUser: Order[] = []
   displaySideMenuBar: boolean = false
   displayLoginPage: boolean = false
+  isDesktopApplication = true
 
 
   constructor(private readonly router: Router,
@@ -115,6 +116,11 @@ export class HeaderComponent implements OnInit {
       sum + current.noOfItems, 0)
 
     return sum
+  }
+
+  loadSideBarMenu() {
+    this.displaySideMenuBar = true
+    this.isDesktopApplication = false
   }
 
 }

@@ -14,6 +14,8 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
   @Output() closeSideBarMenuEvent = new EventEmitter()
 
+  @Input() isDesktopApplication = true
+
   ordersAddedByUser: Order[] = []
 
 
