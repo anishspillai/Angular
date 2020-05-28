@@ -46,6 +46,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import {ProgressBarModule} from "primeng/progressbar";
+import { AddGroceriesComponent } from './add-groceries/add-groceries.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {ProgressBarModule} from "primeng/progressbar";
     ReviewOrderedItemsComponent,
     OrderConfirmationWizardComponent,
     EditUserComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    AddGroceriesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,56 @@
+<div>ActualPrice</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.actualPrice"/>
+<br>
+<br>
+
+<div>BrandName</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.brandName" placeholder="Required"/>
+<br><br>
+<br>
+<div>Bulk PurchaseOffer Available</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.bulkPurchaseOfferAvailable"
+       placeholder="Required"/>
+<br><br>
+<div>Bulk Purchase Offer Count</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.bulkPurchaseOfferCount" placeholder="Required"/>
+<br><br>
+<div>Bulk Purchase Offer Price</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.bulkPurchaseOfferPrice" placeholder="Required"/>
+<br>
+<br>
+<div>Id</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.id" placeholder="Required"/>
+<br><br>
+<br>
+<div>Image Path</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.imagePath" placeholder="Required"/>
+<br>
+<div>Max Shopping Count</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.maxShoppingCount" placeholder="Required"/>
+<br><br>
+<br>
+maxShoppingIsRestricted
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.maxShoppingIsRestricted" placeholder="Required"/>
+<br><br>
+<br>
+<div>offerPrice</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.offerPrice" placeholder="Required"/>
+<br><br>
+<div>subType</div>
+<input pInputText size="100" type="text" [(ngModel)]="addGroceryModel.subType" placeholder="Required"/>
+<br><br>
+<div>type</div>
+<input pInputText size="100" type="text" [(ngModel)]="addGroceryModel.type" placeholder="Required"/>
+<br><br>
+<div>unitOfWeight</div>
+<input pInputText size="100" type="text" [(ngModel)]="addGroceryModel.unitOfWeight" placeholder="Required"/>
+<br><br>
+<div>weight</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.weight" placeholder="Required"/>
+
+
+<div>DATABASE PATH</div>
+<input pInputText size="100" type="text" [(ngModel)]="addGroceryModel.dbPath" placeholder="Required"/>
+
+<button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
+        (click)="save()"></button>
