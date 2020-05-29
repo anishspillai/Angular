@@ -72,12 +72,12 @@ p a {
 
 .sans-serif {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  font-size: medium;
 }
 
 .sans-serif-italic {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: large;
+  font-size: medium;
   font-style: italic;
   color: #ca2121;
 }
