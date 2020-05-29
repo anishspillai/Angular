@@ -94,26 +94,30 @@
 
   <div class="p-col">
     <div class="box">
-      <i class="pi pi-align-justify" style="font-size: 2em; color:snow"></i>
+      <i class="pi pi-align-justify" style="font-size: 2em; color:snow" (click)="displayNavigator=true"></i>
     </div>
   </div>
 
   <div class="p-col-6" style="padding-top: 1em">
     <div class="box" style="font-size: large">Mall Of Groceries</div>
   </div>
+
   <div class="p-col">
-    <div style="margin-left: 10px; margin-right: 30px" class="tooltip header-right">
+    <p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
+    <div class="box">
+      <i class="pi pi-user" style="font-size: xx-large; color: white" (click)="menu.toggle($event)"></i>
+    </div>
+  </div>
+
+
+  <div class="p-col" (click)="loadSideBarMenu()">
+    <div style="margin-right: 30px" class="tooltip header-right">
       <i class="pi pi-shopping-cart" style="font-size: xx-large; color: white"></i>
       <span class="tooltiptext">{{getCountOfItems()}}</span>
     </div>
   </div>
-  <div class="p-col">
-    <div class="box">
-      <i class="pi pi-user" style="font-size: xx-large; color: white"></i>
-    </div>
-  </div>
 
-  <div class="p-col-12" style="padding-top: 1em" (click)="loadSideBarMenu()">
+  <div class="p-col-12" style="padding-top: 1em">
     <input placeholder="Under Construction. Will release in next version" pInputText style="width: 100%" [style]="{'border-radius': '25px'}"/>
   </div>
 
@@ -126,3 +130,12 @@
                           [isDesktopApplication]="isDesktopApplication"
                           (closeSideBarMenuEvent)="displaySideMenuBar = $event">
 </app-review-ordered-items>
+
+<div *ngIf="displayNavigator">
+<app-navigator-for-mobile-device [displaySideBarMenuItemForMobileApplication]="displayNavigator"
+                                  (closeSideBarMenuItemForMobileApplication)="displayNavigator = $event">
+
+</app-navigator-for-mobile-device>
+</div>
+
+

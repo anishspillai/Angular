@@ -24,6 +24,9 @@ export class HeaderComponent implements OnInit {
   displaySideMenuBar: boolean = false
   displayLoginPage: boolean = false
   isDesktopApplication = true
+  displayNavigator = false
+
+  private items: MenuItem[];
 
 
   constructor(private readonly router: Router,
@@ -31,10 +34,21 @@ export class HeaderComponent implements OnInit {
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
               private readonly breadCrumbService: BreadCrumbService) {
+
     this.menuItems = [
       {label: 'My Details', target: 'user-details'},
       {label: 'Order History', target: 'order-history'}
     ];
+
+
+    this.items = [{
+      label: 'Options',
+      items: [
+        {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
+        {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
+        {label: 'Login', icon: 'pi pi-download', routerLink: ['/pagename'], queryParams: {'recent': 'true'}}
+      ]
+    }]
   }
 
   ngOnInit(): void {

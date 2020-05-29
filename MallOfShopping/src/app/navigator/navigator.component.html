@@ -9,59 +9,21 @@
       <div *ngIf="item.items.length != 0">
 
         <li class="border-list" (click)="expandListBox(item.label); navigateToGroceryMain(item)">
-          <div class="ui-inputgroup"><label style="text-align: center">{{item.label}} </label> <i
-            class="pi pi-chevron-circle-down"> </i></div>
+          <div class="ui-inputgroup"><label style="text-align: center">{{item.label}} </label>
+            <i class="pi pi-chevron-circle-down"> </i></div>
         </li>
 
 
         <p-listbox *ngIf="displayDropDown(item.label)" [options]="item.items" class="anish">
-
           <ng-template let-subItem pTemplate="item">
             <li (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</li>
           </ng-template>
 
         </p-listbox>
 
-
       </div>
     </div>
   </ul>
-
-  <!--ul>
-    <li class="borderlist">
-      Wheat
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-    <li class="borderlist">
-      Rice
-    </li>
-  </ul-->
 </nav>
 
 
