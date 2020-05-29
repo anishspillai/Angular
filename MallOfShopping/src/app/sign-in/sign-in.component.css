@@ -29,3 +29,8 @@
   font-size:2em;
   vertical-align:middle;
 }
+
+.p-col-12_roundBordered_Input {
+  border-radius: 25px;
+  width: 100%
+}
