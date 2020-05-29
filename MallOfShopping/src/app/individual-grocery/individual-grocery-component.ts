@@ -25,6 +25,8 @@ export class IndividualGroceryComponent {
 
   @Input() orderedGroceryList: Order[] = []
 
+  @Input() isDesktopApplication = true
+
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService) {
   }
 

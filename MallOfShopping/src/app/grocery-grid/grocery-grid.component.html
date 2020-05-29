@@ -1,4 +1,4 @@
-<div class="p-grid">
+<div class="p-grid" style="padding-top: 5em">
 
   <!--div *ngIf="displayProgressSpinner">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"
@@ -8,10 +8,21 @@
     </p-progressSpinner>
   </div-->
 
-  <div *ngFor="let grocery of groceryList">
+  <div id="content-desktop" *ngFor="let grocery of groceryList">
     <div class="p-col" style="width: 250px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList">
+      </app-individual-grocery>
+    </div>
+  </div>
+
+
+
+  <div id="content-mobile" *ngFor="let grocery of groceryList">
+    <div class="p-col" style="width: 170px">
+      <app-individual-grocery [individualGrocery]="grocery"
+                              [orderedGroceryList]="orderedList"
+                              [isDesktopApplication]="false">
       </app-individual-grocery>
     </div>
   </div>

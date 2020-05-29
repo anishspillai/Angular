@@ -4,10 +4,13 @@
   <div>
     <div class="boxfd">
 
-      <img src="{{individualGrocery.imagePath}}"
+      <img *ngIf="isDesktopApplication" src="{{individualGrocery.imagePath}}"
            style="width: 150px; height: 200px" class="center-align">
 
-      <div class="circleWithText">
+      <img *ngIf="!isDesktopApplication" src="{{individualGrocery.imagePath}}"
+           style="width: 50px; height: 80px" class="center-align">
+
+      <div [ngClass] = "isDesktopApplication ? 'circleWithText' : 'circleWithTextMobile'">
 
         <div *ngIf="individualGrocery.bulkPurchaseOfferAvailable">
           <p><a style="color: white"> {{individualGrocery.bulkPurchaseOfferCount}}
