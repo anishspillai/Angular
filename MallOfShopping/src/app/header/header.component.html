@@ -107,7 +107,7 @@
   <div class="p-col">
     <p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
     <div class="box">
-      <i class="pi pi-user" style="font-size: xx-large; color: white" (click)="menu.toggle($event)"></i>
+      <i class="pi pi-user" style="font-size: xx-large; color: white" (click)="displayMenuItemsForUser(menu, $event)"></i>
     </div>
   </div>
 

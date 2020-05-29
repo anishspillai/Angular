@@ -9,6 +9,7 @@ import {GroceryService} from "../grocery-grid/grocery.service";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {GroceryGridComponent} from "../grocery-grid/grocery-grid.component";
 import {MenuItem} from "primeng/api";
+import {Menu} from "primeng/menu";
 
 
 @Component({
@@ -40,15 +41,6 @@ export class HeaderComponent implements OnInit {
       {label: 'Order History', target: 'order-history'}
     ];
 
-
-    this.items = [{
-      label: 'Options',
-      items: [
-        {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
-        {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
-        {label: 'Login', icon: 'pi pi-download', routerLink: ['/pagename'], queryParams: {'recent': 'true'}}
-      ]
-    }]
   }
 
   ngOnInit(): void {
@@ -136,5 +128,32 @@ export class HeaderComponent implements OnInit {
     this.isDesktopApplication = false
     this.proceedToNextPage()
   }
+
+  displayMenuItemsForUser(menu: Menu, $event) {
+
+
+    if (this.auth.isLoggedIn) {
+      this.items = [{
+        label: 'Options',
+        items: [
+          {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
+          {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
+          {label: 'Logout', icon: 'pi pi-download', command: () => this.logOut()}
+        ]
+      }]
+    } else {
+      this.items = [{
+        label: 'Options',
+        items: [
+          {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
+          {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
+          {label: 'Login', icon: 'pi pi-download', command: () => this.logIn(), styleClass: "buttonStyle" }
+        ]
+      }]
+    }
+
+    menu.toggle($event)
+  }
+
 
 }
