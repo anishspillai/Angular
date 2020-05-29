@@ -11,6 +11,7 @@ import {NavigationEnd, Router} from "@angular/router";
 export class AppComponent implements OnInit, OnDestroy {
   items: Observable<any[]>;
   navigationSubscription;
+  isDesktopDevice: boolean
 
   constructor(private readonly firestore: AngularFireDatabase,
               private readonly router: Router) {
@@ -40,5 +41,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isDesktopDevice = window.innerWidth > 768
   }
 }
