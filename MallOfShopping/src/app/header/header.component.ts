@@ -133,8 +133,8 @@ export class HeaderComponent implements OnInit {
   }
 
   loadSideBarMenu() {
-    this.displaySideMenuBar = true
     this.isDesktopApplication = false
+    this.proceedToNextPage()
   }
 
 }

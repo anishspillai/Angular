@@ -26,47 +26,7 @@
     </div>
   </div>
 </div-->
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial;
-      color: white;
-    }
-
-    .split {
-      height: 100%;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      overflow-x: hidden;
-      padding-top: 20px;
-    }
-
-    .left {
-      width: 78%;
-      left: 0;
-      background-color: #111;
-    }
-
-    .right {
-      width: 22%;
-      right: 0;
-      background-color: darkorange;
-    }
-
-    .centered {
-      position: absolute;
-      margin-left: 10em;
-    }
-
-  </style>
-</head>
-<body>
-
+<div id="content-desktop">
 <div class="split left">
   <div class="centered" style="width: 70%">
     <app-user-details></app-user-details>
@@ -74,10 +34,6 @@
 </div>
 
 <div class="split right">
-
-  <!--div *ngIf="displayErrorMessage">
-
-  </div-->
 
   <h1 style="text-align: center; text-decoration: underline"> Order Summary </h1>
 
@@ -103,6 +59,25 @@
     Cancel Order
   </div>
 </div>
+</div>
+
+
+<div id="content-mobile"  style="display: block; margin-top: 6em; margin-left: auto; margin-right: auto; color: black;">
+  <div class="p-col-12" style="border-style: groove">
+  <app-user-details></app-user-details><br>
+    <br>
+  </div>
+
+
+
+  <div class="p-col-12">
+  <button pButton class="ui-button-rounded ui-button-success"style="width: 100%" label="Confirm Order"></button>
+  </div>
+  <div class="p-col-12">
+  <button pButton class="ui-button-rounded ui-button-danger"style="width: 100%" label="Cancel Order"></button>
+  </div>
+
+</div>
 
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-</body>
+

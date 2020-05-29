@@ -69,7 +69,9 @@
 <div *ngIf="displayLoginPage">
   <app-sign-in
     [loadLoginPage]="displayLoginPage"
-    (closeLoginDialogEvent)= "displayLoginPage = $event">
+    (closeLoginDialogEvent)= "displayLoginPage = $event"
+    [isDesktopApplication]="isDesktopApplication"
+  >
   </app-sign-in>
 
 </div>

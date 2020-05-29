@@ -31,6 +31,8 @@ export class SignInComponent implements OnInit {
 
   @Output() closeLoginDialogEvent = new EventEmitter()
 
+  @Input() isDesktopApplication: false
+
   triggerEventForClosingDialog() {
     this.closeLoginDialogEvent.emit(false)
   }

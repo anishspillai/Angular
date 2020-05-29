@@ -1,6 +1,7 @@
 <p-dialog header="{{dialogHeader}}"
           [(visible)]="loadLoginPage"
-          (onHide)="triggerEventForClosingDialog()">
+          (onHide)="triggerEventForClosingDialog()"
+          [responsive]="true" [resizable]="false" [style]="isDesktopApplication ? {width: '500px'} : {width: '350px'}">
 
   <div *ngIf="errorMessage" class="isa_error">
     <i class="pi pi-times-circle"></i>
@@ -14,20 +15,28 @@
 
   <div *ngIf="!isResetPasswordDialog">
     <div class="ui-g-12">
-      <h4 style="margin: 0px"> User Name </h4>
+      <h4 style="margin: 0px ; font-family: 'Trebuchet MS'"> Email </h4>
     </div>
 
-    <div class="ui-g-6 u-margin-none u-padding-none">
-      <input style="border-radius: 25px" type="text" size="50" pInputText [(ngModel)]="userId">
+    <div *ngIf="isDesktopApplication" class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="62" pInputText [(ngModel)]="userId">
+    </div>
+
+    <div *ngIf="!isDesktopApplication" class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="42" pInputText [(ngModel)]="userId">
     </div>
     <br>
 
     <div class="ui-g-12">
-      <h4 style="margin: 0px"> Password </h4>
+      <h4 style="margin: 0px; font-family: 'Trebuchet MS'"> Password </h4>
     </div>
 
-    <div class="ui-g-6 u-margin-none u-padding-none">
-      <input style="border-radius: 25px;" type="password" pPassword size="50" [(ngModel)]="password">
+    <div *ngIf="isDesktopApplication" class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px;" type="password" pPassword size="62" [(ngModel)]="password">
+    </div>
+
+    <div *ngIf="!isDesktopApplication" class="ui-g-6 u-margin-none u-padding-none">
+      <input style="border-radius: 25px;" type="password" pPassword size="42" [(ngModel)]="password">
     </div>
 
     <br>
@@ -57,6 +66,7 @@
                 (click)="loadLoginPageProperties()"></button>
       </div>
 
+
     </div>
   </div>
 
@@ -65,11 +75,15 @@
   <div *ngIf="isResetPasswordDialog">
 
     <div class="ui-g-12">
-      <h4 style="margin: 0px"> User Name </h4>
+      <h4 style="margin: 0px"> Email </h4>
     </div>
 
-    <div class="ui-g-12 u-margin-none u-padding-none">
-      <input style="border-radius: 25px" type="text" size="50" pInputText [(ngModel)]="userId">
+    <div *ngIf="isDesktopApplication" class="ui-g-12 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="62" pInputText [(ngModel)]="userId">
+    </div>
+
+    <div *ngIf="!isDesktopApplication" class="ui-g-12 u-margin-none u-padding-none">
+      <input style="border-radius: 25px" type="text" size="42" pInputText [(ngModel)]="userId">
     </div>
     <br>
 

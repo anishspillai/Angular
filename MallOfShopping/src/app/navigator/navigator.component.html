@@ -15,6 +15,7 @@
         </li>
 
 
+        <!-- https://stackoverflow.com/questions/56865814/angular-primeng-listbox-cross-label -->
         <p-listbox *ngIf="displayDropDown(item.label)" [options]="item.items">
           <!--ng-template let-subItem pTemplate="item">
             <li  [style]="{'color': 'white','padding': '0', 'margin' : '0'}" (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</li>
