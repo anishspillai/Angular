@@ -23,6 +23,21 @@ li::selection {
   border-bottom: 1px solid #ddd;
 }
 
+.kooi .ui-listbox-list * {
+   color: red;
+   font-weight: bold
+ }
+
+
+:host ::ng-deep .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
+  color: #000000;
+  background-color: whitesmoke;
+  margin: 2px;
+  padding-left: 10px;
+  font-style: italic;
+  border: white;
+}
+
 .anish {
-  background-color: orangered;
+  background-color: red;
 }

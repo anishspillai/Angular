@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   isDesktopApplication = true
   displayNavigator = false
 
-  private items: MenuItem[];
+  items: MenuItem[];
 
 
   constructor(private readonly router: Router,
