@@ -62,22 +62,43 @@
 </div>
 
 
-<div id="content-mobile"  style="display: block; margin-top: 6em; margin-left: auto; margin-right: auto; color: black;">
+<div id="content-mobile" style="display: block; margin-top: 6em; margin-left: auto; margin-right: auto; color: black;">
   <div class="p-col-12" style="border-style: groove">
-  <app-user-details></app-user-details><br>
+    <app-user-details></app-user-details>
+    <br>
     <br>
   </div>
 
 
-
   <div class="p-col-12">
-  <button pButton class="ui-button-rounded ui-button-success"style="width: 100%" label="Confirm Order"></button>
+    <button pButton class="ui-button-rounded ui-button-success" style="width: 100%" label="Confirm Order"
+            (click)="placeOrder()"></button>
   </div>
   <div class="p-col-12">
-  <button pButton class="ui-button-rounded ui-button-danger"style="width: 100%" label="Cancel Order"></button>
+    <button pButton class="ui-button-rounded ui-button-danger" style="width: 100%" label="Cancel Order"
+            (click)="cancelThisPage()"></button>
   </div>
 
 </div>
 
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
+
+<p-dialog [(visible)]="displayThankYouDialog" header="Order Placed!!!"  [style]="{width: '360px'}" (onHide)="navigateToTheMainPage()">
+  <div>
+    Thank you for placing the order!!!
+  </div>
+  <p-footer>
+  <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayThankYouDialog = false"></button>
+</p-footer>
+</p-dialog>
+
+
+<p-dialog [(visible)]="displayErrorDialog" header="Order Placed!!!"  [style]="{width: '360px'}" (onHide)="navigateToTheMainPage()">
+  <div>
+    Sorry, There is some issue in placing the order. Kindly contact 0723980601 or anishspillai@gmail.com
+  </div>
+  <p-footer>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayErrorDialog = false"></button>
+  </p-footer>
+</p-dialog>

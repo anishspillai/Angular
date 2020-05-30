@@ -39,3 +39,8 @@ body {
   #content-desktop-flex {display: none;}
 }
 
+.p-col-12_roundBordered_Input {
+  border-radius: 25px;
+  width: 100%
+}
+

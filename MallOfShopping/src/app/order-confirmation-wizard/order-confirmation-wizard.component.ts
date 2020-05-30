@@ -18,6 +18,11 @@ export class OrderConfirmationWizardComponent {
 
   items: MenuItem[];
 
+  displayThankYouDialog: boolean = false
+
+  displayErrorDialog: boolean = false
+
+
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -46,11 +51,16 @@ export class OrderConfirmationWizardComponent {
   placeOrder() {
     const user: User = JSON.parse(localStorage.getItem('user'))
     this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
-      this.cancelThisPage()
-      alert("Thank you for placing the order!!!")
+
+      this.displayErrorDialog = true
     })
       .catch(err => {
-        alert("Sorry, we could not take the order now!!!")
+        this.displayErrorDialog = true
       });
+  }
+
+  navigateToTheMainPage() {
+    localStorage.setItem('foo', 'no reload')
+    this.router.navigate(['grocery-list']);
   }
 }

@@ -30,7 +30,10 @@
   vertical-align:middle;
 }
 
-.p-col-12_roundBordered_Input {
-  border-radius: 25px;
-  width: 100%
+select, input, textarea {
+  font-size: 16px;
+}
+
+input:active {
+  font-size: 16px; /* `16px` is safer I assume, although `1rem` works too */
 }

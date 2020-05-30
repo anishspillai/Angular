@@ -1,7 +1,19 @@
+
+<!-- https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
+
+https://www.google.com/search?sxsrf=ALeKk02KZ96QUGKK4QjNa-zB741gGpX6pw%3A1590826115048&ei=gxTSXuq1Aqn1qwGfrYCAAg&q=why+window+enlarges+when+editing+text+mobile+angular&oq=why+window+enlarges+when+editing+text+mobile+angular&gs_lcp=CgZwc3ktYWIQAzoECCMQJzoCCAA6BQgAEIMBOgYIIxAnEBM6BAgAEEM6BQgAEMsBOgcIABAKEMsBOgYIABAWEB46CAgAEBYQChAeOggIIRAWEB0QHjoFCCEQoAE6BwghEAoQoAE6BAghEBVQ17osWOSkLWDmpS1oAnAAeACAAe0BiAGBI5IBBjQ1LjYuMpgBAKABAaoBB2d3cy13aXo&sclient=psy-ab&ved=0ahUKEwiqg_KLkdvpAhWp-ioKHZ8WACAQ4dUDCAw&uact=5
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
+
+-->
 <p-dialog header="{{dialogHeader}}"
           [(visible)]="loadLoginPage"
           (onHide)="triggerEventForClosingDialog()"
-          [responsive]="true" [resizable]="false" [style]="isDesktopApplication ? {width: '500px'} : {width: '350px'}">
+          [responsive]="false"
+          [resizable]="false"
+          [style]="isDesktopApplication ? {width: '500px'} : {width: '350px'}">
 
   <div *ngIf="errorMessage" class="isa_error">
     <i class="pi pi-times-circle"></i>
