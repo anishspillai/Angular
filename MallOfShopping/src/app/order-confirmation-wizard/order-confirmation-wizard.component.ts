@@ -63,7 +63,7 @@ export class OrderConfirmationWizardComponent {
         return
       } else {
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
-          this.displayErrorDialog = true
+          this.displayThankYouDialog = true
         })
           .catch(err => {
             this.displayErrorDialog = true
