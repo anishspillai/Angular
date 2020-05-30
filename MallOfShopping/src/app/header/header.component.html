@@ -134,10 +134,25 @@
 </app-review-ordered-items>
 
 <div *ngIf="displayNavigator">
-<app-navigator-for-mobile-device [displaySideBarMenuItemForMobileApplication]="displayNavigator"
-                                  (closeSideBarMenuItemForMobileApplication)="displayNavigator = $event">
+<!--app-navigator-for-mobile-device [displaySideBarMenuItemForMobileApplication]="displayNavigator"
+                                  (closeSideBarMenuItemForMobileApplication)="displayNavigator = $event"-->
 
-</app-navigator-for-mobile-device>
+  <p-sidebar [(visible)]="displayNavigator"
+             position="right"
+             styleClass="ui-sidebar-lg"
+             (onHide)="displayNavigator = false"
+             [style]=" {'overflow': 'scroll', left: 0} ">
+
+    <button pButton label="Home Page" icon="pi pi-home" class="ui-button-info ui-button-rounded" style="width: 100%" (click)="navigateToTheMainPage()"></button>
+
+
+    <app-navigator [isMobileDevice]="true" (closeNavigationDialogForMobApp)="displayNavigator =  $event"></app-navigator>
+
+  </p-sidebar>
+
+
+
+<!--/app-navigator-for-mobile-device-->
 </div>
 
 

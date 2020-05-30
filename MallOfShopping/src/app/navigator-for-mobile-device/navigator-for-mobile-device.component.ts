@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigator-for-mobile-device',
@@ -12,7 +13,7 @@ export class NavigatorForMobileDeviceComponent implements OnInit {
   @Output() closeSideBarMenuItemForMobileApplication = new EventEmitter()
 
 
-  constructor() { }
+  constructor(private readonly router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +21,12 @@ export class NavigatorForMobileDeviceComponent implements OnInit {
   sendCloseEvent() {
     this.closeSideBarMenuItemForMobileApplication.emit(false)
   }
+
+  navigateToTheMainPage() {
+    this.router.navigate(['grocery-list']);
+    this.displaySideBarMenuItemForMobileApplication = false
+  }
+
+
 
 }

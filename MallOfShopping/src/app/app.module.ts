@@ -49,6 +49,8 @@ import {ProgressBarModule} from "primeng/progressbar";
 import { AddGroceriesComponent } from './add-groceries/add-groceries.component';
 import { NavigatorForMobileDeviceComponent } from './navigator-for-mobile-device/navigator-for-mobile-device.component';
 import {MenuModule} from "primeng/menu";
+import { OrderHistoryMainPageComponent } from './order-view-main-page/order-history-main-page.component';
+import { UserDetailsMainPageComponent } from './user-details-main-page/user-details-main-page.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import {MenuModule} from "primeng/menu";
     EditUserComponent,
     LandingPageComponent,
     AddGroceriesComponent,
-    NavigatorForMobileDeviceComponent
+    NavigatorForMobileDeviceComponent,
+    OrderHistoryMainPageComponent,
+    UserDetailsMainPageComponent
   ],
     imports: [
         BrowserModule,

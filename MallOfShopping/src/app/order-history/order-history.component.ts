@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {OrderHistoryModel} from "./OrderHistory.model";
 import {Order} from "../individual-grocery/model/Order";
@@ -13,7 +13,7 @@ export class OrderHistoryComponent implements OnInit{
 
   orderHistory: OrderHistoryModel[] = []
 
-
+  @Input() isMobileDevice: false
 
 
   public cars: Car[];

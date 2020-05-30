@@ -1,10 +1,12 @@
-
 <p-sidebar [(visible)]="displaySideBarMenuItemForMobileApplication"
            position="right"
            styleClass="ui-sidebar-lg"
            (onHide)="sendCloseEvent()"
            [style]=" {'overflow': 'scroll', left: 0} ">
 
-  <app-navigator></app-navigator>
+  <button pButton label="Home Page" icon="pi pi-home" class="ui-button-info ui-button-rounded" style="width: 100%" (click)="navigateToTheMainPage()"></button>
+
+
+  <app-navigator [isMobileDevice]="true" (closeNavigationDialogForMobApp)="displaySideBarMenuItemForMobileApplication =  $event"></app-navigator>
 
 </p-sidebar>

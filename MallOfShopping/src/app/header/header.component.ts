@@ -156,4 +156,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
+
+  navigateToTheMainPage() {
+    this.router.navigate(['grocery-list']);
+    this.displayNavigator = false
+  }
+
 }

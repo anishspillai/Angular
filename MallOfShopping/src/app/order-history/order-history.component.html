@@ -1,4 +1,4 @@
-<h1>Order History</h1>
+<h1 [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
 
 <div *ngIf="!authService.isLoggedIn"> Please log in and try again!!!</div>
 

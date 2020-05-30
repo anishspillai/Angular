@@ -102,3 +102,13 @@
     <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayErrorDialog = false"></button>
   </p-footer>
 </p-dialog>
+
+
+<p-dialog [(visible)]="displayAddressMissingDialog" header="Order Placed!!!"  [style]="{width: '360px'}">
+  <div>
+    Delivery Address is Missing!!!. Please add it and try again.
+  </div>
+  <p-footer>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayAddressMissingDialog = false"></button>
+  </p-footer>
+</p-dialog>

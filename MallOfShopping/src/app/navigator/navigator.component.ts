@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {NavigatorService} from "./navigator.service";
 import {GroceryMenuItem} from "./model/GroceryMenuItem";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -18,6 +18,11 @@ export class NavigatorComponent  {
   expandSubMenuItems: Boolean = false
 
   expandableListElements: String[] = []
+
+  @Input() isMobileDevice = false
+
+  @Output() closeNavigationDialogForMobApp = new EventEmitter()
+
 
   constructor(
     private readonly navigatorService: NavigatorService,
@@ -71,11 +76,22 @@ export class NavigatorComponent  {
   }
 
   navigateToGroceryMain(item: GroceryMenuItem) {
+
+    if(this.isMobileDevice && item.items.length == 0) {
+      this.triggerEventForClosingNavigationForMobileApp()
+    }
+
+
     this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}}).then(r => console.log(r));
     this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 
   navigateToGrocerySubMenu(item: GroceryMenuItem, subItem) {
+
+    if(this.isMobileDevice) {
+      this.triggerEventForClosingNavigationForMobileApp()
+    }
+
     this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
     this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
@@ -93,5 +109,11 @@ export class NavigatorComponent  {
     const index = this.expandableListElements.indexOf(label)
     return index > -1
   }
+
+
+  triggerEventForClosingNavigationForMobileApp() {
+    this.closeNavigationDialogForMobApp.emit(false)
+  }
+
 
 }

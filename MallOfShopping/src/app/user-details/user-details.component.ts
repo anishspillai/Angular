@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserDetailsService} from "./user.details.service";
 import {UserDetailsModel} from "./model/user.details.model";
 import {User} from "firebase";
@@ -19,6 +19,8 @@ export class UserDetailsComponent implements OnInit {
   displayErrorDialog: boolean = false
   items: Observable<any[]>;
   displayEditUserDialog = false
+  @Input() isMobileDevice: false
+
 
   constructor(private readonly  userDetailsService: UserDetailsService,
               private readonly authService: AuthService) {
@@ -27,8 +29,8 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.user = this.authService.getUser()
-
     if (this.user) {
+
       this.fetchUserDetails()
     }
 
@@ -38,7 +40,7 @@ export class UserDetailsComponent implements OnInit {
 
     this.userDetailsService.getUserDetails(this.user.uid).subscribe(value => {
 
-      if(value.length != 0) {
+      if (value && value.length != 0) {
         this.userDetailsModel.postNumber = value[4] as string
         this.userDetailsModel.streetName = value[5] as string
         this.userDetailsModel.apartmentNo = value[1] as string
@@ -46,7 +48,6 @@ export class UserDetailsComponent implements OnInit {
         this.userDetailsModel.firstName = value[2] as string
         this.userDetailsModel.lastName = value[3] as string
         this.userDetailsModel.address = value[0] as string
-
       }
     })
   }
