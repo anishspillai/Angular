@@ -67,3 +67,9 @@
   font-style: normal;
   font-weight: normal;
 }
+
+@media screen and (max-width: 768px) {
+  :host >>> .ui-sidebar {
+    font-size: x-small;
+  }
+}
