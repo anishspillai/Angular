@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Order} from "./individual-grocery/model/Order";
-import {consoleTestResultHandler} from "tslint/lib/test";
 
 @Injectable({
   providedIn: 'root'
@@ -47,11 +46,5 @@ export class AddGroceryToListObservableService {
 
   public notifySubscribers() {
     this._orders.next(this.orders)
-  }
-
-  public getTotalAmount() {
-    console.log(this.orders)
-    return this.orders
-      .reduce((sum, current) => sum + (current.noOfItems * current.actualPrice), 0);
   }
 }

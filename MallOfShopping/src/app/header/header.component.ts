@@ -87,17 +87,24 @@ export class HeaderComponent implements OnInit {
   }
 
   getCostOfItem() {
-    let sumOfItems = 0
+
+    return this.groceryService.getTotalCostOfOrderedItems(this.ordersAddedByUser).toFixed(2)
+
+    /**let sumOfItems = 0
 
     this.ordersAddedByUser.forEach(function (element) {
 
+      //sumOfItems += this.groceryService.getSumOfGrocery(element)
 
       if (element.bulkPurchaseOfferAvailable) {
 
-        let totalSet = element.noOfItems / element.bulkPurchaseOfferCount
-        sumOfItems += totalSet * element.bulkPurchaseOfferPrice
+        if(element.noOfItems >= element.bulkPurchaseOfferCount) {
+          let totalSet = element.noOfItems / element.bulkPurchaseOfferCount
+          sumOfItems += Math.floor(totalSet) * element.bulkPurchaseOfferPrice
+        }
 
         let extraItems = element.noOfItems % element.bulkPurchaseOfferCount
+
         sumOfItems += extraItems * element.actualPrice
 
       } else if (element.maxShoppingIsRestricted) {
@@ -110,11 +117,15 @@ export class HeaderComponent implements OnInit {
         }
 
       } else {
-        sumOfItems += element.noOfItems * element.actualPrice
+        if(element.offerPrice == 0) {
+          sumOfItems += element.noOfItems * element.actualPrice
+        } else {
+          sumOfItems += element.noOfItems * element.offerPrice
+        }
       }
     });
 
-    return sumOfItems
+    return sumOfItems.toFixed(2) */
   }
 
   getCountOfItems() {

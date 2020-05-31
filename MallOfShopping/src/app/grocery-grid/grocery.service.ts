@@ -17,4 +17,81 @@ export class GroceryService {
     return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
   }
 
+
+  getSumOfGrocery(order: Order) {
+
+    let sumOfIndividualOrder = 0
+
+    if (order.bulkPurchaseOfferAvailable) {
+
+      if(order.noOfItems >= order.bulkPurchaseOfferCount) {
+        let totalSet = order.noOfItems / order.bulkPurchaseOfferCount
+        sumOfIndividualOrder += Math.trunc(totalSet) * order.bulkPurchaseOfferPrice
+      }
+
+      let extraItems = order.noOfItems % order.bulkPurchaseOfferCount
+
+      sumOfIndividualOrder += extraItems * order.actualPrice
+
+    } else if (order.maxShoppingIsRestricted) {
+
+      if (order.noOfItems <= order.maxShoppingCount) {
+        sumOfIndividualOrder += order.noOfItems * order.offerPrice
+      } else {
+        let a = order.noOfItems - order.maxShoppingCount
+        sumOfIndividualOrder += (a * order.actualPrice) + (order.maxShoppingCount * order.offerPrice)
+      }
+
+    } else {
+      if(order.offerPrice == 0) {
+        sumOfIndividualOrder += order.noOfItems * order.actualPrice
+      } else {
+        sumOfIndividualOrder += order.noOfItems * order.offerPrice
+      }
+    }
+    return sumOfIndividualOrder
+  }
+
+  getTotalCostOfOrderedItems(orders: Order[]) {
+
+    let sumOfItems = 0
+
+    orders.forEach((order) => {
+
+      sumOfItems += this.getSumOfGrocery(order)
+
+      /*if (element.bulkPurchaseOfferAvailable) {
+
+        if(element.noOfItems >= element.bulkPurchaseOfferCount) {
+          let totalSet = element.noOfItems / element.bulkPurchaseOfferCount
+          sumOfItems += Math.floor(totalSet) * element.bulkPurchaseOfferPrice
+        }
+
+        let extraItems = element.noOfItems % element.bulkPurchaseOfferCount
+
+        sumOfItems += extraItems * element.actualPrice
+
+      } else if (element.maxShoppingIsRestricted) {
+
+        if (element.noOfItems <= element.maxShoppingCount) {
+          sumOfItems += element.noOfItems * element.offerPrice
+        } else {
+          let a = element.noOfItems - element.maxShoppingCount
+          sumOfItems += (a * element.actualPrice) + (element.maxShoppingCount * element.offerPrice)
+        }
+
+      } else {
+        if(element.offerPrice == 0) {
+          sumOfItems += element.noOfItems * element.actualPrice
+        } else {
+          sumOfItems += element.noOfItems * element.offerPrice
+        }
+      }*/
+    });
+
+    return sumOfItems
+  }
+
+
+
 }

@@ -19,8 +19,6 @@ export class AddGroceriesComponent   {
   }
 
   save() {
-
-    console.log(this.addGroceryModel)
     const  list = this.firestore.list('admin/Catagories/' + this.addGroceryModel.dbPath)
     list.push( this.addGroceryModel )
   }

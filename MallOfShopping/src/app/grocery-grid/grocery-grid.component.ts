@@ -26,29 +26,34 @@ export class GroceryGridComponent implements OnInit{
 
     var one: IndividualGrocery = new IndividualGrocery()
     one.brandName = "Anish S PIllai"
-    one.actualPrice = 897
+    one.actualPrice = 4.45
     one.offerPrice = 0
     one.weight = 7.8
     one.unitOfWeight = "Kg"
     one.type = "Pongal Rice"
     one.id = "One"
+    one.maxShoppingCount = 2
+    one.maxShoppingIsRestricted = true
 
     this.groceryList.push(one)
 
     var two: IndividualGrocery = new IndividualGrocery()
     two.brandName = "Anish S PIllai Anish"
-    two.actualPrice = 897
+    two.actualPrice = 200.12
     two.offerPrice = 0
     two.weight = 7.8
     two.unitOfWeight = "Kg"
     two.type = "rice"
     two.id = "Two"
+    two.bulkPurchaseOfferAvailable = true
+    two.bulkPurchaseOfferPrice = 150.14
+    two.bulkPurchaseOfferCount = 2
 
     this.groceryList.push(two)
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      this.fetchGroceries()
+     //this.fetchGroceries()
     })
   }
 

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 //import {MenuItem, MessageService} from "primeng";
 import {ConfirmationService, MenuItem} from "primeng/api";
 import {MessageService} from "primeng/api";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {User} from "firebase";
 import {GroceryService} from "../grocery-grid/grocery.service";
@@ -15,7 +15,7 @@ import {UserDetailsService} from "../user-details/user.details.service";
   styleUrls: ['./order-confirmation-wizard.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class OrderConfirmationWizardComponent {
+export class OrderConfirmationWizardComponent implements OnInit{
 
   items: MenuItem[];
 
@@ -25,13 +25,22 @@ export class OrderConfirmationWizardComponent {
 
   displayAddressMissingDialog: boolean = false
 
+  totalCost
+
 
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
-              private readonly  userDetailsService: UserDetailsService) {
+              private readonly  userDetailsService: UserDetailsService,
+              private readonly activatedRoute: ActivatedRoute) {
   }
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      this.totalCost = params.get("totalCost")
+    })
+    }
 
   cancelThisPage() {
 

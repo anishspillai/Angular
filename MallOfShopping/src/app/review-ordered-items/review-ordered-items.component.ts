@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {Router} from "@angular/router";
 import {Order} from "../individual-grocery/model/Order";
+import {GroceryService} from "../grocery-grid/grocery.service";
 
 @Component({
   selector: 'app-review-ordered-items',
@@ -20,14 +21,15 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
 
   constructor(readonly addGroceryToListObservableService: AddGroceryToListObservableService,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly groceryService: GroceryService) {
   }
 
 
   moveToConfirmationPage() {
     if(this.addGroceryToListObservableService.orders.length > 0) {
       this.sendCloseEvent()
-      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.addGroceryToListObservableService.getTotalAmount()}});
+      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItems()}});
     }
   }
 
@@ -58,5 +60,22 @@ export class ReviewOrderedItemsComponent implements OnInit {
   sendCloseEvent() {
     this.closeSideBarMenuEvent.emit(false)
   }
+
+  getTotalCostOfOrderedItems() {
+    let totalCostOfTheOrder =  this.groceryService.getTotalCostOfOrderedItems(this.addGroceryToListObservableService.orders)
+    if(totalCostOfTheOrder <= 400) {
+      totalCostOfTheOrder += 30
+    }
+
+    return totalCostOfTheOrder.toFixed(2)
+  }
+
+  getCostOfIndividualOrder(order: Order) {
+    return this.groceryService.getSumOfGrocery(order).toFixed(2)
+  }
+
+
+
+
 
 }
