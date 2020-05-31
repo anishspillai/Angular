@@ -11,12 +11,19 @@
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
     <div *ngFor="let oh of orderHistory">
 
-      <p-accordionTab header={{oh.orderedTimestamp}}>
+      <p-accordionTab id="content-desktop" header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
+
+
           <ng-template pTemplate="caption">
-            Grocery Order List
+            <div class="ui-helper-clearfix" style="text-align: left">
+              Order History
+
+              <label style="float:right">Status</label>
+            </div>
           </ng-template>
+
 
           <ng-template pTemplate="header" let-columns>
             <tr>
@@ -48,7 +55,65 @@
               </td>
             </tr>
           </ng-template>
-          <p-footer>Tst</p-footer>
+
+
+          <ng-template pTemplate="summary">
+            <div style="text-align: right">
+              Total Cost:
+            </div>
+          </ng-template>
+
+
+        </p-table>
+      </p-accordionTab>
+
+      <p-accordionTab id="content-mobile" header={{oh.orderedTimestamp}} style="display: block">
+        <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
+                 [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
+
+
+          <ng-template pTemplate="caption">
+            <div class="ui-helper-clearfix" style="text-align: left">
+              <label class="medium-font-size-light-text"> Order History </label>
+
+              <label style="float:right" class="medium-font-size-light-text">Status</label>
+            </div>
+          </ng-template>
+
+
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of cols_mobile_apps">
+                <label  class="medium-font-size-light-text"> {{col.header}} </label>
+              </th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-grocery>
+            <tr style="font-size: small">
+              <td class="p-col-6">
+                {{grocery.noOfItems}} *
+                {{grocery.groceryName}},
+                {{grocery.type}}
+              </td>
+              <td>
+                {{grocery.grossWeight}},
+                {{grocery.unitOfWeight}}
+              </td>
+              <td>
+                {{grocery.price}}
+              </td>
+            </tr>
+          </ng-template>
+
+
+          <ng-template pTemplate="summary">
+            <div style="text-align: right">
+              Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr
+            </div>
+          </ng-template>
+
+
         </p-table>
       </p-accordionTab>
     </div>

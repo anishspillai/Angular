@@ -2,11 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {OrderHistoryModel} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
+import {DatePipe} from "@angular/common";
+import {onErrorResumeNext} from "rxjs";
 
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
-  styleUrls: ['./order-history.component.css']
+  styleUrls: ['./order-history.component.css'],
+  providers: [DatePipe]
 })
 export class OrderHistoryComponent implements OnInit {
 
@@ -17,10 +20,11 @@ export class OrderHistoryComponent implements OnInit {
   public totalRecords: number = 100;
   public loading: boolean;
   public cols: any[];
-  public colors: any[];
+  public cols_mobile_apps: any[];
 
   constructor(private readonly groceryService: GroceryService,
-              readonly authService: AuthService) {
+              readonly authService: AuthService,
+              private readonly datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -35,7 +39,8 @@ export class OrderHistoryComponent implements OnInit {
 
             // @ts-ignore
             childSnapshot.payload.val().forEach(value => {
-              orderHistoryComponent.orderedTimestamp = new Date(parseInt(childSnapshot.key)).toString()
+              orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
+                'MMM d, y, h:mm:ss a')
 
               orderHistoryComponent.orderHistory.push(value)
             })
@@ -57,5 +62,15 @@ export class OrderHistoryComponent implements OnInit {
     ];
 
 
+    this.cols_mobile_apps = [
+      { header: 'Order' },
+      { header: 'Weight' },
+      { header: 'Cost' }
+    ];
+
+  }
+
+  getTotalCostOfTheOrder(orderHistoryModel: OrderHistoryModel) {
+    return orderHistoryModel.getTotalAmount()
   }
 }
