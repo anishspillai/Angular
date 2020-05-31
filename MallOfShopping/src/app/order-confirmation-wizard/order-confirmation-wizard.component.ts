@@ -63,23 +63,25 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   placeOrder() {
 
+    var addressMissing: boolean = false
+
     const user: User = JSON.parse(localStorage.getItem('user'))
 
     this.userDetailsService.getUserDetails(user.uid).subscribe(value => {
 
       if (!value || value.length == 0) {
         this.displayAddressMissingDialog = true
-        return
+        addressMissing = true
       }
 
-
+      if(!addressMissing) {
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
           this.displayThankYouDialog = true
         })
           .catch(err => {
             this.displayErrorDialog = true
           });
-
+      }
     })
 
   }

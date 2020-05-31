@@ -71,6 +71,11 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   getTotalCostOfTheOrder(orderHistoryModel: OrderHistoryModel) {
-    return orderHistoryModel.getTotalAmount()
+    return this.groceryService.getTotalCostOfOrderedItems(orderHistoryModel.orderHistory)
+  }
+
+  getIndividualCostOfItem(order: Order) {
+    console.log(order)
+    return this.groceryService.getSumOfGrocery(order)
   }
 }
