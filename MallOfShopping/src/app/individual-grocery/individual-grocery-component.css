@@ -81,3 +81,27 @@ p a {
   font-style: italic;
   color: #ca2121;
 }
+
+@media screen and (max-width: 600px) {
+  :host ::ng-deep .customTitleBar > .ui-panel-titlebar {
+    background: #357C5E;
+    font-style: italic;
+    font-size: x-small;
+    font-weight: lighter;
+    color: white;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  :host ::ng-deep .customTitleBar > .ui-panel-titlebar {
+    background: #357C5E;
+    font-style: italic;
+    font-size: medium;
+    font-weight: lighter;
+    color: white;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+}
