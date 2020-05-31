@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 import {AddGroceryModel} from "./AddGroceryModel";
 import {AngularFireDatabase} from "@angular/fire/database";
-import {ActivatedRoute} from "@angular/router";
 
 
 @Component({

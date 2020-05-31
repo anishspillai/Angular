@@ -4,8 +4,6 @@ import {UserDetailsModel} from "./model/user.details.model";
 import {User} from "firebase";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
-import {OrderHistoryModel} from "../order-history/OrderHistory.model";
-import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery";
 
 @Component({
   selector: 'app-user-details',
@@ -16,7 +14,6 @@ export class UserDetailsComponent implements OnInit {
 
   userDetailsModel: UserDetailsModel = new UserDetailsModel()
   user: User
-  displayErrorDialog: boolean = false
   items: Observable<any[]>;
   displayEditUserDialog = false
   @Input() isMobileDevice: false

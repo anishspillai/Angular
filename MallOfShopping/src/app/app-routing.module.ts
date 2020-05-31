@@ -1,13 +1,10 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {GroceryGridComponent} from "./grocery-grid/grocery-grid.component";
-import {UserDetailsComponent} from "./user-details/user-details.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {OrderHistoryComponent} from "./order-history/order-history.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/order-confirmation-wizard.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
-import {AddGroceriesComponent} from "./add-groceries/add-groceries.component";
 import {OrderHistoryMainPageComponent} from "./order-view-main-page/order-history-main-page.component";
 import {UserDetailsMainPageComponent} from "./user-details-main-page/user-details-main-page.component";
 

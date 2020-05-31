@@ -61,14 +61,16 @@ export class OrderConfirmationWizardComponent {
       if (!value || value.length == 0) {
         this.displayAddressMissingDialog = true
         return
-      } else {
+      }
+
+
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
           this.displayThankYouDialog = true
         })
           .catch(err => {
             this.displayErrorDialog = true
           });
-      }
+
     })
 
   }
