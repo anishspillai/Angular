@@ -138,7 +138,7 @@ export class HeaderComponent implements OnInit {
         items: [
           {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
           {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
-          {label: 'Logout', icon: 'pi pi-download', command: () => this.logOut()}
+          {label: 'Logout', icon: 'pi pi-sign-out', command: () => this.logOut()}
         ]
       }]
     } else {
@@ -147,7 +147,7 @@ export class HeaderComponent implements OnInit {
         items: [
           {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
           {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
-          {label: 'Login', icon: 'pi pi-download', command: () => this.logIn(), styleClass: "buttonStyle" }
+          {label: 'Login', icon: 'pi pi pi-sign-in', command: () => this.logIn(), styleClass: "buttonStyle" }
         ]
       }]
     }
