@@ -29,7 +29,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
   moveToConfirmationPage() {
     if(this.addGroceryToListObservableService.orders.length > 0) {
       this.sendCloseEvent()
-      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItems()}});
+      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItemsAsString()}});
     }
   }
 
@@ -67,7 +67,11 @@ export class ReviewOrderedItemsComponent implements OnInit {
       totalCostOfTheOrder += 30
     }
 
-    return totalCostOfTheOrder.toFixed(2)
+    return totalCostOfTheOrder
+  }
+
+  getTotalCostOfOrderedItemsAsString() {
+    return this.getTotalCostOfOrderedItems().toFixed(2)
   }
 
   getCostOfIndividualOrder(order: Order) {

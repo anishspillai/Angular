@@ -37,6 +37,7 @@ export class Order {
       individualGrocery.bulkPurchaseOfferAvailable,
       individualGrocery.bulkPurchaseOfferCount,
       individualGrocery.bulkPurchaseOfferPrice,
-      individualGrocery.offerPrice)
+      individualGrocery.offerPrice
+    )
   }
 }

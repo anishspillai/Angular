@@ -3,7 +3,7 @@ import {GroceryService} from "../grocery-grid/grocery.service";
 import {OrderHistoryModel} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
-import {onErrorResumeNext} from "rxjs";
+import {Order} from "../individual-grocery/model/Order";
 
 @Component({
   selector: 'app-order-history',
@@ -75,7 +75,6 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   getIndividualCostOfItem(order: Order) {
-    console.log(order)
     return this.groceryService.getSumOfGrocery(order)
   }
 }
