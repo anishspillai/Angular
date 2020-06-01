@@ -130,6 +130,13 @@
           [responsive]="false"
           [resizable]="false">
 
+
+
+  <div *ngIf="displayErrorMessage">
+    <app-display-message severity="error" summary="Cannot save details: " detail="Sorry to inform you that, there is a technical error occurred. We have created an incident and fix it soon."></app-display-message>
+  </div>
+
+
   <form [formGroup]="registerForm">
 
     <div class="ui-g">

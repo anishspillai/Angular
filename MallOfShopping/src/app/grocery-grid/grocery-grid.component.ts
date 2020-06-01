@@ -71,13 +71,12 @@ export class GroceryGridComponent implements OnInit{
     if(!this.searchCategoryType) {
 
       this.firestore.list('admin/Campaign').valueChanges().forEach(grocery => {
-        grocery.forEach(grocery1 => {
-          var anish: IndividualGrocery = grocery1 as IndividualGrocery
-          this.groceryList.push(anish)
+        grocery.forEach(individualGrocery => {
+          const individualGroc: IndividualGrocery = individualGrocery as IndividualGrocery
+          this.groceryList.push(individualGroc)
         })
-
         this.displayProgressSpinner = false
-      }).then(r => console.log(r))
+      })
 
       /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
@@ -90,15 +89,16 @@ export class GroceryGridComponent implements OnInit{
           this.displayProgressSpinner = false
         }
       )).then(r => console.log(r))*/
+
     } else {
       this.firestore.list('admin/Catagories/' + this.searchCategoryType).valueChanges().forEach(grocery => {
-        grocery.forEach(grocery1 => {
-          var anish: IndividualGrocery = grocery1 as IndividualGrocery
-          this.groceryList.push(anish)
-        })
+        grocery.forEach(groceryUnit => {
+          const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
+          this.groceryList.push(individualGrocery)
+        });
 
         this.displayProgressSpinner = false
-      }).then(r => console.log(r))
+      })
      }
   }
 

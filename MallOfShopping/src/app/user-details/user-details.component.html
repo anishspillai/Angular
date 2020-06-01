@@ -3,6 +3,11 @@
 
 <div *ngIf="!user"> Please log in and try again!!!</div>
 <div *ngIf="user">
+
+  <div *ngIf="displayErrorMessage">
+    <app-display-message severity="error" summary="Error: " detail="Sorry to inform you that, there is a technical error occurred. We have created an incident and fix it soon."></app-display-message>
+  </div>
+
   <div class="ui-g" style="width: 100%">
     <div class="ui-g-12 ui-md-4">
       <div class="ui-inputgroup">
@@ -82,7 +87,8 @@
 
 <app-edit-user *ngIf="displayEditUserDialog" [displayEditUserDialog] = "displayEditUserDialog"
                [userDetailsModel] = "userDetailsModel"
-               (closeEditUserDialog) = "displayEditUserDialog=  $event">
+               (closeEditUserDialog) = "displayEditUserDialog=  $event"
+               [userId] = user.uid>
 </app-edit-user>
 
 

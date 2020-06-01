@@ -3,11 +3,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserDetailsModel} from "../user-details/model/user.details.model";
 import {UserDetailsService} from "../user-details/user.details.service";
 import {AuthService} from "../auth/auth.service";
+import {ErrorLogService} from "../error-log.service";
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  styleUrls: ['./edit-user.component.css'],
+  providers: [ErrorLogService]
 })
 export class EditUserComponent implements OnInit {
 
@@ -20,9 +22,14 @@ export class EditUserComponent implements OnInit {
 
   @Output() closeEditUserDialog = new EventEmitter()
 
+  @Input() userId: string
+
+  displayErrorMessage = false
+
   constructor(private readonly formBuilder: FormBuilder,
               private readonly  userDetailsService: UserDetailsService,
-              private readonly authService: AuthService) {
+              private readonly authService: AuthService,
+              private readonly errorLogService: ErrorLogService) {
   }
 
 
@@ -55,6 +62,8 @@ export class EditUserComponent implements OnInit {
 
     this.submitted = true
 
+    this.displayErrorMessage = false
+
     if (this.registerForm.invalid) {
       return;
     }
@@ -70,8 +79,9 @@ export class EditUserComponent implements OnInit {
     this.userDetailsService.saveUserDetails(userDetailsModel, this.authService.getUser().uid).then(() => {
       this.sendCloseEvent()
     })
-      .catch(err => {
-        alert("Sorry, the user details cannot be saved now.")
+      .catch(error => {
+        this.displayErrorMessage = true
+        this.errorLogService.logErrorMessage(this.userId, error)
         this.sendCloseEvent()
       });
   }
@@ -79,5 +89,4 @@ export class EditUserComponent implements OnInit {
   sendCloseEvent() {
     this.closeEditUserDialog.emit(false)
   }
-
 }

@@ -50,6 +50,7 @@ import { NavigatorForMobileDeviceComponent } from './navigator-for-mobile-device
 import {MenuModule} from "primeng/menu";
 import { OrderHistoryMainPageComponent } from './order-view-main-page/order-history-main-page.component';
 import { UserDetailsMainPageComponent } from './user-details-main-page/user-details-main-page.component';
+import { DisplayMessageComponent } from './display-message/display-message.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { UserDetailsMainPageComponent } from './user-details-main-page/user-deta
     AddGroceriesComponent,
     NavigatorForMobileDeviceComponent,
     OrderHistoryMainPageComponent,
-    UserDetailsMainPageComponent
+    UserDetailsMainPageComponent,
+    DisplayMessageComponent
   ],
     imports: [
         BrowserModule,

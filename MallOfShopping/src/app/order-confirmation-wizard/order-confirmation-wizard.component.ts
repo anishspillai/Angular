@@ -7,11 +7,12 @@ import {AddGroceryToListObservableService} from "../add-grocery-to-list-observab
 import {User} from "firebase";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {UserDetailsService} from "../user-details/user.details.service";
+import {ErrorLogService} from "../error-log.service";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
   templateUrl: './order-confirmation-wizard.component.html',
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, ErrorLogService],
   styleUrls: ['./order-confirmation-wizard.component.css'],
   encapsulation: ViewEncapsulation.None
 })
@@ -33,7 +34,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
               private readonly  userDetailsService: UserDetailsService,
-              private readonly activatedRoute: ActivatedRoute) {
+              private readonly activatedRoute: ActivatedRoute,
+              private readonly errorLogService: ErrorLogService) {
   }
 
   ngOnInit(): void {
@@ -80,6 +82,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
         })
           .catch(err => {
             this.displayErrorDialog = true
+            this.errorLogService.logErrorMessage(user.uid, err)
           });
       }
     })

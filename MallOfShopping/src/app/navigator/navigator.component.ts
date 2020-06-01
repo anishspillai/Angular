@@ -82,7 +82,7 @@ export class NavigatorComponent  {
     }
 
 
-    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}}).then(r => console.log(r));
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}})
     this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 
@@ -92,7 +92,7 @@ export class NavigatorComponent  {
       this.triggerEventForClosingNavigationForMobileApp()
     }
 
-    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}}).then(r => console.log(r));
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}})
     this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
 

@@ -4,11 +4,13 @@ import {UserDetailsModel} from "./model/user.details.model";
 import {User} from "firebase";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
+import {ErrorLogService} from "../error-log.service";
 
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.css'],
+  providers: [ErrorLogService]
 })
 export class UserDetailsComponent implements OnInit {
 
@@ -16,24 +18,23 @@ export class UserDetailsComponent implements OnInit {
   user: User
   items: Observable<any[]>;
   displayEditUserDialog = false
-  @Input() isMobileDevice: false
-
+  displayErrorMessage = false
 
   constructor(private readonly  userDetailsService: UserDetailsService,
-              private readonly authService: AuthService) {
+              private readonly authService: AuthService,
+              private readonly errorLogService: ErrorLogService) {
   }
 
   ngOnInit(): void {
-
     this.user = this.authService.getUser()
     if (this.user) {
-
       this.fetchUserDetails()
     }
-
   }
 
   fetchUserDetails() {
+
+    this.displayErrorMessage  = false
 
     this.userDetailsService.getUserDetails(this.user.uid).subscribe(value => {
 
@@ -46,6 +47,9 @@ export class UserDetailsComponent implements OnInit {
         this.userDetailsModel.lastName = value[3] as string
         this.userDetailsModel.address = value[0] as string
       }
+    }, (error) => {
+        this.displayErrorMessage = true
+        this.errorLogService.logErrorMessage(this.user.uid, error)
     })
   }
 }
