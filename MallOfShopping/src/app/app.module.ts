@@ -45,7 +45,6 @@ import {StepsModule} from "primeng/steps"
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import {ProgressBarModule} from "primeng/progressbar";
 import { AddGroceriesComponent } from './add-groceries/add-groceries.component';
 import { NavigatorForMobileDeviceComponent } from './navigator-for-mobile-device/navigator-for-mobile-device.component';
 import {MenuModule} from "primeng/menu";
@@ -100,7 +99,6 @@ import { UserDetailsMainPageComponent } from './user-details-main-page/user-deta
         ToastModule,
         StepsModule,
         ConfirmDialogModule,
-        ProgressBarModule,
         MenuModule
 
     ],

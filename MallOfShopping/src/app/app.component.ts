@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
       localStorage.removeItem('foo')
     }
   }
+
   ngOnDestroy() {
     // avoid memory leaks here by cleaning up after ourselves. If we
     // don't then we will continue to run our initialiseInvites()

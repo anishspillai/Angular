@@ -37,10 +37,6 @@ export class SignInComponent implements OnInit {
     this.closeLoginDialogEvent.emit(false)
   }
 
-  userEmails = new FormGroup({
-    primaryEmail: new FormControl('')
-  });
-
   constructor(auth: AuthService) {
     this.auth = auth
   }
