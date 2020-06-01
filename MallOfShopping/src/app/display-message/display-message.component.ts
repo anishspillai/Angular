@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Message} from "primeng/messages";
+import {Message} from "primeng/api";
 
 @Component({
   selector: 'app-display-message',
