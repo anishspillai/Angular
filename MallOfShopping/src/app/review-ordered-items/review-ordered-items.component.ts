@@ -63,6 +63,12 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
   getTotalCostOfOrderedItems() {
     let totalCostOfTheOrder =  this.groceryService.getTotalCostOfOrderedItems(this.addGroceryToListObservableService.orders)
+
+    return totalCostOfTheOrder
+  }
+
+  private getTotalCostOfOrderedItemsIncludingDeliveryCharge() {
+    let totalCostOfTheOrder =  this.groceryService.getTotalCostOfOrderedItems(this.addGroceryToListObservableService.orders)
     if(totalCostOfTheOrder <= 400) {
       totalCostOfTheOrder += 30
     }
@@ -71,7 +77,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
   }
 
   getTotalCostOfOrderedItemsAsString() {
-    return this.getTotalCostOfOrderedItems().toFixed(2)
+    return this.getTotalCostOfOrderedItemsIncludingDeliveryCharge().toFixed(2)
   }
 
   getCostOfIndividualOrder(order: Order) {

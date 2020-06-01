@@ -10,8 +10,8 @@
 
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
     <div *ngFor="let oh of orderHistory">
-
-      <p-accordionTab id="content-desktop" header={{oh.orderedTimestamp}}>
+    <div id="content-desktop">
+      <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
 
@@ -59,15 +59,17 @@
 
           <ng-template pTemplate="summary">
             <div style="text-align: right">
-              Total Cost:
+              Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr
             </div>
           </ng-template>
 
 
         </p-table>
       </p-accordionTab>
+    </div>
 
-      <p-accordionTab id="content-mobile" header={{oh.orderedTimestamp}} style="display: block">
+      <div id="content-mobile">
+      <p-accordionTab  header={{oh.orderedTimestamp}} style="display: block">
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
 
@@ -116,6 +118,7 @@
 
         </p-table>
       </p-accordionTab>
+      </div>
     </div>
   </p-accordion>
 </div>
