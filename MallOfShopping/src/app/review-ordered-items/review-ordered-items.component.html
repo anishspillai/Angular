@@ -2,9 +2,10 @@
            position="right"
            styleClass="ui-sidebar-lg"
            (onHide)="sendCloseEvent()"
-           [style]=" isDesktopApplication ? {'overflow': 'scroll', width:'30%', right: 0} : {'overflow': 'scroll', width:'100%', right: 0}">
+           [style]=" isDesktopApplication ? {'overflow': 'scroll', width:'30%', right: 0} : {'overflow': 'scroll', width:'100%', right: 0}"
+            [showCloseIcon]="false">
 
-  <h4> Order Overview </h4>
+  <button pButton label="Go Back" class="ui-button-warning ui-button-rounded" iconPos="left" icon="pi pi-angle-left" (click)="displaySideMenuBar = false"></button>
 
   <div *ngIf="getTotalCostOfOrderedItems() <= 400" class="isa_info">
     Needs delivery charge. Free delivery for more than 400 Kr
@@ -17,15 +18,9 @@
   <div class="p-grid">
 
       <div class="p-col-5; block" (click)="moveToConfirmationPage()">
-        <!--button  pButton type="button" icon="pi pi-check" label="Place Order"
-                style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right"
-                (click)="moveToConfirmationPage()"></button-->
         Check out
     </div>
     <div class="p-col-5; redblock" (click)="emptyCart()">
-      <!--button  pButton type="button" icon="pi pi-check" label="Place Order"
-              style="margin-top: 15px" class="ui-button-rounded ui-button-success" iconPos="right"
-              (click)="moveToConfirmationPage()"></button-->
       Empty cart
     </div>
   </div>
@@ -41,7 +36,7 @@
 
         <div class="arrange-horizontally">
 
-        <img src="assets/img/groceries.png"
+        <img src = "{{order.imagePath}}"
              style="width: 30px; height: 30px" class="center-align">
 
         <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
