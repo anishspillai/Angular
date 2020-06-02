@@ -30,6 +30,7 @@ hr {
   right: -10px;
   top: -20px;
   font-size: 22px;
+  opacity: 90%;
 }
 
 .circleWithTextMobile{
@@ -97,11 +98,11 @@ p a {
 
 @media screen and (min-width: 600px) {
   :host ::ng-deep .customTitleBar > .ui-panel-titlebar {
-    background: #357C5E;
+    background: snow;
     font-style: italic;
-    font-size: medium;
+    font-size: small;
     font-weight: lighter;
-    color: white;
+    color: black;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
   }

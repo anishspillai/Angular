@@ -9,7 +9,7 @@
   </div>
 
   <div *ngFor="let grocery of groceryList">
-    <div class="p-col" style="width: 250px">
+    <div class="p-col" style="width: 200px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList">
       </app-individual-grocery>
@@ -19,7 +19,7 @@
 
 <div id="content-mobile" class="p-grid" style="padding-top: 6em; width: 350px">
 
-  <div *ngIf="displayProgressSpinner" style="width: 350px">
+  <div *ngIf="displayProgressSpinner" style="width: 250px">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"
                        strokeWidth="8"
                        fill="#EEEEEE"
