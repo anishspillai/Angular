@@ -53,9 +53,15 @@
   <div class="box" style="text-align:center; padding-top: 10px">
 
     <div *ngIf="isNotAddedIntoTheList()">
-      <button pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
+      <button *ngIf="groceryCountService.isStockAvailable(individualGrocery.id)" pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
               (click)="addItemToCart()">
       </button>
+
+
+      <button *ngIf="!groceryCountService.isStockAvailable(individualGrocery.id)" pButton type="button" label="Out of Stock!" class="ui-button-rounded ui-button-danger"
+              (click)="addItemToCart()" disabled="true">
+      </button>
+
     </div>
 
     <div *ngIf="!isNotAddedIntoTheList()" class="ui-inputgroup; center-align">

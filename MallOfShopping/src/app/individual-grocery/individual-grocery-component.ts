@@ -2,6 +2,7 @@ import {Component, Input} from "@angular/core";
 import {IndividualGrocery} from "./model/IndividualGrocery";
 import {Order} from "./model/Order";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
+import {GroceryCountService} from "../grocery-count.service";
 
 @Component({
   selector: 'app-individual-grocery',
@@ -27,7 +28,8 @@ export class IndividualGroceryComponent {
 
   @Input() isDesktopApplication = true
 
-  constructor(private addGroceryToListObservableService: AddGroceryToListObservableService) {
+  constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
+              private readonly groceryCountService: GroceryCountService) {
   }
 
   addItemToCart() {

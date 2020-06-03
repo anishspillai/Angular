@@ -5,6 +5,7 @@ import {Order} from "../individual-grocery/model/Order"
 import {MenuItem} from "primeng/api"
 import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
+import {GroceryCountService} from "../grocery-count.service";
 
 @Component({
   selector: 'app-grocery-grid',
@@ -51,6 +52,8 @@ export class GroceryGridComponent implements OnInit{
 
     this.groceryList.push(two)
 
+    this.groceryCountService.fetchGroceryCount()
+
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
      this.fetchGroceries()
@@ -58,7 +61,8 @@ export class GroceryGridComponent implements OnInit{
   }
 
   constructor(private  readonly firestore: AngularFireDatabase,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private readonly groceryCountService: GroceryCountService) {
   }
 
   filterProduct(searchString: string) {
