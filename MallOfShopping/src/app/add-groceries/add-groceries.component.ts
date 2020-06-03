@@ -13,13 +13,19 @@ export class AddGroceriesComponent   {
   // @ts-ignore
   addGroceryModel : AddGroceryModel = new AddGroceryModel()
 
+  dbPath: string = ""
+
 
 
   constructor(private  readonly firestore: AngularFireDatabase) {
   }
 
   save() {
-    const  list = this.firestore.list('admin/Catagories/' + this.addGroceryModel.dbPath)
+    if(this.dbPath.length == 0) {
+      alert(this.dbPath.length + ' ' + this.dbPath)
+    }
+    const  list = this.firestore.list('admin/Catagories/' + this.dbPath)
     list.push( this.addGroceryModel )
+    console.log(this.addGroceryModel)
   }
 }
