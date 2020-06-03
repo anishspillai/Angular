@@ -6,6 +6,7 @@ export class IndividualGrocery {
   imagePath: string = "Anish";
   offerPrice: number  = 5;
   type: string = "Wheat";
+  subType: string = "sub type"
   unitOfWeight: string = "Kg";
   weight: number = 7.5;
 
