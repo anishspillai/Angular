@@ -29,7 +29,7 @@ export class IndividualGroceryComponent {
   @Input() isDesktopApplication = true
 
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
-              private readonly groceryCountService: GroceryCountService) {
+              readonly groceryCountService: GroceryCountService) {
   }
 
   addItemToCart() {
