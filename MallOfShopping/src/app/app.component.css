@@ -1,0 +1,39 @@
+.scrollToTop {
+  position: fixed;
+  font-size: 50px;
+  margin-left: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: darkorange;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  font-size: 50px;
+  margin-left: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: darkorange;
+}
+
+.footerInfo {
+  position: fixed;
+  bottom: 10px;
+  right: 5px;
+  font-size: 30px;
+  border-radius: 25px;
+  color: white;
+  font-weight: lighter;
+  background-color: darkorange;
+}
+
+.scrollToTopMobile {
+  position: fixed;
+  bottom: 70px;
+  right: 5px;
+  font-size: 30px;
+  border-radius: 25px;
+  color: white;
+  background-color: darkorange;
+}

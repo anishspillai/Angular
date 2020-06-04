@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {NavigationEnd, Router} from "@angular/router";
@@ -12,6 +12,10 @@ export class AppComponent implements OnInit, OnDestroy {
   items: Observable<any[]>;
   navigationSubscription;
   isDesktopDevice: boolean
+
+  displayInfoDialog = false
+  displayScrollToTop = false
+
 
   constructor(private readonly firestore: AngularFireDatabase,
               private readonly router: Router) {
@@ -43,5 +47,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isDesktopDevice = window.innerWidth > 768
+  }
+
+  @HostListener('window:scroll', ['$event']) onScrollEvent($event){
+    this.displayScrollToTop = window.pageYOffset > 10 ? true : false
   }
 }

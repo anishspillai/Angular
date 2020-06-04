@@ -35,13 +35,30 @@
         <app-navigator></app-navigator>
       </div>
 
+      <div *ngIf="isDesktopDevice" class="p-grid ui-g-12 ui-md-1">
+
+        <i *ngIf="displayScrollToTop"  onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTop"></i>
+        <i class="footer pi pi-info" (click)="displayInfoDialog = true"></i>
+
+      </div>
+
       <div class="p-grid ui-g-12 ui-md-9" style="float: right;">
         <router-outlet></router-outlet>
+
+        <div id="content-mobile">
+            <i class="footerInfo pi pi-info" (click)="displayInfoDialog = true"></i>
+            <i *ngIf="displayScrollToTop"  onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTopMobile"></i>
+        </div>
       </div>
 
     </div>
   </div>
 </div>
+
+<p-sidebar [(visible)]="displayInfoDialog" position="bottom" [style]="{height:'30em'}">
+  Contact Number  : 0723980601 <br>
+  Email Id        : anishspillai@gmail.com
+</p-sidebar>
 
 
 <!--https://stackoverflow.com/questions/55284780/angular-using-the-same-router-outlet-twice-in-one-component
