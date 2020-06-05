@@ -1,4 +1,5 @@
-<p-panel header={{individualGrocery.type}} styleClass="customTitleBar">
+<!--p-panel header={{individualGrocery.type}} styleClass="customTitleBar" [showHeader]="false"-->
+<p-panel [showHeader]="false">
 
   <div>
     <div class="boxfd">
@@ -34,6 +35,8 @@
     </div>
 
     <span class="sans-serif">{{individualGrocery.brandName}}</span>
+    <br>
+    <span class="sans-serif-small-font">{{individualGrocery.type}}</span>
     <br>
     <span class="sans-serif-small-font">{{individualGrocery.subType}}</span>
     <br>
