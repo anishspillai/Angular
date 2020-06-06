@@ -26,6 +26,10 @@ export class SignInComponent implements OnInit {
 
   isResetPasswordDialog: boolean = false
 
+  isAccepted = false
+
+  displayPrivacyPolicyDialog = false
+
 
   @Input() loadLoginPage: boolean
 

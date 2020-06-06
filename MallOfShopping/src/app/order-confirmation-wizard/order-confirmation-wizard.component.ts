@@ -65,7 +65,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   placeOrder() {
 
-    var addressMissing: boolean = false
+    let addressMissing: boolean = false
 
     const user: User = JSON.parse(localStorage.getItem('user'))
 

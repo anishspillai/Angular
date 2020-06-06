@@ -7,14 +7,14 @@ import {OrderConfirmationWizardComponent} from "./order-confirmation-wizard/orde
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {OrderHistoryMainPageComponent} from "./order-view-main-page/order-history-main-page.component";
 import {UserDetailsMainPageComponent} from "./user-details-main-page/user-details-main-page.component";
-import {AddGroceriesComponent} from "./add-groceries/add-groceries.component";
+import {PrivatePoliciesComponent} from "./private-policies/private-policies.component";
 
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'grocery-list', component: GroceryGridComponent },
   { path: '',   redirectTo: '/grocery-list', pathMatch: 'full' },
-  { path: 'user-details', component: AddGroceriesComponent },
+  { path: 'user-details', component: UserDetailsMainPageComponent },
   { path: 'order-history', component: OrderHistoryMainPageComponent },
   { path: 'log-in', component: SignInComponent },
   { path: 'order-confirmation', component: OrderConfirmationWizardComponent },

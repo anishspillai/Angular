@@ -1,4 +1,3 @@
-
 <!-- https://stackoverflow.com/questions/2989263/disable-auto-zoom-in-input-text-tag-safari-on-iphone
 
 https://www.google.com/search?sxsrf=ALeKk02KZ96QUGKK4QjNa-zB741gGpX6pw%3A1590826115048&ei=gxTSXuq1Aqn1qwGfrYCAAg&q=why+window+enlarges+when+editing+text+mobile+angular&oq=why+window+enlarges+when+editing+text+mobile+angular&gs_lcp=CgZwc3ktYWIQAzoECCMQJzoCCAA6BQgAEIMBOgYIIxAnEBM6BAgAEEM6BQgAEMsBOgcIABAKEMsBOgYIABAWEB46CAgAEBYQChAeOggIIRAWEB0QHjoFCCEQoAE6BwghEAoQoAE6BAghEBVQ17osWOSkLWDmpS1oAnAAeACAAe0BiAGBI5IBBjQ1LjYuMpgBAKABAaoBB2d3cy13aXo&sclient=psy-ab&ved=0ahUKEwiqg_KLkdvpAhWp-ioKHZ8WACAQ4dUDCAw&uact=5
@@ -60,8 +59,17 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
                 (click)="loginUser()"></button>
       </div>
 
+
+
+        <div *ngIf="!isLoginOperation" class="p-col-12">
+          <p-checkbox [(ngModel)]="isAccepted" [binary]="true"></p-checkbox>
+          &nbsp;&nbsp;I have read and understood <span (click)="displayPrivacyPolicyDialog = true" class="privacy-policy-link">Privacy Policy</span>
+        </div>
+
+
+
       <div *ngIf="!isLoginOperation" class="ui-g-6">
-        <button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
+        <button [disabled]="!isAccepted" pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
                 (click)="registerUser()"></button>
       </div>
 
@@ -113,3 +121,7 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
   </div>
 
 </p-dialog>
+
+<div *ngIf="displayPrivacyPolicyDialog">
+  <app-private-policies [displayBasic]="true" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
+</div>

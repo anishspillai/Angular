@@ -51,6 +51,8 @@ import {MenuModule} from "primeng/menu";
 import { OrderHistoryMainPageComponent } from './order-view-main-page/order-history-main-page.component';
 import { UserDetailsMainPageComponent } from './user-details-main-page/user-details-main-page.component';
 import { DisplayMessageComponent } from './display-message/display-message.component';
+import { PrivatePoliciesComponent } from './private-policies/private-policies.component';
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
   declarations: [
@@ -72,38 +74,40 @@ import { DisplayMessageComponent } from './display-message/display-message.compo
     NavigatorForMobileDeviceComponent,
     OrderHistoryMainPageComponent,
     UserDetailsMainPageComponent,
-    DisplayMessageComponent
+    DisplayMessageComponent,
+    PrivatePoliciesComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        PanelModule,
-        BrowserAnimationsModule,
-        ButtonModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        InputTextModule,
-        FormsModule,
-        SplitButtonModule,
-        DialogModule,
-        SidebarModule,
-        CardModule,
-        ToolbarModule,
-        ListboxModule,
-        BreadcrumbModule,
-        AppRoutingModule,
-        AccordionModule,
-        InputTextareaModule,
-        PasswordModule,
-        ReactiveFormsModule,
-        TableModule,
-        ProgressSpinnerModule,
-        MessagesModule,
-        ToastModule,
-        StepsModule,
-        ConfirmDialogModule,
-        MenuModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PanelModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    InputTextModule,
+    FormsModule,
+    SplitButtonModule,
+    DialogModule,
+    SidebarModule,
+    CardModule,
+    ToolbarModule,
+    ListboxModule,
+    BreadcrumbModule,
+    AppRoutingModule,
+    AccordionModule,
+    InputTextareaModule,
+    PasswordModule,
+    ReactiveFormsModule,
+    TableModule,
+    ProgressSpinnerModule,
+    MessagesModule,
+    ToastModule,
+    StepsModule,
+    ConfirmDialogModule,
+    MenuModule,
+    CheckboxModule
 
-    ],
+  ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
   bootstrap: [AppComponent]
 })

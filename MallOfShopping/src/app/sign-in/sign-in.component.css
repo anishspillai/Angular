@@ -37,3 +37,9 @@ select, input, textarea {
 input:active {
   font-size: 16px; /* `16px` is safer I assume, although `1rem` works too */
 }
+
+.privacy-policy-link {
+  text-decoration: underline;
+  color: darkorange;
+  font-weight: bold
+}
