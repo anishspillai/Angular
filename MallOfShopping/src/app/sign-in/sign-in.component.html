@@ -123,5 +123,10 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
 </p-dialog>
 
 <div *ngIf="displayPrivacyPolicyDialog">
-  <app-private-policies [displayBasic]="true" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
+  <div id="content-mobile">
+    <app-private-policies [displayBasic]="true" [isDesktopApplication]="false" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
+  </div>
+  <div id="content-desktop">
+    <app-private-policies [displayBasic]="true" [isDesktopApplication]="true" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
+  </div>
 </div>

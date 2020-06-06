@@ -10,6 +10,8 @@ export class PrivatePoliciesComponent {
   constructor() { }
   @Input() displayBasic: boolean;
 
+  @Input() isDesktopApplication: boolean = true;
+
   @Output() closePrivacyDialog = new EventEmitter()
 
 
