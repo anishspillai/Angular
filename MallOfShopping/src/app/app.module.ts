@@ -53,6 +53,7 @@ import { UserDetailsMainPageComponent } from './user-details-main-page/user-deta
 import { DisplayMessageComponent } from './display-message/display-message.component';
 import { PrivatePoliciesComponent } from './private-policies/private-policies.component';
 import {CheckboxModule} from "primeng/checkbox";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import {CheckboxModule} from "primeng/checkbox";
     StepsModule,
     ConfirmDialogModule,
     MenuModule,
-    CheckboxModule
+    CheckboxModule,
+    DropdownModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],

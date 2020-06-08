@@ -18,3 +18,11 @@ export class AddGroceryModel {
   ) {
   }
 }
+
+export class DBMenu {
+  constructor(
+    public name: string,
+    public code: string
+  ) {
+  }
+}
