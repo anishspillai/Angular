@@ -5,12 +5,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   templateUrl: './private-policies.component.html',
   styleUrls: ['./private-policies.component.css']
 })
-export class PrivatePoliciesComponent {
+export class PrivatePoliciesComponent implements OnInit{
 
   constructor() { }
-  @Input() displayBasic: boolean;
 
-  @Input() isDesktopApplication: boolean = true;
+  @Input() displayPrivacyPolicyDialog: boolean;
+
+  isDesktopApplication: boolean = true;
 
   @Output() closePrivacyDialog = new EventEmitter()
 
@@ -19,4 +20,7 @@ export class PrivatePoliciesComponent {
     this.closePrivacyDialog.emit(false)
   }
 
+  ngOnInit(): void {
+    this.isDesktopApplication = window.innerWidth > 768
+  }
 }

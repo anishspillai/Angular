@@ -41,4 +41,8 @@ export class GroceryCountService {
     return true
   }
 
+  public getGroceryCountModel(idOfTheItem: string): GroceryCountModel {
+    return this.groceryCountModels.find(value => value.id == idOfTheItem)
+  }
+
 }

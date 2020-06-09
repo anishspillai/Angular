@@ -61,10 +61,10 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
 
 
 
-        <!--div *ngIf="!isLoginOperation" class="p-col-12">
+        <div *ngIf="!isLoginOperation" class="p-col-12">
           <p-checkbox [(ngModel)]="isAccepted" [binary]="true"></p-checkbox>
           &nbsp;&nbsp;I have read and understood <span (click)="displayPrivacyPolicyDialog = true" class="privacy-policy-link">Privacy Policy</span>
-        </div-->
+        </div>
 
 
 
@@ -122,11 +122,6 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
 
 </p-dialog>
 
-<!--div *ngIf="displayPrivacyPolicyDialog">
-  <div id="content-mobile">
-    <app-private-policies [displayBasic]="true" [isDesktopApplication]="false" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
-  </div>
-  <div id="content-desktop">
-    <app-private-policies [displayBasic]="true" [isDesktopApplication]="true" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
-  </div>
-</div-->
+<div *ngIf="displayPrivacyPolicyDialog">
+    <app-private-policies [displayPrivacyPolicyDialog]="true" (closePrivacyDialog)="displayPrivacyPolicyDialog = $event"></app-private-policies>
+</div>

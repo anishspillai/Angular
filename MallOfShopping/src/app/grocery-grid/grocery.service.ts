@@ -92,6 +92,4 @@ export class GroceryService {
     return sumOfItems
   }
 
-
-
 }

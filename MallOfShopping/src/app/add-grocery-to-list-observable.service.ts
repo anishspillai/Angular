@@ -39,9 +39,11 @@ export class AddGroceryToListObservableService {
   }
 
   private updateCountOfItems(noOfItems: number, id: string) {
+
     const individualGroceryFromOrderedList = this.orders.find(element => element.id == id)
     individualGroceryFromOrderedList.noOfItems = noOfItems
     this.notifySubscribers()
+
   }
 
   public notifySubscribers() {

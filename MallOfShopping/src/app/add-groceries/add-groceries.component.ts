@@ -27,6 +27,7 @@ export class AddGroceriesComponent   {
       {name: 'Masala & Spices/Masala',code: 'Rome'},
       {name: 'Masala & Spices/Whole Spices',code: 'Rome'},
       {name: 'Dal, Pulses & Lentils/Dal',code: 'Dal'},
+      {name: 'Beverages/Beverages',code: 'Pulses & Lentils'},
       {name: 'Dal, Pulses & Lentils/Pulses & Lentils',code: 'Pulses & Lentils'},
       {name: 'Dal, Pulses & Lentils/Beans',code: 'Pulses & Lentils'},
       {name: 'Flour/Corn',code: 'Rome'},
@@ -64,5 +65,11 @@ export class AddGroceriesComponent   {
     const  list = this.firestore.list('admin/Catagories/' + this.selectedPath.name)
     list.push( this.addGroceryModel )
     console.log(this.addGroceryModel)
+
+    /**const  list = this.firestore.list('stock_count/')
+
+    list.set('1212', 78).then(r => console.log(r));
+    list.set('12000', 78).then(r => console.log(r));
+    list.set('11000', 78).then(r => console.log(r));*/
   }
 }

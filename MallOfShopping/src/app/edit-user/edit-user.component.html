@@ -17,8 +17,10 @@
       </div>
 
       <div class="ui-g-12 ui-md-8">
-        <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" class="form-control"
-               formControlName="firstName" pInputText size="30"
+        <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+               class="form-control"
+               formControlName="firstName"
+               pInputText size="30"
                type="text"/>
 
         <div *ngIf="submitted && f.firstName.errors" class="red-color-text">
@@ -118,6 +120,7 @@
     <button (click)="onSubmit()" class="ui-button-rounded ui-button-success" label="Save" pButton
             type="button"></button>
   </p-footer>
+
 </p-dialog>
 
 
@@ -130,12 +133,9 @@
           [responsive]="false"
           [resizable]="false">
 
-
-
   <div *ngIf="displayErrorMessage">
     <app-display-message severity="error" summary="Cannot save details: " detail="Sorry to inform you that, there is a technical error occurred. We have created an incident and fix it soon."></app-display-message>
   </div>
-
 
   <form [formGroup]="registerForm">
 

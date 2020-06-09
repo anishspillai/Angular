@@ -8,6 +8,8 @@ import {User} from "firebase";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {UserDetailsService} from "../user-details/user.details.service";
 import {ErrorLogService} from "../error-log.service";
+import {GroceryCountService} from "../grocery-count.service";
+import {AngularFireDatabase} from "@angular/fire/database";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -35,7 +37,10 @@ export class OrderConfirmationWizardComponent implements OnInit{
               private readonly groceryService: GroceryService,
               private readonly  userDetailsService: UserDetailsService,
               private readonly activatedRoute: ActivatedRoute,
-              private readonly errorLogService: ErrorLogService) {
+              private readonly errorLogService: ErrorLogService,
+              private readonly groceryCountService: GroceryCountService,
+              private  readonly firestore: AngularFireDatabase
+              ) {
   }
 
   ngOnInit(): void {
@@ -78,7 +83,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
       if(!addressMissing) {
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
-          this.displayThankYouDialog = true
+          //this.displayThankYouDialog = true
+          this.updateCountOfGroceries()
         })
           .catch(err => {
             this.displayErrorDialog = true
@@ -87,6 +93,21 @@ export class OrderConfirmationWizardComponent implements OnInit{
       }
     })
 
+  }
+
+  private updateCountOfGroceries() {
+
+    this.addGroceryToListObservableService.orders.forEach(grocery => {
+        const groceryCountModel = this.groceryCountService.getGroceryCountModel(grocery.id)
+        if (groceryCountModel) {
+            const countOfGrocery = groceryCountModel.count - grocery.noOfItems
+            const  list = this.firestore.list('stock_count/')
+            list.set(grocery.id, countOfGrocery).catch(reason => console.log(reason));
+        }
+      }
+    )
+
+    this.displayThankYouDialog = true
   }
 
   navigateToTheMainPage() {

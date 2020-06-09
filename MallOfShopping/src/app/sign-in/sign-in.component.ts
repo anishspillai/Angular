@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
 import {AuthService} from "../auth/auth.service";
 
 @Component({
@@ -46,7 +45,6 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   setPasswordResetProperties() {

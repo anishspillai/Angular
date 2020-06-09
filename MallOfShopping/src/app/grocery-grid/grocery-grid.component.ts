@@ -80,7 +80,7 @@ export class GroceryGridComponent implements OnInit{
           this.groceryList.push(individualGroc)
         })
         this.displayProgressSpinner = false
-      })
+      }).catch(reason => console.log(reason))
 
       /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
@@ -102,7 +102,7 @@ export class GroceryGridComponent implements OnInit{
         });
 
         this.displayProgressSpinner = false
-      })
+      }).catch(reason => console.log(reason))
      }
   }
 
