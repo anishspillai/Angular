@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {AppComponent} from "../app.component";
 import {Router} from '@angular/router';
 import {User} from "firebase";
 import {AuthService} from "../auth/auth.service";
@@ -7,7 +6,6 @@ import {AddGroceryToListObservableService} from "../add-grocery-to-list-observab
 import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
-import {GroceryGridComponent} from "../grocery-grid/grocery-grid.component";
 import {MenuItem} from "primeng/api";
 import {Menu} from "primeng/menu";
 
@@ -77,9 +75,9 @@ export class HeaderComponent implements OnInit {
   getUser(): string {
     const user: User = JSON.parse(localStorage.getItem('user'))
     if (user == null) {
-      return 'Hello, Log-in'
+      return 'Hello, Log-in..'
     }
-    return user.email
+    return 'More options...'
   }
 
   isLoggedIn(): Boolean {
