@@ -29,10 +29,10 @@ export class OrderHistoryComponent implements OnInit {
 
   ngOnInit() {
 
-    const user = this.authService.getUser()
+    const user: string = this.authService.getUser()
 
     if (user) {
-      this.groceryService.getOrderHistory(user.uid).subscribe(value => {
+      this.groceryService.getOrderHistory(user).subscribe(value => {
           value.forEach(childSnapshot => {
 
             const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()

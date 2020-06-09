@@ -56,7 +56,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        localStorage.setItem('foo', 'no reload')
+        localStorage.setItem('no-reload', 'no reload')
         this.router.navigate(['grocery-list']);
       },
       reject: () => {
@@ -72,9 +72,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
     let addressMissing: boolean = false
 
-    const user: User = JSON.parse(localStorage.getItem('user'))
+    const user: string = localStorage.getItem('application_Id')
 
-    this.userDetailsService.getUserDetails(user.uid).subscribe(value => {
+    this.userDetailsService.getUserDetails(user).subscribe(value => {
 
       if (!value || value.length == 0) {
         this.displayAddressMissingDialog = true
@@ -82,13 +82,13 @@ export class OrderConfirmationWizardComponent implements OnInit{
       }
 
       if(!addressMissing) {
-        this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user.uid).then(() => {
+        this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user).then(() => {
           //this.displayThankYouDialog = true
           this.updateCountOfGroceries()
         })
           .catch(err => {
             this.displayErrorDialog = true
-            this.errorLogService.logErrorMessage(user.uid, err)
+            this.errorLogService.logErrorMessage(user, err)
           });
       }
     })
@@ -111,7 +111,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
   }
 
   navigateToTheMainPage() {
-    localStorage.setItem('foo', 'no reload')
+    localStorage.setItem('no-reload', 'no reload')
     this.router.navigate(['grocery-list']);
   }
 }

@@ -15,7 +15,7 @@ import {ErrorLogService} from "../error-log.service";
 export class UserDetailsComponent implements OnInit {
 
   userDetailsModel: UserDetailsModel = new UserDetailsModel()
-  user: User
+  user: string
   items: Observable<any[]>;
   displayEditUserDialog = false
   displayErrorMessage = false
@@ -36,7 +36,7 @@ export class UserDetailsComponent implements OnInit {
 
     this.displayErrorMessage  = false
 
-    this.userDetailsService.getUserDetails(this.user.uid).subscribe(value => {
+    this.userDetailsService.getUserDetails(this.user).subscribe(value => {
 
       if (value && value.length != 0) {
         this.userDetailsModel.postNumber = value[4] as string
@@ -49,7 +49,7 @@ export class UserDetailsComponent implements OnInit {
       }
     }, (error) => {
         this.displayErrorMessage = true
-        this.errorLogService.logErrorMessage(this.user.uid, error)
+        this.errorLogService.logErrorMessage(this.user, error)
     })
   }
 }

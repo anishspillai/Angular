@@ -76,7 +76,7 @@ export class EditUserComponent implements OnInit {
                                                   this.registerForm.value.streetName,
                                                   this.registerForm.value.telephoneNumber)
 
-    this.userDetailsService.saveUserDetails(userDetailsModel, this.authService.getUser().uid).then(() => {
+    this.userDetailsService.saveUserDetails(userDetailsModel, this.authService.getUser()).then(() => {
       this.sendCloseEvent()
     })
       .catch(error => {

@@ -30,9 +30,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   initialiseInvites() {
-    if (localStorage.getItem('foo')) {
+    if (localStorage.getItem('no-reload')) {
       location.reload()
-      localStorage.removeItem('foo')
+      localStorage.removeItem('no-reload')
     }
   }
 

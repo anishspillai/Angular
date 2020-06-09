@@ -15,9 +15,9 @@ export class AuthService {
     this.afAuth.authState.subscribe(user => {
       if (user){
         this.user = user;
-        localStorage.setItem('user', JSON.stringify(this.user));
+        localStorage.setItem('application_Id', this.user.uid);
       } else {
-        localStorage.setItem('user', null);
+        localStorage.setItem('application_Id', null);
       }
     })
   }
@@ -43,16 +43,16 @@ export class AuthService {
 
   async logout(){
     await this.afAuth.signOut();
-    localStorage.removeItem('user');
+    localStorage.removeItem('application_Id');
     await this.router.navigate(['grocery-list']);
   }
 
   get isLoggedIn(): boolean {
-    const  user  =  JSON.parse(localStorage.getItem('user'));
+    const  user  =  localStorage.getItem('application_Id')
     return  user  !==  null;
   }
 
-  getUser() : User {
-    return  JSON.parse(localStorage.getItem('user'));
+  getUser() : string {
+    return localStorage.getItem('application_Id')
   }
 }

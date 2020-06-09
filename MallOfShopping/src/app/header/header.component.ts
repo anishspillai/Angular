@@ -73,7 +73,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getUser(): string {
-    const user: User = JSON.parse(localStorage.getItem('user'))
+    const user: string = localStorage.getItem('application_Id')
     if (user == null) {
       return 'Hello, Log-in..'
     }
