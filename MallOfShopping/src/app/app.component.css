@@ -37,3 +37,11 @@
   color: white;
   background-color: darkorange;
 }
+
+.holder {
+   overflow: hidden;
+}
+
+.news {
+  animation : slide 20s linear infinite;
+}
