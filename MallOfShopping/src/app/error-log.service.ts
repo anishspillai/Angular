@@ -10,7 +10,7 @@ export class ErrorLogService {
   }
 
   logErrorMessage(userId: string, error: Error) {
-    const  list = this.firestore.list('admin/error_logs/' + userId)
-    list.push( 'errorMessage: ' + error.message + 'errorName: ' + error.name )
+    const  list = this.firestore.list('admin/error_logs/' + userId + Date.now())
+    list.push( 'errorMessage: ' + error.stack + 'errorName: ' + error.name )
   }
 }
