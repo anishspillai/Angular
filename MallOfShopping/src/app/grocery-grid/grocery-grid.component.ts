@@ -6,6 +6,7 @@ import {MenuItem} from "primeng/api"
 import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";
+import {ErrorLogService} from "../error-log.service";
 
 @Component({
   selector: 'app-grocery-grid',
@@ -62,7 +63,8 @@ export class GroceryGridComponent implements OnInit{
 
   constructor(private  readonly firestore: AngularFireDatabase,
               private activatedRoute: ActivatedRoute,
-              private readonly groceryCountService: GroceryCountService) {
+              private readonly groceryCountService: GroceryCountService,
+              private readonly errorLogService: ErrorLogService) {
   }
 
   filterProduct(searchString: string) {
@@ -80,7 +82,9 @@ export class GroceryGridComponent implements OnInit{
           this.groceryList.push(individualGroc)
         })
         this.displayProgressSpinner = false
-      }).catch(reason => console.log(reason))
+      }).catch(reason => {
+        this.errorLogService.logErrorMessage('Admin', reason)
+      })
 
       /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
@@ -102,7 +106,9 @@ export class GroceryGridComponent implements OnInit{
         });
         window.scrollTo(0, 0)
         this.displayProgressSpinner = false
-      }).catch(reason => console.log(reason))
+      }).catch(reason =>
+        this.errorLogService.logErrorMessage('Admin', reason)
+      )
      }
   }
 
