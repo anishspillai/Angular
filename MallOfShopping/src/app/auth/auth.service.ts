@@ -16,8 +16,6 @@ export class AuthService {
       if (user){
         this.user = user;
         localStorage.setItem('application_Id', this.user.uid);
-      } else {
-        localStorage.setItem('application_Id', null);
       }
     })
   }

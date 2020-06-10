@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserDetailsService} from "./user.details.service";
 import {UserDetailsModel} from "./model/user.details.model";
-import {User} from "firebase";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
 import {ErrorLogService} from "../error-log.service";

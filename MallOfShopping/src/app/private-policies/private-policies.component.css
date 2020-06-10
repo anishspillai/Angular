@@ -1,6 +1,6 @@
 :host ::ng-deep .customTitleBar > .ui-dialog-titlebar {
-  background: snow;
+  background: deeppink;
   font-style: italic;
   font-family: "Trebuchet MS";
-  color: black;
+  color: white;
 }
