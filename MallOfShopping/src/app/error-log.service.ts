@@ -6,7 +6,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 })
 export class ErrorLogService {
 
-  constructor(private  readonly firestore: AngularFireDatabase) {
+  constructor(private readonly firestore: AngularFireDatabase) {
   }
 
   logErrorMessage(userId: string, error: Error) {
