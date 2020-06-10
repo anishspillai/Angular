@@ -100,7 +100,7 @@ export class GroceryGridComponent implements OnInit{
           const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
           this.groceryList.push(individualGrocery)
         });
-
+        window.scrollTo(0, 0)
         this.displayProgressSpinner = false
       }).catch(reason => console.log(reason))
      }
