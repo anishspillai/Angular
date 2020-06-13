@@ -44,7 +44,7 @@
 
     <div
       *ngIf="individualGrocery.maxShoppingIsRestricted || individualGrocery.bulkPurchaseOfferAvailable || individualGrocery.offerPrice != 0">
-      <span style="flex-direction: column; color: purple"> Actual Price:  {{individualGrocery.actualPrice}} Kr </span>
+      <span style="flex-direction: column; color: purple"> Real Cost: {{individualGrocery.actualPrice}} Kr</span>
     </div>
 
     <div *ngIf="!individualGrocery.maxShoppingIsRestricted && !individualGrocery.bulkPurchaseOfferAvailable && individualGrocery.offerPrice == 0">

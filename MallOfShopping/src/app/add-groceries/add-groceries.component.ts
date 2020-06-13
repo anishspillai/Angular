@@ -24,6 +24,7 @@ export class AddGroceriesComponent   {
 
   constructor(private  readonly firestore: AngularFireDatabase) {
     this.menuItems = [
+      {name: 'admin/Campaign', code: 'Baby Products/Body Care'},
       {name: 'Baby Products/Body Care', code: 'Baby Products/Body Care'},
       {name: 'Baby Products/Foods', code: 'Baby Products/Body Care'},
       {name: 'Beverages/Beverages',code: 'Pulses & Lentils'},
@@ -71,7 +72,7 @@ export class AddGroceriesComponent   {
     //this.addGroceryModel.dbPath = this.selectedPath.name
 
 
-    const  list = this.firestore.list('admin/Catagories/' + this.selectedPath.name)
+    const  list = this.firestore.list(this.selectedPath.name)
     list.push( this.addGroceryModel )
     console.log(this.addGroceryModel)
 

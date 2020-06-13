@@ -43,11 +43,13 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
     </div>
 
     <div *ngIf="isDesktopApplication" class="ui-g-12 u-margin-none u-padding-none">
-      <input class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password">
+      <input *ngIf="isLoginOperation" class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password" [feedback]="false">
+      <input *ngIf="!isLoginOperation" placeholder="Minimum 6 characters" class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password">
     </div>
 
     <div *ngIf="!isDesktopApplication" class="ui-g-12 u-margin-none u-padding-none">
-      <input class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password">
+      <input *ngIf="isLoginOperation" class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password" [feedback]="false">
+      <input *ngIf="!isLoginOperation"  placeholder="Minimum 6 characters"  class="p-col-12_roundBordered_Input" type="password" pPassword [(ngModel)]="password">
     </div>
 
     <br>
