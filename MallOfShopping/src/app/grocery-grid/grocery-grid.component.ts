@@ -23,6 +23,7 @@ export class GroceryGridComponent implements OnInit{
   displayProgressSpinner = false
   name: string;
   searchCategoryType: string
+  isFishType = false
 
   ngOnInit() {
 
@@ -99,11 +100,13 @@ export class GroceryGridComponent implements OnInit{
       )).then(r => console.log(r))*/
 
     } else {
-
       let URL: string
+
       if(this.searchCategoryType.includes("Fish")) {
         URL = this.searchCategoryType
+        this.isFishType = true
       } else {
+        this.isFishType = false
         URL = 'admin/Catagories/' + this.searchCategoryType
       }
 

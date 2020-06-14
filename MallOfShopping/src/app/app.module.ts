@@ -55,6 +55,8 @@ import { PrivatePoliciesComponent } from './private-policies/private-policies.co
 import {CheckboxModule} from "primeng/checkbox";
 import {DropdownModule} from "primeng/dropdown";
 import { FishViewButtonComponent } from './fish-view-button/fish-view-button.component';
+import {LightboxModule} from "primeng/lightbox";
+import { FishMarketVideoViewComponent } from './fish-market-video-view/fish-market-video-view.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import { FishViewButtonComponent } from './fish-view-button/fish-view-button.com
     UserDetailsMainPageComponent,
     DisplayMessageComponent,
     PrivatePoliciesComponent,
-    FishViewButtonComponent
+    FishViewButtonComponent,
+    FishMarketVideoViewComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +112,8 @@ import { FishViewButtonComponent } from './fish-view-button/fish-view-button.com
     ConfirmDialogModule,
     MenuModule,
     CheckboxModule,
-    DropdownModule
+    DropdownModule,
+    LightboxModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],

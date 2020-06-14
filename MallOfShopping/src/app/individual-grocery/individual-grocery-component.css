@@ -27,8 +27,8 @@ hr {
   font-family: sans-serif;
   color: #fff;
   position: absolute;
-  right: -10px;
-  top: -20px;
+  right: -30px;
+  top: -25px;
   font-size: 22px;
   opacity: 90%;
   -moz-opacity: 0.9; /* Firefox and Mozilla browsers */
@@ -48,8 +48,8 @@ hr {
   color: white;
   font-size: 20px;
   position: absolute;
-  right: -10px;
-  top: -20px;
+  right: -30px;
+  top: -25px;
   font-size: medium;
 }
 
