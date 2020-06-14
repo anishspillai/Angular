@@ -1,0 +1,3 @@
+<button *ngIf="isDesktopDevice" pButton class="ui-button-rounded ui-button-success" label="Take me to Fresh Fishes" (click)="loadFishViewPage()"></button>
+
+<img *ngIf="!isDesktopDevice" src="assets/img/fish.svg" style="width: 26px; height: 26px" (click)="loadFishViewPage()">

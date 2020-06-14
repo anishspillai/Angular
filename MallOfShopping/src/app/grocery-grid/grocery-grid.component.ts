@@ -99,7 +99,15 @@ export class GroceryGridComponent implements OnInit{
       )).then(r => console.log(r))*/
 
     } else {
-      this.firestore.list('admin/Catagories/' + this.searchCategoryType).valueChanges().forEach(grocery => {
+
+      let URL: string
+      if(this.searchCategoryType.includes("Fish")) {
+        URL = this.searchCategoryType
+      } else {
+        URL = 'admin/Catagories/' + this.searchCategoryType
+      }
+
+      this.firestore.list(URL).valueChanges().forEach(grocery => {
         grocery.forEach(groceryUnit => {
           const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
           this.groceryList.push(individualGrocery)

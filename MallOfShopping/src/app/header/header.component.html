@@ -94,17 +94,21 @@
 
 <div id="content-mobile" class="p-grid nav-bar" [style]="{'background-color': 'orangered', 'color': 'white'}">
 
-  <div class="p-col">
+  <div class="p-col-1">
     <div class="box">
       <i class="pi pi-align-justify" style="font-size: 2em; color:snow" (click)="displayNavigator=true"></i>
     </div>
   </div>
 
   <div class="p-col-6" style="padding-top: 1em">
-    <div class="box" style="font-size: large">Mall Of Groceries</div>
+    <div class="box" style="font-size: small">Mall Of Groceries</div>
   </div>
 
-  <div class="p-col">
+  <div class="p-col-1" style="padding-top: 1em">
+    <app-fish-view-button [isDesktopDevice]="false"></app-fish-view-button>
+  </div>
+
+  <div class="p-col-1">
     <p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
     <div class="box">
       <i class="pi pi-user" style="font-size: xx-large; color: white" (click)="displayMenuItemsForUser(menu, $event)"></i>
@@ -112,7 +116,7 @@
   </div>
 
 
-  <div class="p-col" (click)="loadSideBarMenu()">
+  <div class="p-col-1" (click)="loadSideBarMenu()">
     <div style="margin-right: 30px" class="tooltip header-right">
       <i class="pi pi-shopping-cart" style="font-size: xx-large; color: white"></i>
       <span class="tooltiptext">{{getCountOfItems()}}</span>

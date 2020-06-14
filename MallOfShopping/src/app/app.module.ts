@@ -54,6 +54,7 @@ import { DisplayMessageComponent } from './display-message/display-message.compo
 import { PrivatePoliciesComponent } from './private-policies/private-policies.component';
 import {CheckboxModule} from "primeng/checkbox";
 import {DropdownModule} from "primeng/dropdown";
+import { FishViewButtonComponent } from './fish-view-button/fish-view-button.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import {DropdownModule} from "primeng/dropdown";
     OrderHistoryMainPageComponent,
     UserDetailsMainPageComponent,
     DisplayMessageComponent,
-    PrivatePoliciesComponent
+    PrivatePoliciesComponent,
+    FishViewButtonComponent
   ],
   imports: [
     BrowserModule,
