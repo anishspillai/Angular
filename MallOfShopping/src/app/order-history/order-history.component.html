@@ -99,11 +99,11 @@
                 {{grocery.type}}
               </td>
               <td>
-                {{grocery.grossWeight}},
+                {{grocery.grossWeight}}
                 {{grocery.unitOfWeight}}
               </td>
               <td>
-                {{grocery.price}}
+                {{getIndividualCostOfItem(grocery)}}
               </td>
             </tr>
           </ng-template>

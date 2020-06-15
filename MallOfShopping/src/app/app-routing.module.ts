@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'grocery-list', component: GroceryGridComponent },
   { path: '',   redirectTo: '/grocery-list', pathMatch: 'full' },
-  { path: 'user-details', component: AddGroceriesComponent },
+  { path: 'user-details', component: UserDetailsMainPageComponent },
   { path: 'order-history', component: OrderHistoryMainPageComponent },
   { path: 'log-in', component: SignInComponent },
   { path: 'order-confirmation', component: OrderConfirmationWizardComponent },

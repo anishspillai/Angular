@@ -45,3 +45,11 @@
 .news {
   animation : slide 20s linear infinite;
 }
+
+.contact-box {
+  text-align: center;
+   background-color: #cce4f7;
+   padding-top: 1em;
+   padding-bottom: 1em;
+   border-radius: 4px;
+ }
