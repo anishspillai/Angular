@@ -2,12 +2,16 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 
+import {faFish} from "@fortawesome/free-solid-svg-icons";
+
 @Component({
   selector: 'app-fish-view-button',
   templateUrl: './fish-view-button.component.html',
   styleUrls: ['./fish-view-button.component.css']
 })
 export class FishViewButtonComponent implements OnInit {
+
+  faFish = faFish
 
   @Input() isDesktopDevice
 

@@ -55,8 +55,8 @@ import { PrivatePoliciesComponent } from './private-policies/private-policies.co
 import {CheckboxModule} from "primeng/checkbox";
 import {DropdownModule} from "primeng/dropdown";
 import { FishViewButtonComponent } from './fish-view-button/fish-view-button.component';
-import {LightboxModule} from "primeng/lightbox";
 import { FishMarketVideoViewComponent } from './fish-market-video-view/fish-market-video-view.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -113,7 +113,7 @@ import { FishMarketVideoViewComponent } from './fish-market-video-view/fish-mark
     MenuModule,
     CheckboxModule,
     DropdownModule,
-    LightboxModule
+    FontAwesomeModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
