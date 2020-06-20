@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
-import {OrderHistoryModel} from "./OrderHistory.model";
+import {AdminOrderHistories, OrderHistoryModel} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
 import {Order} from "../individual-grocery/model/Order";
@@ -17,6 +17,8 @@ export class OrderHistoryComponent implements OnInit {
 
   orderHistory: OrderHistoryModel[] = []
 
+  adminOrderHistories: AdminOrderHistories[] = []
+
   public totalRecords: number = 100;
   public loading: boolean;
   public cols: any[];
@@ -32,25 +34,10 @@ export class OrderHistoryComponent implements OnInit {
     const user: string = this.authService.getUser()
 
     if (user) {
-      this.groceryService.getOrderHistory(user).subscribe(value => {
-          value.forEach(childSnapshot => {
-
-            const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
-
-            // @ts-ignore
-            childSnapshot.payload.val().forEach(value => {
-              orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
-                'MMM d, y, h:mm:ss a')
-
-              orderHistoryComponent.orderHistory.push(value)
-            })
-
-            this.orderHistory.push(orderHistoryComponent)
-          })
-        }
-      )
-
+      //this.getOrderHistories(user)
     }
+
+    this.getOrderHistoryForAdmin()
 
     this.cols = [
       {field: 'groceryName', header: 'Brand Name', index: 1},
@@ -67,6 +54,39 @@ export class OrderHistoryComponent implements OnInit {
       { header: 'Weight' },
       { header: 'Cost' }
     ];
+
+  }
+
+  getOrderHistories(user: string, orderHistory: OrderHistoryModel[]) {
+    this.groceryService.getOrderHistory(user).subscribe(value => {
+        value.forEach(childSnapshot => {
+
+          const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
+
+          // @ts-ignore
+          childSnapshot.payload.val().forEach(value => {
+            orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
+              'MMM d, y, h:mm:ss a')
+
+            orderHistoryComponent.orderHistory.push(value)
+          })
+
+          orderHistory.push(orderHistoryComponent)
+        })
+      }
+    )
+  }
+
+  getOrderHistoryForAdmin() {
+
+    this.groceryService.getOrderHistoriesForAdmin().subscribe(value => {
+      value.forEach(childSnapshot => {
+        const adminOrderHistories: AdminOrderHistories = new AdminOrderHistories()
+        adminOrderHistories.userId = childSnapshot.key
+        this.getOrderHistories(childSnapshot.key, adminOrderHistories.orderHistory)
+        this.adminOrderHistories.push(adminOrderHistories)
+      })
+    })
 
   }
 

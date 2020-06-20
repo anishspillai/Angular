@@ -17,6 +17,10 @@ export class GroceryService {
     return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
   }
 
+  getOrderHistoriesForAdmin() {
+    return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
+  }
+
 
   getSumOfGrocery(order: Order) {
 

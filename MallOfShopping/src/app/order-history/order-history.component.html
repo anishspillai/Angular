@@ -8,8 +8,11 @@
     Your order history is empty
   </div>
 
+  <div *ngFor="let adminOh of adminOrderHistories" style="border-style: solid">
+  <p style="margin-top: 10px"> {{adminOh.userId}}</p>
+
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
-    <div *ngFor="let oh of orderHistory">
+    <div *ngFor="let oh of adminOh.orderHistory">
     <div id="content-desktop">
       <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
@@ -121,4 +124,5 @@
       </div>
     </div>
   </p-accordion>
+</div>
 </div>

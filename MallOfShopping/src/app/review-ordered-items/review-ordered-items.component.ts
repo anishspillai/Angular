@@ -27,10 +27,11 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
 
   moveToConfirmationPage() {
-    if(this.addGroceryToListObservableService.orders.length > 0) {
+    alert("Sorry! It is vacation time. So order cannot be placed. Will be back on 21st June, 21:00:00 ( This sunday )")
+    /**if(this.addGroceryToListObservableService.orders.length > 0) {
       this.sendCloseEvent()
       this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItemsAsString()}});
-    }
+    }*/
   }
 
   emptyCart() {
