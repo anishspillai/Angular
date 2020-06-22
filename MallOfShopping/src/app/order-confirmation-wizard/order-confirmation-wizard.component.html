@@ -1,50 +1,91 @@
 <div id="content-desktop">
-<div class="split left">
-  <div class="centered" style="width: 70%">
-    <app-user-details></app-user-details>
-  </div>
-</div>
+  <div class="split left">
+    <div class="centered" style="width: 70%">
+      <p-accordion [multiple]="true">
+        <p-accordionTab header="Delivery Address" [selected]="true">
 
-<div class="split right">
+          <div class="p-col-12">
+            <app-user-details></app-user-details>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+        </p-accordionTab>
 
-  <h1 style="text-align: center; text-decoration: underline"> Order Summary </h1>
+        <p-accordionTab header="Desired Delivery Time" [selected]="true">
+          <div class="p-col-12">
+            <app-ng-time-picker (closeCalenderEventEmitter) = "deliveryDate = $event"></app-ng-time-picker>
+            <br>
+            <br>
+          </div>
+        </p-accordionTab>
 
-  <div class="p-grid">
-
-
-    <div class="p-col-7" style="text-align: center">
-      <h4 style="font-style: italic"> Total Amount </h4>
+        <p-accordionTab header="Payment Options" [selected]="true">
+          <div class="p-col-12">
+            <app-payment-option-view></app-payment-option-view>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
     </div>
-    <div class="p-col-5" style="text-align: center">
-      <h3>{{ totalCost }} Kr</h3>
+  </div>
+
+  <div class="split right">
+
+    <h1 style="text-align: center; text-decoration: underline"> Order Summary </h1>
+
+    <div class="p-grid">
+
+
+      <div class="p-col-7" style="text-align: center">
+        <h4 style="font-style: italic"> Total Amount </h4>
+      </div>
+      <div class="p-col-5" style="text-align: center">
+        <h3>{{ totalCost }} Kr</h3>
+      </div>
+
     </div>
 
-  </div>
+    <div class="p-col-5; block" (click)="placeOrder()">
+      Confirm
+    </div>
 
-  <div class="p-col-5; block" (click)="placeOrder()">
-    Confirm
-  </div>
+    <br>
 
-  <br>
-
-  <div class="p-col-5; blockRed" (click)="cancelThisPage()">
-    Cancel Order
+    <div class="p-col-5; blockRed" (click)="cancelThisPage()">
+      Cancel Order
+    </div>
   </div>
-</div>
 </div>
 
 
 <div id="content-mobile" style="display: block; margin-top: 6em; margin-left: auto; margin-right: auto; color: black;">
-  <div class="p-col-12" style="border-style: groove; font-size: small">
-    <app-user-details></app-user-details>
-    <br>
-    <br>
-  </div>
 
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Delivery Address">
+
+      <div class="p-col-12">
+        <app-user-details></app-user-details>
+        <br>
+        <br>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Desired Delivery Time">
+      <div class="p-col-12">
+        <app-ng-time-picker [isDesktopApplication]="false" (closeCalenderEventEmitter) = "deliveryDate = $event"></app-ng-time-picker>
+      </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Payment Options">
+      <div class="p-col-12">
+        <app-payment-option-view></app-payment-option-view>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
 
   <div class="p-col-12">
-    <button pButton class="ui-button-rounded ui-button-success" style="width: 100%" label="Confirm Order"
-            (click)="placeOrder()"></button>
+    <button pButton class="ui-button-rounded ui-button-success" style="width: 100%" label="Confirm Order" (click)="placeOrder()" ></button>
   </div>
   <div class="p-col-12">
     <button pButton class="ui-button-rounded ui-button-danger" style="width: 100%" label="Cancel Order"
@@ -56,17 +97,20 @@
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 
-<p-dialog [(visible)]="displayThankYouDialog" header="Order Placed!!!"  [style]="{width: '360px'}" (onHide)="navigateToTheMainPage()">
+<p-dialog [(visible)]="displayThankYouDialog" header="Order Placed!!!" [style]="{width: '360px'}"
+          (onHide)="navigateToTheMainPage()">
   <div>
-    Thank you for placing the order!!!
+    Thank you for placing the order!!!. Please check the Order History Page for viewing your orders and status of deliveries.
   </div>
   <p-footer>
-  <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayThankYouDialog = false"></button>
-</p-footer>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
+            (click)="displayThankYouDialog = false"></button>
+  </p-footer>
 </p-dialog>
 
 
-<p-dialog [(visible)]="displayErrorDialog" header="Sorry Order not placed!!!"  [style]="{width: '360px'}" (onHide)="navigateToTheMainPage()">
+<p-dialog [(visible)]="displayErrorDialog" header="Sorry Order not placed!!!" [style]="{width: '360px'}"
+          (onHide)="navigateToTheMainPage()">
 
   <div>
     <i class="pi pi-exclamation-triangle" style="color: red"></i>
@@ -74,17 +118,19 @@
   </div>
 
   <p-footer>
-    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayErrorDialog = false"></button>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
+            (click)="displayErrorDialog = false"></button>
   </p-footer>
 
 </p-dialog>
 
 
-<p-dialog [(visible)]="displayAddressMissingDialog" header="Missing Delivery Address!!!"  [style]="{width: '360px'}">
+<p-dialog [(visible)]="displayAddressMissingDialog" header="Missing Delivery Address!!!" [style]="{width: '360px'}">
   <div>
     Delivery Address is Missing!!!. Please add it and try again.
   </div>
   <p-footer>
-    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary" (click)="displayAddressMissingDialog = false"></button>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
+            (click)="displayAddressMissingDialog = false"></button>
   </p-footer>
 </p-dialog>

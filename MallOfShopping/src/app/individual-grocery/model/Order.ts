@@ -17,6 +17,7 @@ export class Order {
     public bulkPurchaseOfferCount: number = 2,
     public bulkPurchaseOfferPrice: number = 78.45,
     public offerPrice: number = 12,
+    public subType: string = ""
 
   ) {
   }
@@ -37,7 +38,8 @@ export class Order {
       individualGrocery.bulkPurchaseOfferAvailable,
       individualGrocery.bulkPurchaseOfferCount,
       individualGrocery.bulkPurchaseOfferPrice,
-      individualGrocery.offerPrice
+      individualGrocery.offerPrice,
+      individualGrocery.subType
     )
   }
 }

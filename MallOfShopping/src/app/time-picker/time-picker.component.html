@@ -1,0 +1,35 @@
+<!--div class="p-md-3">
+  <p-calendar [(ngModel)]="desiredDeliveryDate" [minDate]="today">
+    <ng-template pTemplate="date" let-date>
+      <span [ngStyle]="{backgroundColor: (date.day == today.getDay() || date.day == today.getDay() + 1) ? 'red' : '#81C784'}" style="border-radius:50%; padding: .25em; width: 2em; height: 2em; display:block">{{date.day}}</span>
+    </ng-template>
+  </p-calendar>
+</div-->
+
+<div class="content-section implementation ui-fluid">
+
+  <p style="font-family: 'Trebuchet MS'; color: orangered">Kindly be informed that delivery date and time may change</p>
+
+    <div class="p-col-12 p-md-5">
+      <p-calendar *ngIf="isDesktopApplication" [style]="{'width':'80%'}"
+                  [inputStyle]="{'width':'80%'}"
+                  [minDate]="getTomorrow()"
+                  [(ngModel)]="desiredDeliveryDate"
+                  showIcon =true
+                  class="treetableDate"
+                  [showTime] = true
+                  (onClose)="dispatchEvent()">
+      </p-calendar>
+      <p-calendar *ngIf="!isDesktopApplication" [style]="{'width':'80%'}"
+                  [inputStyle]="{'width':'80%'}"
+                  [touchUI]="true"
+                  [minDate]="getTomorrow()"
+                  [(ngModel)]="desiredDeliveryDate"
+                  showIcon =true
+                  class="treetableDate"
+                  [showTime] = true
+                  (onClose)="dispatchEvent()"
+                  >
+      </p-calendar>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import {Order} from "../individual-grocery/model/Order";
+import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 
 @Injectable()
 export class GroceryService {
@@ -8,8 +9,7 @@ export class GroceryService {
   constructor(private readonly angularFireDatabase: AngularFireDatabase) {
   }
 
-  placeOrderForTheUser(order: Order[], userId: string) {
-    const currentTimeStamp = new Date().getTime()
+  placeOrderForTheUser(order: Order[], userId: string, currentTimeStamp: number) {
     return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
   }
 
@@ -90,6 +90,10 @@ export class GroceryService {
     });
 
     return sumOfItems
+  }
+
+  addDeliveryDateAndStatus(orderDeliveryStatus: OrderDeliveryStatus, userId: string, currentTimeStamp: number) {
+    return this.angularFireDatabase.object("/users/delivery-status/" + userId + "/" + currentTimeStamp).set(orderDeliveryStatus)
   }
 
 }

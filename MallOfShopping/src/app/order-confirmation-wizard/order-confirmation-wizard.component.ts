@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, Output, ViewEncapsulation} from '@angular/core';
 //import {MenuItem, MessageService} from "primeng";
 import {ConfirmationService, MenuItem} from "primeng/api";
 import {MessageService} from "primeng/api";
@@ -10,6 +10,7 @@ import {UserDetailsService} from "../user-details/user.details.service";
 import {ErrorLogService} from "../error-log.service";
 import {GroceryCountService} from "../grocery-count.service";
 import {AngularFireDatabase} from "@angular/fire/database";
+import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -30,6 +31,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   totalCost
 
+  deliveryDate: Date
 
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
@@ -82,9 +84,11 @@ export class OrderConfirmationWizardComponent implements OnInit{
       }
 
       if(!addressMissing) {
-        this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user).then(() => {
+        const orderTimestamp = new Date().getTime()
+        this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
           //this.displayThankYouDialog = true
           this.updateCountOfGroceries()
+          this.addDeliveryStatus(orderTimestamp, user)
         })
           .catch(err => {
             this.displayErrorDialog = true
@@ -113,5 +117,11 @@ export class OrderConfirmationWizardComponent implements OnInit{
   navigateToTheMainPage() {
     localStorage.setItem('no-reload', 'no reload')
     this.router.navigate(['grocery-list']);
+  }
+
+  private addDeliveryStatus(orderTimestamp: number, user: string) {
+    const deliveryDate = this.deliveryDate ? this.deliveryDate.getTime(): 0
+    const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0)
+    this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
   }
 }
