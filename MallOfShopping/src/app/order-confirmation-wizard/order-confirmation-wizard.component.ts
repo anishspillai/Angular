@@ -33,6 +33,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   deliveryDate: Date
 
+  commentsFromCustomer: string
+
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -121,7 +123,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   private addDeliveryStatus(orderTimestamp: number, user: string) {
     const deliveryDate = this.deliveryDate ? this.deliveryDate.getTime(): 0
-    const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0)
+    const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0, this.commentsFromCustomer)
     this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
   }
 }

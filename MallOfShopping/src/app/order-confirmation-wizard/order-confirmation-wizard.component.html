@@ -26,6 +26,13 @@
             <app-payment-option-view></app-payment-option-view>
           </div>
         </p-accordionTab>
+
+        <p-accordionTab header="Any Comments" [selected]="true">
+          <div class="p-col-12">
+            <textarea rows="5" cols="95%" pInputTextarea [(ngModel)]="commentsFromCustomer"></textarea>
+          </div>
+        </p-accordionTab>
+
       </p-accordion>
     </div>
   </div>
@@ -82,6 +89,13 @@
         <app-payment-option-view></app-payment-option-view>
       </div>
     </p-accordionTab>
+
+    <p-accordionTab header="Any Comments">
+      <div class="p-col-12">
+        <textarea rows="5" cols="35%" pInputTextarea [(ngModel)]="commentsFromCustomer"></textarea>
+      </div>
+    </p-accordionTab>
+
   </p-accordion>
 
   <div class="p-col-12">
