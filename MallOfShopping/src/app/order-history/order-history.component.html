@@ -23,7 +23,7 @@
             <div class="ui-helper-clearfix" style="text-align: left">
               Order History
 
-              <label style="float:right">Status</label>
+              <label *ngIf="oh.orderDeliveryStatus" style="float:right; color: #9F6000">{{oh.orderDeliveryStatus.deliveryStatus}}</label>
             </div>
           </ng-template>
 
@@ -42,7 +42,7 @@
                 {{grocery.groceryName}}
               </td>
               <td>
-                {{grocery.type}}
+                {{grocery.type}}, {{grocery.subType}}
               </td>
               <td>
                 {{grocery.grossWeight}}
@@ -65,9 +65,50 @@
               Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr
             </div>
           </ng-template>
-
-
         </p-table>
+
+        <div style="font-family: 'Trebuchet MS'">
+          <div *ngIf="oh.orderDeliveryStatus" class="p-grid">
+            <div class="p-col">
+              <h4 style="font-family: 'Trebuchet MS'; color: orangered">Requested Delivery Time : {{getFormattedDateTime(oh.orderDeliveryStatus.desiredDeliveryDate)}}</h4>
+            </div>
+            <div class="p-col">
+              <h4 style="font-family: 'Trebuchet MS'; color: darkred">Planned Delivery Time : {{getFormattedDateTime(oh.orderDeliveryStatus.actualDeliveryDate)}}</h4>
+            </div>
+          </div>
+
+
+
+        <div class="p-grid">
+          <div class="p-col">
+            <p-panel>
+
+              <p-header>
+                <div class="ui-helper-clearfix">
+                  <span class="ui-panel-title" style="font-size:14px;display:inline-block;margin-top:2px">Your comments</span>
+                  <button pButton [style]="{'float':'right'}" label="Update" class="ui-button-rounded; ui-button-danger"  (click)="editComment(oh)"></button>
+                </div>
+              </p-header>
+
+              <div *ngIf="oh.orderDeliveryStatus"> {{oh.orderDeliveryStatus.commentsFromCustomer}} </div>
+            </p-panel>
+          </div>
+
+          <div class="p-col">
+            <p-panel>
+
+              <p-header>
+                <div class="ui-helper-clearfix">
+                  <span class="ui-panel-title" style="font-size:14px;display:inline-block;margin-top:2px">Comments From Mall of Groceries</span>
+                </div>
+              </p-header>
+              <div *ngIf="oh.orderDeliveryStatus"> {{oh.orderDeliveryStatus.commentsFromMallOfGroceries}} </div>
+            </p-panel>
+          </div>
+        </div>
+        </div>
+
+
       </p-accordionTab>
     </div>
 
@@ -81,7 +122,7 @@
             <div class="ui-helper-clearfix" style="text-align: left">
               <label class="medium-font-size-light-text"> Order History </label>
 
-              <label style="float:right" class="medium-font-size-light-text">Status</label>
+              <label *ngIf="oh.orderDeliveryStatus" class="medium-font-size-light-text" style="float:right; color: #9F6000">{{oh.orderDeliveryStatus.deliveryStatus}}</label>
             </div>
           </ng-template>
 
@@ -113,9 +154,33 @@
 
 
           <ng-template pTemplate="summary">
-            <div style="text-align: right">
-              Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr
+
+            <!--div>
+              Your Comments
+              Our Comments
+              <p style="text-align: right">Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr </p>
+            </div-->
+
+            <!--div class="p-grid">
+              <div class="p-lg-4" style="font-size: large; color: orangered"> <i class="pi pi-comment"></i>  </div>
+              <div class="p-lg-4" style="font-size: large; color: darkred"> <i class="pi pi-comments"></i></div>
+
+              <div class="p-lg-4">
+                <p>Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr </p>
+              </div>
+
+            </div-->
+
+            <div *ngIf="oh.orderDeliveryStatus" class="p-grid p-justify-between">
+              <div class="p-col-2"><i class="pi pi-comment" style="color: orangered" (click)="editCommentForSmallDevice(oh)"></i></div>
+              <div class="p-col-1"><i class="pi pi-comments" style="color: darkred" (click)="viewAdminComments(oh)" ></i></div>
+              <div class="p-col-1"><i class="pi pi-calendar" style="color: darkorange" (click)="viewDeliverySchedule(oh)" ></i></div>
+
+              <div class="p-col-5"><span style="color: indianred"> Total: {{getTotalCostOfTheOrder(oh)}} Kr </span> </div>
             </div>
+
+            <p *ngIf="!oh.orderDeliveryStatus" style="text-align: right; color: indianred">Total Cost: {{getTotalCostOfTheOrder(oh)}} Kr </p>
+
           </ng-template>
 
 
@@ -125,4 +190,60 @@
     </div>
   </p-accordion>
 </div>
-</div>
+
+<p-dialog [(visible)]="enableEditComment"
+          [baseZIndex]="10000"
+          [style]="{width: !isMobileDevice ?'50vw' : '90vw'}"
+          header="Edit User Comments"
+          [responsive]="true"
+          [resizable]="false">
+
+
+  <textarea *ngIf="currentHistoryModel && currentHistoryModel.orderDeliveryStatus" rows="5" cols="40%" pInputTextarea [(ngModel)]="commentsFromCustomer">{{currentHistoryModel.orderDeliveryStatus.commentsFromCustomer}}</textarea>
+
+
+  <p-footer>
+    <button pButton icon="pi pi-check" class="ui-button-success" style="border-radius: 25px" (click)="updateUserComments()" label="Save"></button>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px" (click)="enableEditComment=false" label="Cancel" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="viewCommentsFromTheAdmin"
+          [baseZIndex]="10000"
+          [style]="{width: '90vw'}"
+          header="Mall of Groceries Comments"
+          [resizable]="false">
+
+
+  <span *ngIf="currentHistoryModel && currentHistoryModel.orderDeliveryStatus">
+    {{currentHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries.length > 0 ? currentHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries : "No Comments yet"}}
+  </span>
+
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px" (click)="viewCommentsFromTheAdmin=false" label="Cancel" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="viewDeliveryScheduleView"
+          [baseZIndex]="10000"
+          [style]="{width: '90vw'}"
+          header="Delivery Schedule"
+          [resizable]="false">
+
+  <div *ngIf="currentHistoryModel && currentHistoryModel.orderDeliveryStatus">
+    <p class="p-col-12" style="color: orangered">Requested Delivery Schedule</p>
+    <span
+      style="float: right">{{getFormattedDateTime(currentHistoryModel.orderDeliveryStatus.desiredDeliveryDate)}}
+    </span>
+
+    <p class="p-col-12" style="color: darkred">Planned Delivery</p>
+    <span
+      style="float: right">{{getFormattedDateTime(currentHistoryModel.orderDeliveryStatus.actualDeliveryDate)}}</span>
+  </div>
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
+            (click)="viewDeliveryScheduleView=false" label="Cancel" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>

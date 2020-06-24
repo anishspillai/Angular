@@ -147,7 +147,7 @@ div.anish {
 }
 .news {
   animation : slide 20s linear infinite;
-
+  font-family: "Trebuchet MS";
 }
 
 @keyframes slide {

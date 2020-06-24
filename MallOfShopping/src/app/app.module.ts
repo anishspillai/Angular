@@ -57,6 +57,9 @@ import {DropdownModule} from "primeng/dropdown";
 import { FishViewButtonComponent } from './fish-view-button/fish-view-button.component';
 import { FishMarketVideoViewComponent } from './fish-market-video-view/fish-market-video-view.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { TimePickerComponent } from './time-picker/time-picker.component';
+import {CalendarModule} from "primeng/calendar";
+import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,9 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     DisplayMessageComponent,
     PrivatePoliciesComponent,
     FishViewButtonComponent,
-    FishMarketVideoViewComponent
+    FishMarketVideoViewComponent,
+    TimePickerComponent,
+    PaymentOptionViewComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +118,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     MenuModule,
     CheckboxModule,
     DropdownModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CalendarModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],

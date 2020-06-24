@@ -4,6 +4,9 @@ import {AdminOrderHistories, OrderHistoryModel} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
 import {Order} from "../individual-grocery/model/Order";
+import {mergeMap} from "rxjs/operators";
+import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-order-history',
@@ -24,6 +27,17 @@ export class OrderHistoryComponent implements OnInit {
   public cols: any[];
   public cols_mobile_apps: any[];
 
+  enableEditComment = false
+  commentsFromCustomer = ""
+
+  isSmallWindow = false
+
+  viewCommentsFromTheAdmin = false
+
+  viewDeliveryScheduleView = false
+
+  currentHistoryModel: OrderHistoryModel
+
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
               private readonly datePipe: DatePipe) {
@@ -34,8 +48,42 @@ export class OrderHistoryComponent implements OnInit {
     const user: string = this.authService.getUser()
 
     if (user) {
-      //this.getOrderHistories(user)
-    }
+      // @ts-ignore
+      /**this.groceryService.getOrderHistory(user).pipe(mergeMap(value => {
+          value.forEach(childSnapshot => {
+
+            let keyOfOrder = ""
+
+            const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
+
+            // @ts-ignore
+            childSnapshot.payload.val().forEach(value => {
+
+              keyOfOrder = childSnapshot.key
+
+              orderHistoryComponent.orderKey = keyOfOrder
+
+              orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
+                'MMM d, y, h:mm:ss a')
+
+              orderHistoryComponent.orderHistory.push(value)
+            })
+
+            this.orderHistory.push(orderHistoryComponent)
+
+
+            this.groceryService.getDeliveryDateAndStatus(user, keyOfOrder).subscribe(value => {
+              if (value && value.length != 0) {
+                const orderDeliveryStatus = new OrderDeliveryStatus(value[3] as string, value[4] as number, value[0] as number,
+                  value[1] as string, value[2] as string)
+                orderHistoryComponent.orderDeliveryStatus = orderDeliveryStatus
+              }
+          })
+
+          })
+        return of('')
+        }
+      )).subscribe(() => console.log(""))*/
 
     this.getOrderHistoryForAdmin()
 
@@ -54,7 +102,7 @@ export class OrderHistoryComponent implements OnInit {
       { header: 'Weight' },
       { header: 'Cost' }
     ];
-
+    }
   }
 
   getOrderHistories(user: string, orderHistory: OrderHistoryModel[]) {
@@ -96,5 +144,39 @@ export class OrderHistoryComponent implements OnInit {
 
   getIndividualCostOfItem(order: Order) {
     return this.groceryService.getSumOfGrocery(order)
+  }
+
+  editComment(orderHistoryModel: OrderHistoryModel) {
+    this.currentHistoryModel = orderHistoryModel
+    this.commentsFromCustomer = orderHistoryModel.orderDeliveryStatus.commentsFromCustomer
+    this.enableEditComment = true
+  }
+
+  viewAdminComments(orderHistoryModel: OrderHistoryModel) {
+    this.currentHistoryModel = orderHistoryModel
+    this.viewCommentsFromTheAdmin = true
+  }
+
+  viewDeliverySchedule(orderHistoryModel: OrderHistoryModel) {
+    this.currentHistoryModel = orderHistoryModel
+    this.viewDeliveryScheduleView = true
+  }
+
+  editCommentForSmallDevice(orderHistoryModel: OrderHistoryModel) {
+    this.isSmallWindow = true
+    this.editComment(orderHistoryModel)
+  }
+
+  updateUserComments() {
+    const user: string = this.authService.getUser()
+    this.groceryService.updateUserComments(user, this.currentHistoryModel.orderKey, this.commentsFromCustomer).then(() => this.enableEditComment = false)
+  }
+
+  getFormattedDateTime(dateTimeInNumberFormat: number) : string {
+    if(!dateTimeInNumberFormat || dateTimeInNumberFormat === 0) {
+      return "No proposal date and time"
+    }
+   return  this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
+      'MMM d, y, h:mm:ss a')
   }
 }
