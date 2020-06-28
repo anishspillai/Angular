@@ -1,0 +1,24 @@
+<div *ngFor="let adminOh of adminOrderHis" style="border-style: solid">
+  <p style="margin-top: 10px"> {{adminOh.userId}}</p>
+  {{adminOh.userDetails.firstName}}
+  {{adminOh.userDetails.lastName}}
+  {{adminOh.userDetails.address}}
+  {{adminOh.userDetails.postNumber}}
+  {{adminOh.userDetails.streetName}}
+  {{adminOh.userDetails.telephoneNumber}}
+
+<button pButton type="button" label="Edit" class="ui-button-rounded ui-button-success"
+        (click)="launchPage(adminOh.userId)"></button>
+</div>
+
+<div *ngIf="userId != previousUserId">
+<p-dialog [(visible)]="displayOrderDetails" header="Order Details" style="width: 100vw">
+
+  <app-order-history [userId]="userId"></app-order-history>
+
+  <p-footer>
+    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
+            (click)="displayOrderDetails = false"></button>
+  </p-footer>
+</p-dialog>
+</div>

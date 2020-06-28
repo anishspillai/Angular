@@ -60,6 +60,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TimePickerComponent } from './time-picker/time-picker.component';
 import {CalendarModule} from "primeng/calendar";
 import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
+import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-history.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { PaymentOptionViewComponent } from './payment-option-view/payment-option
     FishViewButtonComponent,
     FishMarketVideoViewComponent,
     TimePickerComponent,
-    PaymentOptionViewComponent
+    PaymentOptionViewComponent,
+    AdminOrderHistoryComponent
   ],
   imports: [
     BrowserModule,

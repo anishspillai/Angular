@@ -110,4 +110,20 @@ export class GroceryService {
         .update({ commentsFromCustomer: commentFromUser })
   }
 
+
+  addOrderHistory(userId: string, ordered: OrderDeliveryStatus, orderKey: string) {
+
+
+    return this.angularFireDatabase.object("/users/delivery-status/" + userId + "/" + orderKey).set(ordered)
+  }
+
+  updateAdminComment(_userId: string, orderKey: string, commentsFromMallOfGroceries: string, deliveryDate: Date, deliveryStatus: string) {
+
+    console.log(deliveryDate.getTime())
+
+    return this.angularFireDatabase.object("/users/delivery-status/" + _userId + "/"  + orderKey)
+      .update({ commentsFromMallOfGroceries: commentsFromMallOfGroceries,
+        actualDeliveryDate: deliveryDate.getTime(), deliveryStatus: deliveryStatus})
+
+  }
 }

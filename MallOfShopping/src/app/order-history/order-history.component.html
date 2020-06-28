@@ -8,11 +8,8 @@
     Your order history is empty
   </div>
 
-  <div *ngFor="let adminOh of adminOrderHistories" style="border-style: solid">
-  <p style="margin-top: 10px"> {{adminOh.userId}}</p>
-
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
-    <div *ngFor="let oh of adminOh.orderHistory">
+    <div *ngFor="let oh of orderHistory">
     <div id="content-desktop">
       <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
@@ -100,9 +97,12 @@
               <p-header>
                 <div class="ui-helper-clearfix">
                   <span class="ui-panel-title" style="font-size:14px;display:inline-block;margin-top:2px">Comments From Mall of Groceries</span>
+                  <button pButton [style]="{'float':'right'}" label="Update" class="ui-button-rounded; ui-button-danger"  (click)="editComment(oh)"></button>
+                  <button pButton icon="pi pi-times" style="border-radius: 25px" (click)="addHistory(oh)" label="Add" class="ui-button-danger"></button>
                 </div>
               </p-header>
               <div *ngIf="oh.orderDeliveryStatus"> {{oh.orderDeliveryStatus.commentsFromMallOfGroceries}} </div>
+              <div *ngIf="!oh.orderDeliveryStatus"> <input type="text"> </div>
             </p-panel>
           </div>
         </div>
@@ -215,12 +215,27 @@
           [resizable]="false">
 
 
-  <span *ngIf="currentHistoryModel && currentHistoryModel.orderDeliveryStatus">
-    {{currentHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries.length > 0 ? currentHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries : "No Comments yet"}}
-  </span>
+
+
+  Comments From You
+
+  <textarea *ngIf="currentHistoryModel && currentHistoryModel.orderDeliveryStatus" rows="5" cols="40%" pInputTextarea [(ngModel)]="commentsFromMallOfGroceries">{{currentHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries}}</textarea>
+
+  Delivery Status
+
+  <input type="text" pInputText size="30" [(ngModel)]="deliveryStatus" >
+
+
+  <p-calendar [style]="{'width':'80%'}"
+              [inputStyle]="{'width':'80%'}"
+              [(ngModel)]="deliveryDate"
+              showIcon =true
+              [showTime] = true>
+  </p-calendar>
 
 
   <p-footer>
+    <button pButton icon="pi pi-check" class="ui-button-success" style="border-radius: 25px" (click)="updateMallOfGroceriesComments()" label="Save"></button>
     <button type="button" pButton icon="pi pi-times" style="border-radius: 25px" (click)="viewCommentsFromTheAdmin=false" label="Cancel" class="ui-button-danger"></button>
   </p-footer>
 </p-dialog>

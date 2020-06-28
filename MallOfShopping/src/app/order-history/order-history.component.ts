@@ -14,7 +14,7 @@ import {of} from "rxjs";
   styleUrls: ['./order-history.component.css'],
   providers: [DatePipe]
 })
-export class OrderHistoryComponent implements OnInit {
+export class OrderHistoryComponent  {
 
   @Input() isMobileDevice: false
 
@@ -38,18 +38,36 @@ export class OrderHistoryComponent implements OnInit {
 
   currentHistoryModel: OrderHistoryModel
 
+  isLoadingFinished = false
+
+  commentsFromMallOfGroceries = ""
+  deliveryStatus = ""
+  deliveryDate : Date
+
+  _userId = ""
+
+  @Input()
+  public set userId(userId: string) {
+    this.isLoadingFinished = false
+    this._userId = userId;
+    this.ngOnInit();
+  }
+
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
               private readonly datePipe: DatePipe) {
+    this.ngOnInit()
   }
+
 
   ngOnInit() {
 
-    const user: string = this.authService.getUser()
+    this.orderHistory = []
 
-    if (user) {
+    if (this._userId) {
+
       // @ts-ignore
-      /**this.groceryService.getOrderHistory(user).pipe(mergeMap(value => {
+      this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
           value.forEach(childSnapshot => {
 
             let keyOfOrder = ""
@@ -58,6 +76,7 @@ export class OrderHistoryComponent implements OnInit {
 
             // @ts-ignore
             childSnapshot.payload.val().forEach(value => {
+
 
               keyOfOrder = childSnapshot.key
 
@@ -71,21 +90,20 @@ export class OrderHistoryComponent implements OnInit {
 
             this.orderHistory.push(orderHistoryComponent)
 
-
-            this.groceryService.getDeliveryDateAndStatus(user, keyOfOrder).subscribe(value => {
+            this.groceryService.getDeliveryDateAndStatus(this._userId, keyOfOrder).subscribe(value => {
               if (value && value.length != 0) {
                 const orderDeliveryStatus = new OrderDeliveryStatus(value[3] as string, value[4] as number, value[0] as number,
                   value[1] as string, value[2] as string)
                 orderHistoryComponent.orderDeliveryStatus = orderDeliveryStatus
+                this.isLoadingFinished = true
               }
           })
 
           })
         return of('')
         }
-      )).subscribe(() => console.log(""))*/
+      )).subscribe(() => console.log(""))
 
-    this.getOrderHistoryForAdmin()
 
     this.cols = [
       {field: 'groceryName', header: 'Brand Name', index: 1},
@@ -148,8 +166,20 @@ export class OrderHistoryComponent implements OnInit {
 
   editComment(orderHistoryModel: OrderHistoryModel) {
     this.currentHistoryModel = orderHistoryModel
-    this.commentsFromCustomer = orderHistoryModel.orderDeliveryStatus.commentsFromCustomer
-    this.enableEditComment = true
+
+    this.commentsFromMallOfGroceries = orderHistoryModel.orderDeliveryStatus.commentsFromMallOfGroceries
+    this.viewCommentsFromTheAdmin = true
+  }
+
+  addHistory(orderHistoryModel: OrderHistoryModel) {
+
+    if(!orderHistoryModel.orderDeliveryStatus) {
+      const orderDeliveryStatus: OrderDeliveryStatus = new OrderDeliveryStatus("Delivered",
+        0, 0, "", "")
+
+      this.groceryService.addOrderHistory(this._userId, orderDeliveryStatus, orderHistoryModel.orderKey).then(() => console.log(""))
+    }
+
   }
 
   viewAdminComments(orderHistoryModel: OrderHistoryModel) {
@@ -172,10 +202,20 @@ export class OrderHistoryComponent implements OnInit {
     this.groceryService.updateUserComments(user, this.currentHistoryModel.orderKey, this.commentsFromCustomer).then(() => this.enableEditComment = false)
   }
 
+  updateMallOfGroceriesComments() {
+
+    this.groceryService.updateAdminComment(this._userId, this.currentHistoryModel.orderKey,
+      this.commentsFromMallOfGroceries, this.deliveryDate, this.deliveryStatus).then(() => this.enableEditComment = false)
+  }
+
+
+
   getFormattedDateTime(dateTimeInNumberFormat: number) : string {
     if(!dateTimeInNumberFormat || dateTimeInNumberFormat === 0) {
       return "No proposal date and time"
     }
+
+    console.log(dateTimeInNumberFormat)
    return  this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
       'MMM d, y, h:mm:ss a')
   }
