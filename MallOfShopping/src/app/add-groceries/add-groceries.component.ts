@@ -24,12 +24,13 @@ export class AddGroceriesComponent   {
 
   constructor(private  readonly firestore: AngularFireDatabase) {
     this.menuItems = [
+      {name: 'Rice/Basmati', code: 'Rice/Basmati'},
       {name: 'admin/Fish', code: 'Baby Products/Body Care'},
       {name: 'admin/Campaign', code: 'Baby Products/Body Care'},
       {name: 'Baby Products/Body Care', code: 'Baby Products/Body Care'},
       {name: 'Baby Products/Foods', code: 'Baby Products/Body Care'},
       {name: 'Beverages/Beverages',code: 'Pulses & Lentils'},
-      {name: 'Dal, Pulses & Lentils/Pulses & Lentils',code: 'Pulses & Lentils'},
+      {name: 'Dal, Pulses & Lentils/Pulses, Lentils & Soya',code: 'Pulses, Lentils & Soya'},
       {name: 'Dal, Pulses & Lentils/Beans',code: 'Pulses & Lentils'},
       {name: 'Dal, Pulses & Lentils/Dal',code: 'Dal'},
       {name: 'Flour/Corn',code: 'Rome'},

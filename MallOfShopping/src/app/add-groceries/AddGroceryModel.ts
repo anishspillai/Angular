@@ -10,7 +10,7 @@ export class AddGroceryModel {
     public maxShoppingCount = 0,
     public maxShoppingIsRestricted = false,
     public offerPrice =  0,
-    public subType =  "Breast Fillet",
+    public subType =  "",
     public type = "Taj Mahal",
     public unitOfWeight = "Grams",
     public weight = "900",

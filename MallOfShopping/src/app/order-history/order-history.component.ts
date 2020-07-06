@@ -216,7 +216,11 @@ export class OrderHistoryComponent  {
     }
 
     console.log(dateTimeInNumberFormat)
-   return  this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
-      'MMM d, y, h:mm:ss a')
+   try {
+     return this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
+       'MMM d, y, h:mm:ss a')
+   } catch (e) {
+     return ""
+   }
   }
 }
