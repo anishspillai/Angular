@@ -15,7 +15,7 @@ export class GroceryService {
   }
 
   getOrderHistory(userId: string) {
-    return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
+    return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
   }
 
   getOrderHistoriesForAdmin() {

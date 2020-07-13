@@ -8,9 +8,28 @@
     Your order history is empty
   </div>
 
+
+  <p-calendar [style]="{'width':'80%'}"
+              [inputStyle]="{'width':'80%'}"
+              [(ngModel)]="filteredDate"
+              showIcon =true>
+  </p-calendar>
+
+  <button pButton (click)="testApi()" class="ui-button-danger" label="Filter"></button>
+
+
+
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
-    <div *ngFor="let oh of orderHistory">
+    <div *ngFor="let oh of filteredorderHistory">
+
+
     <div id="content-desktop">
+
+
+
+      <button pButton (click)="getUserDetails(oh.userId)" class="ui-button-danger" label="UserDetails"></button>
+      {{oh.userId}}
+
       <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
@@ -260,5 +279,24 @@
   <p-footer>
     <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
             (click)="viewDeliveryScheduleView=false" label="Cancel" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
+
+
+
+
+
+<p-dialog [(visible)]="viewUserDetails"
+          [baseZIndex]="10000"
+          [style]="{width: '90vw'}"
+          header="User Details"
+          [resizable]="false">
+
+
+  {{userDetailsModel | json}}
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
+            (click)="viewUserDetails=false" label="Cancel" class="ui-button-danger"></button>
   </p-footer>
 </p-dialog>

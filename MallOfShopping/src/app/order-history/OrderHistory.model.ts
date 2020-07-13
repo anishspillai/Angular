@@ -7,6 +7,8 @@ export class OrderHistoryModel {
   orderHistory: Order[] = []
   orderDeliveryStatus: OrderDeliveryStatus
   orderKey: string
+  userId: string
+  dateInNumber: Number
 
 }
 

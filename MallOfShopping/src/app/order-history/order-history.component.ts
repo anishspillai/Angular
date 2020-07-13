@@ -7,6 +7,9 @@ import {Order} from "../individual-grocery/model/Order";
 import {mergeMap} from "rxjs/operators";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {of} from "rxjs";
+import {UserDetailsModel} from "../user-details/model/user.details.model";
+import {UserDetailsService} from "../user-details/user.details.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-order-history',
@@ -20,7 +23,11 @@ export class OrderHistoryComponent  {
 
   orderHistory: OrderHistoryModel[] = []
 
+  filteredorderHistory: OrderHistoryModel[] = []
+
   adminOrderHistories: AdminOrderHistories[] = []
+
+  orders: Order[] = []
 
   public totalRecords: number = 100;
   public loading: boolean;
@@ -44,19 +51,24 @@ export class OrderHistoryComponent  {
   deliveryStatus = ""
   deliveryDate : Date
 
+
+  filteredDate : Date
+
   _userId = ""
 
   @Input()
   public set userId(userId: string) {
     this.isLoadingFinished = false
     this._userId = userId;
-    this.ngOnInit();
+    //this.ngOnInit();
   }
 
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
-              private readonly datePipe: DatePipe) {
-    this.ngOnInit()
+              private readonly datePipe: DatePipe,
+              private readonly userDetailsService: UserDetailsService,
+              private readonly http: HttpClient) {
+    //this.ngOnInit()
   }
 
 
@@ -64,45 +76,43 @@ export class OrderHistoryComponent  {
 
     this.orderHistory = []
 
-    if (this._userId) {
+    if (true) {
 
       // @ts-ignore
-      this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
+      this.groceryService.getOrderHistory(this._userId).subscribe(value => {
+
           value.forEach(childSnapshot => {
 
-            let keyOfOrder = ""
 
-            const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
+// @ts-ignore
+            childSnapshot.payload.forEach(test => {
 
-            // @ts-ignore
-            childSnapshot.payload.val().forEach(value => {
+              let anish: OrderHistoryModel = new OrderHistoryModel()
+
+              anish.userId = childSnapshot.key
+
+              anish.orderKey= test.key
+              anish.dateInNumber = parseInt(test.key)
+              anish.orderedTimestamp = this.getFormattedDateTime(parseInt(test.key))
+
+              const  orders: Order[] = []
 
 
-              keyOfOrder = childSnapshot.key
-
-              orderHistoryComponent.orderKey = keyOfOrder
-
-              orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
-                'MMM d, y, h:mm:ss a')
-
-              orderHistoryComponent.orderHistory.push(value)
+              // @ts-ignore
+              test.val().forEach(value => {
+                // @ts-ignore
+                orders.push(value)
+              })
+              anish.orderHistory = orders
+              this.orderHistory.push(anish)
             })
 
-            this.orderHistory.push(orderHistoryComponent)
-
-            this.groceryService.getDeliveryDateAndStatus(this._userId, keyOfOrder).subscribe(value => {
-              if (value && value.length != 0) {
-                const orderDeliveryStatus = new OrderDeliveryStatus(value[3] as string, value[4] as number, value[0] as number,
-                  value[1] as string, value[2] as string)
-                orderHistoryComponent.orderDeliveryStatus = orderDeliveryStatus
-                this.isLoadingFinished = true
-              }
           })
 
-          })
-        return of('')
+        this.filteredorderHistory = this.orderHistory
+
         }
-      )).subscribe(() => console.log(""))
+      )
 
 
     this.cols = [
@@ -223,4 +233,60 @@ export class OrderHistoryComponent  {
      return ""
    }
   }
+
+  testApi() {
+    this.http.get('/api/users').subscribe((data:any) => {
+
+      console.log("Hello")
+      alert(JSON.stringify(data))
+    });
+  }
+
+  filterData() {
+
+
+    let nextDay: Date = this.filteredDate
+    nextDay.setDate(this.filteredDate.getDate() + 1)
+
+    console.log(JSON.stringify(this.filteredDate))
+    console.log(JSON.stringify(nextDay))
+
+
+    this.filteredorderHistory = this.orderHistory.
+filter(value => value.dateInNumber >= this.filteredDate.getTime())
+
+    // @ts-ignore
+    this.filteredorderHistory = this.filteredorderHistory.
+    sort((n1,n2)=> n1.dateInNumber > n2.dateInNumber ? 1 : -1)
+
+
+  }
+
+
+  getUserDetails(userId) {
+
+
+     this.userDetailsModel = new UserDetailsModel()
+
+    this.userDetailsService.getUserDetails(userId).subscribe(value => {
+
+      if (value && value.length != 0) {
+        this.userDetailsModel.postNumber = value[4] as string
+        this.userDetailsModel.streetName = value[5] as string
+        this.userDetailsModel.apartmentNo = value[1] as string
+        this.userDetailsModel.telephoneNumber = value[6] as string
+        this.userDetailsModel.telephoneNumber = value[6] as string
+        this.userDetailsModel.firstName = value[2] as string
+        this.userDetailsModel.lastName = value[3] as string
+        this.userDetailsModel.address = value[0] as string
+      }
+      this.viewUserDetails = true
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  userDetailsModel: UserDetailsModel
+  viewUserDetails = false
+
 }

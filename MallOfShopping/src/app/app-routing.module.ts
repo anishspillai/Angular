@@ -9,6 +9,7 @@ import {OrderHistoryMainPageComponent} from "./order-view-main-page/order-histor
 import {UserDetailsMainPageComponent} from "./user-details-main-page/user-details-main-page.component";
 import {AddGroceriesComponent} from "./add-groceries/add-groceries.component";
 import {AdminOrderHistoryComponent} from "./admin-order-history/admin-order-history.component";
+import {OrderHistoryComponent} from "./order-history/order-history.component";
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'grocery-list', component: GroceryGridComponent },
   { path: '',   redirectTo: '/grocery-list', pathMatch: 'full' },
   { path: 'user-details', component: AddGroceriesComponent },
-  { path: 'order-history', component: AdminOrderHistoryComponent },
+  { path: 'order-history', component: OrderHistoryComponent },
   { path: 'log-in', component: SignInComponent },
   { path: 'order-confirmation', component: OrderConfirmationWizardComponent },
   { path: '**', component: PageNotFoundComponent }
