@@ -135,8 +135,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
   private sendOrderAcknowledgementMail() {
     const user = this.authService.getUserWithAllDetails()
     console.log("Getting user email " + user.email)
-    this.http.post("https://localhost:3000/api/sendEmail", {email: user.email}).subscribe(value => {
-        console.log(value)
+    this.http.post("http://localhost:3000/api/sendEmail", {email: user.email}).subscribe(value => {
+        //console.log(value)
         //this.displayThankYouDialog = true
       }
     )

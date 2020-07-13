@@ -6,6 +6,8 @@ const nodemailer = require("nodemailer");
 // create a new Express application instance
 const app = express();
 
+app.use(cors())
+
 //configure the Express middleware to accept CORS requests and parse request body into JSON
 app.use(bodyParser.json());
 
