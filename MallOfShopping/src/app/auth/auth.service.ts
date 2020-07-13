@@ -53,4 +53,8 @@ export class AuthService {
   getUser() : string {
     return localStorage.getItem('application_Id')
   }
+
+  getUserWithAllDetails(): User {
+    return this.user
+  }
 }

@@ -11,6 +11,8 @@ import {ErrorLogService} from "../error-log.service";
 import {GroceryCountService} from "../grocery-count.service";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
+import {AuthService} from "../auth/auth.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -43,7 +45,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
               private readonly activatedRoute: ActivatedRoute,
               private readonly errorLogService: ErrorLogService,
               private readonly groceryCountService: GroceryCountService,
-              private  readonly firestore: AngularFireDatabase
+              private  readonly firestore: AngularFireDatabase,
+              private readonly authService: AuthService,
+              private readonly http: HttpClient
               ) {
   }
 
@@ -91,6 +95,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
           //this.displayThankYouDialog = true
           this.updateCountOfGroceries()
           this.addDeliveryStatus(orderTimestamp, user)
+          this.sendOrderAcknowledgementMail()
         })
           .catch(err => {
             this.displayErrorDialog = true
@@ -125,5 +130,15 @@ export class OrderConfirmationWizardComponent implements OnInit{
     const deliveryDate = this.deliveryDate ? this.deliveryDate.getTime(): 0
     const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0, this.commentsFromCustomer)
     this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
+  }
+
+  private sendOrderAcknowledgementMail() {
+    const user = this.authService.getUserWithAllDetails()
+    console.log("Getting user email " + user.email)
+    this.http.post("https://localhost:3000/api/sendEmail", {email: user.email}).subscribe(value => {
+        console.log(value)
+        //this.displayThankYouDialog = true
+      }
+    )
   }
 }

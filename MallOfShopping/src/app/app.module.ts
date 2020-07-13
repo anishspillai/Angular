@@ -60,6 +60,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TimePickerComponent } from './time-picker/time-picker.component';
 import {CalendarModule} from "primeng/calendar";
 import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -119,10 +120,11 @@ import { PaymentOptionViewComponent } from './payment-option-view/payment-option
     CheckboxModule,
     DropdownModule,
     FontAwesomeModule,
-    CalendarModule
+    CalendarModule,
+    HttpClientModule
 
   ],
-  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService],
+  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
