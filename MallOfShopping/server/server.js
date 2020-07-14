@@ -8,6 +8,8 @@ const app = express();
 
 app.use(cors())
 
+app.options('*', cors())
+
 //configure the Express middleware to accept CORS requests and parse request body into JSON
 app.use(bodyParser.json());
 
@@ -18,6 +20,8 @@ app.listen(3000, () => {
 
 // define a sendmail endpoint, which will send emails and response with the corresponding status
 app.post("/api/sendEmail", (req, res) => {
+
+  res.set('Access-Control-Allow-Origin', '*');
 
   let user = req.body;
 
