@@ -66,6 +66,7 @@ export class AddGroceriesComponent   {
       {name: 'Paste & Pickle/Paste & Pickle', code: 'Baby Products/Body Care'},
       {name: 'Nuts & Dried Fruits/Nuts & Dried Fruits',code: 'Baby Products/Foods'},
       {name: 'Snacks/Snacks',code: 'Baby Products/Foods'},
+      {name: 'Rice/Matta (Rose)',code: 'Baby Products/Foods'},
     ];
   }
 
