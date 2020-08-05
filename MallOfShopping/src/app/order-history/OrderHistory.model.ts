@@ -9,11 +9,16 @@ export class OrderHistoryModel {
   orderKey: string
   userId: string
   dateInNumber: Number
-
 }
 
 export class AdminOrderHistories {
   userId: string
   orderHistory: OrderHistoryModel[] = []
   userDetails: UserDetailsModel
+}
+
+export class Anish {
+  currentTimestamp: number
+  order: Order[] = []
+  userId: string
 }

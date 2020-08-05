@@ -11,11 +11,28 @@ export class GroceryService {
   }
 
   placeOrderForTheUser(order: Order[], userId: string, currentTimeStamp: number) {
-    return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
+    //return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
+
+    const userData: UserData = new UserData()
+    userData.userId = userId
+    userData.currentTimestamp = currentTimeStamp
+    userData.order = order
+
+    return this.angularFireDatabase.object("/users/test/" + userId + currentTimeStamp).set(userData)
+
   }
 
   getOrderHistory(userId: string) {
-    return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
+    //return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
+
+    //return this.angularFireDatabase.list('users/order-lists/', ref => ref.limitToLast(10)).snapshotChanges()
+
+
+    //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").limitToLast(10)).snapshotChanges()
+
+    //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("userId").equalTo("aeErXZLzJwgtjfkBfnPjpGVVXes2")).snapshotChanges()
+
+    return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
   }
 
   getOrderHistoriesForAdmin() {
@@ -127,4 +144,10 @@ export class GroceryService {
         actualDeliveryDate: deliveryDate?.getTime(), deliveryStatus: deliveryStatus})
 
   }
+}
+
+export class UserData {
+  userId: string
+  currentTimestamp: number
+  order: Order[]
 }
