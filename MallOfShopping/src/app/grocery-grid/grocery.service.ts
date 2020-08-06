@@ -23,7 +23,7 @@ export class GroceryService {
   }
 
   getOrderHistory(userId: string) {
-    //return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
+    return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
 
     //return this.angularFireDatabase.list('users/order-lists/', ref => ref.limitToLast(10)).snapshotChanges()
 
@@ -32,7 +32,7 @@ export class GroceryService {
 
     //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("userId").equalTo("aeErXZLzJwgtjfkBfnPjpGVVXes2")).snapshotChanges()
 
-    return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
+    //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
   }
 
   getOrderHistoriesForAdmin() {

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
-import {AdminOrderHistories, Anish, OrderHistoryModel} from "./OrderHistory.model";
+import {AdminOrderHistories, OrderHistoryModel} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
 import {Order} from "../individual-grocery/model/Order";
@@ -83,30 +83,9 @@ export class OrderHistoryComponent  {
 
           value.forEach(childSnapshot => {
 
-            // @ts-ignore
-            let kooi: Anish = new Anish()
-            // @ts-ignore
-            kooi = childSnapshot.payload.val()
-
-
-            let anish: OrderHistoryModel = new OrderHistoryModel()
-            // @ts-ignore
-            anish.userId = childSnapshot.payload.val().userId
-            // @ts-ignore
-            anish.dateInNumber = childSnapshot.payload.val().currentTimestamp
-            // @ts-ignore
-            anish.orderHistory = childSnapshot.payload.val().order
-            anish.orderedTimestamp = this.getFormattedDateTime(parseInt(String(anish.dateInNumber)))
-            this.orderHistory.push(anish)
-
-
-
-            console.log('kooi is ' + JSON.stringify(anish.orderedTimestamp))
-            //console.log(JSON.stringify(childSnapshot.payload.val().userId))
-
 
 // @ts-ignore
-            /**childSnapshot.val().forEach(test => {
+            childSnapshot.payload.forEach(test => {
 
               let anish: OrderHistoryModel = new OrderHistoryModel()
 
@@ -119,19 +98,14 @@ export class OrderHistoryComponent  {
               const  orders: Order[] = []
 
 
-              let kooi: Anish = new Anish()
               // @ts-ignore
-              kooi = test.val()
-              console.log('kooi is ' + JSON.stringify(kooi))
-
-              // @ts-ignore
-              /**test.val().forEach(value => {
+              test.val().forEach(value => {
                 // @ts-ignore
                 orders.push(value)
               })
               anish.orderHistory = orders
               this.orderHistory.push(anish)
-            })*/
+            })
 
           })
 
