@@ -28,11 +28,11 @@ export class GroceryService {
     //return this.angularFireDatabase.list('users/order-lists/', ref => ref.limitToLast(10)).snapshotChanges()
 
 
-    //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").limitToLast(10)).snapshotChanges()
+    //return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("currentTimestamp").limitToLast(10)).snapshotChanges()
 
-    //return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("userId").equalTo("aeErXZLzJwgtjfkBfnPjpGVVXes2")).snapshotChanges()
+    //return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("userId").equalTo("aeErXZLzJwgtjfkBfnPjpGVVXes2")).snapshotChanges()
 
-    return this.angularFireDatabase.list('users/test/', ref => ref.orderByChild("currentTimestamp").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
+    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("orderPlacementTime").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
   }
 
   getOrderHistoriesForAdmin() {

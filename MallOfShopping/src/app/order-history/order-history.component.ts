@@ -79,7 +79,7 @@ export class OrderHistoryComponent  {
     if (true) {
 
       // @ts-ignore
-      this.groceryService.getOrderHistory(this._userId).subscribe(value => {
+      this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
 
           value.forEach(childSnapshot => {
 
@@ -99,47 +99,24 @@ export class OrderHistoryComponent  {
             anish.orderedTimestamp = this.getFormattedDateTime(parseInt(String(anish.dateInNumber)))
             this.orderHistory.push(anish)
 
-
-
-            console.log('kooi is ' + JSON.stringify(anish.orderedTimestamp))
-            //console.log(JSON.stringify(childSnapshot.payload.val().userId))
-
-
-// @ts-ignore
-            /**childSnapshot.val().forEach(test => {
-
-              let anish: OrderHistoryModel = new OrderHistoryModel()
-
-              anish.userId = childSnapshot.key
-
-              anish.orderKey= test.key
-              anish.dateInNumber = parseInt(test.key)
-              anish.orderedTimestamp = this.getFormattedDateTime(parseInt(test.key))
-
-              const  orders: Order[] = []
-
-
-              let kooi: Anish = new Anish()
-              // @ts-ignore
-              kooi = test.val()
-              console.log('kooi is ' + JSON.stringify(kooi))
-
-              // @ts-ignore
-              /**test.val().forEach(value => {
-                // @ts-ignore
-                orders.push(value)
-              })
-              anish.orderHistory = orders
-              this.orderHistory.push(anish)
-            })*/
+            this.groceryService.getDeliveryDateAndStatus(anish.userId, String(anish.dateInNumber)).subscribe(value => {
+              if (value && value.length != 0) {
+                console.log(JSON.stringify(value))
+                const orderDeliveryStatus = new OrderDeliveryStatus(value[3] as string, value[4] as number, value[0] as number,
+                  value[1] as string, value[2] as string)
+                anish.orderDeliveryStatus = orderDeliveryStatus
+              }
+            })
 
           })
-
-        this.filteredorderHistory = this.orderHistory
-
+          return of('')
+        }
+      )).subscribe(() => {
+          //this.orderHistory.reverse()
+          this.filteredorderHistory = this.orderHistory
         }
       )
-
+    }
 
     this.cols = [
       {field: 'groceryName', header: 'Brand Name', index: 1},
@@ -156,7 +133,7 @@ export class OrderHistoryComponent  {
       { header: 'Weight' },
       { header: 'Cost' }
     ];
-    }
+
   }
 
   getOrderHistories(user: string, orderHistory: OrderHistoryModel[]) {
