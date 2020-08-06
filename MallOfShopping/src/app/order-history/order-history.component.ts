@@ -55,17 +55,20 @@ export class OrderHistoryComponent implements OnInit {
             const orderHistoryComponent: OrderHistoryModel = new OrderHistoryModel()
 
             // @ts-ignore
-            childSnapshot.payload.val().forEach(value => {
+            //childSnapshot.payload.val().forEach(value => {
 
-              keyOfOrder = childSnapshot.key
+
+              keyOfOrder = childSnapshot.payload.val().orderPlacementTime
 
               orderHistoryComponent.orderKey = keyOfOrder
 
-              orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.key)),
+              // @ts-ignore
+            orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.payload.val().orderPlacementTime)),
                 'MMM d, y, h:mm:ss a')
 
-              orderHistoryComponent.orderHistory.push(value)
-            })
+            // @ts-ignore
+            orderHistoryComponent.orderHistory = childSnapshot.payload.val().order
+            //})
 
             this.orderHistory.push(orderHistoryComponent)
 
@@ -81,7 +84,9 @@ export class OrderHistoryComponent implements OnInit {
           })
         return of('')
         }
-      )).subscribe(() => console.log(""))
+      )).subscribe(() => {
+        this.orderHistory.reverse()
+      })
 
     }
 

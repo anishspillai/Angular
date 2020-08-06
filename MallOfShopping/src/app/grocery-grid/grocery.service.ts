@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import {Order} from "../individual-grocery/model/Order";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
-import {Observable} from "rxjs";
+import {OrderRequest} from "../individual-grocery/model/OrderRequest";
 
 @Injectable()
 export class GroceryService {
@@ -11,11 +11,20 @@ export class GroceryService {
   }
 
   placeOrderForTheUser(order: Order[], userId: string, currentTimeStamp: number) {
-    return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
+    //return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
+
+    const orderRequest: OrderRequest = new OrderRequest()
+    orderRequest.userId = userId
+    orderRequest.orderPlacementTime = currentTimeStamp
+    orderRequest.order = order
+
+    return this.angularFireDatabase.object("/users/order-history/" + userId + currentTimeStamp).set(orderRequest)
+
   }
 
   getOrderHistory(userId: string) {
-    return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
+    //return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
+    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("userId").equalTo(userId)).snapshotChanges()
   }
 
 
