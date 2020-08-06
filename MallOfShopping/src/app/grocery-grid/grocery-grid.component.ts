@@ -7,6 +7,7 @@ import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";
 import {ErrorLogService} from "../error-log.service";
+import {getOriginalReferences} from "@angular/compiler-cli/src/transformers/compiler_host";
 
 @Component({
   selector: 'app-grocery-grid',
@@ -110,9 +111,11 @@ export class GroceryGridComponent implements OnInit{
         URL = 'admin/Catagories/' + this.searchCategoryType
       }
 
-      this.firestore.list(URL).valueChanges().forEach(grocery => {
+      console.log(URL)
+      this.firestore.list(URL).snapshotChanges().forEach(grocery => {
         grocery.forEach(groceryUnit => {
-          const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
+          const individualGrocery: IndividualGrocery = groceryUnit.payload.val() as IndividualGrocery
+          individualGrocery.id = groceryUnit.key
           this.groceryList.push(individualGrocery)
         });
         window.scrollTo(0, 0)
