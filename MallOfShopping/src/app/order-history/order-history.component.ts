@@ -52,7 +52,10 @@ export class OrderHistoryComponent  {
   deliveryDate : Date
 
 
-  filteredDate : Date
+  startDate : Date
+
+  endDate : Date
+
 
   _userId = ""
 
@@ -76,8 +79,6 @@ export class OrderHistoryComponent  {
 
     this.orderHistory = []
 
-    if (true) {
-
       // @ts-ignore
       this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
 
@@ -93,16 +94,17 @@ export class OrderHistoryComponent  {
             // @ts-ignore
             anish.userId = childSnapshot.payload.val().userId
             // @ts-ignore
-            anish.dateInNumber = childSnapshot.payload.val().currentTimestamp
+            anish.dateInNumber = childSnapshot.payload.val().orderPlacementTime
             // @ts-ignore
             anish.orderHistory = childSnapshot.payload.val().order
-            anish.orderedTimestamp = this.getFormattedDateTime(parseInt(String(anish.dateInNumber)))
+            // @ts-ignore
+            anish.orderedTimestamp = this.getFormattedDateTime(childSnapshot.payload.val().orderPlacementTime)
             this.orderHistory.push(anish)
 
             this.groceryService.getDeliveryDateAndStatus(anish.userId, String(anish.dateInNumber)).subscribe(value => {
               if (value && value.length != 0) {
                 console.log(JSON.stringify(value))
-                const orderDeliveryStatus = new OrderDeliveryStatus(value[3] as string, value[4] as number, value[0] as number,
+                const orderDeliveryStatus = new OrderDeliveryStatus("", 0, 0,
                   value[1] as string, value[2] as string)
                 anish.orderDeliveryStatus = orderDeliveryStatus
               }
@@ -114,9 +116,10 @@ export class OrderHistoryComponent  {
       )).subscribe(() => {
           //this.orderHistory.reverse()
           this.filteredorderHistory = this.orderHistory
+        this.filteredorderHistory.reverse()
         }
       )
-    }
+
 
     this.cols = [
       {field: 'groceryName', header: 'Brand Name', index: 1},
@@ -247,20 +250,40 @@ export class OrderHistoryComponent  {
 
   filterData() {
 
-
-    let nextDay: Date = this.filteredDate
-    nextDay.setDate(this.filteredDate.getDate() + 1)
-
-    console.log(JSON.stringify(this.filteredDate))
-    console.log(JSON.stringify(nextDay))
-
-
-    this.filteredorderHistory = this.orderHistory.
-filter(value => value.dateInNumber >= this.filteredDate.getTime())
+this.filteredorderHistory = []
 
     // @ts-ignore
-    this.filteredorderHistory = this.filteredorderHistory.
-    sort((n1,n2)=> n1.dateInNumber > n2.dateInNumber ? 1 : -1)
+    this.groceryService.getOrderHistoryFilteredByDate(this.startDate.getTime(), this.endDate.getTime()).pipe(mergeMap(value => {
+
+        value.forEach(childSnapshot => {
+
+          let anish: OrderHistoryModel = new OrderHistoryModel()
+          // @ts-ignore
+          anish.userId = childSnapshot.payload.val().userId
+          // @ts-ignore
+          anish.dateInNumber = childSnapshot.payload.val().orderPlacementTime
+          // @ts-ignore
+          anish.orderHistory = childSnapshot.payload.val().order
+          anish.orderedTimestamp = this.getFormattedDateTime(parseInt(String(anish.dateInNumber)))
+          this.filteredorderHistory.push(anish)
+
+          this.groceryService.getDeliveryDateAndStatus(anish.userId, String(anish.dateInNumber)).subscribe(value => {
+            if (value && value.length != 0) {
+              // @ts-ignore
+              const orderDeliveryStatus = new OrderDeliveryStatus("", 0, 0, value[1].payload, "")
+              anish.orderDeliveryStatus = orderDeliveryStatus
+            }
+          })
+
+        })
+        return of('')
+      }
+    )).subscribe(() => {
+        //this.orderHistory.reverse()
+        this.filteredorderHistory.reverse()
+      }
+    )
+
 
 
   }

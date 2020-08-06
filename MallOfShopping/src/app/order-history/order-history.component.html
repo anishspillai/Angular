@@ -9,9 +9,16 @@
   </div>
 
 
-  <p-calendar [style]="{'width':'80%'}"
+  <p-calendar [style]="{'width':'30%'}"
               [inputStyle]="{'width':'80%'}"
-              [(ngModel)]="filteredDate"
+              [(ngModel)]="startDate"
+              showIcon =true>
+  </p-calendar>
+
+
+  <p-calendar [style]="{'width':'30%'}"
+              [inputStyle]="{'width':'80%'}"
+              [(ngModel)]="endDate"
               showIcon =true>
   </p-calendar>
 

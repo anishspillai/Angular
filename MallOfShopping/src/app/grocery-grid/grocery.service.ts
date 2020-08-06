@@ -35,6 +35,10 @@ export class GroceryService {
     return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("orderPlacementTime").startAt(1396666643441).endAt(2096666643441)).snapshotChanges()
   }
 
+  getOrderHistoryFilteredByDate(startTime: number, endTime: number) {
+    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("orderPlacementTime").startAt(startTime).endAt(endTime)).snapshotChanges()
+  }
+
   getOrderHistoriesForAdmin() {
     return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
   }
@@ -119,6 +123,7 @@ export class GroceryService {
   }
 
   getDeliveryDateAndStatus(userId: string, timestampKey: string) {
+    console.log(userId + ' ' + timestampKey)
     return this.angularFireDatabase.list("/users/delivery-status/" + userId + "/" + timestampKey).valueChanges()
   }
 
