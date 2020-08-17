@@ -8,9 +8,25 @@
 
     <div class="p-col-6" style="margin-top: 25px">
       <div class="ui-inputgroup">
+
+
+
         <input type="text" pInputText placeholder="Under Construction - Kindly wait until next release" [(ngModel)]="searchString"
-               style="width: 90%; border-radius: 25px">
+               style="width: 90%; border-radius: 25px" (ngModelChange)="valuechange($event)">
         <button pButton type="button" label="Find" style="border-radius: 25px" (click)="filterProduct()"></button>
+
+        <!--ais-instantsearch [config]="config">
+          <ais-search-box></ais-search-box>
+          <ais-hits>
+            <ng-template let-hits="hits">
+              <ol class="ais-Hits-list">
+                <li *ngFor="let hit of hits" class="ais-Hits-item">
+                  {{hit | json }}
+                </li>
+              </ol>
+            </ng-template>
+          </ais-hits>
+        </ais-instantsearch-->
       </div>
     </div>
 

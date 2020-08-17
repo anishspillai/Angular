@@ -62,6 +62,7 @@ import {CalendarModule} from "primeng/calendar";
 import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
 import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-history.component';
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
+import {NgAisModule} from "angular-instantsearch";
 
 @NgModule({
   declarations: [
@@ -123,7 +124,8 @@ import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
     DropdownModule,
     FontAwesomeModule,
     CalendarModule,
-    HttpClientModule
+    HttpClientModule,
+    NgAisModule.forRoot()
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],

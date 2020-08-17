@@ -10,6 +10,27 @@ export class GroceryService {
   constructor(private readonly angularFireDatabase: AngularFireDatabase) {
   }
 
+  createShoppingCart() {
+    //https://doorstep-groceries.firebaseapp.com/?category=bread
+    //https://github.com/kavalakuntla/Online-Grocery-Store
+    // https://codelabs.developers.google.com/codelabs/firebase-web/?fbclid=IwAR2FBNNmHcOdtYpkcDMFR8U0eMiEZVrbcksK8ej75kuxnA_JkpYdmCK_Qfg#0
+    return this.angularFireDatabase.list("/users/shopping-cart").push({dateCreated: new Date().getTime()}).key
+  }
+
+  addToTheShoppingCart(key: string, order: Order[]) {
+    //https://doorstep-groceries.firebaseapp.com/?category=bread
+    //https://github.com/kavalakuntla/Online-Grocery-Store
+    return this.angularFireDatabase.object("/users/shopping-cart/"+ key).set(order)
+  }
+
+  emptyShoppingCart(key: string) {
+    return this.angularFireDatabase.object("/users/shopping-cart/"+ key).remove()
+  }
+
+  getOrdersFromTheShoppingCart(key: string) {
+    return this.angularFireDatabase.list("/users/shopping-cart/"+ key).valueChanges()
+  }
+
   placeOrderForTheUser(order: Order[], userId: string, currentTimeStamp: number) {
     //return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
 

@@ -7,6 +7,14 @@ import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";
 import {ErrorLogService} from "../error-log.service";
+import algoliasearch from "algoliasearch/lite";
+import {SearchObservableServiceService} from "../search-observable-service.service";
+
+
+const searchClient = algoliasearch(
+  '7T3P8MD8DJ',
+  '2e0c7df916e5f6c5094e588bbac1fee7'
+);
 
 @Component({
   selector: 'app-grocery-grid',
@@ -15,13 +23,15 @@ import {ErrorLogService} from "../error-log.service";
 })
 export class GroceryGridComponent implements OnInit{
 
+  index = searchClient.initIndex("mallofgroceries")
+
   title = 'MallOfShopping';
   items: Observable<any[]>;
   groceryList: IndividualGrocery[] = [new IndividualGrocery()]
   nonFilteredList: IndividualGrocery[] = []
   orderedList: Order[] = []
   displayProgressSpinner = false
-  name: string;
+  name: string;a
   searchCategoryType: string
   isFishType = false
 
@@ -58,19 +68,37 @@ export class GroceryGridComponent implements OnInit{
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      this.fetchGroceries()
+      //this.fetchGroceries()
+      this.fetchAnish("")
+    })
+
+    this.search.getSearchObservable().subscribe(value => {
+      this.fetchAnish(value)
     })
   }
 
   constructor(private  readonly firestore: AngularFireDatabase,
               private activatedRoute: ActivatedRoute,
               private readonly groceryCountService: GroceryCountService,
-              private readonly errorLogService: ErrorLogService) {
+              private readonly errorLogService: ErrorLogService,
+              private readonly search: SearchObservableServiceService) {
   }
 
   filterProduct(searchString: string) {
     this.groceryList = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
   }
+
+  fetchAnish(searchInput: string) {
+// Search for a first name
+    if(searchInput && searchInput.length > 0) {
+      this.index.search(searchInput).then(({hits}) => {
+        this.groceryList = hits
+        console.log(JSON.stringify(hits))
+      });
+    } else {
+      this.fetchGroceries()
+    }
+    }
 
   fetchGroceries() {
   this.displayProgressSpinner = true

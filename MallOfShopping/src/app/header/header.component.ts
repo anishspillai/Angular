@@ -8,7 +8,13 @@ import {GroceryService} from "../grocery-grid/grocery.service";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {MenuItem} from "primeng/api";
 import {Menu} from "primeng/menu";
+import algoliasearch from "algoliasearch/lite";
+import {SearchObservableServiceService} from "../search-observable-service.service";
 
+const searchClient = algoliasearch(
+  '7T3P8MD8DJ',
+  '2e0c7df916e5f6c5094e588bbac1fee7'
+);
 
 @Component({
   selector: 'app-header',
@@ -27,12 +33,18 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[];
 
+  config = {
+    indexName: 'mallofgroceries',
+    searchClient
+  };
+
 
   constructor(private readonly router: Router,
               private readonly auth: AuthService,
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
-              private readonly breadCrumbService: BreadCrumbService) {
+              private readonly breadCrumbService: BreadCrumbService,
+              private readonly searchInput: SearchObservableServiceService) {
 
     this.menuItems = [
       {label: 'My Details', target: 'user-details'},
@@ -171,4 +183,7 @@ export class HeaderComponent implements OnInit {
     this.displayNavigator = false
   }
 
+  valuechange($event: any) {
+    this.searchInput.searchInputIs($event)
+  }
 }

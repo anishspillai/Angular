@@ -3,6 +3,7 @@ import {IndividualGrocery} from "./model/IndividualGrocery";
 import {Order} from "./model/Order";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {GroceryCountService} from "../grocery-count.service";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-individual-grocery',
@@ -28,11 +29,19 @@ export class IndividualGroceryComponent {
 
   @Input() isDesktopApplication = true
 
+  displayLoginPage = false
+
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
-              readonly groceryCountService: GroceryCountService) {
+              readonly groceryCountService: GroceryCountService,
+              private readonly authService: AuthService) {
   }
 
   addItemToCart() {
+
+    if(!this.authService.isLoggedIn) {
+      this.displayLoginPage = true
+      return
+    }
     this.isDisplayAddButton = this.isNotAddedIntoTheList()
 
     const order = Order.createThisObjectFromIndividualGrocerObject(this.individualGrocery)
