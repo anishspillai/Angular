@@ -1,11 +1,17 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Order} from "./individual-grocery/model/Order";
+import {GroceryService} from "./grocery-grid/grocery.service";
+import {AuthService} from "./auth/auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddGroceryToListObservableService {
+
+  constructor(private readonly groceryService: GroceryService,
+              private readonly authService: AuthService) {
+  }
 
   private _orders = new BehaviorSubject<Order[]>([])
   orders: Order[] = []
@@ -16,7 +22,8 @@ export class AddGroceryToListObservableService {
 
   emptyCart() {
     this.orders = []
-    this.notifySubscribers()
+    this.groceryService.emptyShoppingCart(this.authService.getUser()).catch(err => console.log(""))
+    this._orders.next(this.orders)
   }
 
   addGroceryToTheOrderList(order: Order) {
@@ -47,6 +54,19 @@ export class AddGroceryToListObservableService {
   }
 
   public notifySubscribers() {
+    this.groceryService.addToTheShoppingCart(this.authService.getUser(), this.orders).then(r => console.log(""))
+
     this._orders.next(this.orders)
+  }
+
+  public refillDataFromLocalStorageAndNotify() {
+    if(this.orders.length == 0 && this.authService.isLoggedIn) {
+      this.groceryService.getOrdersFromTheShoppingCart(this.authService.getUser()).subscribe(value => {
+        // @ts-ignore
+        this.orders = value
+        this._orders.next(this.orders)
+        }
+      )
+    }
   }
 }

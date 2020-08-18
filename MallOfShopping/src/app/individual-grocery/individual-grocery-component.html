@@ -190,3 +190,13 @@
   <div>{{getAlertMessage()}}</div>
 </p-dialog>
 
+
+
+<div *ngIf="displayLoginPage">
+  <app-sign-in
+    [loadLoginPage]="displayLoginPage"
+    (closeLoginDialogEvent)= "displayLoginPage = $event"
+    [isDesktopApplication]="isDesktopApplication"
+  >
+  </app-sign-in>
+</div>
