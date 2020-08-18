@@ -6,6 +6,7 @@ import * as CryptoJS from 'crypto-js';
 import { LZString } from './lz-string';
 import {AngularFireDatabase} from "@angular/fire/database";
 import {GroceryService} from "./grocery-grid/grocery.service";
+import {AuthService} from "./auth/auth.service";
 
 
 
@@ -14,7 +15,8 @@ import {GroceryService} from "./grocery-grid/grocery.service";
 })
 export class AddGroceryToListObservableService {
 
-  constructor(private readonly groceryService: GroceryService) {
+  constructor(private readonly groceryService: GroceryService,
+              private readonly authService: AuthService) {
   }
 
   private _orders = new BehaviorSubject<Order[]>([])
@@ -26,8 +28,7 @@ export class AddGroceryToListObservableService {
 
   emptyCart() {
     this.orders = []
-    this.groceryService.emptyShoppingCart(localStorage.getItem("cart_key")).then(r => console.log(""))
-    localStorage.removeItem("cart_key")
+    this.groceryService.emptyShoppingCart(this.authService.getUser()).then(r => console.log(""))
     this.notifySubscribers()
   }
 
@@ -60,21 +61,23 @@ export class AddGroceryToListObservableService {
 
   public notifySubscribers() {
 
-    const shoppingCartKey = localStorage.getItem("cart_key")
+    /**const shoppingCartKey = localStorage.getItem("cart_key")
     if(!shoppingCartKey) {
       let key = this.groceryService.createShoppingCart()
       localStorage.setItem("cart_key", key)
       this.groceryService.addToTheShoppingCart(key, this.orders).then(r => console.log(""))
     } else {
         this.groceryService.addToTheShoppingCart(shoppingCartKey, this.orders).then(r => console.log(""))
-    }
+    }*/
+
+    this.groceryService.addToTheShoppingCart(this.authService.getUser(), this.orders).then(r => console.log(""))
 
     this._orders.next(this.orders)
   }
 
   public refillDataFromLocalStorageAndNotify() {
     if(this.orders.length == 0) {
-      this.groceryService.getOrdersFromTheShoppingCart(localStorage.getItem("cart_key")).subscribe(value => {
+      this.groceryService.getOrdersFromTheShoppingCart(this.authService.getUser()).subscribe(value => {
         // @ts-ignore
         this.orders = value
         this._orders.next(this.orders)

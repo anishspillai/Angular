@@ -95,7 +95,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
           //this.displayThankYouDialog = true
           this.updateCountOfGroceries()
           this.addDeliveryStatus(orderTimestamp, user)
-          this.sendOrderAcknowledgementMail()
+          //this.sendOrderAcknowledgementMail()
+          this.emptyShoppingCart()
         })
           .catch(err => {
             this.displayErrorDialog = true
@@ -139,5 +140,10 @@ export class OrderConfirmationWizardComponent implements OnInit{
     const deliveryDate = this.deliveryDate ? this.deliveryDate.getTime(): 0
     const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0, this.commentsFromCustomer)
     this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
+  }
+
+  private emptyShoppingCart() {
+    this.groceryService.emptyShoppingCart(this.authService.getUser()).then(() =>
+      this.displayThankYouDialog = true)
   }
 }
