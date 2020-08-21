@@ -61,6 +61,7 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
 import {CalendarModule} from "primeng/calendar";
 import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {SlideMenuModule} from "primeng/slidemenu";
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     DropdownModule,
     FontAwesomeModule,
     CalendarModule,
-    HttpClientModule
+    HttpClientModule,
+    SlideMenuModule
 
   ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],

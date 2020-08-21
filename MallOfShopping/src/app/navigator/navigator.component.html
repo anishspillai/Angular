@@ -1,31 +1,28 @@
-<nav
-  style="height: 1500px; width: 260px; background-color:whitesmoke; border-radius: 4px; font-style: normal; padding-left: 10px">
+<nav style="width: 260px; background-color:whitesmoke; border-radius: 4px; font-style: normal">
   <ul>
+    <li *ngIf="!isMobileDevice"  class="p-menuitem-link" (click)="navigateToHomePage()">
+      <span class="pi pi-home"></span>
+      <span class="p-menuitem-text">&nbsp;Home Page</span>
+    </li>
+
     <div *ngFor="let item of menuItems">
-      <div *ngIf="item.items.length == 0">
-        <li class="border-list" (click)="navigateToGroceryMain(item)"> {{item.label}} </li>
+
+      <div *ngIf="item.items.length == 0"  class="p-menuitem-link" (click)="navigateToGroceryMain(item)">
+        <li  class="p-menuitem-link">
+          <span class="p-menuitem-text">{{item.label}}</span>
+        </li>
       </div>
 
       <div *ngIf="item.items.length != 0">
-
-
-        <li class="border-list" (click)="expandListBox(item.label)">
-          <div class="ui-inputgroup"><label style="text-align: center">{{item.label}} </label>
-            <i class="pi pi-chevron-circle-down"> </i></div>
+        <li (click)=" menu.toggle($event)" class="p-menuitem-link">
+          <span class="p-menuitem-text">{{item.label}}</span>
+          <span class="p-submenu-icon pi pi-fw pi-angle-right" *ngIf="item.items"></span>
+          <p-slideMenu #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}" [menuWidth]="260" [style]="{width: '260px', 'background-color':'#a0d2eb'}" [popup]="true" >
+          </p-slideMenu>
         </li>
-
-
-        <!-- https://stackoverflow.com/questions/56865814/angular-primeng-listbox-cross-label -->
-        <p-listbox *ngIf="displayDropDown(item.label)" [options]="item.items">
-          <ng-template let-subItem pTemplate="item">
-            <li  [style]="{'width': '100%','padding': '0', 'margin' : '0'}" (click)="navigateToGrocerySubMenu(item, subItem)">{{subItem.label}}</li>
-          </ng-template>
-
-        </p-listbox>
-
       </div>
+
     </div>
   </ul>
 </nav>
-
 
