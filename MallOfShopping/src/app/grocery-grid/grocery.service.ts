@@ -36,7 +36,7 @@ export class GroceryService {
   }
 
   getOrderHistoryFilteredByDate(startTime: number, endTime: number) {
-    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("orderPlacementTime").startAt(startTime).endAt(endTime)).snapshotChanges()
+    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("orderPlacementTime").startAt(startTime.toString()).endAt(endTime.toString())).snapshotChanges()
   }
 
   getOrderHistoriesForAdmin() {
