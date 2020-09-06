@@ -23,6 +23,7 @@ export class NavigatorComponent  {
 
   @Output() closeNavigationDialogForMobApp = new EventEmitter()
 
+  items: GroceryMenuItem[];
 
   constructor(
     private readonly navigatorService: NavigatorService,
@@ -35,27 +36,42 @@ export class NavigatorComponent  {
     this.fetchNavigationItems()
   }
 
+  getViewPort(item: GroceryMenuItem) {
+
+    if(item.items.length == 2) {
+      return item.items.length * 60
+    } else if (item.items.length == 1) {
+      return 80
+    }
+
+    return item.items.length * 50
+  }
+
+
+
   fetchNavigationItems(): void {
 
     this.navigatorService.fetchCategories().subscribe(snapshots => {
       snapshots.forEach(childSnapshot => {
-        // key will be "ada" the first time and "alan" the second time
-        var key = childSnapshot.key;
-        // childData will be the actual contents of the child
-        var childData = childSnapshot.payload;
 
+        const childData = childSnapshot.payload;
 
         if (!Array.isArray(childData.val())) {
-
           let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.val())
+          menuItem.items = []
           this.menuItems.push(menuItem)
         } else {
           {
             let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.key)
+            menuItem.routerLink = "grocery-list"
+            const queryParam =  'groceryType=' + menuItem.label
+            menuItem.queryParams = [queryParam]
             this.menuSubItems = []
             childData.val().forEach(childData => {
-              let menuItem: GroceryMenuItem = new GroceryMenuItem(childData)
-              this.menuSubItems.push(menuItem)
+              let subMenuItem: GroceryMenuItem = new GroceryMenuItem(childData)
+              subMenuItem.routerLink = "grocery-list"
+              subMenuItem.queryParams = {'groceryType': subMenuItem.label , 'subMenu': 'true'}
+              this.menuSubItems.push(subMenuItem)
             })
             menuItem.items = this.menuSubItems
             this.menuItems.push(menuItem)
@@ -82,8 +98,8 @@ export class NavigatorComponent  {
     }
 
 
-    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}})
-    this.breadCrumbService.updateBreadCrumb([{label: item.label}])
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label}})
+    //this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 
   navigateToGrocerySubMenu(item: GroceryMenuItem, subItem) {
@@ -93,7 +109,7 @@ export class NavigatorComponent  {
     }
 
     this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}})
-    this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
+    //this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
 
   expandListBox(label: string) {
@@ -116,4 +132,7 @@ export class NavigatorComponent  {
   }
 
 
+  navigateToHomePage() {
+    this.router.navigate(['/grocery-list'])
+  }
 }

@@ -150,9 +150,3 @@ export class GroceryService {
 
   }
 }
-
-export class UserData {
-  userId: string
-  currentTimestamp: number
-  order: Order[]
-}
