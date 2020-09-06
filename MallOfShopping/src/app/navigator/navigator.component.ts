@@ -70,7 +70,7 @@ export class NavigatorComponent  {
             childData.val().forEach(childData => {
               let subMenuItem: GroceryMenuItem = new GroceryMenuItem(childData)
               subMenuItem.routerLink = "grocery-list"
-              subMenuItem.queryParams = {'groceryType' : menuItem.label + '/' + subMenuItem.label}
+              subMenuItem.queryParams = {'groceryType': subMenuItem.label , 'subMenu': 'true'}
               this.menuSubItems.push(subMenuItem)
             })
             menuItem.items = this.menuSubItems
@@ -98,7 +98,7 @@ export class NavigatorComponent  {
     }
 
 
-    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + item.label}})
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label}})
     //this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 

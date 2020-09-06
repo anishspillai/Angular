@@ -58,7 +58,8 @@ export class GroceryGridComponent implements OnInit{
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      this.fetchGroceries()
+      const isSubcategory = params.get("subMenu")
+      this.fetchGroceries(isSubcategory)
     })
   }
 
@@ -72,12 +73,12 @@ export class GroceryGridComponent implements OnInit{
     this.groceryList = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
   }
 
-  fetchGroceries() {
+  fetchGroceries(isSubcategory: string) {
   this.displayProgressSpinner = true
   this.groceryList = []
     if(!this.searchCategoryType) {
 
-      this.firestore.list('admin/Campaign').valueChanges().forEach(grocery => {
+      this.firestore.list('admin/Products', ref => ref.orderByChild("isCampaign").equalTo(true)).valueChanges().forEach(grocery => {
         grocery.forEach(individualGrocery => {
           const individualGroc: IndividualGrocery = individualGrocery as IndividualGrocery
           this.groceryList.push(individualGroc)
@@ -110,7 +111,9 @@ export class GroceryGridComponent implements OnInit{
         URL = 'admin/Catagories/' + this.searchCategoryType
       }
 
-      this.firestore.list(URL).valueChanges().forEach(grocery => {
+      const SEARCH_TYPE = isSubcategory ? "subCatagory" : "catagory"
+
+      this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).valueChanges().forEach(grocery => {
         grocery.forEach(groceryUnit => {
           const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
           this.groceryList.push(individualGrocery)
@@ -122,5 +125,4 @@ export class GroceryGridComponent implements OnInit{
       )
      }
   }
-
 }
