@@ -74,19 +74,26 @@ export class GroceryGridComponent implements OnInit{
   }
 
   fetchGroceries(isSubcategory: string) {
-    this.displayProgressSpinner = true
-    this.groceryList = []
+  this.displayProgressSpinner = true
+  this.groceryList = []
     if(!this.searchCategoryType) {
 
-      this.firestore.list('admin/Products', ref => ref.orderByChild("isCampaign").equalTo(true)).valueChanges().forEach(grocery => {
-        grocery.forEach(individualGrocery => {
-          const individualGroc: IndividualGrocery = individualGrocery as IndividualGrocery
-          this.groceryList.push(individualGroc)
-        })
-        this.displayProgressSpinner = false
-      }).catch(reason => {
-        this.errorLogService.logErrorMessage('Admin', reason)
-      })
+      this.firestore.list('admin/Products', ref => ref.orderByChild("isCampaign").equalTo(true)).snapshotChanges().subscribe(value => {
+          value.forEach(dataSnapshot => {
+              // @ts-ignore
+              const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
+              individualGrocery.id = dataSnapshot.key
+              this.groceryList.push(individualGrocery)
+            }
+
+          )
+
+          window.scrollTo(0, 0)
+          this.displayProgressSpinner = false
+        }, error => {
+          this.errorLogService.logErrorMessage('Admin', error)
+        }
+      )
 
       /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
           for (let val of Object.values(value1)) {
@@ -98,7 +105,7 @@ export class GroceryGridComponent implements OnInit{
           }
           this.displayProgressSpinner = false
         }
-       )).then(r => console.log(r))*/
+      )).then(r => console.log(r))*/
 
     } else {
       let URL: string
@@ -113,7 +120,24 @@ export class GroceryGridComponent implements OnInit{
 
       const SEARCH_TYPE = isSubcategory ? "subCatagory" : "catagory"
 
-      this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).valueChanges().forEach(grocery => {
+      this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
+        value.forEach(dataSnapshot => {
+            // @ts-ignore
+          const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
+          individualGrocery.id = dataSnapshot.key
+          this.groceryList.push(individualGrocery)
+          }
+
+        )
+
+          window.scrollTo(0, 0)
+          this.displayProgressSpinner = false
+    }, error => {
+        this.errorLogService.logErrorMessage('Admin', error)
+        }
+      )
+
+      /**this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).valueChanges().forEach(grocery => {
         grocery.forEach(groceryUnit => {
           const individualGrocery: IndividualGrocery = groceryUnit as IndividualGrocery
           this.groceryList.push(individualGrocery)
@@ -122,7 +146,8 @@ export class GroceryGridComponent implements OnInit{
         this.displayProgressSpinner = false
       }).catch(reason =>
         this.errorLogService.logErrorMessage('Admin', reason)
-      )
-    }
+      )*/
+
+     }
   }
 }
