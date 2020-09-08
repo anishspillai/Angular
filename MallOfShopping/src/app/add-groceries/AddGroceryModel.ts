@@ -14,7 +14,13 @@ export class AddGroceryModel {
     public type = "Taj Mahal",
     public unitOfWeight = "Grams",
     public weight = "900",
-    public dbPath: string =""
+    public dbPath: string ="",
+    public catagory  =  "",
+    public subCatagory = "",
+    public isCampaign = false,
+    public isFastMoving = false,
+    public description = ""
+
   ) {
   }
 }

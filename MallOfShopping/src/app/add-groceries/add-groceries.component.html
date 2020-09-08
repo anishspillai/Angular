@@ -1,5 +1,5 @@
 <div>ActualPrice</div>
-<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.actualPrice"/>
+<input pInputText type="number" size="100" [(ngModel)]="addGroceryModel.actualPrice"/>
 <br>
 <br>
 
@@ -47,13 +47,28 @@ maxShoppingIsRestricted
 <br><br>
 <div>weight</div>
 <input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.weight" placeholder="Required"/>
+<br><br>
+<div>catagory</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.catagory" placeholder="Required"/>
+<br><br>
+<div>subCatagory</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.subCatagory" placeholder="Required"/>
+<br><br>
+<div>isCampaign</div>
+<input pInputText type="text" size="100" [(ngModel)]="isCampaign" placeholder="Required"/>
+<br><br>
+<div>isFastMoving</div>
+<input pInputText type="text" size="100" [(ngModel)]="isFastMoving" placeholder="Required"/>
+<br><br>
+<div>description</div>
+<input pInputText type="text" size="100" [(ngModel)]="addGroceryModel.description" placeholder="Required"/>
 
 <br><br>
 <br><br>
 
 <div>DATABASE PATH</div>
 <!--input pInputText size="100" type="text" [(ngModel)]="dbPath" placeholder="Required"/-->
-<p-dropdown [options]="menuItems" [(ngModel)]="selectedPath" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown>
+<!--p-dropdown [options]="menuItems" [(ngModel)]="selectedPath" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown-->
 
 <button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
         (click)="save()"></button>

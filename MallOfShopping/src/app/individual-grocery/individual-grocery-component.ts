@@ -28,6 +28,12 @@ export class IndividualGroceryComponent {
 
   @Input() isDesktopApplication = true
 
+  updateItem = false
+
+  countOfItems: string
+
+  newPrice: string
+
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
               readonly groceryCountService: GroceryCountService) {
   }
@@ -38,6 +44,12 @@ export class IndividualGroceryComponent {
     const order = Order.createThisObjectFromIndividualGrocerObject(this.individualGrocery)
 
     this.addGroceryToListObservableService.addGroceryToTheOrderList(order)
+  }
+
+
+
+  updateThisItem() {
+    this.updateItem  =true
   }
 
   getOrders() {
@@ -112,5 +124,33 @@ export class IndividualGroceryComponent {
     return this.addGroceryToListObservableService.orders.length
 
     return 100
+  }
+
+  makeTheItemInStock() {
+    this.groceryCountService.updateCountOfGrocery(this.individualGrocery.id, Number(this.countOfItems))
+    this.updateItem = false
+
+  }
+
+  makeTheItemOutOfStock() {
+    this.groceryCountService.updateCountOfGrocery(this.individualGrocery.id, 0)
+    this.updateItem = false
+  }
+
+  setThePriceForTheItem() {
+    this.groceryCountService.setPriceForTheGrocerItem(this.individualGrocery.id, Number(this.newPrice))
+    this.updateItem = false
+  }
+
+  newWeight
+  setNewWeight() {
+    this.groceryCountService.setNewWeight(this.individualGrocery.id, this.newWeight)
+    this.updateItem = false
+  }
+
+  deleteMe() {
+    this.groceryCountService.deleteMe(this.individualGrocery.id)
+    this.updateItem = false
+
   }
 }

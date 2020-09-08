@@ -59,6 +59,9 @@
       <button *ngIf="groceryCountService.isStockAvailable(individualGrocery.id)" pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
               (click)="addItemToCart()">
       </button>
+      <button pButton type="button" label="Update Me" class="ui-button-rounded ui-button-danger"
+              (click)="updateThisItem()">
+      </button>
 
 
       <button *ngIf="!groceryCountService.isStockAvailable(individualGrocery.id)" pButton type="button" label="Out of Stock!" class="ui-button-rounded ui-button-danger"
@@ -135,6 +138,14 @@
           <div *ngIf="isDisplayAddButton" style="text-align:center; padding-top: 10px">
             <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
                       (click)="addItemToCart()"></p-button>
+
+
+            <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
+                      (click)="addItemToCart()"></p-button>
+          </div>
+          <div *ngIf="isDisplayAddButton" style="text-align:center; padding-top: 10px">
+            <p-button icon="pi pi-check" iconPos="right" label="Add To Cart" class="ui-button-success"
+                      (click)="addItemToCart()"></p-button>
           </div>
 
           <div *ngIf="!isDisplayAddButton" class="ui-inputgroup">
@@ -189,4 +200,56 @@
           [(visible)]="displayMaxShoppingAlert" header="Information Message">
   <div>{{getAlertMessage()}}</div>
 </p-dialog>
+
+
+
+<p-dialog *ngIf="updateItem"
+          [(visible)]="updateItem" header="Information Message" style="width: 600px">
+
+  Update the stock <br>
+
+  <input type="text" placeholder="New Count" pInputText [(ngModel)]="countOfItems">
+
+  <button pButton type="button" icon="pi pi-plus" label="Bring back to Stock" class="ui-button-success"
+          (click)="makeTheItemInStock()"></button>
+  <br>
+
+  <button pButton type="button" icon="pi pi-minus"  label="Out of stock" class="ui-button-danger"
+          (click)="makeTheItemOutOfStock()"></button>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <input type="text" pInputText [(ngModel)]="newPrice">
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Price" class="ui-button-info"
+          (click)="setThePriceForTheItem()"></button> <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <input type="text" pInputText [(ngModel)]="newWeight">
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Weight" class="ui-button-warning"
+          (click)="setNewWeight()"></button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <button pButton type="button" icon="pi pi-plus" label="Delete Me" class="ui-button-danger"
+          (click)="deleteMe()"></button>
+
+
+</p-dialog>
+
 

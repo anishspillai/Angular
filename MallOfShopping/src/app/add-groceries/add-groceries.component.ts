@@ -20,6 +20,9 @@ export class AddGroceriesComponent   {
 
   selectedPath: DBMenu
 
+  isCampaign = "No"
+  isFastMoving: "No"
+
 
 
   constructor(private  readonly firestore: AngularFireDatabase) {
@@ -74,10 +77,12 @@ export class AddGroceriesComponent   {
 
     //this.addGroceryModel.dbPath = this.selectedPath.name
 
-    const  list = this.firestore.list('admin/Catagories/' + this.selectedPath.name)
-    console.log('admin/Catagories/' + this.selectedPath.name)
+    const  list = this.firestore.list('admin/Products/')
+    this.addGroceryModel.isCampaign = this.isCampaign === "Yes" ? true : false
+    // @ts-ignore
+    this.addGroceryModel.isFastMoving = "Yes" === this.isFastMoving ? true : false
+    console.log(JSON.stringify(this.addGroceryModel))
     list.push( this.addGroceryModel )
-    console.log(this.addGroceryModel)
 
     /**const  list = this.firestore.list('stock_count/')
 
