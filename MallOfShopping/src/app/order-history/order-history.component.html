@@ -35,7 +35,9 @@
 
 
       <button pButton (click)="getUserDetails(oh.userId)" class="ui-button-danger" label="UserDetails"></button>
-      {{oh.userId}}
+      {{oh.userId}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <button pButton (click)="setAtDelivered(oh)" class="ui-button-success" label="Set As Delivered"></button>
 
       <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"

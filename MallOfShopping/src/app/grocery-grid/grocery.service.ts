@@ -3,6 +3,7 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import {Order} from "../individual-grocery/model/Order";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {Observable} from "rxjs";
+import {OrderHistoryModel} from "../order-history/OrderHistory.model";
 
 @Injectable()
 export class GroceryService {
@@ -13,12 +14,13 @@ export class GroceryService {
   placeOrderForTheUser(order: Order[], userId: string, currentTimeStamp: number) {
     //return this.angularFireDatabase.object("/users/order-lists/" + userId + "/" + currentTimeStamp).set(order)
 
-    const userData: UserData = new UserData()
-    userData.userId = userId
-    userData.currentTimestamp = currentTimeStamp
-    userData.order = order
+    /**const orderRequest: OrderRequest = new OrderRequest()
+    orderRequest.userId = userId
+    orderRequest.orderPlacementTime = currentTimeStamp
+    orderRequest.order = order
+    orderRequest.deliveryStatus = 0*/
 
-    return this.angularFireDatabase.object("/users/test/" + userId + currentTimeStamp).set(userData)
+    return this.angularFireDatabase.object("/users/order-history/" + userId + currentTimeStamp).set(null)
 
   }
 
@@ -148,5 +150,9 @@ export class GroceryService {
       .update({ commentsFromMallOfGroceries: commentsFromMallOfGroceries,
         actualDeliveryDate: deliveryDate?.getTime(), deliveryStatus: deliveryStatus})
 
+  }
+
+  setAsDelivered(orderKey) {
+     this.angularFireDatabase.database.ref('users/order-history/' + orderKey).update({deliveryStatus: 1}).then(r => console.log(r))
   }
 }

@@ -99,6 +99,9 @@ export class OrderHistoryComponent  {
             anish.orderHistory = childSnapshot.payload.val().order
             // @ts-ignore
             anish.orderedTimestamp = this.getFormattedDateTime(childSnapshot.payload.val().orderPlacementTime)
+
+            anish.orderKey = childSnapshot.key
+
             this.orderHistory.push(anish)
 
             this.groceryService.getDeliveryDateAndStatus(anish.userId, String(anish.dateInNumber)).subscribe(value => {
@@ -315,4 +318,7 @@ this.filteredorderHistory = []
   userDetailsModel: UserDetailsModel
   viewUserDetails = false
 
+  setAtDelivered(oh: OrderHistoryModel) {
+this.groceryService.setAsDelivered(oh.orderKey)
+  }
 }
