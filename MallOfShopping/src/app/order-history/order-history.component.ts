@@ -160,6 +160,7 @@ export class OrderHistoryComponent implements OnInit {
   populateCartWithThisOrder(): void {
     localStorage.setItem("crypto_vadakkedathu", this.currentHistoryModel.orderKey)
     this.addGroceryToListObservableService.populateCartFromTheHistory(this.currentHistoryModel.orderHistory)
+    this.editExistingOrder = false
   }
 
   enableEditingExistingOrder(oh: OrderHistoryModel) {

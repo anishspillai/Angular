@@ -116,7 +116,14 @@
     </div>
 
       <div id="content-mobile">
-      <p-accordionTab  header={{oh.orderedTimestamp}} style="display: block">
+      <p-accordionTab>
+
+        <p-header >
+          <span>{{oh.orderedTimestamp}}</span>  &nbsp;
+
+          <i class="pi pi-user-edit" style="color: green" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></i>
+        </p-header>
+
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
 
