@@ -36,11 +36,21 @@ export class GroceryService {
 
     const orderRequest: OrderRequest = new OrderRequest()
     orderRequest.userId = userId
-    orderRequest.orderPlacementTime = currentTimeStamp
     orderRequest.order = order
     orderRequest.deliveryStatus = 0
 
-    return this.angularFireDatabase.object("/users/order-history/" + userId + currentTimeStamp).set(orderRequest)
+    let timeStampForExistingOrder: string = localStorage.getItem("crypto_vadakkedathu")
+    let orderKey;
+    if(timeStampForExistingOrder) {
+      orderKey = userId + timeStampForExistingOrder
+      orderRequest.orderPlacementTime = timeStampForExistingOrder
+      localStorage.removeItem("crypto_vadakkedathu")
+    } else {
+      orderKey = userId + currentTimeStamp
+      orderRequest.orderPlacementTime = currentTimeStamp.toString()
+    }
+
+    return this.angularFireDatabase.object("/users/order-history/" + orderKey).set(orderRequest)
 
   }
 

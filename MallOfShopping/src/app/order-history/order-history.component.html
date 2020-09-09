@@ -11,7 +11,13 @@
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
     <div *ngFor="let oh of orderHistory">
     <div id="content-desktop">
-      <p-accordionTab header={{oh.orderedTimestamp}}>
+      <p-accordionTab>
+
+        <p-header >
+          <span>{{oh.orderedTimestamp}}</span>  &nbsp;
+          <button [disabled]="oh.deliveryStatus === 1" class="ui-button-warning ui-button-rounded" pButton type="button"  label="Update Orders" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
+        </p-header>
+
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
 
@@ -242,5 +248,21 @@
   <p-footer>
     <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
             (click)="viewDeliveryScheduleView=false" label="Cancel" class="ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
+
+
+<p-dialog [(visible)]="editExistingOrder"
+          [baseZIndex]="10000"
+          header="Edit Undelivered Order"
+          [resizable]="true">
+
+
+  Are you sure you want to edit this order?
+
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px" (click)="editExistingOrder=false" label="No" class="ui-button-danger"></button>
+    <button type="button" pButton icon="pi pi-check" style="border-radius: 25px" (click)="populateCartWithThisOrder()" label="Yes" class="ui-button-success"></button>
   </p-footer>
 </p-dialog>

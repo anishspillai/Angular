@@ -69,4 +69,9 @@ export class AddGroceryToListObservableService {
       )
     }
   }
+
+  public populateCartFromTheHistory(ordersFromTheHistory: Order[]) {
+    this.orders = ordersFromTheHistory
+    this._orders.next(this.orders)
+  }
 }

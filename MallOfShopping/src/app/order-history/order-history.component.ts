@@ -7,6 +7,7 @@ import {Order} from "../individual-grocery/model/Order";
 import {mergeMap} from "rxjs/operators";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {of} from "rxjs";
+import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 
 @Component({
   selector: 'app-order-history',
@@ -34,11 +35,14 @@ export class OrderHistoryComponent implements OnInit {
 
   viewDeliveryScheduleView = false
 
+  editExistingOrder = false
+
   currentHistoryModel: OrderHistoryModel
 
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
-              private readonly datePipe: DatePipe) {
+              private readonly datePipe: DatePipe,
+              private readonly addGroceryToListObservableService: AddGroceryToListObservableService) {
   }
 
   ngOnInit() {
@@ -58,16 +62,19 @@ export class OrderHistoryComponent implements OnInit {
             //childSnapshot.payload.val().forEach(value => {
 
 
-              keyOfOrder = childSnapshot.payload.val().orderPlacementTime
+            keyOfOrder = childSnapshot.payload.val().orderPlacementTime
 
-              orderHistoryComponent.orderKey = keyOfOrder
+            orderHistoryComponent.orderKey = keyOfOrder
 
-              // @ts-ignore
+            // @ts-ignore
             orderHistoryComponent.orderedTimestamp = this.datePipe.transform(new Date(parseInt(childSnapshot.payload.val().orderPlacementTime)),
-                'MMM d, y, h:mm:ss a')
+              'MMM d, y, h:mm:ss a')
 
             // @ts-ignore
             orderHistoryComponent.orderHistory = childSnapshot.payload.val().order
+
+            // @ts-ignore
+            orderHistoryComponent.deliveryStatus = childSnapshot.payload.val().deliveryStatus
             //})
 
             this.orderHistory.push(orderHistoryComponent)
@@ -79,10 +86,10 @@ export class OrderHistoryComponent implements OnInit {
                   value[1] as string, value[2] as string)
                 orderHistoryComponent.orderDeliveryStatus = orderDeliveryStatus
               }
-          })
+            })
 
           })
-        return of('')
+          return of('')
         }
       )).subscribe(() => {
         this.orderHistory.reverse()
@@ -101,9 +108,9 @@ export class OrderHistoryComponent implements OnInit {
 
 
     this.cols_mobile_apps = [
-      { header: 'Order' },
-      { header: 'Weight' },
-      { header: 'Cost' }
+      {header: 'Order'},
+      {header: 'Weight'},
+      {header: 'Cost'}
     ];
 
   }
@@ -142,11 +149,21 @@ export class OrderHistoryComponent implements OnInit {
     this.groceryService.updateUserComments(user, this.currentHistoryModel.orderKey, this.commentsFromCustomer).then(() => this.enableEditComment = false)
   }
 
-  getFormattedDateTime(dateTimeInNumberFormat: number) : string {
-    if(!dateTimeInNumberFormat || dateTimeInNumberFormat === 0) {
+  getFormattedDateTime(dateTimeInNumberFormat: number): string {
+    if (!dateTimeInNumberFormat || dateTimeInNumberFormat === 0) {
       return "No proposal date and time"
     }
-   return  this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
+    return this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
       'MMM d, y, h:mm:ss a')
+  }
+
+  populateCartWithThisOrder(): void {
+    localStorage.setItem("crypto_vadakkedathu", this.currentHistoryModel.orderKey)
+    this.addGroceryToListObservableService.populateCartFromTheHistory(this.currentHistoryModel.orderHistory)
+  }
+
+  enableEditingExistingOrder(oh: OrderHistoryModel) {
+    this.currentHistoryModel = oh
+    this.editExistingOrder = true
   }
 }

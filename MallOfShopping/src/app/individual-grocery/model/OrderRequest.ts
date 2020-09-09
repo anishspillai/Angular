@@ -2,7 +2,7 @@ import {Order} from "./Order";
 
 export class OrderRequest {
   userId: string
-  orderPlacementTime: number
+  orderPlacementTime: string
   order: Order[]
   deliveryStatus: number
 }
