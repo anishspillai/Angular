@@ -10,7 +10,7 @@ export class NavigatorService {
   }
 
   fetchCategories(): any {
-   return this.firestore.list('admin/SearchCatagory').snapshotChanges()
+   return this.firestore.list('admin/Product_Catagory').snapshotChanges()
   //  return null
   }
 
