@@ -65,4 +65,10 @@ export class GroceryCountService {
   deleteMe(id) {
     const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).remove()
   }
+
+  setSubCatagory(id: string, subCatagory: any) {
+    const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+      subCatagory: subCatagory
+    })
+  }
 }

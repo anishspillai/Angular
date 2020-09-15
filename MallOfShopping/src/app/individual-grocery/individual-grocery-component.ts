@@ -34,6 +34,8 @@ export class IndividualGroceryComponent {
 
   newPrice: string
 
+  subCatagory: string = "Seasoning Mix"
+
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
               readonly groceryCountService: GroceryCountService) {
   }
@@ -150,6 +152,12 @@ export class IndividualGroceryComponent {
 
   deleteMe() {
     this.groceryCountService.deleteMe(this.individualGrocery.id)
+    this.updateItem = false
+
+  }
+
+  updateSubCatagory() {
+    this.groceryCountService.setSubCatagory(this.individualGrocery.id, this.subCatagory)
     this.updateItem = false
 
   }
