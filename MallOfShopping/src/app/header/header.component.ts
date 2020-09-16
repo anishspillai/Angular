@@ -184,6 +184,6 @@ export class HeaderComponent implements OnInit {
   }
 
   valuechange($event: any) {
-    this.searchInput.searchInputIs($event)
+    //this.searchInput.searchInputIs($event)
   }
 }

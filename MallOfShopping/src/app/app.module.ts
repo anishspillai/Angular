@@ -63,6 +63,7 @@ import { PaymentOptionViewComponent } from './payment-option-view/payment-option
 import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-history.component';
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {NgAisModule} from "angular-instantsearch";
+import {SearchObservableServiceService} from "./search-observable-service.service";
 
 @NgModule({
   declarations: [
@@ -128,7 +129,7 @@ import {NgAisModule} from "angular-instantsearch";
     NgAisModule.forRoot()
 
   ],
-  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],
+  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, SearchObservableServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
