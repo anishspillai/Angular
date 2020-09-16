@@ -1,4 +1,4 @@
-<nav style="width: 260px; background-color:whitesmoke; border-radius: 4px; font-style: normal">
+<nav style="width: 260px; border-radius: 4px; font-style: normal">
   <ul>
     <li *ngIf="!isMobileDevice"  class="p-menuitem-link" (click)="navigateToHomePage()">
       <span class="pi pi-home"></span>
@@ -17,7 +17,7 @@
         <li (click)=" menu.toggle($event)" class="p-menuitem-link">
           <span class="p-menuitem-text">{{item.label}}</span>
           <span class="p-submenu-icon pi pi-fw pi-angle-right" *ngIf="item.items"></span>
-          <p-slideMenu #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}" [menuWidth]="260" [style]="{width: '260px', 'background-color':'#a0d2eb'}" [popup]="true" >
+          <p-slideMenu appendTo="body" #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}" [menuWidth]="260" [style]="{width: '260px', 'background-color':'gray'}" [popup]="true" >
           </p-slideMenu>
         </li>
       </div>

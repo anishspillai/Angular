@@ -1,73 +1,21 @@
 <app-header></app-header>
 
-<!--div style="display: flex">
-<app-landing-page></app-landing-page>
 
-<app-bread-crumb></app-bread-crumb>
-
-<div class="p-grid ui-g-12 ui-md-2">
+<div *ngIf="isDesktopDevice" class="sidenav" style="background: lightgrey">
   <app-navigator></app-navigator>
 </div>
 
-<div class="p-grid ui-g-12 ui-md-10" style="float: right;">
+<div *ngIf="isDesktopDevice" class="main">
   <router-outlet></router-outlet>
 </div>
-</div-->
 
-
-<div class="p-grid p-dir-col">
-  <div id="content-desktop">
-    <div *ngIf="isDesktopDevice" class="p-col-12">
-      <app-landing-page></app-landing-page>
-    </div>
-
-    <!--div class="holder">
-      <div class="news">Coming soon!!!. Wanna eat yummy veg & non-veg food? We will deliver your order from The South Indian Restaurant</div>
-    </div>
-
-    <div *ngIf="isDesktopDevice" class="p-col">
-      <div class="box">
-        <app-bread-crumb></app-bread-crumb>
-      </div-->
-      <!--div class="p-grid">
-        <div class="p-col-6">
-          <div class="box"><app-bread-crumb></app-bread-crumb></div>
-        </div>
-        <div class="p-col-6">
-          <div>
-            <app-fish-view-button [isDesktopDevice]="true"></app-fish-view-button>
-          </div>
-        </div>
-      </div-->
-    <!--/div-->
-  </div>
-
-  <div class="p-col">
-    <div class="box">
-
-      <div *ngIf="isDesktopDevice" class="p-grid ui-g-12 ui-md-2">
-        <app-navigator></app-navigator>
-      </div>
-
-      <div *ngIf="isDesktopDevice" class="p-grid ui-g-12 ui-md-1">
-
-        <i *ngIf="displayScrollToTop" onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTop"></i>
-        <i class="footer pi pi-info" (click)="displayInfoDialog = true"></i>
-
-      </div>
-
-      <div class="p-grid ui-g-12 ui-md-9" style="float: right;">
-        <router-outlet></router-outlet>
-
-        <div id="content-mobile">
-          <i class="footerInfo pi pi-info" (click)="displayInfoDialog = true"></i>
-          <i *ngIf="displayScrollToTop" onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTopMobile"></i>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<div *ngIf="!isDesktopDevice">
+  <router-outlet></router-outlet>
+  <i class="footerInfo pi pi-info" (click)="displayInfoDialog = true"></i>
+  <i *ngIf="displayScrollToTop" onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTopMobile"></i>
 </div>
+
+
 
 <p-sidebar [(visible)]="displayInfoDialog" position="bottom" [style]="{height:'30em'}">
 
@@ -100,7 +48,3 @@
 
 </p-sidebar>
 
-
-<!--https://stackoverflow.com/questions/55284780/angular-using-the-same-router-outlet-twice-in-one-component
-https://www.google.com/search?ei=LT_QXqWRGKiorgTLi42gCg&q=how+to+repeat+router+outlet+in+angular+6&oq=how+to+repeat+%3Crouter-outlet%3E&gs_lcp=CgZwc3ktYWIQAxgBMggIIRAWEB0QHjIICCEQFhAdEB4yCAghEBYQHRAeMggIIRAWEB0QHjIICCEQFhAdEB4yCAghEBYQHRAeMggIIRAWEB0QHjIICCEQFhAdEB4yCAghEBYQHRAeOgQIABBHOgUIABCRAjoCCAA6BAgAEENQjfwGWPymB2DLvAdoAHADeACAAU-IAaUGkgECMTWYAQCgAQGgAQKqAQdnd3Mtd2l6&sclient=psy-ab
-https://stackblitz.com/edit/router-outlet-in-template-not-working-example-cpyjbq-51fwdd -->
