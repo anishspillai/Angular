@@ -1,3 +1,13 @@
+<div id="content-desktop" class="box-for-search">
+  <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+  <span pInputText style="margin-left: 20px">
+    <span style="font-style: normal; font-size: small; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
+    <span style="margin-left: 10px" *ngFor="let product of brands">
+    <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"></p-checkbox>
+    </span>
+</span>
+</div>
+
 <div id="content-desktop-flex" class="p-grid" style="padding-top: 1em">
 
   <div *ngIf="displayProgressSpinner">
@@ -12,8 +22,8 @@
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
 
-  <div *ngFor="let grocery of groceryList">
-    <div class="p-col" style="width: 200px">
+  <div *ngFor="let grocery of filteredGroceryList">
+    <div class="p-col" style="width: 250px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList">
       </app-individual-grocery>
@@ -21,7 +31,16 @@
   </div>
 </div>
 
-<div id="content-mobile" class="p-grid" style="padding-top: 6em; width: 350px">
+<div id="content-mobile-flex" class="p-grid" style="padding-top: 6em; width: 350px">
+
+
+  <div style="padding-left: 20px">
+    <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+    <span style="padding: 10px"></span>
+    <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()" [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false" defaultLabel="Filter By Brand"></p-multiSelect>
+  </div>
+
+  <br> <br> <br>
 
   <div *ngIf="displayProgressSpinner" style="width: 250px">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"
@@ -35,7 +54,7 @@
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
 
-  <div *ngFor="let grocery of groceryList">
+  <div *ngFor="let grocery of filteredGroceryList">
     <div class="p-col" style="width: 170px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"

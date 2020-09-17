@@ -1,0 +1,14 @@
+.box-for-search {
+  width: 100%;
+  padding: 10px;
+  border-width: thin;
+  margin: 0;
+  background-color: whitesmoke;
+}
+
+.box-for-filter {
+  border-style: solid;
+  border-width: thin;
+  margin: 0;
+  background-color: whitesmoke;
+}

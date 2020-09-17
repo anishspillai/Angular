@@ -35,6 +35,9 @@ body {
 
 #content-desktop-flex {display: flex}
 
+#content-mobile-flex {display: flex}
+
+
 @media screen and (max-width: 768px) {
   #content-desktop-flex {display: none;}
 }

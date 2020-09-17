@@ -62,6 +62,7 @@ import {CalendarModule} from "primeng/calendar";
 import { PaymentOptionViewComponent } from './payment-option-view/payment-option-view.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SlideMenuModule} from "primeng/slidemenu";
+import {MultiSelectModule} from "primeng/multiselect";
 
 @NgModule({
   declarations: [
@@ -90,42 +91,43 @@ import {SlideMenuModule} from "primeng/slidemenu";
     TimePickerComponent,
     PaymentOptionViewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    PanelModule,
-    BrowserAnimationsModule,
-    ButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    InputTextModule,
-    FormsModule,
-    SplitButtonModule,
-    DialogModule,
-    SidebarModule,
-    CardModule,
-    ToolbarModule,
-    ListboxModule,
-    BreadcrumbModule,
-    AppRoutingModule,
-    AccordionModule,
-    InputTextareaModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    TableModule,
-    ProgressSpinnerModule,
-    MessagesModule,
-    ToastModule,
-    StepsModule,
-    ConfirmDialogModule,
-    MenuModule,
-    CheckboxModule,
-    DropdownModule,
-    FontAwesomeModule,
-    CalendarModule,
-    HttpClientModule,
-    SlideMenuModule
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        PanelModule,
+        BrowserAnimationsModule,
+        ButtonModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        InputTextModule,
+        FormsModule,
+        SplitButtonModule,
+        DialogModule,
+        SidebarModule,
+        CardModule,
+        ToolbarModule,
+        ListboxModule,
+        BreadcrumbModule,
+        AppRoutingModule,
+        AccordionModule,
+        InputTextareaModule,
+        PasswordModule,
+        ReactiveFormsModule,
+        TableModule,
+        ProgressSpinnerModule,
+        MessagesModule,
+        ToastModule,
+        StepsModule,
+        ConfirmDialogModule,
+        MenuModule,
+        CheckboxModule,
+        DropdownModule,
+        FontAwesomeModule,
+        CalendarModule,
+        HttpClientModule,
+        SlideMenuModule,
+        MultiSelectModule
 
-  ],
+    ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],
   bootstrap: [AppComponent]
 })

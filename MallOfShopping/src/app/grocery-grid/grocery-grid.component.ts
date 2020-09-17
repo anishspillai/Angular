@@ -18,12 +18,21 @@ export class GroceryGridComponent implements OnInit{
   title = 'MallOfShopping';
   items: Observable<any[]>;
   groceryList: IndividualGrocery[] = [new IndividualGrocery()]
+  filteredGroceryList: IndividualGrocery[] = [new IndividualGrocery()]
   nonFilteredList: IndividualGrocery[] = []
   orderedList: Order[] = []
   displayProgressSpinner = false
   name: string;
   searchCategoryType: string
   isFishType = false
+  sortValues:  SortValue[]
+
+  brands = new Set()
+
+  selectedBrands: string[] = [];
+  sortableField: SortValue
+
+  brandNamesForMobileApplication: []
 
   ngOnInit() {
 
@@ -56,6 +65,8 @@ export class GroceryGridComponent implements OnInit{
 
     this.groceryCountService.fetchGroceryCount()
 
+    this.fillUpSortableFields()
+
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
       const isSubcategory = params.get("subMenu")
@@ -74,6 +85,8 @@ export class GroceryGridComponent implements OnInit{
   }
 
   fetchGroceries(isSubcategory: string) {
+  this.brands.clear()
+  this.brandNamesForMobileApplication = []
   this.displayProgressSpinner = true
   this.groceryList = []
     if(!this.searchCategoryType) {
@@ -130,8 +143,15 @@ export class GroceryGridComponent implements OnInit{
 
         )
 
-          window.scrollTo(0, 0)
-          this.displayProgressSpinner = false
+        this.extractBrands()
+
+        this.filteredGroceryList = this.groceryList
+
+        this.sortableField =  {name:'Sort By Brand Type', code: 'brandName'}
+        this.performSorting()
+
+        window.scrollTo(0, 0)
+        this.displayProgressSpinner = false
     }, error => {
         this.errorLogService.logErrorMessage('Admin', error)
         }
@@ -150,4 +170,63 @@ export class GroceryGridComponent implements OnInit{
 
      }
   }
+
+  private extractBrands() {
+    this.groceryList.forEach(value => {
+      this.brands.add(value.brandName)
+    }
+    )
+
+
+    this.brands.forEach(value => {
+      // @ts-ignore
+      this.brandNamesForMobileApplication.push({'label': value, 'value': value});
+    })
+  }
+
+  applyFilter() {
+
+    if(this.selectedBrands.length > 0) {
+      this.filteredGroceryList = this.groceryList.filter(
+        function (individualGrocery) {
+          return this.indexOf(individualGrocery.brandName) >= 0;
+        },
+        this.selectedBrands
+      );
+    } else {
+      this.filteredGroceryList = this.groceryList
+    }
+  }
+
+  private fillUpSortableFields() {
+    this.sortValues = [{name: 'Sort By Brand Type', code: 'brandName'},
+      {name: 'Price: Low to High', code: 'lowPrice'},
+      {name: 'Price: High to Low', code: 'highPrice'},
+      {name: 'Sort By Grocery Type', code: 'type'},
+      {name: 'Sort By Weight', code: 'weight'}
+      ]
+  }
+
+  performSorting() {
+    if(!this.sortableField) {
+      this.filteredGroceryList.sort((a, b) => a.brandName.localeCompare(b.brandName))
+    } else {
+      if(this.sortableField.code === "lowPrice") {
+        this.filteredGroceryList.sort((a, b) => a.actualPrice - b.actualPrice)
+      } else if(this.sortableField.code === "highPrice") {
+        this.filteredGroceryList.sort((a, b) => b.actualPrice - a.actualPrice)
+      } else if(this.sortableField.code === "brandName") {
+        this.filteredGroceryList.sort((a, b) => a.brandName.localeCompare(b.brandName))
+      } else if(this.sortableField.code === "type") {
+        this.filteredGroceryList.sort((a, b) => a.type.localeCompare(b.type))
+      } else if(this.sortableField.code === "weight") {
+        this.filteredGroceryList.sort((a, b) => a.weight - b.weight)
+      }
+    }
+  }
+}
+
+interface SortValue {
+  name: string;
+  code: string;
 }
