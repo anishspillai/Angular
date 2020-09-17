@@ -14,7 +14,7 @@
       </div>
 
       <div *ngIf="item.items.length != 0">
-        <li (click)=" menu.toggle($event)" class="p-menuitem-link">
+        <li (click)=" toggleSlideMenu($event, menu)" class="p-menuitem-link">
           <span class="p-menuitem-text">{{item.label}}</span>
           <span class="p-submenu-icon pi pi-fw pi-angle-right" *ngIf="item.items"></span>
           <p-slideMenu appendTo="body" #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}"

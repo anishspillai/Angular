@@ -3,6 +3,7 @@ import {NavigatorService} from "./navigator.service";
 import {GroceryMenuItem} from "./model/GroceryMenuItem";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
+import {SlideMenu} from "primeng/slidemenu";
 
 @Component({
   selector: 'app-navigator',
@@ -24,6 +25,8 @@ export class NavigatorComponent  {
   @Output() closeNavigationDialogForMobApp = new EventEmitter()
 
   items: GroceryMenuItem[];
+
+  slideMenu: SlideMenu
 
   constructor(
     private readonly navigatorService: NavigatorService,
@@ -71,6 +74,7 @@ export class NavigatorComponent  {
               let subMenuItem: GroceryMenuItem = new GroceryMenuItem(childData)
               subMenuItem.routerLink = "grocery-list"
               subMenuItem.queryParams = {'groceryType': subMenuItem.label , 'subMenu': 'true'}
+              subMenuItem.command = (onclick) => {this.closeParentWindowAndSlideMenuForChildWindowForMobileDevices()}
               this.menuSubItems.push(subMenuItem)
             })
             menuItem.items = this.menuSubItems
@@ -102,14 +106,12 @@ export class NavigatorComponent  {
     //this.breadCrumbService.updateBreadCrumb([{label: item.label}])
   }
 
-  navigateToGrocerySubMenu(item: GroceryMenuItem, subItem) {
+  closeParentWindowAndSlideMenuForChildWindowForMobileDevices() {
 
     if(this.isMobileDevice) {
-      this.triggerEventForClosingNavigationForMobileApp()
+      this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
+      this.triggerEventForClosingNavigationForMobileApp() // Close the side bar for mobile application
     }
-
-    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label + '/' + subItem.label}})
-    //this.breadCrumbService.updateBreadCrumb([ {label: item.label}, {label: subItem.label} ])
   }
 
   expandListBox(label: string) {
@@ -134,5 +136,10 @@ export class NavigatorComponent  {
 
   navigateToHomePage() {
     this.router.navigate(['/grocery-list'])
+  }
+
+  toggleSlideMenu($event: MouseEvent, menu: SlideMenu) {
+    this.slideMenu = menu
+    menu.toggle($event)
   }
 }
