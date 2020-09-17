@@ -1,21 +1,21 @@
 export class IndividualGrocery {
 
-  actualPrice: number = 10;
-  brandName: string = "Anish";
-  id: string = "Ansih";
-  imagePath: string = "Anish";
-  offerPrice: number  = 5;
-  type: string = "Wheat";
-  subType: string = "sub type"
-  unitOfWeight: string = "Kg";
-  weight: number = 7.5;
+  actualPrice?: number;
+  brandName?: string
+  id?: string
+  imagePath?: string
+  offerPrice?: number
+  type?: string
+  subType?: string
+  unitOfWeight?: string
+  weight?: number
 
-  maxShoppingIsRestricted = false
-  maxShoppingCount: number = 2
+  maxShoppingIsRestricted? = false
+  maxShoppingCount?: number
 
-  bulkPurchaseOfferAvailable = false
-  bulkPurchaseOfferCount: number = 2
-  bulkPurchaseOfferPrice: number = 78.45
+  bulkPurchaseOfferAvailable? = false
+  bulkPurchaseOfferCount?: number
+  bulkPurchaseOfferPrice?: number
 }
 
 export class GroceryResponse {
