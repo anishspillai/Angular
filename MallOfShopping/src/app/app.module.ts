@@ -63,6 +63,8 @@ import { PaymentOptionViewComponent } from './payment-option-view/payment-option
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {SlideMenuModule} from "primeng/slidemenu";
 import {MultiSelectModule} from "primeng/multiselect";
+import {ProductCarouselComponent} from "./product-carousel/product-carousel.component";
+import {CarouselModule} from "primeng/carousel";
 
 @NgModule({
   declarations: [
@@ -89,7 +91,8 @@ import {MultiSelectModule} from "primeng/multiselect";
     FishViewButtonComponent,
     FishMarketVideoViewComponent,
     TimePickerComponent,
-    PaymentOptionViewComponent
+    PaymentOptionViewComponent,
+    ProductCarouselComponent
   ],
     imports: [
         BrowserModule,
@@ -125,7 +128,8 @@ import {MultiSelectModule} from "primeng/multiselect";
         CalendarModule,
         HttpClientModule,
         SlideMenuModule,
-        MultiSelectModule
+        MultiSelectModule,
+        CarouselModule,
 
     ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],

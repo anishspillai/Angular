@@ -23,7 +23,7 @@ export class NavigatorForMobileDeviceComponent implements OnInit {
   }
 
   navigateToTheMainPage() {
-    this.router.navigate(['grocery-list']);
+    this.router.navigate(['home-page']);
     this.displaySideBarMenuItemForMobileApplication = false
   }
 

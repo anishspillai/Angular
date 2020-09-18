@@ -1,0 +1,167 @@
+<div class="carousel-demo">
+  <br>
+  <div style="border-radius: 10px; border-width: thin; background-color: floralwhite">
+    <p-carousel [value]="NEW_PRODUCTS" [numVisible]="4" [numScroll]="3" [circular]="false"
+                [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>New Products</h5>
+      </p-header>
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+
+
+
+              <img src={{car.imagePath}} style="width: 150px; height: 150px"/>
+
+              <div class="car-subtitle">{{car.brandName}} | {{car.type}}</div>
+
+              <!--iv style="margin-left: 0.5em" >
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+              </div-->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div style="border-radius: 10px; border-width: thin; background-color: floralwhite; margin-top: 10px">
+    <p-carousel [value]="DAL_LENTILS_PULSES" styleClass="custom-carousel" [numVisible]="6" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>Dals Puls & Lentils</h5>
+      </p-header>
+
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+
+              <img src={{car.imagePath}} style="width: 150px; height: 150px"/>
+
+              <div class="car-subtitle">{{car.brandName}} | {{car.type}}</div>
+
+              <!--iv style="margin-left: 0.5em" >
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+              </div-->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+
+
+  <div style="border-radius: 10px; border-width: thin; background-color: floralwhite; margin-top: 10px">
+    <p-carousel [value]="FLOURS" styleClass="custom-carousel" [numVisible]="6" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>Flours</h5>
+      </p-header>
+
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+
+              <img src={{car.imagePath}} style="width: 150px; height: 150px"/>
+
+              <div class="car-subtitle">{{car.brandName}} | {{car.type}}</div>
+
+              <!--iv style="margin-left: 0.5em" >
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+              </div-->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+
+
+
+
+
+
+  <div style="border-radius: 10px; border-width: thin; background-color: floralwhite; margin-top: 10px">
+    <p-carousel [value]="GENERAL_GROCERIES" styleClass="custom-carousel" [numVisible]="6" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>General Groceries</h5>
+      </p-header>
+
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+
+              <img src={{car.imagePath}} style="width: 150px; height: 150px"/>
+
+              <div class="car-subtitle">{{car.brandName}} | {{car.type}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <div style="border-radius: 10px; border-width: thin; background-color: floralwhite; margin-top: 10px">
+    <p-carousel [value]="MASALA" styleClass="custom-carousel" [numVisible]="6" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>Masala</h5>
+      </p-header>
+
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+
+              <img src={{car.imagePath}} style="width: 150px; height: 150px"/>
+
+              <div class="car-subtitle">{{car.brandName}} | {{car.type}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+
+
+  <!--div style="border-radius: 10px; border-width: thin; background-color: floralwhite; margin-top: 10px">
+    <p-carousel [value]="cars" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true"
+                [autoplayInterval]="3000" [responsiveOptions]="responsiveOptions">
+      <p-header>
+        <h5>Dals Puls & Lentils</h5>
+      </p-header>
+      <ng-template let-car pTemplate="item">
+        <div class="car-details">
+          <div class="p-grid p-nogutter">
+            <div class="p-col-12 car-data">
+              <img src="assets/img/dals/Heera_Channa_Dal.png" style="width: 100px; height: 100px"/>
+              <div class="car-subtitle">{{car.year}} | {{car.color}}</div>
+
+              <div class="car-buttons">
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div-->
+
+</div>

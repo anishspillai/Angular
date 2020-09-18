@@ -135,7 +135,7 @@ export class NavigatorComponent  {
 
 
   navigateToHomePage() {
-    this.router.navigate(['/grocery-list'])
+    this.router.navigate(['/home-page'])
   }
 
   toggleSlideMenu($event: MouseEvent, menu: SlideMenu) {

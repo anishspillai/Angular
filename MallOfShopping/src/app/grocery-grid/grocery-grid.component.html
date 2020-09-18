@@ -1,4 +1,6 @@
-<div id="content-desktop" class="box-for-search">
+<div id="content-desktop">
+  <app-landing-page></app-landing-page>
+<div class="box-for-search">
   <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
   <span pInputText style="margin-left: 20px">
     <span style="font-style: normal; font-size: small; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
@@ -6,6 +8,7 @@
     <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"></p-checkbox>
     </span>
 </span>
+</div>
 </div>
 
 <div id="content-desktop-flex" class="p-grid" style="padding-top: 1em">
@@ -21,6 +24,8 @@
   <div *ngIf="isFishType" class="p-col-12" >
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
+
+
 
   <div *ngFor="let grocery of filteredGroceryList">
     <div class="p-col" style="width: 250px">
