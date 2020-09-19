@@ -1,4 +1,4 @@
-<div class="carousel-demo">
+<div id="content-desktop" class="carousel-demo">
   <br>
   <div style="border-radius: 10px; border-width: thin; background-color: floralwhite">
     <p-carousel [value]="NEW_PRODUCTS" [numVisible]="4" [numScroll]="3" [circular]="false"
@@ -164,4 +164,19 @@
     </p-carousel>
   </div-->
 
+</div>
+
+
+<div id="content-mobile">
+  <div class="p-grid"
+       style="margin-top: 100px; border-radius: 5px; border-width: thin; background-color: floralwhite; width: 100%; margin-left: auto; margin-right: auto">
+
+
+    <div style="margin: auto" *ngFor="let groceryItem of NEW_PRODUCTS">
+
+      <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
+        <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
+      </div>
+    </div>
+  </div>
 </div>
