@@ -1,46 +1,17 @@
 <app-header></app-header>
 
 
-<div *ngIf="isDesktopDevice" class="sidenav" style="background: whitesmoke">
-  <app-navigator></app-navigator>
-</div>
+<div *ngIf="isDesktopDevice" class="wrapper">
+  <app-navigator class="sidenav" style="background-color: whitesmoke"></app-navigator>
 
-<div *ngIf="isDesktopDevice" class="main">
-  <router-outlet></router-outlet>
-
-
-
-
-  <div class="footer-desktop">
-
-    <div class="footer-content">
-      <div>
-      <h3> Urban Grocers </h3>
-      <p class="shop-description">
-        Urban Grocers is a new online grocery store located in south Stockholm. We supply groceries in and around Stockholm.
-        We focus on your smile than the profit
-      </p>
-
-        Contact <br>
-        <div class="shop-description">
-        &nbsp;&nbsp;Mobile   : 0723980601 <br>
-          &nbsp;&nbsp;Wats App : +46-723980601 <br>
-          &nbsp;&nbsp;mail     : mallofgroceries@gmail.com <br>
-        </div>
-        <br> <br>
-        Address
-        <div class="shop-description">
-          &nbsp;&nbsp;Månstorpsvagen 22, Tullinge, 14645 <br>
-        </div>
-
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; mallofgroceries.com | Designed by Anish S Pillai
-    </div>
+  <div class="main">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </div>
 
 </div>
+
+
 
 <div *ngIf="!isDesktopDevice">
   <router-outlet></router-outlet>

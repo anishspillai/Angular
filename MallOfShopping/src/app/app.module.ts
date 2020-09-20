@@ -65,6 +65,7 @@ import {SlideMenuModule} from "primeng/slidemenu";
 import {MultiSelectModule} from "primeng/multiselect";
 import {ProductCarouselComponent} from "./product-carousel/product-carousel.component";
 import {CarouselModule} from "primeng/carousel";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import {CarouselModule} from "primeng/carousel";
     FishMarketVideoViewComponent,
     TimePickerComponent,
     PaymentOptionViewComponent,
-    ProductCarouselComponent
+    ProductCarouselComponent,
+    FooterComponent
   ],
     imports: [
         BrowserModule,
