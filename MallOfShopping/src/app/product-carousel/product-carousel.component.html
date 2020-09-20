@@ -168,15 +168,89 @@
 
 
 <div id="content-mobile">
-  <div class="p-grid"
-       style="margin-top: 100px; border-radius: 5px; border-width: thin; background-color: floralwhite; width: 100%; margin-left: auto; margin-right: auto">
+
+  <div style="display: block">
+
+  <div
+    style="margin-top: 100px; border-radius: 5px; border-width: thin; background-color: whitesmoke; width: 100%; margin-left: auto; margin-right: auto">
+    <span style="font-size: medium; font-family: 'fantasy'; font-variant: normal"> New products in the stocks </span> <br>
+  <div class="p-grid">
 
 
     <div style="margin: auto" *ngFor="let groceryItem of NEW_PRODUCTS">
-
       <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
         <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
       </div>
     </div>
   </div>
+  </div>
+
+  <br>
+  <div
+    style="border-radius: 5px; border-width: thin; background-color: whitesmoke; width: 100%; margin-left: auto; margin-right: auto">
+    <span style="font-size: medium; font-family: 'fantasy'; font-variant: normal"> Dal, Pulses & Lentils </span> <br>
+    <div class="p-grid">
+
+
+      <div style="margin: auto" *ngFor="let groceryItem of DAL_LENTILS_PULSES">
+        <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
+          <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <br>
+  <div
+    style="border-radius: 5px; border-width: thin; background-color: whitesmoke; width: 100%; margin-left: auto; margin-right: auto">
+    <span style="font-size: medium; font-family: 'fantasy'; font-variant: normal"> Masala & Spices </span> <br>
+    <div class="p-grid">
+
+
+      <div style="margin: auto" *ngFor="let groceryItem of MASALA">
+        <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
+          <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <br>
+  <div
+    style="border-radius: 5px; border-width: thin; background-color: whitesmoke; width: 100%; margin-left: auto; margin-right: auto">
+    <span style="font-size: medium; font-family: 'fantasy'; font-variant: normal"> Flours </span> <br>
+    <div class="p-grid">
+
+
+      <div style="margin: auto" *ngFor="let groceryItem of FLOURS">
+        <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
+          <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <br>
+  <div
+    style="border-radius: 5px; border-width: thin; background-color: whitesmoke; width: 100%; margin-left: auto; margin-right: auto">
+    <span style="font-size: medium; font-family: 'fantasy'; font-variant: normal"> General Groceries </span> <br>
+    <div class="p-grid">
+
+
+      <div style="margin: auto" *ngFor="let groceryItem of GENERAL_GROCERIES">
+        <div class="p-col-4 p-md-6 p-lg-6" style="border-width: thin;">
+          <img src='{{groceryItem.imagePath}}' style="width: 100px; height: 100px"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
 </div>
