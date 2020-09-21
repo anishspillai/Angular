@@ -161,4 +161,8 @@ export class IndividualGroceryComponent {
     this.updateItem = false
 
   }
+
+  displayMe() {
+    alert(JSON.stringify(this.individualGrocery))
+  }
 }
