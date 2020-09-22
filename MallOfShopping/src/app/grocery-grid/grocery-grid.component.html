@@ -1,5 +1,5 @@
 <div id="content-desktop">
-  <app-landing-page></app-landing-page>
+  <app-landing-page [isSubMenu]="isSubCategory" [mainGroceryType]="mainGroceryType" [subGroceryType]="searchCategoryType"></app-landing-page>
 <div class="box-for-search">
   <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
   <span pInputText style="margin-left: 20px">

@@ -34,6 +34,9 @@ export class GroceryGridComponent implements OnInit{
 
   brandNamesForMobileApplication: []
 
+  mainGroceryType: string
+  isSubCategory: string
+
   ngOnInit() {
 
     this.groceryCountService.fetchGroceryCount()
@@ -42,8 +45,9 @@ export class GroceryGridComponent implements OnInit{
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.searchCategoryType = params.get("groceryType")
-      const isSubcategory = params.get("subMenu")
-      this.fetchGroceries(isSubcategory)
+      this.mainGroceryType = params.get("main")
+      this.isSubCategory = params.get("subMenu")
+      this.fetchGroceries()
     })
   }
 
@@ -57,7 +61,7 @@ export class GroceryGridComponent implements OnInit{
     this.groceryList = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
   }
 
-  fetchGroceries(isSubcategory: string) {
+  fetchGroceries() {
   this.brands.clear()
   this.brandNamesForMobileApplication = []
   this.displayProgressSpinner = true
@@ -104,7 +108,7 @@ export class GroceryGridComponent implements OnInit{
         URL = 'admin/Catagories/' + this.searchCategoryType
       }
 
-      const SEARCH_TYPE = isSubcategory ? "subCatagory" : "catagory"
+      const SEARCH_TYPE = this.isSubCategory ? "subCatagory" : "catagory"
 
       this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
         value.forEach(dataSnapshot => {

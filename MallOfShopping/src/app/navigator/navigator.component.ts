@@ -73,7 +73,7 @@ export class NavigatorComponent  {
             childData.val().forEach(childData => {
               let subMenuItem: GroceryMenuItem = new GroceryMenuItem(childData)
               subMenuItem.routerLink = "grocery-list"
-              subMenuItem.queryParams = {'groceryType': subMenuItem.label , 'subMenu': 'true'}
+              subMenuItem.queryParams = {'groceryType': subMenuItem.label , 'subMenu': 'true', 'main': menuItem.label}
               subMenuItem.command = (onclick) => {this.closeParentWindowAndSlideMenuForChildWindowForMobileDevices()}
               this.menuSubItems.push(subMenuItem)
             })
