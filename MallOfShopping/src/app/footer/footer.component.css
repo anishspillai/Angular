@@ -22,6 +22,12 @@
   font-weight: lighter;
 }
 
+.footer-desktop .footer-content .footer-section {
+  flex: 1;
+  border-box: 1px solid white;
+  font-weight: lighter;
+}
+
 .footer-desktop .footer-bottom {
   background: #343a40;
   color: #686868;

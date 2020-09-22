@@ -1,16 +1,20 @@
 <app-header></app-header>
 
-
-<div *ngIf="isDesktopDevice" class="wrapper">
+<div *ngIf="isDesktopDevice">
   <app-navigator class="sidenav" style="background-color: whitesmoke"></app-navigator>
 
   <div class="main">
+    <body>
+    <div>
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
+    </div>
+    <footer>
+      <app-footer></app-footer>
+    </footer>
+    </body>
   </div>
 
 </div>
-
 
 
 <div *ngIf="!isDesktopDevice">
