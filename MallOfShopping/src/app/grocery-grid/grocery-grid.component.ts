@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core"
 import {Observable} from "rxjs"
 import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
 import {Order} from "../individual-grocery/model/Order"
-import {MenuItem} from "primeng/api"
 import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";

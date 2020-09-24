@@ -25,7 +25,13 @@
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
 
+  <div *ngIf="searchCategoryType === 'Fresh Fish'" class="p-col-12; warning-dialog">
+    Fishes shall be delivered on week ends and the delivery is based on stock availability!!!
+  </div>
 
+  <div *ngIf="searchCategoryType === 'Vegetable'" class="p-col-12; warning-dialog">
+    Vegetables shall be delivered from Friday to Monday and the delivery is based on stock availability
+  </div>
 
   <div *ngFor="let grocery of filteredGroceryList">
     <div class="p-col" style="width: 250px">
@@ -55,8 +61,12 @@
     </p-progressSpinner>
   </div>
 
-  <div *ngIf="isFishType" class="p-col-12" >
-    <app-fish-market-video-view></app-fish-market-video-view>
+  <div *ngIf="searchCategoryType === 'Fresh Fish'" class="p-col-12; warning-dialog-mobile">
+    Fishes shall be delivered on week ends and the delivery is based on stock availability!!!
+  </div>
+
+  <div *ngIf="searchCategoryType === 'Vegetable'" class="p-col-12; warning-dialog-mobile">
+    Vegetables shall be delivered from Friday to Monday and the delivery is based on stock availability
   </div>
 
   <div *ngFor="let grocery of filteredGroceryList">
