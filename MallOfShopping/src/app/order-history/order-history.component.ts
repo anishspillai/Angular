@@ -80,7 +80,7 @@ export class OrderHistoryComponent  {
     this.orderHistory = []
 
       // @ts-ignore
-      this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
+      /**this.groceryService.getOrderHistory(this._userId).pipe(mergeMap(value => {
 
           value.forEach(childSnapshot => {
 
@@ -121,7 +121,7 @@ export class OrderHistoryComponent  {
           this.filteredorderHistory = this.orderHistory
         this.filteredorderHistory.reverse()
         }
-      )
+      )*/
 
 
     this.cols = [
