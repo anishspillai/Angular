@@ -15,7 +15,7 @@
 
         <p-header >
           <span>{{oh.orderedTimestamp}}</span>  &nbsp;
-          <button [disabled]="oh.deliveryStatus === 1" class="ui-button-warning ui-button-rounded" pButton type="button"  label="Update Orders" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
+          <button [disabled]="oh.deliveryStatus === 1" class="ui-button-warning ui-button-rounded" pButton type="button"  label="Add to the cart" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
         </p-header>
 
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
@@ -265,7 +265,7 @@
           [resizable]="true">
 
 
-  Are you sure you want to edit this order?
+  Are you sure you want to add these groceries to shopping cart?
 
 
   <p-footer>
