@@ -65,7 +65,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         localStorage.setItem('no-reload', 'no reload')
-        this.router.navigate(['grocery-list']);
+        this.router.navigate(['home-page']);
       },
       reject: () => {
 
@@ -124,7 +124,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   navigateToTheMainPage() {
     localStorage.setItem('no-reload', 'no reload')
-    this.router.navigate(['grocery-list']);
+    this.router.navigate(['home-page']);
   }
 
   private addDeliveryStatus(orderTimestamp: number, user: string) {
