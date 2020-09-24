@@ -275,6 +275,7 @@ this.filteredorderHistory = []
               // @ts-ignore
               const orderDeliveryStatus = new OrderDeliveryStatus("", 0, 0, value[1].payload, "")
               anish.orderDeliveryStatus = orderDeliveryStatus
+              anish.commentsSection = JSON.stringify(value)
             }
           })
 
