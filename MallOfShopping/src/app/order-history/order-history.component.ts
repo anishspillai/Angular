@@ -253,12 +253,14 @@ export class OrderHistoryComponent  {
 
   filterData() {
 
-this.filteredorderHistory = []
 
     // @ts-ignore
     this.groceryService.getOrderHistoryFilteredByDate(this.startDate.getTime(), this.endDate.getTime()).pipe(mergeMap(value => {
 
-        value.forEach(childSnapshot => {
+      this.filteredorderHistory = []
+
+
+      value.forEach(childSnapshot => {
 
           let anish: OrderHistoryModel = new OrderHistoryModel()
           // @ts-ignore
@@ -267,6 +269,9 @@ this.filteredorderHistory = []
           anish.dateInNumber = childSnapshot.payload.val().orderPlacementTime
           // @ts-ignore
           anish.orderHistory = childSnapshot.payload.val().order
+
+          anish.orderKey = childSnapshot.key
+
           anish.orderedTimestamp = this.getFormattedDateTime(parseInt(String(anish.dateInNumber)))
           this.filteredorderHistory.push(anish)
 
@@ -320,6 +325,6 @@ this.filteredorderHistory = []
   viewUserDetails = false
 
   setAtDelivered(oh: OrderHistoryModel) {
-this.groceryService.setAsDelivered(oh.orderKey)
+     this.groceryService.setAsDelivered(oh.orderKey)
   }
 }

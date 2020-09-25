@@ -143,7 +143,6 @@ export class GroceryService {
 
   updateAdminComment(_userId: string, orderKey: string, commentsFromMallOfGroceries: string, deliveryDate: Date, deliveryStatus: string) {
 
-    console.log(deliveryStatus)
 
 
     return this.angularFireDatabase.object("/users/delivery-status/" + _userId + "/"  + orderKey)
