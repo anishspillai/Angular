@@ -5,4 +5,5 @@ export class OrderRequest {
   orderPlacementTime: string
   order: Order[]
   deliveryStatus: number
+  paidStatus: number
 }

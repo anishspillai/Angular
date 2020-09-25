@@ -38,6 +38,7 @@ export class GroceryService {
     orderRequest.userId = userId
     orderRequest.order = order
     orderRequest.deliveryStatus = 0
+    orderRequest.paidStatus = 0
 
     let timeStampForExistingOrder: string = localStorage.getItem("crypto_vadakkedathu")
     let orderKey;
