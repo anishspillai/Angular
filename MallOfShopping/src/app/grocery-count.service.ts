@@ -42,7 +42,9 @@ export class GroceryCountService {
   }
 
   public getGroceryCountModel(idOfTheItem: string): GroceryCountModel {
-    return this.groceryCountModels.find(value => value.id == idOfTheItem)
+    if (this.groceryCountModels) {
+      return this.groceryCountModels.find(value => value.id == idOfTheItem)
+    }
   }
 
 }
