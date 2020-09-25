@@ -125,7 +125,6 @@ export class GroceryService {
   }
 
   getDeliveryDateAndStatus(userId: string, timestampKey: string) {
-    console.log(userId + ' ' + timestampKey)
     return this.angularFireDatabase.list("/users/delivery-status/" + userId + "/" + timestampKey).valueChanges()
   }
 
