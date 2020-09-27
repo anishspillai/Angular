@@ -1,4 +1,7 @@
 <nav style="width: 300px; border-radius: 4px; font-style: normal">
+
+  <button *ngIf="isMobileDevice" pButton label="Home Page" icon="pi pi-home" class="ui-button-success ui-button-rounded" style="width: 110%;" (click)="navigateToTheMainPage()"></button>
+
   <ul>
     <li *ngIf="!isMobileDevice"  class="p-menuitem-link" (click)="navigateToHomePage()">
       <span class="pi pi-home"></span>

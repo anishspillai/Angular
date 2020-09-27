@@ -142,4 +142,12 @@ export class NavigatorComponent  {
     this.slideMenu = menu
     menu.toggle($event)
   }
+
+  navigateToTheMainPage() {
+    if(this.slideMenu) {
+      this.slideMenu.toggle(false)
+    }
+    this.router.navigate(['/home-page'])
+    this.triggerEventForClosingNavigationForMobileApp()
+  }
 }

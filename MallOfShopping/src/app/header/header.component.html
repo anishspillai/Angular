@@ -149,10 +149,8 @@
              position="right"
              styleClass="ui-sidebar-lg"
              (onHide)="displayNavigator = false"
-             [style]=" {'overflow': 'scroll', left: 0, 'width': '320px', 'background-color': 'snow'}">
-
-    <button pButton label="Home Page" icon="pi pi-home" class="ui-button-info ui-button-rounded" style="width: 100%" (click)="navigateToTheMainPage()"></button>
-
+             [showCloseIcon]="false"
+             [style]=" {'overflow': 'scroll', left: 0, 'width': '100%', 'background-color': 'snow'}">
 
     <app-navigator [isMobileDevice]="true" (closeNavigationDialogForMobApp)="displayNavigator =  $event"></app-navigator>
 
