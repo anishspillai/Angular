@@ -15,7 +15,7 @@
 
         <p-header >
           <span>{{oh.orderedTimestamp}}</span>  &nbsp;
-          <button [disabled]="oh.deliveryStatus === 0" class="ui-button-warning ui-button-rounded" pButton type="button"  label="Add to the cart" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
+          <button [disabled]="oh.deliveryStatus === 1" class="ui-button-warning ui-button-rounded" pButton type="button"  label="Add to the cart" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
         </p-header>
 
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
@@ -121,7 +121,7 @@
         <p-header >
           <span>{{oh.orderedTimestamp}}</span>  &nbsp;
 
-          <button [disabled]="oh.deliveryStatus === 0" type="button" pButton icon="pi pi-check" style="border-radius: 25px" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()" label="Edit" class="ui-button-success"></button>
+          <button [disabled]="oh.deliveryStatus === 1" type="button" pButton icon="pi pi-check" style="border-radius: 25px" (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()" label="Edit" class="ui-button-success"></button>
         </p-header>
 
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
