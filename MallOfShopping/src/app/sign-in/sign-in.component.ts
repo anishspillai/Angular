@@ -12,9 +12,9 @@ export class SignInComponent implements OnInit {
 
   auth: AuthService
 
-  userId: string
+  userId: string = "mallofgroceries@gmail.com"
 
-  password: string
+  password: string = "Tullinge1#"
 
   dialogHeader: string = "Login user"
 
