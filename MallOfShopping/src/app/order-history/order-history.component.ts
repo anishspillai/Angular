@@ -176,7 +176,11 @@ export class OrderHistoryComponent  {
   }
 
   getTotalCostOfTheOrder(orderHistoryModel: OrderHistoryModel) {
-    return this.groceryService.getTotalCostOfOrderedItems(orderHistoryModel.orderHistory)
+    if(orderHistoryModel.orderHistory) {
+      return this.groceryService.getTotalCostOfOrderedItems(orderHistoryModel.orderHistory)
+    } else {
+      return 0
+    }
   }
 
   getIndividualCostOfItem(order: Order) {
