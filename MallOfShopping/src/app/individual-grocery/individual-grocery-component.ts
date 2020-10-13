@@ -141,13 +141,19 @@ export class IndividualGroceryComponent {
 
   setThePriceForTheItem() {
     this.groceryCountService.setPriceForTheGrocerItem(this.individualGrocery.id, Number(this.newPrice))
-    this.updateItem = false
+    //this.updateItem = false
   }
 
   newWeight
   setNewWeight() {
     this.groceryCountService.setNewWeight(this.individualGrocery.id, this.newWeight)
-    this.updateItem = false
+    //this.updateItem = false
+  }
+
+  unitOfWeight
+  setUnitOfWeight() {
+    this.groceryCountService.setUnitOfWeight(this.individualGrocery.id, this.unitOfWeight)
+    //this.updateItem = false
   }
 
   deleteMe() {

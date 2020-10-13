@@ -62,6 +62,12 @@ export class GroceryCountService {
     })
   }
 
+  setUnitOfWeight(id: string, unitOfWeight: string) {
+    const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+    unitOfWeight: unitOfWeight
+    })
+  }
+
   deleteMe(id) {
     const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).remove()
   }
