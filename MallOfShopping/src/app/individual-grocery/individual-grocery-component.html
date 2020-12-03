@@ -206,7 +206,14 @@
 <p-dialog *ngIf="updateItem"
           [(visible)]="updateItem" header="Information Message" style="width: 600px">
 
+
+  {{individualGrocery.imagePath}} <br>
+
+  {{individualGrocery.id}} <br>
+
   Update the stock <br>
+
+
 
   <input type="text" placeholder="New Count" pInputText [(ngModel)]="countOfItems">
 
