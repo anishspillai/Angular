@@ -12,8 +12,8 @@ import {SearchObservableServiceService} from "../search-observable-service.servi
 
 
 const searchClient = algoliasearch(
-  '7T3P8MD8DJ',
-  '2e0c7df916e5f6c5094e588bbac1fee7'
+  'ZT1RBSHBBJ',
+  '5f9196688a9e6f87d0c658fdd07623de'
 );
 
 @Component({
@@ -23,7 +23,7 @@ const searchClient = algoliasearch(
 })
 export class GroceryGridComponent implements OnInit{
 
-  index = searchClient.initIndex("mallofgroceries")
+  index = searchClient.initIndex("groceries")
 
   title = 'MallOfShopping';
   items: Observable<any[]>;
@@ -72,9 +72,9 @@ export class GroceryGridComponent implements OnInit{
       this.fetchAnish("")
     })
 
-    /**this.search.getSearchObservable().subscribe(value => {
+   this.search.getSearchObservable().subscribe(value => {
       this.fetchAnish(value)
-    })*/
+    })
   }
 
   constructor(private  readonly firestore: AngularFireDatabase,
@@ -89,6 +89,7 @@ export class GroceryGridComponent implements OnInit{
   }
 
   fetchAnish(searchInput: string) {
+
 // Search for a first name
     if(searchInput && searchInput.length > 0) {
       this.index.search(searchInput).then(({hits}) => {
