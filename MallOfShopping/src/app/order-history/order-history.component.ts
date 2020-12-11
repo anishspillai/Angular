@@ -59,6 +59,12 @@ export class OrderHistoryComponent  {
 
   _userId = ""
 
+
+
+  currentUserId: string
+  currentOrderHistory: Order[]
+  showBillingPage: boolean = false
+
   @Input()
   public set userId(userId: string) {
     this.isLoadingFinished = false
@@ -330,5 +336,11 @@ export class OrderHistoryComponent  {
 
   setAtDelivered(oh: OrderHistoryModel) {
      this.groceryService.setAsDelivered(oh.orderKey)
+  }
+
+  displayBillingPage(oh: OrderHistoryModel) {
+    this.currentUserId = oh.userId
+    this.currentOrderHistory = oh.orderHistory
+    this.showBillingPage = true
   }
 }

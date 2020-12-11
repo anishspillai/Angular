@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "firebase": "^7.13.2",
     "nodemailer": "^6.4.10",
+    "pdfmake": "^0.1.68",
     "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.6",

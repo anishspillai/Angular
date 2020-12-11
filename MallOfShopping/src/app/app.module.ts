@@ -63,6 +63,7 @@ import { PaymentOptionViewComponent } from './payment-option-view/payment-option
 import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-history.component';
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {SlideMenuModule} from "primeng/slidemenu";
+import { BillingComponent } from './billing/billing.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import {SlideMenuModule} from "primeng/slidemenu";
     FishMarketVideoViewComponent,
     TimePickerComponent,
     PaymentOptionViewComponent,
-    AdminOrderHistoryComponent
+    AdminOrderHistoryComponent,
+    BillingComponent
   ],
     imports: [
         BrowserModule,

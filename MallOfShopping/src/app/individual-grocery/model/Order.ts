@@ -10,7 +10,7 @@ export class Order {
     public type: string = "Wheat",
     public unitOfWeight: string = "Kg",
     public grossWeight: number = 7.5,
-    public noOfItems: number,
+    public noOfItems: number = 0,
     public maxShoppingIsRestricted = false,
     public maxShoppingCount: number = 7,
     public bulkPurchaseOfferAvailable = false,

@@ -39,6 +39,9 @@
 
       <button pButton (click)="setAtDelivered(oh)" class="ui-button-success" label="Set As Delivered"></button>
 
+      <button pButton (click)="displayBillingPage(oh)" class="ui-button-warning" label="Generate Bill"></button>
+
+
       <p-accordionTab header={{oh.orderedTimestamp}}>
         <p-table #dt [columns]="cols" [value]="oh.orderHistory" [virtualRowHeight]="30" [loading]="loading"
                  [virtualScroll]="true" [lazy]="true" [totalRecords]="totalRecords">
@@ -309,4 +312,8 @@
     <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
             (click)="viewUserDetails=false" label="Cancel" class="ui-button-danger"></button>
   </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="showBillingPage" header="Order Details" style="width: 100vw">
+<app-billing  [cols]="cols" [userId]="this.currentUserId" [orderHistory]="this.currentOrderHistory"></app-billing>
 </p-dialog>

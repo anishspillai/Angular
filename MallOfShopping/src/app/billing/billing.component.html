@@ -1,0 +1,49 @@
+
+<p-table #dt [columns]="cols" [value]="orderHistory" [virtualRowHeight]="30"
+         [virtualScroll]="true" [lazy]="true" [totalRecords]="100">
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of cols">
+        {{col.header}}
+      </th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-grocery>
+    <tr style="height:30px">
+      <td>
+        <input type="text" value="{{grocery.groceryName}}">
+      </td>
+      <td>
+        <input type="text" value="{{grocery.type}}, {{grocery.subType}}">
+      </td>
+      <td>
+        <input type="text" value="{{grocery.grossWeight}}">
+      </td>
+      <td>
+        <input type="text" value="{{grocery.unitOfWeight}}">
+      </td>
+      <td>
+        <input type="text" value="{{grocery.noOfItems}}">
+      </td>
+      <td>
+        <input type="text" value="{{getIndividualCostOfItem(grocery)}}">
+      </td>
+    </tr>
+  </ng-template>
+
+
+  <ng-template pTemplate="summary">
+
+    <div style="text-align: left">
+      <button (click)="addNewRow()">Add New </button>
+    </div>
+
+    <div><button (click)="generatePdf()">Generate Invoice</button> </div>
+
+    <div style="text-align: right">
+      Total Cost: {{getTotalCostOfTheOrder()}} Kr
+    </div>
+  </ng-template>
+</p-table>
