@@ -13,7 +13,7 @@
   <ng-template pTemplate="body" let-grocery>
     <tr style="height:30px">
       <td>
-        <input type="text" value="{{grocery.groceryName}}">
+        <input type="text" value="{{grocery.groceryName}}" [(ngModel)]="grocery.groceryName">
       </td>
       <td>
         <input type="text" value="{{grocery.type}}, {{grocery.subType}}">
@@ -22,10 +22,13 @@
         <input type="text" value="{{grocery.grossWeight}}">
       </td>
       <td>
-        <input type="text" value="{{grocery.unitOfWeight}}">
+        <input type="text" value="{{grocery.unitOfWeight}}" >
       </td>
       <td>
-        <input type="text" value="{{grocery.noOfItems}}">
+        <input type="text" value="{{grocery.noOfItems}}" [(ngModel)]="grocery.noOfItems">
+      </td>
+      <td>
+        <input type="text" value="{{grocery.actualPrice}}" [(ngModel)]="grocery.actualPrice">
       </td>
       <td>
         <input type="text" value="{{getIndividualCostOfItem(grocery)}}">
@@ -40,9 +43,12 @@
       <button (click)="addNewRow()">Add New </button>
     </div>
 
+    <div>
+  </div>
+
     <div><button (click)="generatePdf()">Generate Invoice</button> </div>
 
-    <div style="text-align: right">
+    <div style="text-align: right" [(ngModel)]="this.orderHistory">
       Total Cost: {{getTotalCostOfTheOrder()}} Kr
     </div>
   </ng-template>

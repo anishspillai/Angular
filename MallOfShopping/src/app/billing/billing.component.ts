@@ -6,6 +6,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import {UserDetailsModel} from "../user-details/model/user.details.model";
 import {UserDetailsService} from "../user-details/user.details.service";
+import {BillingService} from "./billing.service";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -15,7 +16,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class BillingComponent implements OnInit {
 
-  constructor(private readonly groceryService: GroceryService,private readonly  userDetailsService: UserDetailsService,) { }
+  constructor(private readonly groceryService: GroceryService,
+              private readonly  userDetailsService: UserDetailsService, private readonly billingService: BillingService) { }
 
   @Input() orderHistory: Order[] = []
   @Input() userId: string
@@ -50,14 +52,19 @@ export class BillingComponent implements OnInit {
 
   getIndividualCostOfItem(order: Order) {
 
-    if(order) return this.groceryService.getSumOfGrocery(order) ;
+    if(order) {
+      if(order.isNew) {
+        return order.noOfItems * order.actualPrice
+      } else {
+        return this.groceryService.getSumOfGrocery(order)
+      }
+    }
+
     return 0
   }
 
   getTotalCostOfTheOrder() {
-    if(this.orderHistory)
     return this.groceryService.getTotalCostOfOrderedItems(this.orderHistory)
-
   }
 
   getTotalCost() {
@@ -70,7 +77,8 @@ export class BillingComponent implements OnInit {
 
   addNewRow() {
     // @ts-ignore
-    let order: Order = new Order();
+    let order = new Order();
+    order.isNew = true
     this.orderHistory.push(order)
   }
 
@@ -226,5 +234,15 @@ export class BillingComponent implements OnInit {
     }
 
     pdfMake.createPdf(docDefinition).open();
+    //const pdfDocGenerator = pdfMake.createPdf(docDefinition)
+
+
+      //this.billingService.sendEmail("Anish", "", pdfDocGenerator).subscribe(value => console.log(value))
+
+
+  }
+
+  sendPdfAsAttachment() {
+      this.billingService.sendEmail("Anish", "", "").subscribe(value => console.log(value))
   }
 }

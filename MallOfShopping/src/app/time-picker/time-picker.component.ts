@@ -26,7 +26,6 @@ export class TimePickerComponent implements OnInit {
   }
 
   dispatchEvent() {
-    console.log(this.desiredDeliveryDate)
     this.closeCalenderEventEmitter.emit(this.desiredDeliveryDate)
   }
 

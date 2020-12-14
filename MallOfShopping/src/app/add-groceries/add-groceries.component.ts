@@ -81,7 +81,6 @@ export class AddGroceriesComponent   {
     this.addGroceryModel.isCampaign = this.isCampaign === "Yes" ? true : false
     // @ts-ignore
     this.addGroceryModel.isFastMoving = "Yes" === this.isFastMoving ? true : false
-    console.log(JSON.stringify(this.addGroceryModel))
     list.push( this.addGroceryModel )
 
     /**const  list = this.firestore.list('stock_count/')

@@ -244,7 +244,6 @@ export class OrderHistoryComponent  {
       return "No proposal date and time"
     }
 
-    console.log(dateTimeInNumberFormat)
    try {
      return this.datePipe.transform(new Date(parseInt(dateTimeInNumberFormat.toString())),
        'MMM d, y, h:mm:ss a')
@@ -256,7 +255,6 @@ export class OrderHistoryComponent  {
   testApi() {
     this.http.get('/api/users').subscribe((data:any) => {
 
-      console.log("Hello")
       alert(JSON.stringify(data))
     });
   }

@@ -8,6 +8,7 @@ const app = express();
 
 //configure the Express middleware to accept CORS requests and parse request body into JSON
 app.use(bodyParser.json());
+app.use(cors())
 
 //start application server on port 3000
 app.listen(8000, () => {
@@ -19,11 +20,11 @@ app.post("/api/sendEmail", (req, res) => {
   console.log("request came");
   let user = req.body;
 
-  console.log(user.email)
+  console.log(JSON.stringify(user))
 
   const mailOptions = {
   from: "Order Acknowledgment From Mall of Groceries",
-  to: user.email,
+  to: 'anish_sreeragom@yahoo.com',
   subject: "Order Acknowledgment - Mall of Groceries",
   html: "<h3 style='color: orangered; font-family: Trebuchet MS; font-style: italic'>We have received your order</h3> <br> " +
     "<p style='font-style: italic; font-family:Trebuchet MS'>" +
@@ -38,7 +39,7 @@ app.post("/api/sendEmail", (req, res) => {
       res.status(400);
       res.send({ error: "Failed to send email" });
     } else {
-      console.log("Email has been sent");
+      console.log("Email has been sent f");
       res.send(info);
     }
   });

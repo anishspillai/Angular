@@ -2,7 +2,7 @@ import {IndividualGrocery} from "./IndividualGrocery";
 
 export class Order {
   constructor(
-    public actualPrice: number = 12,
+    public actualPrice: number = 0,
     public groceryName: string = "Anish",
     public id: string = "Ansih",
     public imagePath: string = "Anish",
@@ -16,9 +16,9 @@ export class Order {
     public bulkPurchaseOfferAvailable = false,
     public bulkPurchaseOfferCount: number = 2,
     public bulkPurchaseOfferPrice: number = 78.45,
-    public offerPrice: number = 12,
-    public subType: string = ""
-
+    public offerPrice: number = 0,
+    public subType: string = "",
+    public isNew: boolean
   ) {
   }
 
@@ -39,7 +39,8 @@ export class Order {
       individualGrocery.bulkPurchaseOfferCount,
       individualGrocery.bulkPurchaseOfferPrice,
       individualGrocery.offerPrice,
-      individualGrocery.subType
+      individualGrocery.subType,
+      false
     )
   }
 }
