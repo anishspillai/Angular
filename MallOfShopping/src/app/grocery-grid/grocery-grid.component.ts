@@ -121,6 +121,7 @@ export class GroceryGridComponent implements OnInit{
       const SEARCH_TYPE = isSubcategory ? "subCatagory" : "catagory"
 
       this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
+        this.groceryList = []
         value.forEach(dataSnapshot => {
             // @ts-ignore
           const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()

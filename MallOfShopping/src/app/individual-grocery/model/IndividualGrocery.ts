@@ -16,6 +16,7 @@ export class IndividualGrocery {
   bulkPurchaseOfferAvailable = false
   bulkPurchaseOfferCount: number = 2
   bulkPurchaseOfferPrice: number = 78.45
+  description: string
 }
 
 export class GroceryResponse {

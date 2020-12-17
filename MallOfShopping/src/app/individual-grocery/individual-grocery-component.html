@@ -62,6 +62,9 @@
       <button pButton type="button" label="Update Me" class="ui-button-rounded ui-button-danger"
               (click)="updateThisItem()">
       </button>
+      <button pButton type="button" label="Description" class="ui-button-rounded ui-button-warning"
+              (click)= "updateDescription = true">
+      </button>
 
 
       <button *ngIf="!groceryCountService.isStockAvailable(individualGrocery.id)" pButton type="button" label="Out of Stock!" class="ui-button-rounded ui-button-danger"
@@ -290,5 +293,40 @@
 
 
 </p-dialog>
+
+
+
+
+
+
+<p-dialog *ngIf="updateDescription"
+          [(visible)]="updateDescription" header="Update Description" style="width: 600px">
+
+  {{individualGrocery.description}}
+
+  <input type="text" pInputText [(ngModel)]="descriptionText" [value]="individualGrocery.description">
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Description" class="ui-button-success"
+          (click)="setTheDescription()"></button>
+  <br>
+
+</p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

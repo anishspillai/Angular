@@ -34,7 +34,11 @@ export class IndividualGroceryComponent {
 
   newPrice: string
 
+  descriptionText : string
+
   subCatagory: string = "Seasoning Mix"
+
+  updateDescription: boolean;
 
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
               readonly groceryCountService: GroceryCountService) {
@@ -141,6 +145,11 @@ export class IndividualGroceryComponent {
 
   setThePriceForTheItem() {
     this.groceryCountService.setPriceForTheGrocerItem(this.individualGrocery.id, Number(this.newPrice))
+    //this.updateItem = false
+  }
+
+  setTheDescription() {
+    this.groceryCountService.setDescription(this.individualGrocery.id, this.descriptionText).then(value => this.updateDescription = false)
     //this.updateItem = false
   }
 

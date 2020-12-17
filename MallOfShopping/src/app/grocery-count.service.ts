@@ -56,6 +56,12 @@ export class GroceryCountService {
     })
   }
 
+  setDescription(id, description): Promise<any> {
+    return this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+      description: description
+    })
+  }
+
   setNewWeight(id: string, newWeight: any) {
     const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
       weight: newWeight
