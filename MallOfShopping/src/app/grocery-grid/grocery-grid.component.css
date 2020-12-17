@@ -3,7 +3,8 @@
   padding: 10px;
   border-width: thin;
   margin: 0;
-  background-color: whitesmoke;
+  background-color: darkolivegreen;
+  border-radius: 25px;
 }
 
 .box-for-filter {
