@@ -21,7 +21,7 @@
     </p-progressSpinner>
   </div>
 
-  <div *ngIf="isFishType" class="p-col-12">
+  <div *ngIf="isFishType" class="p-col-12" >
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
 
@@ -34,7 +34,7 @@
   </div>
 
   <div *ngFor="let grocery of filteredGroceryList">
-    <div class="p-col; p-shadow-24" style="width: 250px; margin: 3px">
+    <div class="p-col p-shadow-1" style="width: 250px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList">
       </app-individual-grocery>
@@ -46,12 +46,9 @@
 
 
   <div style="padding-left: 20px">
-    <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField"
-                (ngModelChange)="performSorting()"></p-dropdown>
+    <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
     <span style="padding: 10px"></span>
-    <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"
-                   [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false"
-                   defaultLabel="Filter By Brand"></p-multiSelect>
+    <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()" [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false" defaultLabel="Filter By Brand"></p-multiSelect>
   </div>
 
   <br> <br> <br>
