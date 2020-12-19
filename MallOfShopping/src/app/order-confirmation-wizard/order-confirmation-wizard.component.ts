@@ -36,6 +36,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
   deliveryDate: Date
 
   commentsFromCustomer: string
+  private isOrderPlaced: boolean;
 
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
@@ -91,7 +92,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
       if(!addressMissing) {
         const orderTimestamp = new Date().getTime()
+        this.isOrderPlaced = false
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
+          this.isOrderPlaced = true
           this.displayThankYouDialog = true
           //this.updateCountOfGroceries()
           this.emptyShoppingCart()
@@ -100,7 +103,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
           this.emptyShoppingCart()
         })
           .catch(err => {
-            //this.displayErrorDialog = true
+            if(!this.isOrderPlaced) {
+              this.displayErrorDialog = true
+            }
             this.errorLogService.logErrorMessage(user, err)
           });
       }
