@@ -41,7 +41,7 @@ export class GroceryService {
     orderRequest.paidStatus = 0
 
     let timeStampForTheOrder: string = GroceryService.getTimeStampForTheOrder(currentTimeStamp)
-    let orderKey = userId + currentTimeStamp
+    let orderKey = userId + timeStampForTheOrder
     orderRequest.orderPlacementTime = timeStampForTheOrder
 
     return this.angularFireDatabase.object("/users/order-history/" + orderKey).set(orderRequest)
