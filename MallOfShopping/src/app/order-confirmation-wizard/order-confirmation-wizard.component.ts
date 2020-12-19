@@ -92,14 +92,15 @@ export class OrderConfirmationWizardComponent implements OnInit{
       if(!addressMissing) {
         const orderTimestamp = new Date().getTime()
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
-          //this.displayThankYouDialog = true
-          this.updateCountOfGroceries()
+          this.displayThankYouDialog = true
+          //this.updateCountOfGroceries()
+          this.emptyShoppingCart()
           this.addDeliveryStatus(orderTimestamp, user)
           //this.sendOrderAcknowledgementMail()
           this.emptyShoppingCart()
         })
           .catch(err => {
-            this.displayErrorDialog = true
+            //this.displayErrorDialog = true
             this.errorLogService.logErrorMessage(user, err)
           });
       }
