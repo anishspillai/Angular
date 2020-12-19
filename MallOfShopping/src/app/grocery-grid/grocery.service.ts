@@ -40,19 +40,28 @@ export class GroceryService {
     orderRequest.deliveryStatus = 0
     orderRequest.paidStatus = 0
 
-    let timeStampForExistingOrder: string = localStorage.getItem("crypto_vadakkedathu")
-    let orderKey;
-    if(timeStampForExistingOrder) {
-      orderKey = userId + timeStampForExistingOrder
-      orderRequest.orderPlacementTime = timeStampForExistingOrder
-      localStorage.removeItem("crypto_vadakkedathu")
-    } else {
-      orderKey = userId + currentTimeStamp
-      orderRequest.orderPlacementTime = currentTimeStamp.toString()
-    }
+    let timeStampForTheOrder: string = GroceryService.getTimeStampForTheOrder(currentTimeStamp)
+    let orderKey = userId + currentTimeStamp
+    orderRequest.orderPlacementTime = timeStampForTheOrder
 
     return this.angularFireDatabase.object("/users/order-history/" + orderKey).set(orderRequest)
+  }
 
+  private static getTimeStampForTheOrder(currentTimeStamp: number) {
+    const timeStampFromLocalStorage: string = localStorage.getItem("crypto_vadakkedathu");
+
+    if (timeStampFromLocalStorage) {
+      try {
+        const localStorageDate: number = Number.parseInt(timeStampFromLocalStorage)
+        localStorage.removeItem("crypto_vadakkedathu")
+        if ((currentTimeStamp - localStorageDate) / 86400000 <= 3) {
+          return timeStampFromLocalStorage
+        }
+      } catch (e) {
+        return String(currentTimeStamp)
+      }
+    }
+    return String(currentTimeStamp)
   }
 
   getOrderHistory(userId: string) {
@@ -97,7 +106,7 @@ export class GroceryService {
 
   getTotalCostOfOrderedItems(orders: Order[]) {
 
-    let sumOfItems = 0
+    let sumOfItems = 0;
 
     orders.forEach((order) => {
 
