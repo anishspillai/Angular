@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from '@angular/router';
-import {User} from "firebase";
 import {AuthService} from "../auth/auth.service";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {Order} from "../individual-grocery/model/Order";
@@ -18,7 +17,7 @@ import {Menu} from "primeng/menu";
 export class HeaderComponent implements OnInit {
 
   searchString: string
-  menuItems: MenuItem[];
+  menuItems: UserMenuItems[];
   ordersAddedByUser: Order[] = []
   displaySideMenuBar: boolean = false
   displayLoginPage: boolean = false
@@ -35,8 +34,8 @@ export class HeaderComponent implements OnInit {
               private readonly breadCrumbService: BreadCrumbService) {
 
     this.menuItems = [
-      {label: 'My Details', target: 'user-details'},
-      {label: 'Order History', target: 'order-history'}
+      {name: 'My Details', code: 'user-details'},
+      {name: 'Order History', code: 'order-history'}
     ];
 
   }
@@ -51,9 +50,9 @@ export class HeaderComponent implements OnInit {
     //this.gridComponent.filterProduct(this.searchString)
   }
 
-  navigateToThePage(menuItem: MenuItem) {
-    this.router.navigate([menuItem.target]);
-    this.breadCrumbService.updateBreadCrumb([{label: menuItem.label}])
+  navigateToThePage(userMenuItem: UserMenuItems) {
+    this.router.navigate([userMenuItem.code]);
+    //this.breadCrumbService.updateBreadCrumb([{label: menuItem.label}])
   }
 
   logIn() {
@@ -171,4 +170,10 @@ export class HeaderComponent implements OnInit {
     this.displayNavigator = false
   }
 
+}
+
+
+interface UserMenuItems {
+  name: string,
+  code: string
 }

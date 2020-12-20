@@ -38,20 +38,21 @@
 
             <div class="dropdown-content">
 
-              <p-listbox [options]="menuItems" [listStyle]="{'max-height':'250px'}">
+              <p-listbox [options]="menuItems" optionLabel="name" optionValue="code">
+
 
                 <ng-template let-menuItem pTemplate="item">
                   <div class="ui-helper-clearfix">
 
-                    <span (click)="navigateToThePage(menuItem)"> {{menuItem.label}}</span>
+                    <span (click)="navigateToThePage(menuItem.value)"> {{menuItem.label}}</span>
 
                   </div>
                 </ng-template>
 
                 <p-footer>
-                  <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded"
+                  <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded; ui-button-warning"
                           (click)="logOut()"></button>
-                  <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded"
+                  <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded; ui-button-success"
                           (click)="logIn()"></button>
                 </p-footer>
               </p-listbox>
