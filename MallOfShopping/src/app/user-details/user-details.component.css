@@ -1,0 +1,8 @@
+:host ::ng-deep .ui-card {
+  background-color: ghostwhite !important;
+}
+
+.user-details-text {
+  font-weight: bold;
+  font-family: "Trebuchet MS";
+}

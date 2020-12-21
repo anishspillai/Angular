@@ -2,7 +2,7 @@
 
 <div *ngIf="!authService.isLoggedIn"> Please log in and try again!!!</div>
 
-<div *ngIf="authService.isLoggedIn">
+<p-card *ngIf="authService.isLoggedIn">
   <div *ngIf="orderHistory.length == 0">
     <i class="pi pi-info-circle"></i>
     Your order history is empty
@@ -199,7 +199,7 @@
       </div>
     </div>
   </p-accordion>
-</div>
+</p-card>
 
 <p-dialog [(visible)]="enableEditComment"
           [baseZIndex]="10000"

@@ -30,12 +30,11 @@ export class HeaderComponent implements OnInit {
   constructor(private readonly router: Router,
               private readonly auth: AuthService,
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
-              private readonly groceryService: GroceryService,
-              private readonly breadCrumbService: BreadCrumbService) {
+              private readonly groceryService: GroceryService) {
 
     this.menuItems = [
-      {name: 'My Details', code: 'user-details'},
-      {name: 'Order History', code: 'order-history'}
+      {name: 'Order History', code: 'order-history'},
+      {name: 'My Details', code: 'user-details'}
     ];
 
   }

@@ -38,14 +38,12 @@
 
             <div class="dropdown-content">
 
-              <p-listbox [options]="menuItems" optionLabel="name" optionValue="code">
+              <p-listbox styleClass="listbox-20rem" [options]="menuItems" optionLabel="name" optionValue="code">
 
 
                 <ng-template let-menuItem pTemplate="item">
                   <div class="ui-helper-clearfix">
-
                     <span (click)="navigateToThePage(menuItem.value)"> {{menuItem.label}}</span>
-
                   </div>
                 </ng-template>
 
@@ -63,9 +61,9 @@
 
 
         <div class="header-right" style="text-align: center; margin-right: 10px">
-          <i class="pi pi-question-circle"> </i> <br>
+          <i class="pi pi-phone"> </i> <br>
           <div class="dropdown">
-            <span>Call us: 0723980601</span>
+            <span>0723980601</span>
             <div class="dropdown-content">
             </div>
           </div>

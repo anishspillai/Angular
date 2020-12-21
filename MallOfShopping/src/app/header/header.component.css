@@ -159,3 +159,11 @@ div.anish {
     transform: translatex(100%)
   }
 }
+
+:host ::ng-deep .ui-listbox .ui-listbox-item.ui-state-highlight {
+  background-color: grey !important;
+}
+
+:host ::ng-deep .listbox-20rem .ui-listbox-list * {
+ text-align: left;
+}
