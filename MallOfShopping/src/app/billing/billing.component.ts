@@ -156,11 +156,11 @@ export class BillingComponent implements OnInit {
             body: [
               [{text: 'Product', style: 'tableHeader', alignment: 'center'}, {text: 'Weight', style: 'tableHeader', alignment: 'center'}, {text: 'Price', style: 'tableHeader', alignment: 'center'}, {text: 'Quantity', style: 'tableHeader', alignment: 'center'}, {text: 'Amount', style: 'tableHeader', alignment: 'center'}],
               ...this.orderHistory.map(p => ([
-                {text: p.groceryName + ' ' + p.type, italics: true, color: 'gray', fontSize: 8},
-                {text: p.grossWeight + ' ' + p.unitOfWeight, italics: true, color: 'gray', fontSize: 8},
-                {text: p.actualPrice, italics: true, color: 'gray', fontSize: 8},
-                {text: p.noOfItems, italics: true, color: 'gray', fontSize: 8},
-                {text:(p.actualPrice * p.noOfItems).toFixed(2), italics: true, color: 'gray', fontSize: 8}
+                {text: p.groceryName + ' ' + p.type, italics: true, color: 'black', fontSize: 10},
+                {text: p.grossWeight + ' ' + p.unitOfWeight, italics: true, color: 'black', fontSize: 10},
+                {text: p.actualPrice, italics: true, color: 'black', fontSize: 10},
+                {text: p.noOfItems, italics: true, color: 'black', fontSize: 10},
+                {text:(p.actualPrice * p.noOfItems).toFixed(2), italics: true, color: 'black', fontSize: 10}
               ])),
               [{text: 'Total Amount', colSpan: 4, bold: true, italics: true}, {}, {}, {}, this.getTotalCost()],
               [{text: 'MOMS 12 % ( Inclusive )', colSpan: 4, italics: true, fontSize: 12}, {}, {}, {}, this.getMomsPercentageValue()]
