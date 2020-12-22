@@ -93,7 +93,7 @@
 }
 
 .tooltip .tooltiptext {
-  background-color: black;
+  background-color: darkolivegreen;
   color: seashell;
   text-align: center;
   border-radius: 20px;
@@ -101,13 +101,13 @@
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-
   width: 25px;height: 25px;
 }
 
 .nav-bar {
    position: fixed; /* Set the navbar to fixed position */
-   top: 0; /* Position the navbar at the top of the page */
+   top: -1px; /* Position the navbar at the top of the page */
+   left: -1px;
    width: 100%; /* Full width */
    z-index:1; /*Add this*/
  }
@@ -121,8 +121,6 @@ div.anish {
     display: block;
   }
 }
-
-
 .ui-button-icon-only .ui-icon.Fs23 {
   font-size: 23px !important;
   margin-left: -10px;
@@ -166,4 +164,27 @@ div.anish {
 
 :host ::ng-deep .listbox-20rem .ui-listbox-list * {
  text-align: left;
+}
+
+:host ::ng-deep .ui-menubar-custom {
+  float: left !important;
+  margin-left: 100px;
+}
+
+::ng-deep .ui-card {
+  background-color: orangered !important;
+  color: white;
+}
+
+::ng-deep .ui-splitbutton.custom-background-style .ui-button {
+  background: yellow;
+}
+
+::ng-deep .OrangeSplitButton .ui-button{
+  background-color: darkolivegreen;
+  border-radius: 25px;
+}
+::ng-deep .OrangeSplitButton.ui-state-hover .ui-button,
+.OrangeSplitButton.ui-state-focus .ui-button{
+  background-color: indianred !important;
 }

@@ -4,7 +4,6 @@ import {AuthService} from "../auth/auth.service";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
-import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {MenuItem} from "primeng/api";
 import {Menu} from "primeng/menu";
 
@@ -17,7 +16,7 @@ import {Menu} from "primeng/menu";
 export class HeaderComponent implements OnInit {
 
   searchString: string
-  menuItems: UserMenuItems[];
+  menuItems: MenuItem[];
   ordersAddedByUser: Order[] = []
   displaySideMenuBar: boolean = false
   displayLoginPage: boolean = false
@@ -26,6 +25,8 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[];
 
+  LOG_OUT_MENU_ITEMS: MenuItem[];
+
 
   constructor(private readonly router: Router,
               private readonly auth: AuthService,
@@ -33,13 +34,41 @@ export class HeaderComponent implements OnInit {
               private readonly groceryService: GroceryService) {
 
     this.menuItems = [
-      {name: 'Order History', code: 'order-history'},
-      {name: 'My Details', code: 'user-details'}
+      //{name: 'Order History', code: 'order-history'},
+      //{name: 'My Details', code: 'user-details'}
     ];
 
   }
 
   ngOnInit(): void {
+
+    this.menuItems = [
+      {
+        label: 'Order History', url: 'order-history', icon: 'pi pi-bars'
+      },
+      {
+        label: 'My Details', url: 'user-details', icon: 'pi pi-id-card'
+      },
+      {separator: true},
+      {label: 'Sign Out', icon: 'pi pi-sign-out', command: () => {
+          this.logOut();
+        }}
+    ];
+
+    this.LOG_OUT_MENU_ITEMS = [
+      {
+        label: 'Order History', url: 'order-history', icon: 'pi pi-bars'
+      },
+      {
+        label: 'My Details', url: 'user-details', icon: 'pi pi-id-card'
+      },
+      {separator: true},
+      {label: 'Sign In', icon: 'pi pi-sign-in', command: () => {
+          this.logIn();
+        }}
+    ];
+
+
     this.addGroceryToListObservableService.getOrders().subscribe(value => {
       this.ordersAddedByUser = value
     })
@@ -47,11 +76,6 @@ export class HeaderComponent implements OnInit {
 
   filterProduct(): void {
     //this.gridComponent.filterProduct(this.searchString)
-  }
-
-  navigateToThePage(userMenuItem: UserMenuItems) {
-    this.router.navigate([userMenuItem.code]);
-    //this.breadCrumbService.updateBreadCrumb([{label: menuItem.label}])
   }
 
   logIn() {
@@ -169,10 +193,4 @@ export class HeaderComponent implements OnInit {
     this.displayNavigator = false
   }
 
-}
-
-
-interface UserMenuItems {
-  name: string,
-  code: string
 }

@@ -1,80 +1,59 @@
-<div id="content-desktop" style="margin: -8px; background-color:orangered; color: white" class="nav-bar">
-
+<p-card  id="content-desktop" class="nav-bar">
   <div class="p-grid">
 
-    <div class="p-col-3">
-      <h3 style="padding-left: 100px; padding-top: 8px"> Mall Of Groceries </h3>
-    </div>
-
-    <div class="p-col-6" style="margin-top: 25px">
-      <div class="ui-inputgroup">
-        <input type="text" pInputText placeholder="Under Construction - Kindly wait until next release" [(ngModel)]="searchString"
-               style="width: 90%; border-radius: 25px">
-      </div>
-    </div>
-
-    <div class="p-col-3 p-col-fixed">
-      <h4>
-
-        <div class="header-right" style="text-align: center; margin-left: 40px; margin-right: 40px" (click)="proceedToNextPage()">
-
-          <div style="margin-left: 10px; margin-right: 30px" class="tooltip header-right">
-            <i class="pi pi-shopping-cart" style="line-height: 1.25;"></i>
-            <span class="tooltiptext">{{getCountOfItems()}}</span>
-          </div>
-
-          <br>
-          {{getCostOfItem()}} Kr
+        <div class="p-col-2" style="color: ghostwhite;">
+          <h3 style="padding: 0; margin: 0">Mall Of Groceries</h3>
         </div>
 
-
-        <div class="header-right" style="text-align: center">
-
-          <i class="pi pi-user-plus"> </i> <br>
-
-          <div class="dropdown">
-
-            <span style="text-decoration: underline">{{ getUser() }}</span>
-
-            <div class="dropdown-content">
-
-              <p-listbox styleClass="listbox-20rem" [options]="menuItems" optionLabel="name" optionValue="code">
-
-
-                <ng-template let-menuItem pTemplate="item">
-                  <div class="ui-helper-clearfix">
-                    <span (click)="navigateToThePage(menuItem.value)"> {{menuItem.label}}</span>
-                  </div>
-                </ng-template>
-
-                <p-footer>
-                  <button *ngIf="isLoggedIn()" pButton label="Logout" class="ui-button-rounded; ui-button-warning"
-                          (click)="logOut()"></button>
-                  <button *ngIf="!isLoggedIn()" pButton label="Login" class="ui-button-rounded; ui-button-success"
-                          (click)="logIn()"></button>
-                </p-footer>
-              </p-listbox>
-
-            </div>
-          </div>
+        <div class="p-col-7" style="padding-bottom: 0">
+          <input type="text" pInputText placeholder="Under Construction - Kindly wait until next release" [(ngModel)]="searchString"
+                 style="width: 90%; border-radius: 10px">
         </div>
 
-
-        <div class="header-right" style="text-align: center; margin-right: 10px">
+        <div class="header-right; p-col-1" style="text-align: center; margin-right: 10px; padding-bottom: 0; color: white">
           <i class="pi pi-phone"> </i> <br>
           <div class="dropdown">
-            <span>0723980601</span>
+            <span style="color: white; font-weight: bold">0723980601</span>
             <div class="dropdown-content">
             </div>
           </div>
         </div>
 
 
-      </h4>
+    <div class="header-right; p-col-1" style="text-align: center; margin-right: 10px; padding-bottom: 0; color: white">
+      <button (click)="MENU_LOG_IN.toggle($event)" *ngIf="isLoggedIn()" icon="pi pi-user" pButton
+              style="background-color: darkslategray; border-radius: 25px; padding-bottom: 0"
+              styleClass="OrangeSplitButton" type="button"></button>
+      <p-menu #MENU_LOG_IN [model]="menuItems" [popup]="true" [style.textAlign]="'left'" style="padding-bottom: 0">
+      </p-menu>
+
+      <button (click)="menuLogOut.toggle($event)" *ngIf="!isLoggedIn()" icon="pi pi-user" pButton
+              style="background-color: darkred; border-radius: 25px; padding-bottom: 0" styleClass="OrangeSplitButton"
+              type="button"></button>
+
+      <p-menu #menuLogOut [model]="LOG_OUT_MENU_ITEMS" [popup]="true" [style.textAlign]="'left'"
+              style="padding-bottom: 0">
+      </p-menu>
+
+
+    </div>
+
+
+    <div class="p-col-1" class="header-right" style="text-align: center; padding-top: 5px"
+         (click)="proceedToNextPage()">
+
+      <div style="margin-left: 10px; margin-right: 30px" class="tooltip header-right">
+        <i class="pi pi-shopping-cart" style="line-height: 1.25; color: whitesmoke"></i>
+        <span class="tooltiptext">{{getCountOfItems()}}</span>
+      </div>
+
+      <br>
+      <span style="color: white; font-weight: bold"> {{getCostOfItem()}} Kr </span>
     </div>
 
   </div>
-</div>
+
+</p-card>
 
 <div *ngIf="displayLoginPage">
   <app-sign-in
@@ -86,27 +65,11 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="content-mobile" class="p-grid nav-bar" [style]="{'background-color': 'orangered', 'color': 'white'}">
+<div id="content-mobile" class="p-grid nav-bar" [style]="{'background-color': 'orangered', 'color': 'white', 'padding-top': '2px'}">
 
   <div class="p-col-1">
     <div class="box">
-      <i class="pi pi-align-justify" style="font-size: 2em; color:snow" (click)="displayNavigator=true"></i>
+      <i class="pi pi-align-justify" style="font-size: x-large; color:snow" (click)="displayNavigator=true"></i>
     </div>
   </div>
 
@@ -121,14 +84,14 @@
   <div class="p-col-2">
     <p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
     <div class="box">
-      <i class="pi pi-user" style="font-size: xx-large; color: white" (click)="displayMenuItemsForUser(menu, $event)"></i>
+      <i class="pi pi-user" style="font-size: x-large; color: white" (click)="displayMenuItemsForUser(menu, $event)"></i>
     </div>
   </div>
 
 
   <div class="p-col-2" (click)="loadSideBarMenu()">
     <div style="margin-right: 30px" class="tooltip header-right">
-      <i class="pi pi-shopping-cart" style="font-size: xx-large; color: white"></i>
+      <i class="pi pi-shopping-cart" style="font-size: x-large; color: white"></i>
       <span class="tooltiptext">{{getCountOfItems()}}</span>
     </div>
   </div>
