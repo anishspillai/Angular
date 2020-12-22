@@ -66,6 +66,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {ProductCarouselComponent} from "./product-carousel/product-carousel.component";
 import {CarouselModule} from "primeng/carousel";
 import { FooterComponent } from './footer/footer.component';
+import {BnNgIdleService} from "bn-ng-idle";
 
 @NgModule({
   declarations: [
@@ -134,7 +135,7 @@ import { FooterComponent } from './footer/footer.component';
         CarouselModule,
 
     ],
-  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient],
+  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, BnNgIdleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 <div id="content-desktop">
   <app-landing-page [isSubMenu]="isSubCategory" [mainGroceryType]="mainGroceryType" [subGroceryType]="searchCategoryType"></app-landing-page>
-<div class="box-for-search">
+<div class="box-for-search" *ngIf="filteredGroceryList && filteredGroceryList.length > 0">
   <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
   <span pInputText style="margin-left: 20px">
     <span style="font-style: normal; font-size: small; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>

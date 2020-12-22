@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {NavigationEnd, Router} from "@angular/router";
 import {AddGroceryToListObservableService} from "./add-grocery-to-list-observable.service";
+import {BnNgIdleService} from "bn-ng-idle";
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -20,7 +22,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private readonly firestore: AngularFireDatabase,
               private readonly router: Router,
-              private readonly addGroceryToListObservableService: AddGroceryToListObservableService) {
+              private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
+              private readonly bnIdle: BnNgIdleService,
+              private readonly authService: AuthService) {
 
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -51,6 +55,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isDesktopDevice = window.innerWidth > 768
+
+    this.bnIdle.startWatching(5).subscribe((isTimedOut: boolean) => {
+      if (isTimedOut) {
+        //this.authService.logout(); anish
+      }
+    });
+
   }
 
   @HostListener('window:scroll', ['$event']) onScrollEvent($event){
