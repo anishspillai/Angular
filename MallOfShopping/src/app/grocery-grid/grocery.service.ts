@@ -106,6 +106,10 @@ export class GroceryService {
 
   getTotalCostOfOrderedItems(orders: Order[]) {
 
+    if(!orders) {
+      return 0
+    }
+
     let sumOfItems = 0;
 
     orders.forEach((order) => {
