@@ -24,15 +24,14 @@
       <button (click)="MENU_LOG_IN.toggle($event)" *ngIf="isLoggedIn()" icon="pi pi-user" pButton
               style="background-color: darkslategray; border-radius: 25px; padding-bottom: 0"
               styleClass="OrangeSplitButton" type="button"></button>
-      <p-menu #MENU_LOG_IN [model]="menuItems" [popup]="true" [style.textAlign]="'left'" style="padding-bottom: 0">
+      <p-menu #MENU_LOG_IN [model]="menuItems" [popup]="true" [style.textAlign]="'left'">
       </p-menu>
 
       <button (click)="menuLogOut.toggle($event)" *ngIf="!isLoggedIn()" icon="pi pi-user" pButton
               style="background-color: darkred; border-radius: 25px; padding-bottom: 0" styleClass="OrangeSplitButton"
               type="button"></button>
 
-      <p-menu #menuLogOut [model]="LOG_OUT_MENU_ITEMS" [popup]="true" [style.textAlign]="'left'"
-              style="padding-bottom: 0">
+      <p-menu #menuLogOut [model]="LOG_OUT_MENU_ITEMS" [popup]="true" [style.textAlign]="'left'">
       </p-menu>
 
 

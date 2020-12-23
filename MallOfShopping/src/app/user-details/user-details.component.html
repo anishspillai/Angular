@@ -2,7 +2,7 @@
 <h1 *ngIf="displayHeader"> User Details </h1>
 
 <div *ngIf="!user"> Please log in and try again!!!</div>
-<p-card *ngIf="user" styleClass="p-card-shadow" style="color: whitesmoke">
+<p-card *ngIf="user" styleClass="p-card-shadow">
 
   <div *ngIf="displayErrorMessage">
     <app-display-message severity="error" summary="Error: " detail="Sorry to inform you that, there is a technical error occurred. We have created an incident and fix it soon."></app-display-message>
