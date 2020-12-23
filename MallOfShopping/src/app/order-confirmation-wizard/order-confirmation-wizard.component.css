@@ -79,9 +79,9 @@ body {
 }
 
 .left {
-  width: 78%;
+  width: 100%;
   left: 0;
-  background-color: #111;
+  background-color: darkolivegreen;
 }
 
 .right {
@@ -93,4 +93,13 @@ body {
 .centered {
   position: absolute;
   margin-left: 10em;
+}
+
+
+.nav-bar {
+  position: fixed; /* Set the navbar to fixed position */
+  top: -1px; /* Position the navbar at the top of the page */
+  left: -1px;
+  width: 100%; /* Full width */
+  z-index:1; /*Add this*/
 }

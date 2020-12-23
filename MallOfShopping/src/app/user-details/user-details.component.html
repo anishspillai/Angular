@@ -1,5 +1,5 @@
 
-<h1> User Details </h1>
+<h1 *ngIf="displayHeader"> User Details </h1>
 
 <div *ngIf="!user"> Please log in and try again!!!</div>
 <p-card *ngIf="user" styleClass="p-card-shadow" style="color: whitesmoke">

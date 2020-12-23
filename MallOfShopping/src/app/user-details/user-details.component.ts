@@ -18,6 +18,7 @@ export class UserDetailsComponent implements OnInit {
   items: Observable<any[]>;
   displayEditUserDialog = false
   displayErrorMessage = false
+  @Input() displayHeader = true
 
   constructor(private readonly  userDetailsService: UserDetailsService,
               private readonly authService: AuthService,

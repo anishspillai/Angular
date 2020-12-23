@@ -171,11 +171,6 @@ div.anish {
   margin-left: 100px;
 }
 
-::ng-deep .ui-card {
-  background-color: orangered !important;
-  color: white;
-}
-
 ::ng-deep .ui-splitbutton.custom-background-style .ui-button {
   background: yellow;
 }

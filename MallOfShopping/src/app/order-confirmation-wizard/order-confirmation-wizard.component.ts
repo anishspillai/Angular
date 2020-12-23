@@ -13,6 +13,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {AuthService} from "../auth/auth.service";
 import {HttpClient} from "@angular/common/http";
+import {Order} from "../individual-grocery/model/Order";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -113,6 +114,10 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   }
 
+  getOrders() : Order[]  {
+    return this.addGroceryToListObservableService.orders
+  }
+
   private updateCountOfGroceries() {
 
     this.addGroceryToListObservableService.orders.forEach(grocery => {
@@ -154,5 +159,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
         //this.displayThankYouDialog = true
       }
     )
+  }
+
+  getCostOfIndividualOrder(order: Order) {
+    return this.groceryService.getSumOfGrocery(order).toFixed(2)
   }
 }

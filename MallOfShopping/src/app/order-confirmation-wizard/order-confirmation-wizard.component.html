@@ -1,66 +1,116 @@
 <div id="content-desktop">
+
   <div class="split left">
-    <div class="centered" style="width: 70%">
-      <p-accordion [multiple]="true">
-        <p-accordionTab header="Delivery Address" [selected]="true">
 
-          <div class="p-col-12">
-            <app-user-details></app-user-details>
-            <br>
-            <br>
-            <br>
-            <br>
-          </div>
-        </p-accordionTab>
-
-        <p-accordionTab header="Desired Delivery Time" [selected]="true">
-          <div class="p-col-12">
-            <app-ng-time-picker (closeCalenderEventEmitter) = "deliveryDate = $event"></app-ng-time-picker>
-            <br>
-            <br>
-          </div>
-        </p-accordionTab>
-
-        <p-accordionTab header="Payment Options" [selected]="true">
-          <div class="p-col-12">
-            <app-payment-option-view></app-payment-option-view>
-          </div>
-        </p-accordionTab>
-
-        <p-accordionTab header="Any Comments" [selected]="true">
-          <div class="p-col-12">
-            <textarea rows="5" cols="95%" pInputTextarea [(ngModel)]="commentsFromCustomer"></textarea>
-          </div>
-        </p-accordionTab>
-
-      </p-accordion>
-    </div>
-  </div>
-
-  <div class="split right">
-
-    <h1 style="text-align: center; text-decoration: underline"> Order Summary </h1>
-
-    <div class="p-grid">
-
-
-      <div class="p-col-7" style="text-align: center">
-        <h4 style="font-style: italic"> Total Amount </h4>
+    <p-card  [style]="{'background-color': 'blueviolet'}" class="nav-bar">
+      <div class="p-col-2" style="color: ghostwhite;">
+        <h3 style="padding: 0; margin: 0">Mall Of Groceries</h3>
       </div>
-      <div class="p-col-5" style="text-align: center">
-        <h3>{{ totalCost }} Kr</h3>
-      </div>
-
-    </div>
-
-    <div class="p-col-5; block" (click)="placeOrder()">
-      Confirm
-    </div>
+    </p-card>
 
     <br>
 
-    <div class="p-col-5; blockRed" (click)="cancelThisPage()">
-      Cancel Order
+    <h1 style="text-align: center; padding: 10px">Order Confirmation</h1>
+
+
+
+    <div class="p-grid" style="margin: 10px">
+      <div class="p-col-8">
+        <div class="p-grid">
+
+          <div class="p-col-12" style="margin: 10px">
+              <p-fieldset [style]="{'background-color': 'lightgray'}" [toggleable]="true" [transitionOptions]="'0.86ms'">
+                <p-header style="font-weight: bold">Delivery Address</p-header>
+                <app-user-details [displayHeader]="false"></app-user-details>
+              </p-fieldset>
+          </div>
+
+          <div class="p-col-12" style="margin: 10px">
+              <p-fieldset [style]="{'background-color': 'lightgray'}" [toggleable]="true" [transitionOptions]="'0.86ms'">
+                <p-header style="font-weight: bold">Desired Schedule & Comments</p-header>
+                <app-ng-time-picker (closeCalenderEventEmitter) = "deliveryDate = $event"></app-ng-time-picker>
+
+                <textarea rows="5" cols="95%" placeholder="Enter your comments or inputs" pInputTextarea [(ngModel)]="commentsFromCustomer"></textarea>
+              </p-fieldset>
+          </div>
+
+          <!--div class="p-col-12">
+            <div style="margin: 5px">
+              <p-fieldset [toggleable]="true" [transitionOptions]="'0.86ms'">
+                <p-header style="font-weight: bold">Custom Legend Content</p-header>
+                <textarea rows="5" cols="95%" pInputTextarea [(ngModel)]="commentsFromCustomer"></textarea>
+              </p-fieldset>
+            </div>
+          </div-->
+
+        </div>
+      </div>
+
+      <div class="p-col-4">
+        <p-card [style]="{'background-color': 'lightgray'}" header="Order Details">
+
+
+          <div style="padding-bottom: 2em">
+            <button pButton label="Place Order" class="ui-button-success ui-button-rounded" (click)="placeOrder()"
+                    [style]="{'width': '22em', 'height': '5em' }">
+            </button>
+            <button pButton label="Cancel" icon="pi pi-times" class="ui-button-rounded ui-button-danger" [style]="{'margin-left': '5em'}" (click)="cancelThisPage()"></button>
+          </div>
+
+        <p-card subheader="Item List"  styleClass="p-card-shadow">
+            <div *ngFor="let order of getOrders(); let i = index">
+              <div class="p-grid">
+
+                <div class="p-col-6">
+                    <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
+                      <span>{{order.groceryName}}, {{order.type}} </span>
+                      <br>
+
+                  </div>
+                </div>
+
+
+                <div class="p-col-3">
+
+                  <div>
+                    <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
+                      <span>{{order.noOfItems}} * {{order.grossWeight}} {{order.unitOfWeight}} </span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="p-col-3" style="text-align: right">
+                  {{getCostOfIndividualOrder(order)}} Kr
+                </div>
+              </div>
+              <hr>
+            </div>
+
+
+          <div class="p-grid">
+            <div class="p-col-6" style="text-align: left">
+              <span style="font-weight: bold; font-size: large;">Total Cost</span>
+            </div>
+            <div class="p-col-6" style="text-align: right">
+              <span style="font-weight: bold; font-size: large;"> {{totalCost}} Kr </span>
+            </div>
+          </div>
+
+
+        </p-card>
+
+
+
+          <p-card subheader="Payment Mode" [style]="{'background-color': 'lightblue'}">
+            Please make swish payment or cash on delivery
+          </p-card>
+
+        </p-card>
+
+      </div>
+
+
     </div>
   </div>
 </div>
