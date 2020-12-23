@@ -57,48 +57,7 @@
             <button pButton label="Cancel" icon="pi pi-times" class="ui-button-rounded ui-button-danger" [style]="{'margin-left': '5em'}" (click)="cancelThisPage()"></button>
           </div>
 
-        <p-card subheader="Item List"  styleClass="p-card-shadow">
-            <div *ngFor="let order of getOrders(); let i = index">
-              <div class="p-grid">
-
-                <div class="p-col-6">
-                    <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
-                      <span>{{order.groceryName}}, {{order.type}} </span>
-                      <br>
-
-                  </div>
-                </div>
-
-
-                <div class="p-col-3">
-
-                  <div>
-                    <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
-                      <span>{{order.noOfItems}} * {{order.grossWeight}} {{order.unitOfWeight}} </span>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="p-col-3" style="text-align: right">
-                  {{getCostOfIndividualOrder(order)}} Kr
-                </div>
-              </div>
-              <hr>
-            </div>
-
-
-          <div class="p-grid">
-            <div class="p-col-6" style="text-align: left">
-              <span style="font-weight: bold; font-size: large;">Total Cost</span>
-            </div>
-            <div class="p-col-6" style="text-align: right">
-              <span style="font-weight: bold; font-size: large;"> {{totalCost}} Kr </span>
-            </div>
-          </div>
-
-
-        </p-card>
+          <app-ordered-items [orders]="getOrders()" [totalCost]="totalCost"></app-ordered-items>
 
 
 

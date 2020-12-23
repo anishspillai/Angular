@@ -39,6 +39,9 @@ export class OrderHistoryComponent implements OnInit {
 
   currentHistoryModel: OrderHistoryModel
 
+  displayOrderDetails = false
+  currentOrders: Order[]
+
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
               private readonly datePipe: DatePipe,
@@ -115,8 +118,8 @@ export class OrderHistoryComponent implements OnInit {
 
   }
 
-  getTotalCostOfTheOrder(orderHistoryModel: OrderHistoryModel) {
-    return this.groceryService.getTotalCostOfOrderedItems(orderHistoryModel.orderHistory)
+  getTotalCostOfTheOrder() {
+    return this.groceryService.getTotalCostOfOrderedItems(this.currentOrders)
   }
 
   getIndividualCostOfItem(order: Order) {
@@ -166,5 +169,10 @@ export class OrderHistoryComponent implements OnInit {
   enableEditingExistingOrder(oh: OrderHistoryModel) {
     this.currentHistoryModel = oh
     this.editExistingOrder = true
+  }
+
+  displayOrderHistoryDialog(orders: Order[]) {
+    this.displayOrderDetails = true
+    this.currentOrders = orders
   }
 }

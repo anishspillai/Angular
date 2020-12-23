@@ -68,6 +68,7 @@ import {CarouselModule} from "primeng/carousel";
 import { FooterComponent } from './footer/footer.component';
 import {BnNgIdleService} from "bn-ng-idle";
 import {FieldsetModule} from "primeng/fieldset";
+import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import {FieldsetModule} from "primeng/fieldset";
     TimePickerComponent,
     PaymentOptionViewComponent,
     ProductCarouselComponent,
-    FooterComponent
+    FooterComponent,
+    OrderedItemsComponent
   ],
     imports: [
         BrowserModule,
