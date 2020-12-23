@@ -52,7 +52,7 @@
 
           <div style="padding-bottom: 2em">
             <button pButton label="Place Order" class="ui-button-success ui-button-rounded" (click)="placeOrder()"
-                    [style]="{'width': '22em', 'height': '5em' }">
+                    [style]="{'width': '22em', 'height': '5em' }" [disabled]="orderBeingPlaced">
             </button>
             <button pButton label="Cancel" icon="pi pi-times" class="ui-button-rounded ui-button-danger" [style]="{'margin-left': '5em'}" (click)="cancelThisPage()"></button>
           </div>
