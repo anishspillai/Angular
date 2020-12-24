@@ -10,6 +10,7 @@ export class OrderHistoryModel {
   userId: string
   dateInNumber: Number
   commentsSection: string
+  userDetailsModel: UserDetailsModel
 }
 
 export class AdminOrderHistories {

@@ -292,6 +292,8 @@ export class OrderHistoryComponent  {
             }
           })
 
+        this.getUserDetails(anish.userId, anish);
+
         })
         return of('')
       }
@@ -306,27 +308,32 @@ export class OrderHistoryComponent  {
   }
 
 
-  getUserDetails(userId) {
+  getUserDetails(userId, anish: OrderHistoryModel) {
 
 
-     this.userDetailsModel = new UserDetailsModel()
+     const userDetailsModel = new UserDetailsModel()
 
     this.userDetailsService.getUserDetails(userId).subscribe(value => {
 
       if (value && value.length != 0) {
-        this.userDetailsModel.postNumber = value[4] as string
-        this.userDetailsModel.streetName = value[5] as string
-        this.userDetailsModel.apartmentNo = value[1] as string
-        this.userDetailsModel.telephoneNumber = value[6] as string
-        this.userDetailsModel.telephoneNumber = value[6] as string
-        this.userDetailsModel.firstName = value[2] as string
-        this.userDetailsModel.lastName = value[3] as string
-        this.userDetailsModel.address = value[0] as string
+        userDetailsModel.postNumber = value[4] as string
+        userDetailsModel.streetName = value[5] as string
+        userDetailsModel.apartmentNo = value[1] as string
+        userDetailsModel.telephoneNumber = value[6] as string
+        userDetailsModel.telephoneNumber = value[6] as string
+        userDetailsModel.firstName = value[2] as string
+        userDetailsModel.lastName = value[3] as string
+        userDetailsModel.address = value[0] as string
+        anish.userDetailsModel = userDetailsModel
       }
-      this.viewUserDetails = true
     }, (error) => {
       console.log(error)
     })
+  }
+
+  displayUserDetails( anish: OrderHistoryModel) {
+    this.userDetailsModel = anish.userDetailsModel
+    this.viewUserDetails = true
   }
 
   userDetailsModel: UserDetailsModel

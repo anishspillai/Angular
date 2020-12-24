@@ -34,8 +34,8 @@
 
 
 
-      <button pButton (click)="getUserDetails(oh.userId)" class="ui-button-danger" label="UserDetails"></button>
-      {{oh.userId}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button pButton (click)="displayUserDetails(oh)" class="ui-button-danger" label="UserDetails"></button>
+      {{oh.userId}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{oh.userDetailsModel.firstName}}  &nbsp;{{oh.userDetailsModel.telephoneNumber}}  &nbsp;
 
       <button pButton (click)="setAtDelivered(oh)" class="ui-button-success" label="Set As Delivered"></button>
 
