@@ -3,10 +3,6 @@
   <button *ngIf="isMobileDevice" pButton label="Home Page" icon="pi pi-home" class="ui-button-success ui-button-rounded" style="width: 110%;" (click)="navigateToTheMainPage()"></button>
 
   <ul>
-    <li *ngIf="!isMobileDevice"  class="p-menuitem-link" (click)="navigateToHomePage()">
-      <span class="pi pi-home"></span>
-      <span class="p-menuitem-text">&nbsp;Home Page</span>
-    </li>
 
     <div *ngFor="let item of menuItems">
 
