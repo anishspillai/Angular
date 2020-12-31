@@ -69,7 +69,7 @@ export class GroceryGridComponent implements OnInit{
     if(!this.searchCategoryType) {
       this.isHomePage  = true
 
-      this.firestore.list('admin/Products', ref => ref.orderByChild("isCampaign").equalTo(true)).snapshotChanges().subscribe(value => {
+      this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
           value.forEach(dataSnapshot => {
               // @ts-ignore
               const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
