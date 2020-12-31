@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'order-history', component: OrderHistoryMainPageComponent },
   { path: 'log-in', component: SignInComponent },
   { path: 'order-confirmation', component: OrderConfirmationWizardComponent },
-  { path: 'home-page', component: ProductCarouselComponent },
+  { path: 'home-page', component: GroceryGridComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

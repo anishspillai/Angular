@@ -35,6 +35,7 @@ export class GroceryGridComponent implements OnInit{
 
   mainGroceryType: string
   isSubCategory: string
+  isHomePage = false
 
   ngOnInit() {
 
@@ -66,13 +67,14 @@ export class GroceryGridComponent implements OnInit{
   this.displayProgressSpinner = true
   this.groceryList = []
     if(!this.searchCategoryType) {
+      this.isHomePage  = true
 
       this.firestore.list('admin/Products', ref => ref.orderByChild("isCampaign").equalTo(true)).snapshotChanges().subscribe(value => {
           value.forEach(dataSnapshot => {
               // @ts-ignore
               const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
               individualGrocery.id = dataSnapshot.key
-              this.groceryList.push(individualGrocery)
+              this.filteredGroceryList.push(individualGrocery)
             }
 
           )
