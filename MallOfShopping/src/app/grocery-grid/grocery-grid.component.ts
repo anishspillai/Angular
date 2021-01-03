@@ -6,6 +6,14 @@ import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";
 import {ErrorLogService} from "../error-log.service";
+import algoliasearch from "algoliasearch/lite";
+import {SearchObservableServiceService} from "../search-observable-service.service";
+
+
+const searchClient = algoliasearch(
+  'ZT1RBSHBBJ',
+  '5f9196688a9e6f87d0c658fdd07623de'
+);
 
 @Component({
   selector: 'app-grocery-grid',
@@ -13,6 +21,8 @@ import {ErrorLogService} from "../error-log.service";
   styleUrls: ['./grocery-grid.component.css']
 })
 export class GroceryGridComponent implements OnInit{
+
+  index = searchClient.initIndex("groceries")
 
   title = 'MallOfShopping';
   items: Observable<any[]>;
@@ -35,6 +45,7 @@ export class GroceryGridComponent implements OnInit{
 
   mainGroceryType: string
   isSubCategory: string
+  isGlobalSearch: boolean;
   isHomePage = false
 
   ngOnInit() {
@@ -49,16 +60,35 @@ export class GroceryGridComponent implements OnInit{
       this.isSubCategory = params.get("subMenu")
       this.fetchGroceries()
     })
+
+    this.search.getSearchObservable().subscribe(value => {
+      this.filterBySearchString(value)
+    })
   }
 
   constructor(private  readonly firestore: AngularFireDatabase,
               private activatedRoute: ActivatedRoute,
               private readonly groceryCountService: GroceryCountService,
-              private readonly errorLogService: ErrorLogService) {
+              private readonly errorLogService: ErrorLogService,
+              private readonly search: SearchObservableServiceService) {
   }
 
   filterProduct(searchString: string) {
     this.groceryList = this.nonFilteredList.filter(value => value.brandName.toLowerCase().includes(searchString.toLowerCase()))
+  }
+
+  filterBySearchString(searchInput: string) {
+    if (searchInput && searchInput.length > 0) {
+      this.isGlobalSearch = true
+      this.index.search(searchInput).then(({hits}) => {
+        this.filteredGroceryList = hits as unknown as IndividualGrocery[]
+      });
+    } else {
+      if(this.isGlobalSearch === true) {
+        this.fetchGroceries()
+      }
+      this.isGlobalSearch = false
+    }
   }
 
   fetchGroceries() {
@@ -68,7 +98,6 @@ export class GroceryGridComponent implements OnInit{
   this.groceryList = []
     if(!this.searchCategoryType) {
       this.isHomePage  = true
-
       this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
           value.forEach(dataSnapshot => {
               // @ts-ignore
@@ -76,9 +105,7 @@ export class GroceryGridComponent implements OnInit{
               individualGrocery.id = dataSnapshot.key
               this.filteredGroceryList.push(individualGrocery)
             }
-
           )
-
           window.scrollTo(0, 0)
           this.displayProgressSpinner = false
         }, error => {

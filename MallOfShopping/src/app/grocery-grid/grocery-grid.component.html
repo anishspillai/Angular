@@ -1,6 +1,6 @@
 <div id="content-desktop">
   <app-landing-page [isSubMenu]="isSubCategory" [mainGroceryType]="mainGroceryType" [subGroceryType]="searchCategoryType"></app-landing-page>
-<div class="box-for-search" *ngIf="!isHomePage && filteredGroceryList && filteredGroceryList.length > 0">
+<div class="box-for-search" *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) || !isGlobalSearch">
   <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
   <span pInputText style="margin-left: 20px">
     <span style="font-style: normal; font-size: small; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
@@ -45,7 +45,7 @@
 <div id="content-mobile" class="p-grid" style="padding-top: 6em; width: 350px">
 
 
-  <div *ngIf="!isHomePage" style="padding-left: 20px">
+  <div *ngIf="!isHomePage || !isGlobalSearch" style="padding-left: 20px">
     <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
     <span style="padding: 10px"></span>
     <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()" [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false" defaultLabel="Filter By Brand"></p-multiSelect>

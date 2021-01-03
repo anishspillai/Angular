@@ -66,6 +66,7 @@ import {MultiSelectModule} from "primeng/multiselect";
 import {ProductCarouselComponent} from "./product-carousel/product-carousel.component";
 import {CarouselModule} from "primeng/carousel";
 import { FooterComponent } from './footer/footer.component';
+import {SearchObservableServiceService} from "./search-observable-service.service";
 import {BnNgIdleService} from "bn-ng-idle";
 import {FieldsetModule} from "primeng/fieldset";
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
@@ -138,7 +139,7 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
         CarouselModule,
         FieldsetModule
     ],
-  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, BnNgIdleService],
+  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, BnNgIdleService, SearchObservableServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

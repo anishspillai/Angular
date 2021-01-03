@@ -16,6 +16,8 @@ export class IndividualGrocery {
   bulkPurchaseOfferAvailable? = false
   bulkPurchaseOfferCount?: number
   bulkPurchaseOfferPrice?: number
+
+  description: string
 }
 
 export class GroceryResponse {

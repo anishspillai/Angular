@@ -6,6 +6,7 @@ import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {MenuItem} from "primeng/api";
 import {Menu} from "primeng/menu";
+import {SearchObservableServiceService} from "../search-observable-service.service";
 
 
 @Component({
@@ -31,7 +32,8 @@ export class HeaderComponent implements OnInit {
   constructor(private readonly router: Router,
               private readonly auth: AuthService,
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
-              private readonly groceryService: GroceryService) {
+              private readonly groceryService: GroceryService,
+              private readonly searchInput: SearchObservableServiceService) {
 
     this.menuItems = [
       //{name: 'Order History', code: 'order-history'},
@@ -186,11 +188,8 @@ export class HeaderComponent implements OnInit {
     menu.toggle($event)
   }
 
-
-
-  navigateToTheMainPage() {
-    this.router.navigate(['home-page']);
-    this.displayNavigator = false
+  valueChange($event: string) {
+    this.searchInput.triggerNotification($event)
   }
 
 }

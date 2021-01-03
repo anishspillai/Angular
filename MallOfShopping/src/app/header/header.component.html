@@ -6,8 +6,8 @@
         </div>
 
         <div class="p-col-7" style="padding-bottom: 0">
-          <input type="text" pInputText placeholder="Under Construction - Kindly wait until next release" [(ngModel)]="searchString"
-                 style="width: 90%; border-radius: 10px">
+          <input type="text" pInputText placeholder="Search product in the store...."
+                 style="width: 90%; border-radius: 10px" [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
         </div>
 
         <div class="header-right; p-col-1" style="text-align: center; margin-right: 10px; padding-bottom: 0; color: white">
@@ -96,7 +96,7 @@
   </div>
 
   <div class="p-col-12">
-    <input placeholder="Under Construction. Will release in next version" pInputText style="width: 100%" [style]="{'border-radius': '25px'}"/>
+    <input placeholder="Search product in the store......" [(ngModel)]="searchString" (ngModelChange)="valueChange($event)" pInputText style="width: 100%" [style]="{'border-radius': '25px'}"/>
   </div>
 
   <!--div class="holder">
