@@ -98,6 +98,11 @@ export class NavigatorComponent  {
   navigateToGroceryMain(item: GroceryMenuItem) {
 
     if(this.isMobileDevice && item.items.length == 0) {
+
+      if(this.slideMenu) {
+        this.slideMenu.toggle(true)
+      }
+
       this.triggerEventForClosingNavigationForMobileApp()
     }
 
