@@ -19,23 +19,24 @@
 
 .footerInfo {
   position: fixed;
-  bottom: 10px;
-  right: 5px;
-  font-size: 30px;
-  border-radius: 25px;
+  bottom: 30px;
+  right: 10px;
+  border-radius: 15px;
   color: white;
   font-weight: lighter;
-  background-color: darkorange;
+  padding: 1px;
+  background-color: #7386D5;
 }
 
 .scrollToTopMobile {
   position: fixed;
   bottom: 70px;
-  right: 5px;
-  font-size: 30px;
-  border-radius: 25px;
+  right: 10px;
+  border-radius: 15px;
   color: white;
-  background-color: darkorange;
+  font-weight: lighter;
+  padding: 1px;
+  background-color: #7386D5;
 }
 
 .holder {

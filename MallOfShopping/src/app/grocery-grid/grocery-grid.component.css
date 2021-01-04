@@ -34,3 +34,12 @@
   padding: 10px;
   margin: auto;
 }
+
+.padding-left-for-first {
+  padding-left: 20px;
+}
+
+
+.padding-right-for-second {
+  padding-left: 10px;
+}

@@ -1,4 +1,4 @@
-<h1 [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
+<h1 style="text-align: center" [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
 
 <div *ngIf="!authService.isLoggedIn">
   <p-card [style]="{'background-color': '#A52A2A', 'width': '100%', 'color' : 'white'}"> <i class="pi pi-times-circle"></i> Please log in and try again!!! </p-card>
@@ -6,8 +6,9 @@
 
 <div *ngIf="authService.isLoggedIn">
   <div *ngIf="orderHistory.length == 0">
-    <i class="pi pi-info-circle"></i>
-    Your order history is empty
+    <p-card [style]="{'background-color': '#A52A2A', 'width': '100%', 'color' : 'white'}"><i
+      class="pi pi-times-circle"></i> Order History is empty
+    </p-card>
   </div>
 </div>
 

@@ -42,16 +42,15 @@
   </div>
 </div>
 
-<div id="content-mobile" class="p-grid" style="padding-top: 6em; width: 350px">
+<div id="content-mobile" class="p-grid" style="padding-top: 1em;">
 
 
-  <div *ngIf="!isHomePage || !isGlobalSearch" style="padding-left: 20px">
+  <div *ngIf="!isHomePage || !isGlobalSearch" style="padding: 10px 10px 10px 30px">
     <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
     <span style="padding: 10px"></span>
     <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()" [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false" defaultLabel="Filter By Brand"></p-multiSelect>
   </div>
 
-  <br> <br> <br>
 
   <div *ngIf="displayProgressSpinner" style="width: 250px">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"
@@ -65,12 +64,8 @@
     Fishes shall be delivered on week ends and the delivery is based on stock availability!!!
   </div>
 
-  <div *ngIf="searchCategoryType === 'Vegetable'" class="p-col-12; warning-dialog-mobile">
-    Launching vegetable deliveries from 01-Oct-2020
-  </div>
-
-  <div *ngFor="let grocery of filteredGroceryList">
-    <div class="p-col" style="width: 170px">
+  <div *ngFor="let grocery of filteredGroceryList; let i = index">
+    <div class="p-col" style="text-align: center" [class.padding-left-for-first] = "i % 2 == 0" [class.padding-right-for-second]="i % 2 != 0">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"
                               [isDesktopApplication]="false">

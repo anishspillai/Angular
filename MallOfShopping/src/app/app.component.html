@@ -18,9 +18,9 @@
 
 
 <div *ngIf="!isDesktopDevice">
-  <router-outlet></router-outlet>
   <i class="footerInfo pi pi-info" (click)="displayInfoDialog = true"></i>
   <i *ngIf="displayScrollToTop" onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTopMobile"></i>
+  <router-outlet></router-outlet>
 </div>
 
 

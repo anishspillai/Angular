@@ -87,12 +87,12 @@
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.tooltip {
+.tooltip_cart_count {
   position: relative;
   display: inline-block;
 }
 
-.tooltip .tooltiptext {
+.tooltip_cart_count .tooltiptext {
   background-color: darkolivegreen;
   color: seashell;
   text-align: center;
