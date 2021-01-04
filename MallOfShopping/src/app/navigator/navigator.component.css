@@ -1,100 +1,46 @@
-ul {
-  list-style: none; /* Remove list bullets */
-  padding: 0;
-}
-
-li {
-  padding: 5px;
-  width: 100%
-
-}
-
-li:hover  {
-  background-color: orangered;
-  color: white;
-}
-
-li::selection {
-  background-color: red;
-  color: white;
-}
-
-.border-list {
-  border-bottom: 1px solid #ddd;
-}
-
-.kooi .ui-listbox-list * {
-   color: red;
-   font-weight: bold
- }
-
-
-:host ::ng-deep .ui-listbox .ui-listbox-list .ui-listbox-item.ui-state-highlight {
-  color: #000000;
-  background-color: whitesmoke;
-  margin: 2px;
-  padding-left: 10px;
-  font-style: italic;
-  border: white;
-}
-
-.anish {
-  border-bottom: 1px solid #ddd;
-}
-
-
-.dark-panel.p-slidemenu {
-    background: orangered;
-}
-
-
-.p-slidemenu {
-  width: 15rem;
-}
-
-.p-slidemenu.p-slidemenu-overlay {
-  position: absolute;
-}
-
-.p-slidemenu ul {
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-}
-
-.p-slidemenu .p-slidemenu-rootlist {
-  position: absolute;
-  top: 0;
-}
-
-.p-slidemenu .p-submenu-list {
-}
-
-.p-menuitem-link {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+a,
+a:hover,
+a:focus {
+  color: inherit;
   text-decoration: none;
-  overflow: hidden;
-  border-bottom: 1px solid white;
+  transition: all 0.3s;
 }
 
-.p-slidemenu .p-menuitem-icon {
-  vertical-align: middle;
+#sidebar {
+  color: #fff;
+  transition: all 0.3s;
+  font-style: oblique;
+  font-family: "Trebuchet MS";
+  cursor: pointer;
 }
 
-.p-menuitem-text {
-  vertical-align: middle;
+#sidebar ul li a {
+  padding-left: 5px;
+  font-size: 1.1em;
+  display: block;
+  line-height: 2.5em;
 }
 
-.p-slidemenu .p-menuitem {
+#sidebar ul li a:hover {
+  color : #7385D5;
+  background: #fff;
+  padding-left: 30px;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
   position: relative;
 }
 
-.p-submenu-icon {
-  margin-left: auto;
-}
-
-.p-slidemenu .p-slidemenu-wrapper {
-  position: relative;
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translateY(-50%);
 }

@@ -1,29 +1,34 @@
-<nav style="width: 300px; border-radius: 4px; font-style: oblique">
+<div *ngIf="isMobileDevice" style="border-width: thin">
+  <button
+          pButton label="Home Page"
+          icon="pi pi-home"
+          class="ui-button-secondary ui-button-rounded"
+          style="width: 100%"
+          (click)="navigateToTheMainPage()">
+  </button>
 
-  <button *ngIf="isMobileDevice" pButton label="Home Page" icon="pi pi-home" class="ui-button-success ui-button-rounded" style="width: 110%;" (click)="navigateToTheMainPage()"></button>
+  <span></span>
 
-  <ul>
+</div>
 
-    <div *ngFor="let item of menuItems">
+<nav id="sidebar">
 
-      <div *ngIf="item.items.length == 0"  class="p-menuitem-link" (click)="navigateToGroceryMain(item)">
-        <li  class="p-menuitem-link">
-          <span class="p-menuitem-text">{{item.label}}</span>
-        </li>
-      </div>
+  <ul *ngFor="let item of menuItems" class="list-unstyled" style="border: 10px; margin: 0px">
 
-      <div *ngIf="item.items.length != 0">
-        <li (click)=" toggleSlideMenu($event, menu)" class="p-menuitem-link">
-          <span class="p-menuitem-text">{{item.label}}</span>
-          <span class="p-submenu-icon pi pi-fw pi-angle-right" *ngIf="item.items"></span>
-          <p-slideMenu appendTo="body" #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}"
-                       [menuWidth]="300"
-                       [style]="{width: '300px', 'background-color':'#F0F8FF', 'color': 'red', 'border-radius': '10px'}" [popup]="true">
-          </p-slideMenu>
-        </li>
-      </div>
+    <li *ngIf="item.items.length > 0" (click)=" toggleSlideMenu($event, menu)" style="margin: 0; padding: 0">
+      <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse">{{item.label}}</a>
 
-    </div>
+      <p-slideMenu appendTo="body" #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}"
+                   [menuWidth]="300"
+                   [style]="{width: '300px', 'background-color':'#F0F8FF', 'color': 'red', 'border-radius': '10px'}" [popup]="true">
+      </p-slideMenu>
+    </li>
+
+
+    <li (click)="navigateToGroceryMain(item)" *ngIf="item.items.length == 0">
+      <a>{{item.label}}</a>
+    </li>
   </ul>
 </nav>
+
 

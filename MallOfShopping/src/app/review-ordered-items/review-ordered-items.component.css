@@ -44,10 +44,22 @@
 .isa_info {
   color: #00529B;
   background-color: #BDE5F8;
+  align-content: center;
+  text-align: center;
+  text-decoration: #cccccc;
+  font-family: "Trebuchet MS";
+  font-size: large;
+  border-radius: 10px;
 }
 .isa_success {
   color: #4F8A10;
   background-color: #DFF2BF;
+  align-content: center;
+  text-align: center;
+  text-decoration: #cccccc;
+  font-family: "Trebuchet MS";
+  font-size: large;
+  border-radius: 10px;
 }
 .isa_warning {
   color: #9F6000;
@@ -72,4 +84,7 @@
   :host >>> .ui-sidebar {
     font-size: x-small;
   }
+}
+.red{
+  background-color: lightgrey;
 }

@@ -30,15 +30,11 @@
   <br>
 
   <div *ngFor="let order of ordersAddedByUser; let i = index">
-    <div class="p-grid">
+    <div class="p-grid" style="border-bottom: 1px solid lightgrey; padding: 2px" [class.red] = "i % 2 == 0">
 
       <div class="p-col-6">
 
         <div class="arrange-horizontally">
-
-        <img src = "{{order.imagePath}}"
-             style="width: 30px; height: 30px" class="center-align">
-
         <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
           <span>{{order.groceryName}}, {{order.grossWeight}} {{order.unitOfWeight}} </span>
           <br>
@@ -54,24 +50,21 @@
         <button class="p-col-1" pButton type="button" icon="pi pi-plus" class="ui-button-success" (click)="increment(order)"></button>
       </div>
 
-      <div style="text-align: right">
-        <h4 style="font-weight: normal">{{getCostOfIndividualOrder(order)}} Kr</h4>
+      <div class="p-col-2" style="text-align: left">
+        <span style="text-align: left"> {{getCostOfIndividualOrder(order)}} Kr </span>
       </div>
     </div>
-    <hr>
   </div>
 
 
-  <div *ngIf="getTotalCostOfOrderedItems() <= 400" class="p-grid p-justify-end" style="color: darkred">
-    <div class="p-col-10">
+  <div *ngIf="getTotalCostOfOrderedItems() <= 400" class="p-grid p-justify-end" style="margin-top:10px; margin-bottom: 5px; color: darkred; border: 1px solid orangered; border-radius: 25px" >
+    <div class="p-col-9">
       <div class="box">
-        <h4 style="font-weight: normal; font-style: italic">Delivery Charge</h4>
+        <span style="font-weight: bold; font-size: large; font-style: oblique"> Delivery Charge </span>
       </div>
     </div>
-    <div class="p-col-2">
-      <div>
-        <h4 style="font-weight: normal;"> 30 Kr</h4>
-      </div>
+    <div class="p-col-3">
+      <span style="padding-left: 30px; font-weight: bold; font-size: large; font-style: oblique">30 Kr </span>
     </div>
   </div>
 
@@ -79,13 +72,11 @@
   <div class="p-grid p-justify-end">
     <div class="p-col-9">
       <div class="box">
-        <h3 style="font-style: italic">Total</h3>
+        <span style="font-weight: bold; font-size: large; font-style: oblique"> Total (Kr)</span>
       </div>
     </div>
     <div class="p-col-3">
-      <div class="box">
-        <h3>{{  getTotalCostOfOrderedItemsAsString() }} Kr</h3>
-      </div>
+      <span style="padding-left: 20px; font-weight: bold; font-size: large; font-style: oblique">{{  getTotalCostOfOrderedItemsAsString() }} </span>
     </div>
   </div>
 

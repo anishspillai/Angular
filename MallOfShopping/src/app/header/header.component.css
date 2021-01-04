@@ -110,6 +110,7 @@
    left: -1px;
    width: 100%; /* Full width */
    z-index:1; /*Add this*/
+  padding-bottom: 2px;
  }
 
 div.anish {
