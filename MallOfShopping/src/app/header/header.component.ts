@@ -192,4 +192,8 @@ export class HeaderComponent implements OnInit {
     this.searchInput.triggerNotification($event)
   }
 
+  navigateToHomePage() {
+    this.router.navigateByUrl('home-page')
+  }
+
 }

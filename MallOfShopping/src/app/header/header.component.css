@@ -189,7 +189,14 @@ input:active {
   background-color: darkolivegreen;
   border-radius: 25px;
 }
+
 ::ng-deep .OrangeSplitButton.ui-state-hover .ui-button,
 .OrangeSplitButton.ui-state-focus .ui-button{
   background-color: indianred !important;
+}
+
+#logo:hover {
+  background-color: darkorange;
+  border-radius: 25px;
+  transition: background-color 2s;
 }

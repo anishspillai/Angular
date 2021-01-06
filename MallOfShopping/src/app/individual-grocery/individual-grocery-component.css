@@ -78,6 +78,7 @@ p a {
 .sans-serif {
   font-family: "Trebuchet MS";
   font-size: medium;
+  font-style: oblique;
 }
 
 .sans-serif-small-font {
@@ -116,3 +117,4 @@ p a {
     border-top-left-radius: 8px;
   }
 }
+

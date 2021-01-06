@@ -1,13 +1,19 @@
 <p-card  [style]="{'background-color': '#7386D5'}" id="content-desktop" class="nav-bar">
   <div class="p-grid">
 
-        <div class="p-col-2" style="color: ghostwhite;">
-          <h3 style="padding: 0; margin: 0; font-style: oblique; font-family: 'Trebuchet MS'">Mall Of Groceries</h3>
+        <div id="logo" class="p-col-2" style="color: ghostwhite; text-align: center; padding-top: 10px">
+          <span (click)="navigateToHomePage()" style="font-style: oblique; font-family: 'Trebuchet MS'; font-size: large; text-align: center">Mall Of Groceries</span>
         </div>
 
-        <div class="p-col-7" style="padding-bottom: 0">
-          <input type="text" pInputText placeholder="Search product in the store...."
-                 style="width: 90%; border-radius: 10px" [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
+        <div class="p-col-7" style="padding-bottom: 0; padding-left: 25px">
+
+          <div class="input-group md-form form-sm form-2 pl-0">
+            <input class="form-control my-0 py-1" type="text" placeholder="Search product in the store..." aria-label="Search" [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
+            <div class="input-group-append">
+                <span class="input-group-text lighten-3"  style="background-color: #7386D5;" id="basic-text1"><i style="color: white" class="pi pi-search" ></i></span>
+            </div>
+          </div>
+
         </div>
 
         <div class="header-right; p-col-1" style="text-align: center; margin-right: 10px; padding-bottom: 0; color: white">
