@@ -23,9 +23,10 @@
   right: 10px;
   border-radius: 15px;
   color: white;
-  font-weight: lighter;
-  padding: 1px;
+  font-weight: bolder;
+  padding: 5px;
   background-color: #7386D5;
+  font-size: larger;
 }
 
 .scrollToTopMobile {
@@ -34,8 +35,8 @@
   right: 10px;
   border-radius: 15px;
   color: white;
-  font-weight: lighter;
-  padding: 1px;
+  font-weight: bolder;
+  padding: 5px;
   background-color: #7386D5;
 }
 
