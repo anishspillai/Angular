@@ -12,7 +12,7 @@
     <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
 
       <div style="float: right;">
-        <p-dropdown style="padding-bottom: 10px" [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+        <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
       </div>
 
       <span pInputText>
