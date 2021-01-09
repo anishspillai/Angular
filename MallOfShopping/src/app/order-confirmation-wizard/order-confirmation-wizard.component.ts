@@ -39,6 +39,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
   commentsFromCustomer: string
   private isOrderPlaced: boolean;
   orderBeingPlaced = false
+  private isMobileDevice: boolean;
 
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
@@ -57,6 +58,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
   ngOnInit(): void {
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.totalCost = params.get("totalCost")
+      this.isMobileDevice = params.get("checkOut") === 'true'
     })
     }
 

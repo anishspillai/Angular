@@ -1,11 +1,14 @@
 <div id="content-desktop">
 
-  <hr>
+  <hr *ngIf="!isGlobalSearch">
 
-  <h3  *ngIf="mainGroceryType" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} </h3>
+  <h3  *ngIf="isGlobalSearch" style="margin: 0; padding: 5px; font-weight: bolder; font-family: 'Trebuchet MS'; text-align: center"> Search Results </h3>
+
+  <h3  *ngIf="mainGroceryType && !isGlobalSearch" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} </h3>
+
   <h4 style="margin: 0; padding: 0; font-family: 'Trebuchet MS'">{{searchCategoryType}}</h4>
 
-  <hr style="border-width: medium">
+  <hr  *ngIf="!isGlobalSearch" style="border-width: medium">
     <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
 
       <div style="float: right;">

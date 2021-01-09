@@ -190,6 +190,7 @@ export class HeaderComponent implements OnInit {
 
   valueChange($event: string) {
     this.searchInput.triggerNotification($event)
+    this.router.navigate(['/grocery-list'])
   }
 
   navigateToHomePage() {

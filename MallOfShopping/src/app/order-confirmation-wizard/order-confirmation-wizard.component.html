@@ -1,32 +1,17 @@
 <div id="content-desktop">
-
-  <div class="split left">
-
-    <p-card  [style]="{'background-color': '#7386D5'}" class="nav-bar">
-      <div class="p-col-2" style="color: ghostwhite;">
-        <h3 style="padding: 0; margin: 0">Mall Of Groceries</h3>
-      </div>
-    </p-card>
-
-    <br>
-
-    <br>
-
-    <h1 style="text-align: center; padding: 10px">Order Confirmation</h1>
-
+  <h2 style="font-style: oblique; padding-top: 10px; text-align: center">Order Confirmation</h2>
     <div class="p-grid" style="margin: 10px">
       <div class="p-col-8">
         <div class="p-grid">
 
-          <div class="p-col-12" style="margin: 10px">
-              <p-fieldset [style]="{'background-color': 'lightgray'}" [toggleable]="true" [transitionOptions]="'0.86ms'">
-                <p-header style="font-weight: bold">Delivery Address</p-header>
+          <div class="p-col-12">
+              <p-card [style]="{'background-color': '#D7CEC7'}" header="Delivery Address">
                 <app-user-details [displayHeader]="false"></app-user-details>
-              </p-fieldset>
+              </p-card>
           </div>
 
           <div class="p-col-12" style="margin: 10px">
-              <p-fieldset [style]="{'background-color': 'lightgray'}" [toggleable]="true" [transitionOptions]="'0.86ms'">
+              <p-fieldset [style]="{'background-color': '#D7CEC7'}" [toggleable]="true" [transitionOptions]="'0.86ms'">
                 <p-header style="font-weight: bold">Desired Schedule & Comments</p-header>
                 <app-ng-time-picker (closeCalenderEventEmitter) = "deliveryDate = $event"></app-ng-time-picker>
 
@@ -47,15 +32,18 @@
       </div>
 
       <div class="p-col-4">
-        <p-card [style]="{'background-color': 'lightgray'}" header="Order Details">
+        <p-card [style]="{'background-color': 'lightgray', 'color': 'black'}" header="Order Details">
 
 
           <div style="padding-bottom: 2em">
-            <button pButton label="Place Order" class="ui-button-success ui-button-rounded" (click)="placeOrder()"
-                    [style]="{'width': '20em', 'height': '5em' }" [disabled]="orderBeingPlaced">
-            </button>
-            <button pButton label="Add More Items" class="ui-button-rounded ui-button-danger" [style]="{'margin-left': '5em', height: '5em'}" (click)="cancelThisPage()"></button>
-          </div>
+            <button pButton label="Place Order" (click)="placeOrder()"
+                    [style]="{'width': '100%',
+                    'font-size': 'xx-large',
+                    'border-radius' : '25px',
+                    'background-color': 'green',
+                    'box-sizing': 'border-box',
+                    'box-shadow': '0 0 8px 0 rgba(0,0,0,0.25)'}" [disabled]="orderBeingPlaced">
+            </button>   </div>
 
           <app-ordered-items [orders]="getOrders()" [totalCost]="totalCost"></app-ordered-items>
 
@@ -72,10 +60,9 @@
 
     </div>
   </div>
-</div>
 
 
-<div id="content-mobile" style="display: block; margin-top: 1em; margin-left: auto; margin-right: auto; color: black;">
+<div *ngIf="isMobileDevice" id="content-mobile" style="display: block; margin-top: 1em; margin-left: auto; margin-right: auto; color: black;">
 
   <div style="align-content: center; text-align: center; font-family: 'Trebuchet MS'; font-style: oblique; font-size: medium; color: #343a40"> Order Confirmation </div>
 

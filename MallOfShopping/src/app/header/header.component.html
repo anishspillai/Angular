@@ -27,17 +27,16 @@
 
 
     <div class="header-right; p-col-1" style="text-align: center; margin-right: 10px; padding-bottom: 0; color: white">
-      <button (click)="MENU_LOG_IN.toggle($event)" *ngIf="isLoggedIn()" icon="pi pi-user" pButton
-              style="background-color: darkslategray; border-radius: 25px; padding-bottom: 0"
-              styleClass="OrangeSplitButton" type="button"></button>
-      <p-menu #MENU_LOG_IN [model]="menuItems" [popup]="true" [style.textAlign]="'left'">
+      <button class="zoom" (click)="MENU_LOG_IN.toggle($event)" *ngIf="isLoggedIn()" icon="pi pi-user" pButton
+              style="background-color: darkslategray; border-radius: 25px; padding-bottom: 0" type="button"></button>
+      <p-menu #MENU_LOG_IN [model]="menuItems" [popup]="true" [style.textAlign]="'left'" [style]="{'background-color': '#c0c0c0'}">
       </p-menu>
 
-      <button (click)="menuLogOut.toggle($event)" *ngIf="!isLoggedIn()" icon="pi pi-user" pButton
-              style="background-color: darkred; border-radius: 25px; padding-bottom: 0" styleClass="OrangeSplitButton"
+      <button class="zoom" (click)="menuLogOut.toggle($event)" *ngIf="!isLoggedIn()" icon="pi pi-user" pButton
+              style="background-color: darkred; border-radius: 25px; padding-bottom: 0"
               type="button"></button>
 
-      <p-menu #menuLogOut [model]="LOG_OUT_MENU_ITEMS" [popup]="true" [style.textAlign]="'left'">
+      <p-menu #menuLogOut [model]="LOG_OUT_MENU_ITEMS" [popup]="true" [style.textAlign]="'left'" [style]="{'background-color': '#c0c0c0'}">
       </p-menu>
 
 

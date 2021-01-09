@@ -29,7 +29,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
   moveToConfirmationPage() {
     if(this.addGroceryToListObservableService.orders.length > 0) {
       this.sendCloseEvent()
-      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItemsAsString()}});
+      this.router.navigate(['order-confirmation'], {queryParams: {totalCost: this.getTotalCostOfOrderedItemsAsString(), 'checkOut': !this.isDesktopApplication}});
     }
   }
 

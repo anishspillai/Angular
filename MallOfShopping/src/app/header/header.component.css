@@ -185,18 +185,18 @@ input:active {
   background: yellow;
 }
 
-::ng-deep .OrangeSplitButton .ui-button{
-  background-color: darkolivegreen;
-  border-radius: 25px;
-}
-
-::ng-deep .OrangeSplitButton.ui-state-hover .ui-button,
-.OrangeSplitButton.ui-state-focus .ui-button{
-  background-color: indianred !important;
-}
-
 #logo:hover {
   background-color: darkorange;
   border-radius: 25px;
   transition: background-color 2s;
+}
+
+.zoom {
+  transition: transform .5s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.75); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  background-color: sienna;
 }
