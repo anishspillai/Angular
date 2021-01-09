@@ -43,8 +43,21 @@ export class ProductCarouselComponent {
   }
 
   navigateToHomePage(mainPage: string, subPage: string) {
-    const queryParams = {'groceryType': subPage , 'subMenu': 'true', 'main': mainPage}
-    this.router.navigate([queryParams])
+    if(subPage) {
+      this.router.navigate(['/grocery-list'], {
+        queryParams: {
+          'groceryType': subPage,
+          'subMenu': true,
+          'main': mainPage
+        }
+      })
+    } else {
+      this.router.navigate(['/grocery-list'], {
+        queryParams: {
+          'groceryType': mainPage
+        }
+      })
+    }
   }
 
 

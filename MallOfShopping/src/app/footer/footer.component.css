@@ -1,6 +1,6 @@
 .footer-desktop {
   background: #303036;
-  color: #d3d3d3;
+  color: #7386D5;
   height: 300px;
   position: relative;
 }
@@ -26,6 +26,7 @@
   flex: 1;
   border-box: 1px solid white;
   font-weight: lighter;
+  font-family: "Trebuchet MS";
 }
 
 .footer-desktop .footer-bottom {
