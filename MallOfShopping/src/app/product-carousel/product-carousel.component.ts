@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-carousel',
@@ -20,7 +21,8 @@ export class ProductCarouselComponent {
 
   responsiveOptions; */
 
-  constructor() {
+  constructor(
+    private readonly router: Router) {
     /**this.responsiveOptions = [
       {
         breakpoint: '1024px',
@@ -39,6 +41,12 @@ export class ProductCarouselComponent {
       }
     ];*/
   }
+
+  navigateToHomePage(mainPage: string, subPage: string) {
+    const queryParams = {'groceryType': subPage , 'subMenu': 'true', 'main': mainPage}
+    this.router.navigate([queryParams])
+  }
+
 
   ngOnInit() {
 
