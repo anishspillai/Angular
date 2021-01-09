@@ -10,7 +10,7 @@
           <div class="input-group md-form form-sm form-2 pl-0">
             <input class="form-control my-0 py-1" type="text" placeholder="Search product in the store..." aria-label="Search" [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
             <div class="input-group-append">
-                <span class="input-group-text lighten-3"  style="background-color: #7386D5;" id="basic-text1"><i style="color: white" class="pi pi-search" ></i></span>
+                <span class="input-group-text lighten-3"  style="background-color: darkorange;" id="basic-text1"><i style="color: white" class="pi pi-search" ></i></span>
             </div>
           </div>
 
@@ -95,13 +95,13 @@
 
 
   <div class="p-col-12" style="text-align: center">
-    <input  placeholder="Search product in the store......"
-            [(ngModel)]="searchString"
-            (ngModelChange)="valueChange($event)"
-            pInputText
-            style="width: 90%"
-            [style]="{'border-radius': '25px'}"/>
-  </div>
+  <input  placeholder="Search product in the store......"
+          [(ngModel)]="searchString"
+          (ngModelChange)="valueChange($event)"
+          pInputText
+          style="width: 90%"
+          [style]="{'border-radius': '25px'}"/>
+</div>
 
 </div>
 

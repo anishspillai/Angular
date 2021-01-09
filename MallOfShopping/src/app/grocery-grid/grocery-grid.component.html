@@ -1,14 +1,26 @@
 <div id="content-desktop">
-    <div class="box-for-search" *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
-        <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
-        <span pInputText style="margin-left: 20px">
-          <span style="font-style: normal; font-size: small; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
+
+  <hr>
+
+  <h3  *ngIf="mainGroceryType" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} </h3>
+  <h4 style="margin: 0; padding: 0; font-family: 'Trebuchet MS'">{{searchCategoryType}}</h4>
+
+  <hr style="border-width: medium">
+    <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
+
+      <div style="float: right;">
+        <p-dropdown style="padding-bottom: 10px" [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+      </div>
+
+      <span pInputText>
+          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
               <span style="margin-left: 10px" *ngFor="let product of brands">
                 <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"></p-checkbox>
              </span>
           </span>
      </div>
 </div>
+<hr style="border-width: medium">
 
 <div id="content-desktop-flex" class="p-grid" style="padding-top: 1em">
 

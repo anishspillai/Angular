@@ -70,6 +70,7 @@ import {SearchObservableServiceService} from "./search-observable-service.servic
 import {BnNgIdleService} from "bn-ng-idle";
 import {FieldsetModule} from "primeng/fieldset";
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
+import {PanelMenuModule} from "primeng/panelmenu";
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
         SlideMenuModule,
         MultiSelectModule,
         CarouselModule,
-        FieldsetModule
+        FieldsetModule,
+        PanelMenuModule
     ],
   providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, BnNgIdleService, SearchObservableServiceService],
   bootstrap: [AppComponent]

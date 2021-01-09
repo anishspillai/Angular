@@ -4,6 +4,7 @@ import {GroceryMenuItem} from "./model/GroceryMenuItem";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {SlideMenu} from "primeng/slidemenu";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-navigator',
@@ -13,6 +14,8 @@ import {SlideMenu} from "primeng/slidemenu";
 export class NavigatorComponent  {
 
   menuItems: GroceryMenuItem[] = []
+
+  menuItems_With_Out: GroceryMenuItem[] = []
 
   menuSubItems: GroceryMenuItem[] = []
 
@@ -60,13 +63,14 @@ export class NavigatorComponent  {
         const childData = childSnapshot.payload;
 
         if (!Array.isArray(childData.val())) {
+
           let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.val())
           menuItem.items = []
-          this.menuItems.push(menuItem)
+          this.menuItems_With_Out.push(menuItem)
         } else {
           {
             let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.key)
-            menuItem.routerLink = "grocery-list"
+            //menuItem.routerLink = "grocery-list"
             const queryParam =  'groceryType=' + menuItem.label
             menuItem.queryParams = [queryParam]
             this.menuSubItems = []
@@ -114,7 +118,7 @@ export class NavigatorComponent  {
   closeParentWindowAndSlideMenuForChildWindowForMobileDevices() {
 
     if(this.isMobileDevice) {
-      this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
+      //this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
       this.triggerEventForClosingNavigationForMobileApp() // Close the side bar for mobile application
     }
   }

@@ -18,7 +18,7 @@ a:focus {
   padding-left: 5px;
   font-size: 1.1em;
   display: block;
-  line-height: 2.5em;
+  line-height: 2em;
 }
 
 #sidebar ul li a:hover {
@@ -43,4 +43,64 @@ a[data-toggle="collapse"] {
   top: 50%;
   right: 20%;
   transform: translateY(-50%);
+}
+
+:host>>>.ui-state-default {
+  background: whitesmoke!important;
+  color:#7386D5!important;
+}
+
+:host>>>.ui-menuitem-icon {
+  color: red!important;
+}
+
+:host>>>.ui-panelmenu .ui-panelmenu-content .ui-menuitem-text {
+  transition: all 0.5s;
+  font-style: oblique;
+}
+
+
+:host>>>.ui-panelmenu .ui-panelmenu-content {
+  background-color: floralwhite !important;
+  transition: all 1s;
+}
+
+:host>>> .ui-panelmenu .ui-panelmenu-content .ui-submenu-list .ui-menuitem .ui-menuitem-text {
+  color: #7386D5;
+  padding-left: 40px;
+  font-family: "Trebuchet MS";
+  font-weight: bold;
+  font-style: italic;
+}
+
+:host>>>.ui-panelmenu .ui-panelmenu-header > a{
+  background-color: #7386D5!important;
+  color: white;
+  transition: all 0.5s;
+  font-family: "Trebuchet MS";
+  font-style: italic;
+  font-size: large;
+  font-weight: lighter;
+  padding: 5px;
+  border: 0;
+}
+
+:host>>>.ui-panelmenu .ui-panelmenu-header > a:hover{
+  background-color: white!important;
+  color: #7386D5!important;
+  padding-left: 30px;
+}
+
+:host>>>.ui-panelmenu .ui-panelmenu-header.ui-state-active > a{
+  background-color: gray!important;
+  color: white!important;
+  padding-left: 30px;
+}
+
+:host>>>.pi-caret-down{display:none}
+
+:host>>>.ui-panelmenu .ui-panelmenu-header .ui-panelmenu-icon  {
+  color: whitesmoke;
+  font-size: small;
+  font-weight: bolder;
 }

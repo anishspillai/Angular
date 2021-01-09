@@ -1,34 +1,26 @@
 <div *ngIf="isMobileDevice" style="border-width: thin">
   <button
-          pButton label="Home Page"
-          icon="pi pi-home"
-          class="ui-button-secondary ui-button-rounded"
-          style="width: 100%"
-          (click)="navigateToTheMainPage()">
+    pButton label="Home Page"
+    icon="pi pi-home"
+    class="ui-button-secondary ui-button-rounded"
+    style="width: 100%"
+    (click)="navigateToTheMainPage()">
   </button>
-
-  <span></span>
+  <hr style="border-color: white">
 
 </div>
 
+<p-panelMenu [transitionOptions]="'55ms'"
+             styleClass="someStyleClass"
+             [model]="menuItems"
+             [style]="{'width':'310px'}">
+</p-panelMenu>
+
 <nav id="sidebar">
-
-  <ul *ngFor="let item of menuItems" class="list-unstyled" style="border: 10px; margin: 0px">
-
-    <li *ngIf="item.items.length > 0" (click)=" toggleSlideMenu($event, menu)" style="margin: 0; padding: 0">
-      <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse">{{item.label}}</a>
-
-      <p-slideMenu appendTo="body" #menu [model]="item.items" viewportHeight = "{{getViewPort(item)}}"
-                   [menuWidth]="300"
-                   [style]="{width: '300px', 'background-color':'#F0F8FF', 'color': 'red', 'border-radius': '10px'}" [popup]="true">
-      </p-slideMenu>
-    </li>
-
-
-    <li (click)="navigateToGroceryMain(item)" *ngIf="item.items.length == 0">
+  <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"
+      style="border: 10px; margin: 0px; padding-left: 5px">
+    <li (click)="navigateToGroceryMain(item)">
       <a>{{item.label}}</a>
     </li>
   </ul>
 </nav>
-
-
