@@ -1,4 +1,6 @@
-<h1 style="text-align: center" [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
+<h1 style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique" [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
+
+<hr style="border-width: thick">
 
 <div *ngIf="!authService.isLoggedIn">
   <p-card [style]="{'background-color': '#A52A2A', 'width': '100%', 'color' : 'white'}"> <i class="pi pi-times-circle"></i> Please log in and try again!!! </p-card>

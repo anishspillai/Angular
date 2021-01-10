@@ -39,7 +39,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
   commentsFromCustomer: string
   private isOrderPlaced: boolean;
   orderBeingPlaced = false
-  private isMobileDevice: boolean;
+  isMobileDevice: boolean;
 
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,

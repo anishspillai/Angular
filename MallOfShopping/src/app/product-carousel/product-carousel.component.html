@@ -21,7 +21,8 @@
           <img class="p-col-6" src="assets/img/dals/TRS_White_ChickPeas.png" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/dals/TRS_Redkidney.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Dal, Pulses & Lentils', 'Dal')">Shop now</i>
       </div>
     </p-card>
 
@@ -37,7 +38,8 @@
           <img class="p-col-6" src="assets/img/flours/wheat/Pillsbury.png" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/flours/Millet/Chakkra_millet.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Flour', 'Wheat')">Shop now</i>
       </div>
     </p-card>
 
@@ -56,7 +58,7 @@
                style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/General/Ghee/Amul.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Dal,%20Pulses%20%26%20Lentils', 'Dal')">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('General Groceries', 'Oil')">Shop now</i>
       </div>
     </p-card>
 
@@ -73,7 +75,7 @@
           <img class="p-col-6" src="assets/img/H_B/H/Vatika_Olive.png" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/H_B/H/Vatika_Coconut.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Health & Beauty', 'Hair Care')">Shop now</i>
       </div>
     </p-card>
 
@@ -90,7 +92,7 @@
           <img class="p-col-6" src="assets/img/Spices/MDH_Chicken_Curry_Masala.png" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/Spices/PavBhaji.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Masala & Spices', 'Powder')">Shop now</i>
       </div>
     </p-card>
 
@@ -107,7 +109,7 @@
           <img class="p-col-6" src="assets/img/rice/Chakra_Ponni_Boiled.jpg" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/rice/heera_idly.png" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Rice', 'Basmati')">Shop now</i>
       </div>
     </p-card>
 
@@ -123,7 +125,7 @@
           <img class="p-col-6" src="assets/img/Nuts/TRS_Dates.png" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/Nuts/TRS_Almond_Flakes.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Nuts & Dried Fruits', null)">Shop now</i>
       </div>
     </p-card>
 
@@ -139,7 +141,7 @@
           <img class="p-col-6" src="assets/img/Snacks/H_Kachori.jpg" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/Snacks/KCB_Farrari_Mix.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Snacks', null)">Shop now</i>
       </div>
     </p-card>
 
@@ -172,13 +174,11 @@
           <img class="p-col-6" src="assets/img/Pickle_Paste/MTR_Sliced_Mango.jpg" style="width: 180px; height: 150px">
           <img class="p-col-6" src="assets/img/Pickle_Paste/Cut_Mango.jpg" style="width: 180px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text">Shop now</i>
+        <i class="p-col-12 shop_now_text" (click)="navigateToHomePage('Paste & Pickle', null)">Shop now</i>
       </div>
     </p-card>
   </div>
 </div>
-
-
 
 
 <div id="content-mobile">
@@ -197,13 +197,10 @@
           <img class="p-col-6" src="assets/img/dals/TRS_White_ChickPeas.png" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/dals/TRS_Redkidney.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Dal, Pulses & Lentils', 'Dal')">Shop
+          now</i>
       </div>
     </p-card>
-
-
-
-
 
     <p-card class="p-sm-6  product-description-text" header="Flour" subheader="From 20 Kr Onwards" [style]="{
                                 'margin-bottom': '2em', 'background-color' : '#F5F5F5'}">
@@ -217,7 +214,7 @@
           <img class="p-col-6" src="assets/img/flours/wheat/Pillsbury.png" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/flours/Millet/Chakkra_millet.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Flour', 'Wheat')">Shop now</i>
       </div>
     </p-card>
 
@@ -236,7 +233,7 @@
                style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/General/Ghee/Amul.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('General Groceries', 'Oil')">Shop now</i>
       </div>
     </p-card>
 
@@ -253,7 +250,8 @@
           <img class="p-col-6" src="assets/img/H_B/H/Vatika_Olive.png" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/H_B/H/Vatika_Coconut.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Health & Beauty', 'Hair Care')">Shop
+          now</i>
       </div>
     </p-card>
 
@@ -270,7 +268,7 @@
           <img class="p-col-6" src="assets/img/Spices/MDH_Chicken_Curry_Masala.png" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/Spices/PavBhaji.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Masala & Spices', 'Powder')">Shop now</i>
       </div>
     </p-card>
 
@@ -287,7 +285,7 @@
           <img class="p-col-6" src="assets/img/rice/Chakra_Ponni_Boiled.jpg" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/rice/heera_idly.png" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Rice', 'Basmati')">Shop now</i>
       </div>
     </p-card>
 
@@ -303,7 +301,7 @@
           <img class="p-col-6" src="assets/img/Nuts/TRS_Dates.png" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/Nuts/TRS_Almond_Flakes.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Nuts & Dried Fruits', null)">Shop now</i>
       </div>
     </p-card>
 
@@ -319,7 +317,7 @@
           <img class="p-col-6" src="assets/img/Snacks/H_Kachori.jpg" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/Snacks/KCB_Farrari_Mix.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Snacks', null)">Shop now</i>
       </div>
     </p-card>
 
@@ -335,7 +333,7 @@
           <img class="p-col-6" src="assets/img/Beverages/Wagh_Bakri_Tea.jpg" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/Beverages/PG_Tips.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Beverages', null)">Shop now</i>
       </div>
     </p-card>
 
@@ -352,10 +350,9 @@
           <img class="p-col-6" src="assets/img/Pickle_Paste/MTR_Sliced_Mango.jpg" style="width: 150px; height: 150px">
           <img class="p-col-6" src="assets/img/Pickle_Paste/Cut_Mango.jpg" style="width: 150px; height: 150px">
         </div>
-        <i class="p-col-12 shop_now_text_mobile">Shop now</i>
+        <i class="p-col-12 shop_now_text_mobile" (click)="navigateToHomePage('Paste & Pickle', null)">Shop now</i>
       </div>
     </p-card>
-
 
   </div>
 </div>

@@ -1,5 +1,7 @@
 
-<div *ngIf="displayHeader" style="text-align: center; font-size: x-large; font-family: 'Trebuchet MS'; font-style: oblique; padding: 20px"> User Details </div>
+<h1 *ngIf="displayHeader" style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique"> User Details </h1>
+
+<hr style="border-width: thick">
 
 <div *ngIf="!user"> Please log in and try again!!!</div>
 <p-card *ngIf="user" styleClass="p-card-shadow">
