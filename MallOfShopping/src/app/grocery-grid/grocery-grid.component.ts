@@ -229,6 +229,13 @@ export class GroceryGridComponent implements OnInit{
       }
     }
   }
+
+  getHeader() {
+    if(this.mainGroceryType) {
+      return this.mainGroceryType + ' -> ' + this.searchCategoryType
+    }
+    return this.searchCategoryType
+  }
 }
 
 interface SortValue {

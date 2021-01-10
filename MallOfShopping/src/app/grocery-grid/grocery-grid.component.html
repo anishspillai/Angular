@@ -22,8 +22,8 @@
              </span>
           </span>
      </div>
+  <hr style="border-width: medium">
 </div>
-<hr style="border-width: medium">
 
 <div id="content-desktop-flex" class="p-grid" style="padding-top: 1em">
 
@@ -58,6 +58,11 @@
 
 <div id="content-mobile" class="p-grid" style="padding-top: 1em;">
 
+  <span  *ngIf="isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5"> Search Results </span>
+
+  <div  *ngIf="searchCategoryType && !isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5">{{ getHeader() }}</div>
+
+  <hr style="border-width: medium; width: 100%">
 
   <div *ngIf="!isHomePage || !isGlobalSearch" style="padding: 10px 10px 10px 30px">
     <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
@@ -79,7 +84,7 @@
   </div>
 
   <div *ngFor="let grocery of filteredGroceryList; let i = index">
-    <div class="p-col" style="text-align: center" [class.padding-left-for-first] = "i % 2 == 0" [class.padding-right-for-second]="i % 2 != 0">
+    <div class="p-col" style="text-align: left; margin-right: 20px" [class.padding-left-for-first] = "i % 2 == 0" [class.padding-right-for-second]="i % 2 != 0">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"
                               [isDesktopApplication]="false">
