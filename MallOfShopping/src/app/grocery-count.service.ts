@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {GroceryCountModel} from "./individual-grocery/model/GroceryCountModel";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
+import {IndividualGrocery} from "./individual-grocery/model/IndividualGrocery";
 
 @Injectable({
   providedIn: 'root'
@@ -30,9 +31,11 @@ export class GroceryCountService {
     });
   }
 
-  public isStockAvailable(idOfTheItem: string): boolean {
+  public isStockAvailable(individualGrocery: IndividualGrocery): boolean {
 
-    const groceryModel = this.groceryCountModels.find(value => value.id == idOfTheItem)
+    const ID_OF_THE_ITEM = individualGrocery.objectID && individualGrocery.objectID.length !== 0 ? individualGrocery.objectID : individualGrocery.id
+
+    const groceryModel = this.groceryCountModels.find(value => value.id == ID_OF_THE_ITEM)
 
     if(groceryModel) {
       return groceryModel.count > 0

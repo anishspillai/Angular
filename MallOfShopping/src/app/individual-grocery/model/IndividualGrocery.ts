@@ -17,6 +17,8 @@ export class IndividualGrocery {
   bulkPurchaseOfferCount?: number
   bulkPurchaseOfferPrice?: number
 
+  objectID? : string
+
   description: string
 }
 
