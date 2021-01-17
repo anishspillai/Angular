@@ -20,7 +20,7 @@ const searchClient = algoliasearch(
   templateUrl: './grocery-grid.component.html',
   styleUrls: ['./grocery-grid.component.css']
 })
-export class GroceryGridComponent implements OnInit{
+export class GroceryGridComponent implements OnInit {
 
   index = searchClient.initIndex("groceries")
 
@@ -34,7 +34,7 @@ export class GroceryGridComponent implements OnInit{
   name: string;
   searchCategoryType: string
   isFishType = false
-  sortValues:  SortValue[]
+  sortValues: SortValue[]
 
   brands = new Set()
 
@@ -66,7 +66,7 @@ export class GroceryGridComponent implements OnInit{
     })
   }
 
-  constructor(private  readonly firestore: AngularFireDatabase,
+  constructor(private readonly firestore: AngularFireDatabase,
               private activatedRoute: ActivatedRoute,
               private readonly groceryCountService: GroceryCountService,
               private readonly errorLogService: ErrorLogService,
@@ -84,7 +84,7 @@ export class GroceryGridComponent implements OnInit{
         this.filteredGroceryList = hits as unknown as IndividualGrocery[]
       });
     } else {
-      if(this.isGlobalSearch === true) {
+      if (this.isGlobalSearch === true) {
         this.fetchGroceries()
       }
       this.isGlobalSearch = false
@@ -92,12 +92,12 @@ export class GroceryGridComponent implements OnInit{
   }
 
   fetchGroceries() {
-  this.brands.clear()
-  this.brandNamesForMobileApplication = []
-  this.displayProgressSpinner = true
-  this.groceryList = []
-    if(!this.searchCategoryType) {
-      this.isHomePage  = true
+    this.brands.clear()
+    this.brandNamesForMobileApplication = []
+    this.displayProgressSpinner = true
+    this.groceryList = []
+    if (!this.searchCategoryType) {
+      this.isHomePage = true
       this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
           value.forEach(dataSnapshot => {
               // @ts-ignore
@@ -123,12 +123,12 @@ export class GroceryGridComponent implements OnInit{
           }
           this.displayProgressSpinner = false
         }
-      )).then(r => console.log(r))*/
+       )).then(r => console.log(r))*/
 
     } else {
       let URL: string
 
-      if(this.searchCategoryType.includes("Fish")) {
+      if (this.searchCategoryType.includes("Fish")) {
         URL = this.searchCategoryType
         this.isFishType = true
       } else {
@@ -139,26 +139,25 @@ export class GroceryGridComponent implements OnInit{
       const SEARCH_TYPE = this.isSubCategory ? "subCatagory" : "catagory"
 
       this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
-        value.forEach(dataSnapshot => {
-            // @ts-ignore
-          const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
-          individualGrocery.id = dataSnapshot.key
-          this.groceryList.push(individualGrocery)
-          }
+          value.forEach(dataSnapshot => {
+              // @ts-ignore
+              const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
+              individualGrocery.id = dataSnapshot.key
+              this.groceryList.push(individualGrocery)
+            }
+          )
 
-        )
+          this.extractBrands()
 
-        this.extractBrands()
+          this.filteredGroceryList = this.groceryList
 
-        this.filteredGroceryList = this.groceryList
+          this.sortableField = {name: 'Sort By Brand Type', code: 'brandName'}
+          this.performSorting()
 
-        this.sortableField =  {name:'Sort By Brand Type', code: 'brandName'}
-        this.performSorting()
-
-        window.scrollTo(0, 0)
-        this.displayProgressSpinner = false
-    }, error => {
-        this.errorLogService.logErrorMessage('Admin', error)
+          window.scrollTo(0, 0)
+          this.displayProgressSpinner = false
+        }, error => {
+          this.errorLogService.logErrorMessage('Admin', error)
         }
       )
 
@@ -170,16 +169,16 @@ export class GroceryGridComponent implements OnInit{
         window.scrollTo(0, 0)
         this.displayProgressSpinner = false
       }).catch(reason =>
-        this.errorLogService.logErrorMessage('Admin', reason)
-      )*/
+       this.errorLogService.logErrorMessage('Admin', reason)
+       )*/
 
-     }
+    }
   }
 
   private extractBrands() {
     this.groceryList.forEach(value => {
-      this.brands.add(value.brandName)
-    }
+        this.brands.add(value.brandName)
+      }
     )
 
 
@@ -191,7 +190,7 @@ export class GroceryGridComponent implements OnInit{
 
   applyFilter() {
 
-    if(this.selectedBrands.length > 0) {
+    if (this.selectedBrands.length > 0) {
       this.filteredGroceryList = this.groceryList.filter(
         function (individualGrocery) {
           return this.indexOf(individualGrocery.brandName) >= 0;
@@ -209,29 +208,29 @@ export class GroceryGridComponent implements OnInit{
       {name: 'Price: High to Low', code: 'highPrice'},
       {name: 'Sort By Grocery Type', code: 'type'},
       {name: 'Sort By Weight', code: 'weight'}
-      ]
+    ]
   }
 
   performSorting() {
-    if(!this.sortableField) {
+    if (!this.sortableField) {
       this.filteredGroceryList.sort((a, b) => a.brandName.localeCompare(b.brandName))
     } else {
-      if(this.sortableField.code === "lowPrice") {
+      if (this.sortableField.code === "lowPrice") {
         this.filteredGroceryList.sort((a, b) => a.actualPrice - b.actualPrice)
-      } else if(this.sortableField.code === "highPrice") {
+      } else if (this.sortableField.code === "highPrice") {
         this.filteredGroceryList.sort((a, b) => b.actualPrice - a.actualPrice)
-      } else if(this.sortableField.code === "brandName") {
+      } else if (this.sortableField.code === "brandName") {
         this.filteredGroceryList.sort((a, b) => a.brandName.localeCompare(b.brandName))
-      } else if(this.sortableField.code === "type") {
+      } else if (this.sortableField.code === "type") {
         this.filteredGroceryList.sort((a, b) => a.type.localeCompare(b.type))
-      } else if(this.sortableField.code === "weight") {
+      } else if (this.sortableField.code === "weight") {
         this.filteredGroceryList.sort((a, b) => a.weight - b.weight)
       }
     }
   }
 
   getHeader() {
-    if(this.mainGroceryType) {
+    if (this.mainGroceryType) {
       return this.mainGroceryType + ' -> ' + this.searchCategoryType
     }
     return this.searchCategoryType
