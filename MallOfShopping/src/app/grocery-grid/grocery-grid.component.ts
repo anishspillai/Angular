@@ -47,6 +47,7 @@ export class GroceryGridComponent implements OnInit {
   isSubCategory: string
   isGlobalSearch: boolean;
   isHomePage = false
+  isFastMovingProducts = false
 
   ngOnInit() {
 
@@ -96,8 +97,10 @@ export class GroceryGridComponent implements OnInit {
     this.brandNamesForMobileApplication = []
     this.displayProgressSpinner = true
     this.groceryList = []
+    this.isFastMovingProducts = false
     if (!this.searchCategoryType) {
-      this.isHomePage = true
+      this.isFastMovingProducts = true
+      this.filteredGroceryList = []
       this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
           value.forEach(dataSnapshot => {
               // @ts-ignore
@@ -106,7 +109,10 @@ export class GroceryGridComponent implements OnInit {
               this.filteredGroceryList.push(individualGrocery)
             }
           )
+
+          this.groceryList = this.filteredGroceryList
           window.scrollTo(0, 0)
+          this.extractBrands()
           this.displayProgressSpinner = false
         }, error => {
           this.errorLogService.logErrorMessage('Admin', error)
