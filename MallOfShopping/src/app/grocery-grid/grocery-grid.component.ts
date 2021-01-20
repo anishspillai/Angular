@@ -83,6 +83,7 @@ export class GroceryGridComponent implements OnInit {
       this.isGlobalSearch = true
       this.index.search(searchInput).then(({hits}) => {
         this.filteredGroceryList = hits as unknown as IndividualGrocery[]
+        this.filteredGroceryList.forEach(individualGrocery => individualGrocery.id = individualGrocery.objectID)
       });
     } else {
       if (this.isGlobalSearch === true) {

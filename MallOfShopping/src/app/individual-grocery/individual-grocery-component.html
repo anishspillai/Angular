@@ -66,7 +66,7 @@
               (click)="addItemToCart()" disabled="true">
       </button-->
 
-      <div *ngIf="groceryCountService.isStockAvailable(individualGrocery) ; else elseBlock">
+      <div *ngIf="groceryCountService.isStockAvailable(individualGrocery.id) ; else elseBlock">
         <button pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
                 (click)="addItemToCart()">
         </button>

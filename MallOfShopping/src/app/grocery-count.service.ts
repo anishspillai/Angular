@@ -31,11 +31,8 @@ export class GroceryCountService {
     });
   }
 
-  public isStockAvailable(individualGrocery: IndividualGrocery): boolean {
-
-    const ID_OF_THE_ITEM = individualGrocery.objectID && individualGrocery.objectID.length !== 0 ? individualGrocery.objectID : individualGrocery.id
-
-    const groceryModel = this.groceryCountModels.find(value => value.id == ID_OF_THE_ITEM)
+  public isStockAvailable(ID_OF_THE_ITEM: string): boolean {
+    const groceryModel = this.groceryCountModels.find(value => value.id === ID_OF_THE_ITEM)
 
     if(groceryModel) {
       return groceryModel.count > 0
