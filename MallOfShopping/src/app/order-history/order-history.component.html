@@ -65,7 +65,7 @@
           </ng-template>
 
           <ng-template pTemplate="body" let-grocery>
-            <tr style="height:30px">
+            <tr>
               <td>
                 {{grocery.groceryName}}
               </td>
@@ -78,7 +78,7 @@
               <td>
                 {{grocery.unitOfWeight}}
               </td>
-              <td>
+              <td [ngClass]="{'red-back-ground': grocery.noOfItems > 1}">
                 {{grocery.noOfItems}}
               </td>
               <td>
