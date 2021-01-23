@@ -133,6 +133,7 @@ export class GroceryGridComponent implements OnInit {
        )).then(r => console.log(r))*/
 
     } else {
+      this.isGlobalSearch = false
       let URL: string
 
       if (this.searchCategoryType.includes("Fish")) {
