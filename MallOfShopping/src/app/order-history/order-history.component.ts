@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
-import {AdminOrderHistories, Anish, OrderHistoryModel} from "./OrderHistory.model";
+import {AdminOrderHistories, Anish, OrderHistoryModel, PaymentDetails} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
 import {Order} from "../individual-grocery/model/Order";
@@ -59,11 +59,13 @@ export class OrderHistoryComponent  {
 
   _userId = ""
 
-
+  paymentDetails: PaymentDetails = new PaymentDetails()
 
   currentUserId: string
   currentOrderHistory: Order[]
   showBillingPage: boolean = false
+  totalAmount: number;
+  orderedDateTime: string
 
   @Input()
   public set userId(userId: string) {
@@ -259,6 +261,15 @@ export class OrderHistoryComponent  {
     });
   }
 
+
+  getTotal() {
+    this.totalAmount = 0;
+    this.filteredorderHistory.forEach(value => {
+      this.totalAmount += this.getTotalCostOfTheOrder(value)
+    })
+  }
+
+
   filterData() {
 
 
@@ -338,6 +349,7 @@ export class OrderHistoryComponent  {
 
   userDetailsModel: UserDetailsModel
   viewUserDetails = false
+  displayPaymentDetails: boolean;
 
   setAtDelivered(oh: OrderHistoryModel) {
      this.groceryService.setAsDelivered(oh.orderKey)
@@ -347,5 +359,25 @@ export class OrderHistoryComponent  {
     this.currentUserId = oh.userId
     this.currentOrderHistory = oh.orderHistory
     this.showBillingPage = true
+    this.orderedDateTime = oh.orderedTimestamp
+  }
+
+  fetchPaymentDetails(userId:string, dateInNumber: number) {
+    this.groceryService.getPaymentDetails(userId, String(dateInNumber)).subscribe(value => {
+      this.displayPaymentDetails = true
+      if(!value || value.length == 0) {
+        this.paymentDetails = new PaymentDetails()
+        this.paymentDetails.userId = userId
+        this.paymentDetails.orderedTimestamp = dateInNumber
+        this.paymentDetails.userId_orderPlacementTime = userId + "_" + dateInNumber
+      } else {
+        this.paymentDetails  = value[0].payload.val() as PaymentDetails
+      }
+    })
+  }
+
+  storePaymentDetails() {
+    this.paymentDetails.paymentStatus = this.paymentDetails.paymentStatusString.startsWith("Y")
+    this.groceryService.updatePaymentDetails(this.paymentDetails).then(() => this.displayPaymentDetails = false).catch(reason => alert('Payment details updation failed ' + reason))
   }
 }

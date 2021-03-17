@@ -25,6 +25,11 @@
   <button pButton (click)="filterData()" class="ui-button-danger" label="Filter"></button>
 
 
+  <p-card> Total Amount <b style="float: right">{{totalAmount}}</b>
+    <button pButton (click)="getTotal()" class="ui-button-success" label="Filter"></button>
+  </p-card>
+
+
 
   <p-accordion *ngIf="authService.isLoggedIn" [multiple]="true">
     <div *ngFor="let oh of filteredorderHistory">
@@ -40,6 +45,10 @@
       <button pButton (click)="setAtDelivered(oh)" class="ui-button-success" label="Set As Delivered"></button>
 
       <button pButton (click)="displayBillingPage(oh)" class="ui-button-warning" label="Generate Bill"></button>
+
+
+
+      <button pButton (click)="fetchPaymentDetails(oh.userId, oh.dateInNumber)" class="ui-button-secondary" style="background-color: rebeccapurple; color: white" label="Track Billing"></button>
 
 
       <p-accordionTab header={{oh.orderedTimestamp}}>
@@ -315,5 +324,64 @@
 </p-dialog>
 
 <p-dialog [(visible)]="showBillingPage" header="Order Details" style="width: 100vw">
-<app-billing  [cols]="cols" [userId]="this.currentUserId" [orderHistory]="this.currentOrderHistory"></app-billing>
+<app-billing  [cols]="cols" [userId]="this.currentUserId" [orderHistory]="this.currentOrderHistory" [orderedTimeStamp]="this.orderedDateTime"></app-billing>
+</p-dialog>
+
+
+
+<p-dialog [(visible)]="displayPaymentDetails"
+          [baseZIndex]="10000"
+          [style]="{width: '90vw'}"
+          header="Delivery Schedule"
+          [resizable]="false">
+
+
+ {{paymentDetails?.userId}}"
+
+  <button *ngIf="paymentDetails.paymentStatus"  type="button" pButton icon="pi pi-times" style="border-radius: 25px; width: 500px"
+           label="Payment is Made" class="ui-button-success"></button>
+
+  <button *ngIf="!paymentDetails.paymentStatus" type="button" pButton icon="pi pi-times" style="border-radius: 25px; width: 500px"
+          label="PENDING PAYMENT" class="ui-button-danger"></button>
+
+  <div class="card">
+
+
+
+    <h1>paymentStatusString</h1>
+    <span class="p-float-label">
+      <input id="float-input1" type="text" pInputText value="{{paymentDetails?.paymentStatusString}}" [(ngModel)]="paymentDetails.paymentStatusString">
+      <label for="float-input1">paymentStatusString ( Y or N )</label>
+    </span>
+    <h1>totalAmount</h1>
+
+    <span class="p-float-label">
+      <input id="float-input11" type="text" pInputText value="{{paymentDetails?.totalAmount}}" [(ngModel)]="paymentDetails.totalAmount">
+      <label for="float-input11">totalAmount</label>
+    </span>
+    <h1>paymentMode</h1>
+
+    <span class="p-float-label">
+      <input id="float-input111" type="text" pInputText value="{{paymentDetails?.paymentMode}}" [(ngModel)]="paymentDetails.paymentMode">
+      <label for="float-input111">paymentMode ( Swish or Cash )</label>
+    </span>
+    <h1>commentAboutPayment</h1>
+
+    <span class="p-float-label">
+      <textarea id="float-input1111" type="text" pInputText value="{{paymentDetails?.commentAboutPayment}}" [(ngModel)]="paymentDetails.commentAboutPayment"></textarea>
+      <label for="float-input1111">commentAboutPayment</label>
+    </span>
+
+
+  </div>
+
+
+  <p-footer>
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
+            (click)="displayPaymentDetails=false" label="Cancel" class="ui-button-danger"></button>
+
+
+    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
+            (click)="storePaymentDetails()" label="Save " class="ui-button-success"></button>
+  </p-footer>
 </p-dialog>

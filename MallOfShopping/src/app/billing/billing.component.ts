@@ -22,6 +22,7 @@ export class BillingComponent implements OnInit {
   @Input() orderHistory: Order[] = []
   @Input() userId: string
   @Input()  cols: any[]
+  @Input() orderedTimeStamp: string
   userDetailsModel: UserDetailsModel = new UserDetailsModel()
 
   ngOnInit(): void {
@@ -135,13 +136,14 @@ export class BillingComponent implements OnInit {
             ],
             [
               {
-                text: `Date: ${new Date().toLocaleString()}`,
+                text: `Date: ${this.orderedTimeStamp}`,
                 alignment: 'right'
-              },
+              }
+              /**,
               {
                 text: `Bill No : ${((Math.random() * 1000).toFixed(0))}`,
                 alignment: 'right'
-              }
+              }*/
             ]
           ]
         },

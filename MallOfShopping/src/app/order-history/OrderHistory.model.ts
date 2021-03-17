@@ -24,3 +24,15 @@ export class Anish {
   order: Order[] = []
   userId: string
 }
+
+
+export class PaymentDetails {
+  userId: string
+  orderedTimestamp: number
+  paymentStatus: boolean
+  paymentStatusString: string
+  totalAmount: number
+  paymentMode = "Swish"
+  commentAboutPayment: string
+  userId_orderPlacementTime: string
+}

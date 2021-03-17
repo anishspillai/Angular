@@ -3,7 +3,7 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import {Order} from "../individual-grocery/model/Order";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {Observable} from "rxjs";
-import {OrderHistoryModel} from "../order-history/OrderHistory.model";
+import {OrderHistoryModel, PaymentDetails} from "../order-history/OrderHistory.model";
 
 @Injectable()
 export class GroceryService {
@@ -82,6 +82,8 @@ export class GroceryService {
 
   getTotalCostOfOrderedItems(orders: Order[]) {
 
+    if(!orders) return 0
+
     let sumOfItems = 0
 
     orders.forEach((order) => {
@@ -153,4 +155,18 @@ export class GroceryService {
   setAsDelivered(orderKey) {
      this.angularFireDatabase.database.ref('users/order-history/' + orderKey).update({deliveryStatus: 1}).then(r => console.log(r))
   }
+
+
+  getPaymentDetails(userId: string, timestampKey: string) {
+    return this.angularFireDatabase.list('admin/Payment_Status/', ref => ref.orderByChild("userId_orderPlacementTime").
+    equalTo(userId + '_' + timestampKey)).snapshotChanges()
+  }
+
+
+  updatePaymentDetails(paymentDetails: PaymentDetails) {
+    return this.angularFireDatabase.list('admin/Payment_Status/', ref =>
+      ref.orderByChild("userId_orderPlacementTime").equalTo(paymentDetails.userId_orderPlacementTime)).push(paymentDetails)
+  }
+
+
 }
