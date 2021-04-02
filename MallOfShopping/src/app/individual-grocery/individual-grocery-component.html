@@ -1,5 +1,5 @@
 <!--p-panel header={{individualGrocery.type}} styleClass="customTitleBar" [showHeader]="false"-->
-<p-card>
+<p-card (click)="isDisplayDetails=true"  [style]="{'cursor': 'pointer'}">
 
   <div>
     <div class="boxfd">
@@ -68,7 +68,7 @@
 
       <div *ngIf="groceryCountService.isStockAvailable(individualGrocery.id) ; else elseBlock">
         <button pButton type="button" label="Add To Cart" class="ui-button-rounded ui-button-success"
-                (click)="addItemToCart()">
+                (click)="addItemToCart(); $event.stopImmediatePropagation()">
         </button>
       </div>
 
@@ -97,9 +97,9 @@
 
 </p-card>
 
-<p-dialog *ngIf="isDisplayDetails"
+<p-dialog
           header="{{individualGrocery.type}}"
-          [(visible)]="isDisplayDetails"
+          [visible]="false"
           [style]="{width: '50vw'}"
           [baseZIndex]="10000">
 
@@ -215,3 +215,10 @@
   >
   </app-sign-in>
 </div>
+
+<app-product-description *ngIf="isDisplayDetails"
+                         [individualGrocery]="individualGrocery"
+                         [displayProductDetailsDialog]="isDisplayDetails"
+                         (closeProductDescriptionPage)="isDisplayDetails=$event"
+                         [isDesktopApplication]="isDesktopApplication">
+</app-product-description>

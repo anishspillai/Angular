@@ -71,6 +71,8 @@ import {BnNgIdleService} from "bn-ng-idle";
 import {FieldsetModule} from "primeng/fieldset";
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import {PanelMenuModule} from "primeng/panelmenu";
+import { ProductDescriptionComponent } from './product-description/product-description.component';
+import {ProductDescriptionService} from "./product-description/product-description.service";
 
 @NgModule({
   declarations: [
@@ -100,7 +102,8 @@ import {PanelMenuModule} from "primeng/panelmenu";
     PaymentOptionViewComponent,
     ProductCarouselComponent,
     FooterComponent,
-    OrderedItemsComponent
+    OrderedItemsComponent,
+    ProductDescriptionComponent
   ],
     imports: [
         BrowserModule,
@@ -141,7 +144,10 @@ import {PanelMenuModule} from "primeng/panelmenu";
         FieldsetModule,
         PanelMenuModule
     ],
-  providers: [AngularFireDatabase, NavigatorService, GroceryService, BreadCrumbService, HttpClient, BnNgIdleService, SearchObservableServiceService],
+  providers: [AngularFireDatabase, NavigatorService,
+    GroceryService, BreadCrumbService, HttpClient,
+    BnNgIdleService, SearchObservableServiceService,
+  ProductDescriptionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
