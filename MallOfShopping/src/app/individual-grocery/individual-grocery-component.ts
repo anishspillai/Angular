@@ -40,6 +40,10 @@ export class IndividualGroceryComponent {
 
   updateDescription: boolean;
 
+  swedishInformation : string
+
+  allergyInformation : string
+
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
               readonly groceryCountService: GroceryCountService) {
   }
@@ -180,4 +184,23 @@ export class IndividualGroceryComponent {
   displayMe() {
     alert(JSON.stringify(this.individualGrocery))
   }
+
+  updateSwedishDescription() {
+    this.groceryCountService.setSwedishDescription(this.individualGrocery.id, this.swedishInformation)
+    //this.isUpdateSwedishDescription = false
+
+  }
+
+  updateAllergyInformation() {
+    this.groceryCountService.setAllergyInformation(this.individualGrocery.id, this.allergyInformation)
+    //this.updateItem = false
+  }
+
+  updateNutrients() {
+    this.groceryCountService.setNutrients(this.individualGrocery.id, this.nutrients)
+    //this.updateItem = false
+  }
+
+  isUpdateSwedishDescription = false;
+  nutrients: string
 }

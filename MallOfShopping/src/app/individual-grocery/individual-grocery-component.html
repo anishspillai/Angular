@@ -71,6 +71,11 @@
               (click)="addItemToCart()" disabled="true">
       </button>
 
+
+      <button  pButton type="button" label=" ALLERGY " class="ui-button-rounded ui-button-danger"
+              (click)="isUpdateSwedishDescription = true">
+      </button>
+
     </div>
 
     <div *ngIf="!isNotAddedIntoTheList()" class="ui-inputgroup; center-align">
@@ -308,6 +313,35 @@
 
   <button pButton type="button" icon="pi pi-plus" label="Update Description" class="ui-button-success"
           (click)="setTheDescription()"></button>
+  <br>
+
+</p-dialog>
+
+
+<p-dialog *ngIf="isUpdateSwedishDescription"
+          [(visible)]="isUpdateSwedishDescription" header="Update swedishDescription" style="width: 600px; height: 600px">
+
+  {{individualGrocery.swedishDescription}} <br>
+  {{individualGrocery.allergyInformation}}
+
+  <textarea [cols]="50" [rows]="25" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Swedish Description" class="ui-button-success"
+          (click)="(updateSwedishDescription())"></button>
+
+    <br><br><br>
+
+  <textarea [cols]="50" [rows]="5" [(ngModel)]="nutrients" [value]="individualGrocery.nutrients"></textarea> <br>
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Nutrients" class="ui-button-success"
+          (click)="(updateNutrients())"></button>
+
+  <br><br><br>
+
+  <input type="text" pInputText [(ngModel)]="allergyInformation" [value]="individualGrocery.allergyInformation">
+
+  <button pButton type="button" icon="pi pi-plus" label="Update Allergy Description" class="ui-button-success"
+          (click)="(updateAllergyInformation())"></button>
   <br>
 
 </p-dialog>

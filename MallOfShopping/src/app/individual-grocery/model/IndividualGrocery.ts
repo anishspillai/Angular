@@ -17,6 +17,9 @@ export class IndividualGrocery {
   bulkPurchaseOfferCount: number = 2
   bulkPurchaseOfferPrice: number = 78.45
   description: string
+  swedishDescription: string
+  allergyInformation: string
+  nutrients: string;
 }
 
 export class GroceryResponse {

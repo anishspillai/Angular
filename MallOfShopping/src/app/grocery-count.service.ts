@@ -83,4 +83,23 @@ export class GroceryCountService {
       subCatagory: subCatagory
     })
   }
+
+  setSwedishDescription(id, description) {
+    const list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+      swedishDescription: description
+    })
+  }
+
+  setAllergyInformation(id, allergy): Promise<any> {
+    return this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+      allergyInformation: allergy
+    })
+  }
+
+  setNutrients(id: string, nutrients: string) {
+    const list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+      nutrients: nutrients
+    })
+
+  }
 }
