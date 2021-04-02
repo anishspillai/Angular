@@ -324,9 +324,9 @@
   {{individualGrocery.swedishDescription}} <br>
   {{individualGrocery.allergyInformation}}
 
-  <textarea [cols]="50" [rows]="25" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
+  <textarea [cols]="50" [rows]="15" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
 
-  <button pButton type="button" icon="pi pi-plus" label="Update Swedish Description" class="ui-button-success"
+  <button pButton type="button" icon="pi pi-plus" label="Update Swedish " class="ui-button-success"
           (click)="(updateSwedishDescription())"></button>
 
     <br><br><br>
@@ -336,14 +336,25 @@
   <button pButton type="button" icon="pi pi-plus" label="Update Nutrients" class="ui-button-success"
           (click)="(updateNutrients())"></button>
 
-  <br><br><br>
+  <hr>
 
   <input type="text" pInputText [(ngModel)]="allergyInformation" [value]="individualGrocery.allergyInformation">
 
-  <button pButton type="button" icon="pi pi-plus" label="Update Allergy Description" class="ui-button-success"
+  <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Allergy Description" class="ui-button-success"
           (click)="(updateAllergyInformation())"></button>
-  <br>
+  <hr>
 
+  <input type="text" pInputText [(ngModel)]="header" [value]="individualGrocery.header">
+
+  <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Name in swedish" class="ui-button-success"
+          (click)="(updateHeader())"></button>
+
+  <hr>
+
+
+
+  <button pButton type="button" icon="pi pi-plus" label="Add To DataBase" class="ui-button-danger"
+          (click)="(updateDescriptionInDB())"></button>
 </p-dialog>
 
 

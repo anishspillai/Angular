@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {GroceryCountModel} from "./individual-grocery/model/GroceryCountModel";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
+import {ProductDescription} from "./individual-grocery/model/ProductDescription";
 
 @Injectable({
   providedIn: 'root'
@@ -101,5 +102,9 @@ export class GroceryCountService {
       nutrients: nutrients
     })
 
+  }
+
+  addProductDescriptionIntoDataBase(productDescription: ProductDescription) {
+    const list = this.angularFireDatabase.database.ref('admin/Product_Description').push(productDescription)
   }
 }

@@ -3,6 +3,7 @@ import {IndividualGrocery} from "./model/IndividualGrocery";
 import {Order} from "./model/Order";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {GroceryCountService} from "../grocery-count.service";
+import {ProductDescription} from "./model/ProductDescription";
 
 @Component({
   selector: 'app-individual-grocery',
@@ -203,4 +204,21 @@ export class IndividualGroceryComponent {
 
   isUpdateSwedishDescription = false;
   nutrients: string
+  header: string;
+
+  updateHeader() {
+
+  }
+
+  updateDescriptionInDB() {
+    const productDescription = new ProductDescription()
+    productDescription.allergyInformation = this.allergyInformation
+    productDescription.nutrients = this.nutrients
+    productDescription.swedishDescription = this.swedishInformation
+    productDescription.id = this.individualGrocery.id
+    productDescription.header = this.header
+
+
+    this.groceryCountService.addProductDescriptionIntoDataBase(productDescription)
+  }
 }

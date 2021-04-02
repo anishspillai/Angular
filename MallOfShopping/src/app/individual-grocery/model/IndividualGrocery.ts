@@ -20,6 +20,7 @@ export class IndividualGrocery {
   swedishDescription: string
   allergyInformation: string
   nutrients: string;
+  header: string;
 }
 
 export class GroceryResponse {
