@@ -9,7 +9,6 @@ export class ProductDescriptionService {
   }
 
   getProductDescription(productId: string) {
-    //return this.angularFireDatabase.list('users/order-lists/' + userId).snapshotChanges()
-    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("id").equalTo(productId)).snapshotChanges()
+    return this.angularFireDatabase.list('admin/Product_Description', ref => ref.orderByChild("id").equalTo(productId)).snapshotChanges()
   }
 }
