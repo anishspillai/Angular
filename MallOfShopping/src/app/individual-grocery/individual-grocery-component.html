@@ -321,15 +321,12 @@
 <p-dialog *ngIf="isUpdateSwedishDescription"
           [(visible)]="isUpdateSwedishDescription" header="Update swedishDescription" style="width: 600px; height: 600px">
 
-  {{individualGrocery.swedishDescription}} <br>
-  {{individualGrocery.allergyInformation}}
-
-  <textarea [cols]="50" [rows]="15" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
+  <textarea [cols]="50" [rows]="10" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
 
   <button pButton type="button" icon="pi pi-plus" label="Update Swedish " class="ui-button-success"
           (click)="(updateSwedishDescription())"></button>
 
-    <br><br><br>
+  <hr>
 
   <textarea [cols]="50" [rows]="5" [(ngModel)]="nutrients" [value]="individualGrocery.nutrients"></textarea> <br>
 
@@ -351,6 +348,11 @@
 
   <hr>
 
+  <input type="text" pInputText [(ngModel)]="actualWebsiteLink">
+
+  <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Website Link" class="ui-button-success"
+          (click)="updateWebsite()"></button>
+<hr>
 
 
   <button pButton type="button" icon="pi pi-plus" label="Add To DataBase" class="ui-button-danger"

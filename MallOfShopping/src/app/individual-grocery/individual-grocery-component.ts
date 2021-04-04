@@ -205,6 +205,7 @@ export class IndividualGroceryComponent {
   isUpdateSwedishDescription = false;
   nutrients: string
   header: string;
+  actualWebsiteLink: string;
 
   updateHeader() {
 
@@ -217,8 +218,13 @@ export class IndividualGroceryComponent {
     productDescription.swedishDescription = this.swedishInformation
     productDescription.id = this.individualGrocery.id
     productDescription.header = this.header
+    productDescription.actualWebsiteLink = this.actualWebsiteLink
 
 
     this.groceryCountService.addProductDescriptionIntoDataBase(productDescription)
+  }
+
+  updateWebsite() {
+
   }
 }

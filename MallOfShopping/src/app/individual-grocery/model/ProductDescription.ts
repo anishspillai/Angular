@@ -4,4 +4,5 @@ export class ProductDescription {
   nutrients: string;
   id: string;
   header: string;
+  actualWebsiteLink: string;
 }
