@@ -3,12 +3,12 @@
           [(visible)]="displayProductDetailsDialog"
           [style]="{width: '50vw', background: 'red'}" [baseZIndex]="10000" [closable]="false">
 
-  <h5>{{productDescription.header}}</h5>
+  <h5>{{productDescription?.header}}</h5>
 
   <hr>
 
   <p-card>
-    {{productDescription.swedishDescription}}
+    {{productDescription?.swedishDescription}}
 
   </p-card>
 
@@ -18,7 +18,7 @@
     <ng-template pTemplate="header">
       <img alt="Card" src="assets/showcase/images/usercard.png">
     </ng-template>
-    <p>{{productDescription.nutrients}}</p>
+    <p>{{productDescription?.nutrients}}</p>
   </p-card>
 
   <br>
@@ -27,7 +27,7 @@
     <ng-template pTemplate="header">
       <img alt="Card" src="assets/showcase/images/usercard.png">
     </ng-template>
-    <p>{{productDescription.allergyInformation}}</p>
+    <p>{{productDescription?.allergyInformation}}</p>
   </p-card>
 
   <p-button iconPos="right" label="Close" class="ui-button-success"

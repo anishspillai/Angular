@@ -29,7 +29,9 @@ export class ProductDescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.productDescriptionService.getProductDescription(this.individualGrocery.id).subscribe(
-      value => value.forEach(value1 => this.productDescription = value1.payload.val() as ProductDescription))
+      value => {
+        value.forEach(value1 => this.productDescription = value1.payload.val() as ProductDescription)
+      })
   }
 
   closeThisDialog() {
