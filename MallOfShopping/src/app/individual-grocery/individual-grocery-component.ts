@@ -215,16 +215,21 @@ export class IndividualGroceryComponent {
     const productDescription = new ProductDescription()
     productDescription.allergyInformation = this.allergyInformation
     productDescription.nutrients = this.nutrients
-    productDescription.swedishDescription = this.swedishInformation
+    productDescription.swedishDescription = this.swedishInformation ? this.swedishInformation : this.individualGrocery.swedishDescription
     productDescription.id = this.individualGrocery.id
     productDescription.header = this.header
     productDescription.actualWebsiteLink = this.actualWebsiteLink
 
 
     this.groceryCountService.addProductDescriptionIntoDataBase(productDescription)
+    this.isUpdateSwedishDescription = false
   }
 
   updateWebsite() {
 
+  }
+
+  invokeTest() {
+    this.isUpdateSwedishDescription = true;
   }
 }

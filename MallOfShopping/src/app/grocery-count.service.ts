@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {GroceryCountModel} from "./individual-grocery/model/GroceryCountModel";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
@@ -105,6 +105,6 @@ export class GroceryCountService {
   }
 
   addProductDescriptionIntoDataBase(productDescription: ProductDescription) {
-    const list = this.angularFireDatabase.database.ref('admin/Product_Description').push(productDescription)
+    return this.angularFireDatabase.database.ref('admin/Product_Description').push(productDescription);
   }
 }
