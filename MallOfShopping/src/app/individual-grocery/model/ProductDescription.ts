@@ -3,4 +3,5 @@ export class ProductDescription {
   allergyInformation: string
   nutrients: string;
   header: string;
+  actualWebsiteLink: string;
 }

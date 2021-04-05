@@ -37,4 +37,22 @@ export class ProductDescriptionComponent implements OnInit {
   closeThisDialog() {
       this.closeProductDescriptionPage.emit(false)
   }
+
+  isWebsiteLinkPresent() {
+    if(this.productDescription) {
+      return this.productDescription.actualWebsiteLink !== "\"\""
+    }
+  }
+
+  isAllergicInformationPresent() {
+    if(this.productDescription) {
+      return this.productDescription.allergyInformation !== "\"\""
+    }
+  }
+
+  isNutrientsInformationPresent() {
+    if(this.productDescription) {
+      return this.productDescription.nutrients !== "\"\""
+    }
+  }
 }

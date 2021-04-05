@@ -85,13 +85,13 @@
     <div *ngIf="!isNotAddedIntoTheList()" class="ui-inputgroup; center-align">
 
       <button pButton type="button" icon="pi pi-minus" class="ui-button-danger"
-              (click)="decrementNoOfItems()">
+              (click)="decrementNoOfItems(); $event.stopImmediatePropagation()">
       </button>
 
       &nbsp;&nbsp;<span class="bold-center-aligned-text"> {{ getNoOfOrders() }} </span>&nbsp;&nbsp;
 
       <button pButton type="button" icon="pi pi-plus" class="ui-button-success"
-              (click)="incrementNoOfItems(true)"></button>
+              (click)="incrementNoOfItems(true); $event.stopImmediatePropagation()"></button>
     </div>
   </div>
 

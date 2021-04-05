@@ -3,32 +3,36 @@
           [(visible)]="displayProductDetailsDialog"
           [style]="{width: '50vw', background: 'red'}" [baseZIndex]="10000" [closable]="false">
 
-  <h5>{{productDescription?.header}}</h5>
+  <h6  style="margin: 0; padding: 0; font-weight: bolder; font-family: 'Trebuchet MS'">{{productDescription?.header}} </h6>
 
   <hr>
 
-  <p-card>
+  <p-card subheader="Beskrivning">
     {{productDescription?.swedishDescription}}
 
   </p-card>
 
-<br>
+  <hr>
 
-  <p-card header="Simple Card" [style]="{'width': '100%', 'margin-bottom': '2em'}">
-    <ng-template pTemplate="header">
-      <img alt="Card" src="assets/showcase/images/usercard.png">
-    </ng-template>
-    <p>{{productDescription?.nutrients}}</p>
+  <p-card  subheader="Näringsämnen" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+    <div *ngIf="isNutrientsInformationPresent(); else elseBlock"><p>{{productDescription?.nutrients}}</p></div>
   </p-card>
 
-  <br>
+  <hr>
 
-  <p-card header="Simple Card" [style]="{'width': '100%', 'margin-bottom': '2em'}">
-    <ng-template pTemplate="header">
-      <img alt="Card" src="assets/showcase/images/usercard.png">
-    </ng-template>
-    <p>{{productDescription?.allergyInformation}}</p>
+  <p-card subheader="Allergiinformation" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+    <div *ngIf="isAllergicInformationPresent(); else elseBlock"><p>{{productDescription?.allergyInformation}}</p></div>
   </p-card>
+
+  <hr>
+
+  <p-card subheader="URL-referens" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+    <div *ngIf="isWebsiteLinkPresent(); else elseBlock"><a href="{{productDescription.actualWebsiteLink}}" target="_blank" style="color: orangered; text-decoration: underline">Mer Information på engelska</a></div>
+  </p-card>
+
+  <hr>
+
+  <ng-template #elseBlock><p style="font-family: 'Trebuchet MS'; font-weight: bold"> Tyvärr saknas information!. </p></ng-template>
 
   <p-button iconPos="right" label="Close" class="ui-button-success"
             (click)="closeThisDialog()" style="float: right; background-color: #7386D5; color: #7386D5"></p-button>
