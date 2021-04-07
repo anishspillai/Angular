@@ -4,6 +4,7 @@ import {Order} from "./model/Order";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {GroceryCountService} from "../grocery-count.service";
 import {ProductDescription} from "./model/ProductDescription";
+import validate = WebAssembly.validate;
 
 @Component({
   selector: 'app-individual-grocery',
@@ -187,18 +188,28 @@ export class IndividualGroceryComponent {
   }
 
   updateSwedishDescription() {
-    this.groceryCountService.setSwedishDescription(this.individualGrocery.id, this.swedishInformation)
+    this.groceryCountService.setSwedishDescription(this.productDescription.id, this.swedishInformation)
     //this.isUpdateSwedishDescription = false
 
   }
 
   updateAllergyInformation() {
-    this.groceryCountService.setAllergyInformation(this.individualGrocery.id, this.allergyInformation)
+    this.groceryCountService.setAllergyInformation(this.productDescription.id, this.allergyInformation)
     //this.updateItem = false
   }
 
   updateNutrients() {
-    this.groceryCountService.setNutrients(this.individualGrocery.id, this.nutrients)
+    this.groceryCountService.setNutrients(this.productDescription.id, this.nutrients)
+    //this.updateItem = false
+  }
+
+  updateHeader() {
+    this.groceryCountService.setHeader(this.productDescription.id, this.header)
+    //this.updateItem = false
+  }
+
+  updateWebsite() {
+    this.groceryCountService.setActualWebsiteLink(this.productDescription.id, this.actualWebsiteLink)
     //this.updateItem = false
   }
 
@@ -207,9 +218,6 @@ export class IndividualGroceryComponent {
   header: string;
   actualWebsiteLink: string;
 
-  updateHeader() {
-
-  }
 
   updateDescriptionInDB() {
     const productDescription = new ProductDescription()
@@ -225,11 +233,41 @@ export class IndividualGroceryComponent {
     this.isUpdateSwedishDescription = false
   }
 
-  updateWebsite() {
 
-  }
+  productDescription: ProductDescription
+  idOfAnotherProduct: string;
 
   invokeTest() {
-    this.isUpdateSwedishDescription = true;
+
+    this.groceryCountService.getProductDescription(this.idOfAnotherProduct ? this.idOfAnotherProduct: this.individualGrocery.id).subscribe(
+
+
+
+
+      value => {
+
+        this.idOfAnotherProduct ? this.isUpdateSwedishDescription = true: this.isUpdateSwedishDescription = true;
+        value.forEach( value1 => {  this.productDescription = value1.payload.val() as ProductDescription;
+
+
+        if(!this.idOfAnotherProduct) {
+          this.productDescription.id = value1.payload.key
+        }
+
+
+        this.swedishInformation = this.productDescription.swedishDescription
+        this.actualWebsiteLink = this.productDescription.actualWebsiteLink
+        this.allergyInformation = this.productDescription.allergyInformation
+        this.header = this.productDescription.header
+        this.nutrients = this.productDescription.nutrients
+
+
+
+
+      })})
+  }
+
+  copyAndPopulate() {
+
   }
 }

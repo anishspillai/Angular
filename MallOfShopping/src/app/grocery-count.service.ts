@@ -86,19 +86,19 @@ export class GroceryCountService {
   }
 
   setSwedishDescription(id, description) {
-    const list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+    const list = this.angularFireDatabase.database.ref('admin/Product_Description/'+id).set({
       swedishDescription: description
     })
   }
 
   setAllergyInformation(id, allergy): Promise<any> {
-    return this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+    return this.angularFireDatabase.database.ref('admin/Product_Description/'+id).update({
       allergyInformation: allergy
     })
   }
 
   setNutrients(id: string, nutrients: string) {
-    const list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
+    const list = this.angularFireDatabase.database.ref('admin/Product_Description/'+id).update({
       nutrients: nutrients
     })
 
@@ -107,4 +107,21 @@ export class GroceryCountService {
   addProductDescriptionIntoDataBase(productDescription: ProductDescription) {
     return this.angularFireDatabase.database.ref('admin/Product_Description').push(productDescription);
   }
+
+  getProductDescription(productId: string) {
+    console.log(productId)
+    return this.angularFireDatabase.list('admin/Product_Description', ref => ref.orderByChild("id").equalTo(productId)).snapshotChanges()
+  }
+
+
+
+  setHeader(id: string, header: string) {
+    const list = this.angularFireDatabase.database.ref('admin/Product_Description/'+id).update({
+      header: header
+    })}
+
+setActualWebsiteLink(id: string, actualWebsiteLink: string) {
+  const list = this.angularFireDatabase.database.ref('admin/Product_Description/'+id).update({
+    actualWebsiteLink: actualWebsiteLink
+  })}
 }

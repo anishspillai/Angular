@@ -321,34 +321,37 @@
 <p-dialog *ngIf="isUpdateSwedishDescription"
           [(visible)]="isUpdateSwedishDescription" header="Update swedishDescription" style="width: 600px; height: 600px">
 
-  <textarea [cols]="50" [rows]="10" [(ngModel)]="swedishInformation" [value]="individualGrocery.swedishDescription"></textarea> <br>
+
+  <textarea [cols]="50" [rows]="10" [(ngModel)]="swedishInformation" [value]="productDescription?.swedishDescription"></textarea> <br>
 
   <button pButton type="button" icon="pi pi-plus" label="Update Swedish " class="ui-button-success"
           (click)="(updateSwedishDescription())"></button>
 
+  {{individualGrocery.id}}
+
   <hr>
 
-  <textarea [cols]="50" [rows]="5" [(ngModel)]="nutrients" [value]="individualGrocery.nutrients"></textarea> <br>
+  <textarea [cols]="50" [rows]="5" [(ngModel)]="nutrients" [value]="productDescription?.nutrients"></textarea> <br>
 
   <button pButton type="button" icon="pi pi-plus" label="Update Nutrients" class="ui-button-success"
           (click)="(updateNutrients())"></button>
 
   <hr>
 
-  <input type="text" pInputText [(ngModel)]="allergyInformation" [value]="individualGrocery.allergyInformation">
+  <input type="text" pInputText [(ngModel)]="allergyInformation" [value]="productDescription?.allergyInformation">
 
   <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Allergy Description" class="ui-button-success"
           (click)="(updateAllergyInformation())"></button>
   <hr>
 
-  <input type="text" pInputText [(ngModel)]="header" [value]="individualGrocery.header">
+  <input type="text" pInputText [(ngModel)]="header" [value]="productDescription?.header">
 
   <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Name in swedish" class="ui-button-success"
           (click)="(updateHeader())"></button>
 
   <hr>
 
-  <input type="text" pInputText [(ngModel)]="actualWebsiteLink">
+  <input type="text" pInputText [(ngModel)]="actualWebsiteLink" [value]="productDescription?.actualWebsiteLink">
 
   <button style="margin-left: 40px" pButton type="button" icon="pi pi-plus" label="Website Link" class="ui-button-success"
           (click)="updateWebsite()"></button>
@@ -357,6 +360,13 @@
 
   <button pButton type="button" icon="pi pi-plus" label="Add To DataBase" class="ui-button-danger"
           (click)="(updateDescriptionInDB())"></button>
+
+
+  <input type="text" pInputText [(ngModel)]="idOfAnotherProduct">
+
+
+  <button pButton type="button" icon="pi pi-plus" label="Copy" class="ui-button-success"
+          (click)="invokeTest()"></button>
 </p-dialog>
 
 

@@ -129,7 +129,11 @@ export class GroceryGridComponent implements OnInit{
           this.groceryList.push(individualGrocery)
           }
 
+
+
         )
+
+          this.groceryList.sort((a, b) => a.type.localeCompare(b.type))
 
           window.scrollTo(0, 0)
           this.displayProgressSpinner = false
