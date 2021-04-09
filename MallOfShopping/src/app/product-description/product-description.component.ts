@@ -23,11 +23,13 @@ export class ProductDescriptionComponent implements OnInit {
   @Input() isDesktopApplication: boolean
 
   productDescription: ProductDescription
+    display: string;
 
   constructor( private readonly productDescriptionService: ProductDescriptionService) {
   }
 
   ngOnInit(): void {
+    this.display = 'block'
     this.productDescriptionService.getProductDescription(this.individualGrocery.id).subscribe(
       value => {
         value.forEach(value1 => this.productDescription = value1.payload.val() as ProductDescription)
@@ -35,6 +37,7 @@ export class ProductDescriptionComponent implements OnInit {
   }
 
   closeThisDialog() {
+    this.display = 'none'
       this.closeProductDescriptionPage.emit(false)
   }
 
