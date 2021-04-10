@@ -3,12 +3,9 @@
     <div class="modal-content">
       <!--div class="modal-header" style="background-color: #6d7fcc"-->
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{productDescription?.header}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{productDescription? productDescription.header: individualGrocery.type}}</h5>
       </div>
-      <div class="modal-body" style="background-color: lightslategray">
-        <h6  style="margin: 0; padding: 0; font-weight: bolder; font-family: 'Trebuchet MS'"> </h6>
-
-        <hr>
+      <div class="modal-body" style="background-color: lightgrey">
 
         <p-card subheader="Beskrivning">
           {{productDescription?.swedishDescription}}
@@ -35,8 +32,8 @@
 
         <ng-template #elseBlock><p style="font-family: 'Trebuchet MS'; font-weight: bold"> Tyvärr saknas information!. </p></ng-template>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="closeThisDialog()">Close</button>
+      <div class="modal-footer" style="background-color: darkslategrey">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeThisDialog()">Close</button>
       </div>
     </div>
   </div>
