@@ -1,9 +1,9 @@
 <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div *ngIf="isDesktopApplication" class="modal-content">
       <!--div class="modal-header" style="background-color: #6d7fcc"-->
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{productDescription? productDescription.header: individualGrocery.type}}</h5>
+        <h5 class="modal-title">{{productDescription? productDescription.header: individualGrocery.type}}</h5>
       </div>
       <div class="modal-body" style="background-color: lightgrey">
 
@@ -36,5 +36,42 @@
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="closeThisDialog()">Close</button>
       </div>
     </div>
+
+    <div *ngIf="!isDesktopApplication" class="modal-content">
+      <!--div class="modal-header" style="background-color: #6d7fcc"-->
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-size: smaller">{{productDescription? productDescription.header: individualGrocery.type}}</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeThisDialog()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body" style="background-color: lightgrey">
+
+        <p-card subheader="Beskrivning">
+          <span style="font-size: smaller"> {{productDescription?.swedishDescription}} </span>
+        </p-card>
+
+        <hr>
+
+        <p-card  subheader="Näringsämnen" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+          <div *ngIf="isNutrientsInformationPresent(); else elseBlock"><p  style="font-size: smaller">{{productDescription?.nutrients}}</p></div>
+        </p-card>
+
+        <hr>
+
+        <p-card subheader="Allergiinformation" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+          <div *ngIf="isAllergicInformationPresent(); else elseBlock"><p style="font-size: smaller">{{productDescription?.allergyInformation}}</p></div>
+        </p-card>
+
+        <hr>
+
+        <p-card subheader="URL-referens" [style]="{'width': '100%', 'margin-bottom': '2em'}">
+          <div *ngIf="isWebsiteLinkPresent(); else elseBlock"><a  style="font-size: smaller" href="{{productDescription.actualWebsiteLink}}" target="_blank" style="color: orangered; text-decoration: underline">Mer Information på engelska</a></div>
+        </p-card>
+        <ng-template #elseBlock><p style="font-family: 'Trebuchet MS'; font-weight: bold"> Tyvärr saknas information!. </p></ng-template>
+      </div>
+    </div>
   </div>
-</div><!-- /.modal !-->
+</div>
