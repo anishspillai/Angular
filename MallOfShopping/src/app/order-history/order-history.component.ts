@@ -289,4 +289,17 @@ filter(value => value.dateInNumber >= this.filteredDate.getTime())
   userDetailsModel: UserDetailsModel
   viewUserDetails = false
 
+  currentUserId: string
+  currentOrderHistory: Order[]
+  showBillingPage: boolean = false
+  totalAmount: number;
+  orderedDateTime: string
+
+  displayBillingPage(oh: OrderHistoryModel) {
+    this.currentUserId = oh.userId
+    this.currentOrderHistory = oh.orderHistory
+    this.showBillingPage = true
+    this.orderedDateTime = oh.orderedTimestamp
+  }
+
 }

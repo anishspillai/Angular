@@ -25,6 +25,7 @@
 
     <div id="content-desktop">
 
+      <button pButton (click)="displayBillingPage(oh)" class="ui-button-warning" label="Generate Bill"></button>
 
 
       <button pButton (click)="getUserDetails(oh.userId)" class="ui-button-danger" label="UserDetails"></button>
@@ -299,4 +300,8 @@
     <button type="button" pButton icon="pi pi-times" style="border-radius: 25px"
             (click)="viewUserDetails=false" label="Cancel" class="ui-button-danger"></button>
   </p-footer>
+</p-dialog>
+
+<p-dialog [(visible)]="showBillingPage" header="Order Details" style="width: 100vw">
+  <app-billing  [cols]="cols" [userId]="this.currentUserId" [orderHistory]="this.currentOrderHistory" [orderedTimeStamp]="this.orderedDateTime"></app-billing>
 </p-dialog>

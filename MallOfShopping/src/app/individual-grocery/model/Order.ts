@@ -1,6 +1,7 @@
 import {IndividualGrocery} from "./IndividualGrocery";
 
 export class Order {
+  isNew: boolean;
   constructor(
     public actualPrice: number = 12,
     public groceryName: string = "Anish",

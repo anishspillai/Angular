@@ -64,6 +64,7 @@ import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-hi
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {NgAisModule} from "angular-instantsearch";
 import {SearchObservableServiceService} from "./search-observable-service.service";
+import { BillingComponent } from './billing/billing.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import {SearchObservableServiceService} from "./search-observable-service.servic
     FishMarketVideoViewComponent,
     TimePickerComponent,
     PaymentOptionViewComponent,
-    AdminOrderHistoryComponent
+    AdminOrderHistoryComponent,
+    BillingComponent
   ],
   imports: [
     BrowserModule,
