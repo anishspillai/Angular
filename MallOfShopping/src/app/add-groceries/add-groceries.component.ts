@@ -77,16 +77,21 @@ export class AddGroceriesComponent   {
 
     //this.addGroceryModel.dbPath = this.selectedPath.name
 
-    const  list = this.firestore.list('admin/Products/')
+    const list = this.firestore.list('admin/Products/')
     this.addGroceryModel.isCampaign = this.isCampaign === "Yes" ? true : false
     // @ts-ignore
     this.addGroceryModel.isFastMoving = "Yes" === this.isFastMoving ? true : false
-    list.push( this.addGroceryModel )
+    list.push(this.addGroceryModel).then(ref => {
+      this.firestore.object('admin/New_Products/' + ref.key).set(this.addGroceryModel)
+
+      }
+    )
+  }
 
     /**const  list = this.firestore.list('stock_count/')
 
     list.set('1212', 78).then(r => console.log(r));
     list.set('12000', 78).then(r => console.log(r));
     list.set('11000', 78).then(r => console.log(r));*/
-  }
+
 }
