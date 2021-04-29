@@ -1,0 +1,80 @@
+
+<div class="mt-3">
+  <div class="row">
+    <div class="col-5">
+      <div class="bg-warning" style="border-radius: 24px;">
+        <p class="bold-center-aligned-text text-secondary">New products in Stock</p>
+        <div id="carousel1" class="carousel slide" data-ride="carousel">
+          <div style="text-align: center" class="padding-default">
+            <a class="btn-floating" href="#carousel1" data-slide="prev"><i
+              class="pr-3 disabled pi pi-arrow-circle-left"></i></a>
+            <a class="btn-floating" href="#carousel1" data-slide="next"><i
+              class="pi pi-arrow-circle-right disabled"></i></a>
+          </div>
+
+          <hr class="padding-default">
+
+          <div class="carousel-inner" role="listbox">
+            <div *ngFor="let image of carouselArray; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
+              <div class="container">
+                <div class="row padding-bottom">
+                  <div *ngFor="let image of carouselArray[i]" class="col-sm" style="margin-left: 20px">
+                    <div>
+                      <img class="zoom card-img-top size-200" src="{{image.imagePath}}" style="border-radius: 50%"/>
+                      <strong class="row font-small text-primary">{{image.brandName}}</strong>
+                      <small class="row font-smaller text-muted">{{image.type}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-6 bg-dark bg-gradient container-fluid" style="border-radius: 25px">
+
+
+      <div class="container" style="padding-top: 10px">
+        <div class="row">
+          <div class="col-sm offset-5 rectangle">
+            <div class="col">
+              <strong class="pt-1 row">Bulk Purchase</strong>
+              <p class="row text-info">Purchase bulk and Save huge.</p>
+            </div>
+          </div>
+          <div class="col-sm offset-5 rectangle">
+            <div class="col">
+              <strong class="pt-1 row">Budget Purchase</strong>
+              <p class="text-info row">This is suitable for a family of 4 members</p>
+            </div>
+          </div>
+          <div class="col-sm offset-5 rectangle">
+            <div class="col">
+              <strong class="pt-1 row">Same Day Delivery</strong>
+              <p class="row text-info">Conditions apply</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="container" style="padding-top: 30px">
+        <div class="row">
+          <div class="col-sm">
+              <button type="button" class="btn btn-primary" (click)="navigateTo('products')">Click here see New Products</button>
+          </div>
+          <div class="col-sm ">
+              <button type="button" class="btn btn-success" (click)="navigateTo('offer')">Click here to see various offers</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

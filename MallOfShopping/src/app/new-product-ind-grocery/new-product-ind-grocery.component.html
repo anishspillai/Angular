@@ -1,0 +1,37 @@
+<div *ngIf="individualGrocery" class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0 zoom-in-image">
+  <img class="img-fluid img-item center-align"
+       src="{{individualGrocery.imagePath}}" alt="Missing Image">
+</div>
+<div>
+  <div style="text-align: center">
+    <div>
+      <h5>{{individualGrocery.type}}  <strong *ngIf="individualGrocery.subType">{{' - ' + individualGrocery.subType}}</strong> </h5>
+
+
+      <p class="mb-3 text-muted text-uppercase small font-weight-bold">{{individualGrocery.brandName}}</p>
+      <p class="mb-2 text-muted text-uppercase small">{{individualGrocery.weight}} {{individualGrocery.unitOfWeight}}</p>
+      <p class="mb-0"><span><strong id="summary">Kr{{individualGrocery.actualPrice}}</strong></span></p>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+
+    <div class="center-align">
+      <button *ngIf="isDisplayAddButton" type="button" class="btn btn-primary" (click)="addToCart()">Add To Cart</button>
+      <button *ngIf="!isDisplayAddButton" type="button" class="disable-mouse-pointer btn btn-success" data-toggle="tooltip" data-placement="top" title="Please edit the item in Shopping cart page" disabled>
+        Already In Cart
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="displayLoginPage">
+  <app-sign-in
+    [loadLoginPage]="displayLoginPage"
+    (closeLoginDialogEvent)= "displayLoginPage = $event"
+    [isDesktopApplication]="true"
+  >
+  </app-sign-in>
+</div>

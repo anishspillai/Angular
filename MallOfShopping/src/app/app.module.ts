@@ -73,6 +73,11 @@ import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import {PanelMenuModule} from "primeng/panelmenu";
 import { ProductDescriptionComponent } from './product-description/product-description.component';
 import {ProductDescriptionService} from "./product-description/product-description.service";
+import { NewItemsComponent } from './new-items/new-items.component';
+import { ProdAdvGrocListComponent } from './prod-adv-groc-list/prod-adv-groc-list.component';
+import { NewProductsListComponent } from './new-products-list/new-products-list.component';
+import { NewProductIndGroceryComponent } from './new-product-ind-grocery/new-product-ind-grocery.component';
+import { OfferPageComponent } from './offer-page/offer-page.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +108,12 @@ import {ProductDescriptionService} from "./product-description/product-descripti
     ProductCarouselComponent,
     FooterComponent,
     OrderedItemsComponent,
-    ProductDescriptionComponent
+    ProductDescriptionComponent,
+    NewItemsComponent,
+    ProdAdvGrocListComponent,
+    NewProductsListComponent,
+    NewProductIndGroceryComponent,
+    OfferPageComponent
   ],
     imports: [
         BrowserModule,

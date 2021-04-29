@@ -1,0 +1,35 @@
+<div class="container my-4">
+
+  <h5 class="p-1 text-secondary font-weight-bolder"> New products </h5>
+
+  <hr class="mb-3"/>
+
+
+  <div id="carousel1" class="carousel slide" data-ride="carousel">
+
+
+    <div class="hi-icon-wrap hi-icon-effect-6 hi-icon-effect-1a">
+      <a class="btn-floating" href="#carousel1" data-slide="prev"><i class="pr-3 disabled pi pi-arrow-circle-left"></i></a>
+      <a class="btn-floating" href="#carousel1" data-slide="next"><i class="pi pi-arrow-circle-right disabled"></i></a>
+    </div>
+
+    <div class="carousel-inner" role="listbox">
+      <div *ngFor="let image of carouselArray; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
+        <div class="row">
+          <div *ngFor="let image of carouselArray[i]" class="col-md-4 clearfix d-none d-md-block">
+            <div class="card mb-2 pt-3">
+              <img class="zoom center-align card-img-top size-200" src="{{image.imagePath}}"
+                   alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{image.brandName}}</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a class="btn btn-primary">Button</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

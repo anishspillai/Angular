@@ -8,6 +8,8 @@ import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {OrderHistoryMainPageComponent} from "./order-view-main-page/order-history-main-page.component";
 import {UserDetailsMainPageComponent} from "./user-details-main-page/user-details-main-page.component";
 import {ProductCarouselComponent} from "./product-carousel/product-carousel.component";
+import {NewProductsListComponent} from "./new-products-list/new-products-list.component";
+import {OfferPageComponent} from "./offer-page/offer-page.component";
 
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'log-in', component: SignInComponent },
   { path: 'order-confirmation', component: OrderConfirmationWizardComponent },
   { path: 'home-page', component: ProductCarouselComponent },
+  { path: 'new-items-list', component: NewProductsListComponent },
+  { path: 'offer-page', component: OfferPageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
