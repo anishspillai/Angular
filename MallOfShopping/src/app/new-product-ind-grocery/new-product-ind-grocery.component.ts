@@ -29,8 +29,8 @@ export class NewProductIndGroceryComponent implements OnInit {
   addToCart() {
 
     if(!this.authService.isLoggedIn) {
-      //this.displayLoginPage = true
-      //return
+      this.displayLoginPage = true
+      return
     }
 
     const order = Order.createThisObjectFromIndividualGrocerObject(this.individualGrocery)
