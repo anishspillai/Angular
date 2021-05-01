@@ -46,10 +46,6 @@
     Fishes shall be delivered on week ends and the delivery is based on stock availability!!!
   </div>
 
-  <div *ngIf="searchCategoryType === 'Vegetable'" class="p-col-12; warning-dialog">
-    Launching vegetable deliveries from 01-Oct-2020
-  </div>
-
   <div *ngFor="let grocery of filteredGroceryList">
     <div style="width: 250px; padding: 10px">
       <app-individual-grocery [individualGrocery]="grocery"
