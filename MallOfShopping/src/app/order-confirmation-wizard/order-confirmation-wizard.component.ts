@@ -14,6 +14,8 @@ import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStat
 import {AuthService} from "../auth/auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Order} from "../individual-grocery/model/Order";
+import {forkJoin, Observable, of} from "rxjs";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-order-confirmation-wizard',
@@ -94,23 +96,33 @@ export class OrderConfirmationWizardComponent implements OnInit{
         addressMissing = true
       }
 
-      if(!addressMissing) {
+      if (!addressMissing) {
         this.orderBeingPlaced = true
         const orderTimestamp = new Date().getTime()
         this.isOrderPlaced = false
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
-          this.displayThankYouDialog = true
           this.isOrderPlaced = true
           this.orderBeingPlaced = false
           //this.updateCountOfGroceries()
-          this.emptyShoppingCart()
-          this.addDeliveryStatus(orderTimestamp, user)
+          //this.emptyShoppingCart()
+          //this.addDeliveryStatus(orderTimestamp, user)
           //this.sendOrderAcknowledgementMail()
-          this.emptyShoppingCart()
+
+          const JOIN_API = forkJoin(
+            {
+              one: this.updateCountOfGroceries().pipe(catchError(() => of(undefined))),
+              two: this.emptyShoppingCart(),
+              three: this.addDeliveryStatus(orderTimestamp, user)
+            }
+          )
+
+          JOIN_API.subscribe(() => this.displayThankYouDialog = true, () => {
+          })
+
         })
           .catch(err => {
             this.orderBeingPlaced = false
-            if(!this.isOrderPlaced) {
+            if (!this.isOrderPlaced) {
               this.displayErrorDialog = true
             }
             this.errorLogService.logErrorMessage(user, err)
@@ -124,19 +136,19 @@ export class OrderConfirmationWizardComponent implements OnInit{
     return this.addGroceryToListObservableService.orders
   }
 
-  private updateCountOfGroceries() {
-
+  private updateCountOfGroceries(): Observable<any> {
     this.addGroceryToListObservableService.orders.forEach(grocery => {
-        const groceryCountModel = this.groceryCountService.getGroceryCountModel(grocery.id)
-        if (groceryCountModel) {
-            const countOfGrocery = groceryCountModel.count - grocery.noOfItems
-            const  list = this.firestore.list('stock_count/')
-            list.set(grocery.id, countOfGrocery).catch(reason => console.log(reason));
-        }
+        this.firestore.database.ref('stock_count_table/' + grocery.id + '/stockCount').transaction(function (currentRank) {
+          if (currentRank) {
+            return currentRank - 1;
+          } else {
+            //return 50
+          }
+        }).then(r => {})
       }
     )
 
-    //this.displayThankYouDialog = true
+    return of(1)
   }
 
   navigateToTheMainPage() {
@@ -147,11 +159,11 @@ export class OrderConfirmationWizardComponent implements OnInit{
   private addDeliveryStatus(orderTimestamp: number, user: string) {
     const deliveryDate = this.deliveryDate ? this.deliveryDate.getTime(): 0
     const orderDeliveryStatus = new OrderDeliveryStatus("Order is Placed", deliveryDate, 0, this.commentsFromCustomer)
-    this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
+    return this.groceryService.addDeliveryDateAndStatus(orderDeliveryStatus, user, orderTimestamp).catch(error => console.log(error))
   }
 
-  private emptyShoppingCart() {
-    this.groceryService.emptyShoppingCart(this.authService.getUser()).then(
+  private emptyShoppingCart() : Promise<boolean>{
+    return this.groceryService.emptyShoppingCart(this.authService.getUser()).then(
       () =>
       this.displayThankYouDialog = true
     )
