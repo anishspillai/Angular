@@ -139,13 +139,17 @@ export class IndividualGroceryComponent {
   }
 
   makeTheItemInStock() {
-    this.groceryCountService.updateCountOfGrocery(this.individualGrocery.id, Number(this.countOfItems))
+    const stockCount = new GroceryCount();
+    stockCount.stockCount = Number(this.countOfItems);
+    stockCount.category = this.individualGrocery.subCatagory ? this.individualGrocery.subCatagory : this.individualGrocery.catagory;
+    stockCount.isFastMoving = false
+    this.groceryCountService.updateCountOfGrocery(this.individualGrocery.id, stockCount)
     this.updateItem = false
 
   }
 
   makeTheItemOutOfStock() {
-    this.groceryCountService.updateCountOfGrocery(this.individualGrocery.id, 0)
+    //this.groceryCountService.updateCountOfGroceryToZero(this.individualGrocery.id)
     this.updateItem = false
   }
 
@@ -270,4 +274,11 @@ export class IndividualGroceryComponent {
   copyAndPopulate() {
 
   }
+}
+
+
+export class GroceryCount {
+stockCount?: number;
+  category?: string;
+  isFastMoving?: boolean;
 }

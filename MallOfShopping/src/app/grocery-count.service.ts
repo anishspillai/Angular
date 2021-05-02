@@ -3,6 +3,7 @@ import {GroceryCountModel} from "./individual-grocery/model/GroceryCountModel";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {Observable} from "rxjs";
 import {ProductDescription} from "./individual-grocery/model/ProductDescription";
+import {GroceryCount} from "./individual-grocery/individual-grocery-component";
 
 @Injectable({
   providedIn: 'root'
@@ -46,9 +47,9 @@ export class GroceryCountService {
     return this.groceryCountModels.find(value => value.id == idOfTheItem)
   }
 
-  updateCountOfGrocery(id, number: number) {
-    const  list = this.angularFireDatabase.list('stock_count/')
-    list.set(id, number).catch(reason => console.log(reason));
+  updateCountOfGrocery(id, stockCount: GroceryCount) {
+    const  list = this.angularFireDatabase.list('admin/stock_count_table/')
+    this.angularFireDatabase.object('admin/stock_count_table/' +id).set(stockCount).then(value => console.log(""))
   }
 
   setPriceForTheGrocerItem(id, price) {
@@ -124,4 +125,8 @@ setActualWebsiteLink(id: string, actualWebsiteLink: string) {
   const list = this.angularFireDatabase.database.ref('admin/Product_Description/'+id).update({
     actualWebsiteLink: actualWebsiteLink
   })}
+
+  updateCountOfGroceryToZero(id: string) {
+
+  }
 }

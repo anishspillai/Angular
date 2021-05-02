@@ -21,6 +21,8 @@ export class IndividualGrocery {
   allergyInformation: string
   nutrients: string;
   header: string;
+  subCatagory: string;
+  catagory:string
 }
 
 export class GroceryResponse {
