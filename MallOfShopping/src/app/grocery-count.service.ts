@@ -127,6 +127,8 @@ setActualWebsiteLink(id: string, actualWebsiteLink: string) {
   })}
 
   updateCountOfGroceryToZero(id: string) {
+    this.angularFireDatabase.object('stock_count/' +id).set(0).then(value => console.log(""))
+
 
   }
 }

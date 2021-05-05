@@ -149,7 +149,7 @@ export class IndividualGroceryComponent {
   }
 
   makeTheItemOutOfStock() {
-    //this.groceryCountService.updateCountOfGroceryToZero(this.individualGrocery.id)
+    this.groceryCountService.updateCountOfGroceryToZero(this.individualGrocery.id)
     this.updateItem = false
   }
 
