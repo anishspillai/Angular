@@ -4,6 +4,7 @@ import {Order} from "../individual-grocery/model/Order";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {Observable} from "rxjs";
 import {OrderHistoryModel, PaymentDetails} from "../order-history/OrderHistory.model";
+import {SnapshotAction} from "@angular/fire/database/interfaces";
 
 @Injectable()
 export class GroceryService {
@@ -24,13 +25,14 @@ export class GroceryService {
 
   }
 
-  getOrderHistory(userId: string) {
+  getOrderHistory(userId: string) : Observable<SnapshotAction<OrderHistoryModel>[]> {
     //return this.angularFireDatabase.list('users/order-lists/').snapshotChanges()
 
     //return this.angularFireDatabase.list('users/order-lists/', ref => ref.limitToLast(10)).snapshotChanges()
 
 
-    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("currentTimestamp").limitToLast(2)).snapshotChanges()
+    // @ts-ignore
+    return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("userId").equalTo(userId)).snapshotChanges()
 
     //return this.angularFireDatabase.list('users/order-history/', ref => ref.orderByChild("userId").equalTo("aeErXZLzJwgtjfkBfnPjpGVVXes2")).snapshotChanges()
 

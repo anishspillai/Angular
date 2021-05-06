@@ -3,6 +3,7 @@ import {UserDetailsModel} from "../user-details/model/user.details.model";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 
 export class OrderHistoryModel {
+  order: Order[] = []
   orderedTimestamp: string
   orderHistory: Order[] = []
   orderDeliveryStatus: OrderDeliveryStatus
@@ -11,6 +12,7 @@ export class OrderHistoryModel {
   dateInNumber: Number
   commentsSection: string
   userDetailsModel: UserDetailsModel
+  orderPlacementTime: number
 }
 
 export class AdminOrderHistories {

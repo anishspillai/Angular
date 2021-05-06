@@ -64,6 +64,7 @@ import { AdminOrderHistoryComponent } from './admin-order-history/admin-order-hi
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import {SlideMenuModule} from "primeng/slidemenu";
 import { BillingComponent } from './billing/billing.component';
+import { UserOrderHistoriesComponent } from './user-order-histories/user-order-histories.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { BillingComponent } from './billing/billing.component';
     TimePickerComponent,
     PaymentOptionViewComponent,
     AdminOrderHistoryComponent,
-    BillingComponent
+    BillingComponent,
+    UserOrderHistoriesComponent
   ],
     imports: [
         BrowserModule,

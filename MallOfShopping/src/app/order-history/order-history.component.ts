@@ -380,4 +380,12 @@ export class OrderHistoryComponent  {
     this.paymentDetails.paymentStatus = this.paymentDetails.paymentStatusString.startsWith("Y")
     this.groceryService.updatePaymentDetails(this.paymentDetails).then(() => this.displayPaymentDetails = false).catch(reason => alert('Payment details updation failed ' + reason))
   }
+
+  displayUserOrderHistory: boolean = false
+  useForHistories: string;
+
+  displayUserOrderHistoryPage(userId: string) {
+    this.displayUserOrderHistory = true
+    this.useForHistories = userId
+  }
 }
