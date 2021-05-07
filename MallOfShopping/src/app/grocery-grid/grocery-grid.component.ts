@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core"
-import {Observable} from "rxjs"
-import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
+import {forkJoin, Observable, of} from "rxjs"
+import {GroceryCount, IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
 import {Order} from "../individual-grocery/model/Order"
 import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
@@ -8,6 +8,7 @@ import {GroceryCountService} from "../grocery-count.service";
 import {ErrorLogService} from "../error-log.service";
 import algoliasearch from "algoliasearch/lite";
 import {SearchObservableServiceService} from "../search-observable-service.service";
+import {catchError} from "rxjs/operators";
 
 
 const searchClient = algoliasearch(
@@ -48,6 +49,8 @@ export class GroceryGridComponent implements OnInit {
   isGlobalSearch: boolean;
   isHomePage = false
   isFastMovingProducts = false
+
+  groceryCounts: GroceryCount[] = []
 
   ngOnInit() {
 
@@ -94,6 +97,7 @@ export class GroceryGridComponent implements OnInit {
   }
 
   fetchGroceries() {
+
     this.brands.clear()
     this.brandNamesForMobileApplication = []
     this.displayProgressSpinner = true
@@ -102,35 +106,15 @@ export class GroceryGridComponent implements OnInit {
     if (!this.searchCategoryType) {
       this.isFastMovingProducts = true
       this.filteredGroceryList = []
-      this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
-          value.forEach(dataSnapshot => {
-              // @ts-ignore
-              const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
-              individualGrocery.id = dataSnapshot.key
-              this.filteredGroceryList.push(individualGrocery)
-            }
-          )
 
-          this.groceryList = this.filteredGroceryList
-          window.scrollTo(0, 0)
-          this.extractBrands()
-          this.displayProgressSpinner = false
-        }, error => {
-          this.errorLogService.logErrorMessage('Admin', error)
+      const FORK_JOIN = forkJoin(
+        {
+          one: this.searchByFastMoving().pipe(catchError(error => of(error))),
+          two: this.getStockByFastMoving().pipe(catchError(error => of(error)))
         }
       )
 
-      /**this.firestore.list('admin/Catagories').valueChanges().forEach(value => value.forEach(value1 => {
-          for (let val of Object.values(value1)) {
-            val.forEach(value2 => {
-              var anish: IndividualGrocery = value2 as IndividualGrocery
-              this.groceryList.push(anish)
-              this.nonFilteredList.push(anish)
-            })
-          }
-          this.displayProgressSpinner = false
-        }
-       )).then(r => console.log(r))*/
+      FORK_JOIN.subscribe(() => this.displayProgressSpinner = false)
 
     } else {
       this.isGlobalSearch = false
@@ -146,28 +130,18 @@ export class GroceryGridComponent implements OnInit {
 
       const SEARCH_TYPE = this.isSubCategory ? "subCatagory" : "catagory"
 
-      this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
-          value.forEach(dataSnapshot => {
-              // @ts-ignore
-              const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
-              individualGrocery.id = dataSnapshot.key
-              this.groceryList.push(individualGrocery)
-            }
-          )
-
-          this.extractBrands()
-
-          this.filteredGroceryList = this.groceryList
-
-          this.sortableField = {name: 'Sort By Brand Type', code: 'brandName'}
-          this.performSorting()
-
-          window.scrollTo(0, 0)
-          this.displayProgressSpinner = false
-        }, error => {
-          this.errorLogService.logErrorMessage('Admin', error)
+      const FORK_JOIN = forkJoin(
+        {
+          one: this.searchByProductType(SEARCH_TYPE).pipe(catchError(error => of(error))),
+          two: this.getTheCountOfStockByCategory().pipe(catchError(error => of(error)))
         }
       )
+
+      FORK_JOIN.subscribe(() => console.log(this.displayProgressSpinner = false))
+
+
+
+
 
       /**this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).valueChanges().forEach(grocery => {
         grocery.forEach(groceryUnit => {
@@ -182,6 +156,88 @@ export class GroceryGridComponent implements OnInit {
 
     }
   }
+
+  private searchByProductType(SEARCH_TYPE: string): Observable<any> {
+
+    this.firestore.list("admin/Products", ref => ref.orderByChild(SEARCH_TYPE).equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
+      this.groceryList = [];
+      value.forEach(dataSnapshot => {
+          // @ts-ignore
+          const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
+          individualGrocery.id = dataSnapshot.key
+          this.groceryList.push(individualGrocery)
+        }
+      )
+
+      this.extractBrands()
+
+      this.filteredGroceryList = this.groceryList
+
+      this.sortableField = {name: 'Sort By Brand Type', code: 'brandName'}
+      this.performSorting()
+
+      window.scrollTo(0, 0)
+    }, error => {
+      this.errorLogService.logErrorMessage('Admin', error)
+    }
+  )
+    return of(1)
+  }
+
+  private getTheCountOfStockByCategory(): Observable<any> {
+    this.firestore.list("admin/stock_count_table", ref => ref.orderByChild("category").equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
+        value.forEach(dataSnapshot => {
+            // @ts-ignore
+            const groceryCountModel: GroceryCount = dataSnapshot.payload.val()
+            groceryCountModel.id = dataSnapshot.key
+            this.groceryCounts.push(groceryCountModel)
+          }
+        )
+      }, error => {
+        this.errorLogService.logErrorMessage('Admin', error)
+      }
+    )
+    return of(2)
+  }
+
+
+  private searchByFastMoving() {
+    this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
+        value.forEach(dataSnapshot => {
+            // @ts-ignore
+            const individualGrocery: IndividualGrocery = dataSnapshot.payload.val()
+            individualGrocery.id = dataSnapshot.key
+            this.filteredGroceryList.push(individualGrocery)
+          }
+        )
+
+        this.groceryList = this.filteredGroceryList
+        window.scrollTo(0, 0)
+        this.extractBrands()
+      }, error => {
+        this.errorLogService.logErrorMessage('Admin', error)
+      }
+    )
+    return of(1)
+  }
+
+  private getStockByFastMoving(): Observable<any> {
+    this.firestore.list("admin/stock_count_table", ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
+        value.forEach(dataSnapshot => {
+            // @ts-ignore
+            const groceryCountModel: GroceryCount = dataSnapshot.payload.val()
+            groceryCountModel.id = dataSnapshot.key
+            this.groceryCounts.push(groceryCountModel)
+          }
+        )
+        console.log(this.groceryCounts)
+      }, error => {
+        this.errorLogService.logErrorMessage('Admin', error)
+      }
+    )
+    return of(2)
+  }
+
 
   private extractBrands() {
     this.groceryList.forEach(value => {

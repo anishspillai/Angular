@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {IndividualGrocery} from "./model/IndividualGrocery";
+import {Component, Input, OnInit} from "@angular/core";
+import {GroceryCount, IndividualGrocery} from "./model/IndividualGrocery";
 import {Order} from "./model/Order";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
 import {GroceryCountService} from "../grocery-count.service";
@@ -11,7 +11,7 @@ import {AuthService} from "../auth/auth.service";
   styleUrls: ['./individual-grocery-component.css']
 })
 
-export class IndividualGroceryComponent {
+export class IndividualGroceryComponent{
 
   isDisplayAddButton: Boolean = true
 
@@ -28,6 +28,8 @@ export class IndividualGroceryComponent {
   @Input() orderedGroceryList: Order[] = []
 
   @Input() isDesktopApplication = true
+
+  @Input() groceryCount: GroceryCount[] = []
 
   displayLoginPage = false
 
@@ -121,5 +123,25 @@ export class IndividualGroceryComponent {
     return this.addGroceryToListObservableService.orders.length
 
     return 100
+  }
+
+  isStockAvailable(id: string) {
+    const groceryCount: GroceryCount = this.groceryCount.find(value => value.id === id)
+    if(groceryCount) {
+      return groceryCount.stockCount > 0
+    }
+
+    return true;
+  }
+
+  getCountOfItem() {
+
+    const groceryCount: GroceryCount = this.groceryCount.find(value => value.id === this.individualGrocery.id)
+    if(groceryCount) {
+      return groceryCount.stockCount
+    } else {
+      return "Missing"
+    }
+
   }
 }

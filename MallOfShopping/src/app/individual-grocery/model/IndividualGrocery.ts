@@ -26,3 +26,10 @@ export class GroceryResponse {
   public groceryType: string
   public groceryList: IndividualGrocery[]
 }
+
+export class GroceryCount {
+  stockCount: number
+  isFastMoving: boolean
+  category: string
+  id: string
+}
