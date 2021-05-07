@@ -52,6 +52,13 @@ export class GroceryCountService {
     this.angularFireDatabase.object('admin/stock_count_table/' +id).set(stockCount).then(value => console.log(""))
   }
 
+  updateCountOfGrocery1(id, number: number) {
+    const  list = this.angularFireDatabase.list('stock_count/')
+    list.set(id, number).catch(reason => console.log(reason));
+  }
+
+
+
   setPriceForTheGrocerItem(id, price) {
     const  list = this.angularFireDatabase.database.ref('admin/Products/'+id).update({
       actualPrice: price
