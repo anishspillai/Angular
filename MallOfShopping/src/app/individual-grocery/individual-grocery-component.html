@@ -75,7 +75,7 @@
       </button-->
 
       <div *ngIf="isStockAvailable(individualGrocery.id) ; else elseBlock">
-        <button pButton type="button" label = "{{getLabel(individualGrocery)}}" class="ui-button-rounded ui-button-success"
+        <button pButton type="button" label = "{{ getLabel(individualGrocery) }}" class="ui-button-rounded ui-button-success"
                 (click)="addItemToCart(); $event.stopImmediatePropagation()">
         </button>
       </div>
