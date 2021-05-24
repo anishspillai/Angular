@@ -144,4 +144,16 @@ export class IndividualGroceryComponent{
     }
 
   }
+
+  getLabel(individualGrocery: IndividualGrocery) {
+     if(individualGrocery.catagory === "Vegetable") {
+       if(individualGrocery.type.includes("Mango")) {
+         return "Book For 29-May"
+       } else {
+         return "Book For 27-May"
+       }
+     }
+
+     return "Add To Cart";
+  }
 }

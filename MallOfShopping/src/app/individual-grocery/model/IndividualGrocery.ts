@@ -19,6 +19,8 @@ export class IndividualGrocery {
 
   objectID? : string
 
+  catagory? : string
+
   description: string
 }
 
