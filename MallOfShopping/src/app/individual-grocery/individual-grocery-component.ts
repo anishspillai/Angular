@@ -145,6 +145,7 @@ export class IndividualGroceryComponent{
 
   }
 
+  // Logic for button label
   getLabel(individualGrocery: IndividualGrocery) {
      if(individualGrocery.catagory === "Vegetable") {
        if(individualGrocery.type.includes("Mango")) {
