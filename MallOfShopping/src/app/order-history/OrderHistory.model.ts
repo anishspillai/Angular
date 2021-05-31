@@ -38,3 +38,30 @@ export class PaymentDetails {
   commentAboutPayment: string
   userId_orderPlacementTime: string
 }
+
+
+
+export class VeggiesCount {
+  Jack: number = 0
+  mangoPak: number = 0
+  bottle: number = 0
+  bitter: number = 0
+  brinjal: number = 0
+  ladiesFinger: number = 0
+  onion: number = 0
+  banana: number = 0
+  mango: number = 0
+  guava: number = 0
+  valpapadi: number = 0
+  arvi: number = 0
+  alphonso: number = 0
+  curryLeaves: number = 0
+  pumpkin: number = 0
+  drum: number = 0
+  amla: number = 0
+  methi: number = 0
+  tindora: number = 0
+  snake: number = 0
+  chilli: number = 0;
+  jackFruit: number = 0;
+}

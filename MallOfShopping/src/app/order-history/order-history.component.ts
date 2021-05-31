@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GroceryService} from "../grocery-grid/grocery.service";
-import {AdminOrderHistories, Anish, OrderHistoryModel, PaymentDetails} from "./OrderHistory.model";
+import {AdminOrderHistories, Anish, OrderHistoryModel, PaymentDetails, VeggiesCount} from "./OrderHistory.model";
 import {AuthService} from "../auth/auth.service";
 import {DatePipe} from "@angular/common";
 import {Order} from "../individual-grocery/model/Order";
@@ -66,6 +66,9 @@ export class OrderHistoryComponent  {
   showBillingPage: boolean = false
   totalAmount: number;
   orderedDateTime: string
+
+   hello: VeggiesCount = new VeggiesCount();
+
 
   @Input()
   public set userId(userId: string) {
@@ -272,6 +275,8 @@ export class OrderHistoryComponent  {
 
   filterData() {
 
+    this.hello = new VeggiesCount()
+
 
     // @ts-ignore
     this.groceryService.getOrderHistoryFilteredByDate(this.startDate.getTime(), this.endDate.getTime()).pipe(mergeMap(value => {
@@ -316,6 +321,68 @@ export class OrderHistoryComponent  {
 
 
 
+  }
+
+  displayCount() {
+
+
+    this.hello = new VeggiesCount()
+
+    this.filteredorderHistory.forEach(value => {
+
+      const orders: Order[] = value.orderHistory;
+      if (orders && orders.length > 0) {
+        orders.forEach(order => {
+
+            if (order.type.includes("Snake Gourd")) {
+              this.hello.snake += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Tindora")) {
+              this.hello.tindora += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Methi Leaves")) {
+              this.hello.methi += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Amla")) {
+              this.hello.amla += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Drumsticks")) {
+              this.hello.drum += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Pumpkin")) {
+              this.hello.pumpkin += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Curry Leaves")) {
+              this.hello.curryLeaves += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Alphonso Mango")) {
+              this.hello.alphonso += order.noOfItems;
+            } else if (order.type.includes("Fresh Arvi")) {
+              this.hello.arvi += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Val Papadi")) {
+              this.hello.valpapadi += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Guava")) {
+              this.hello.guava += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Fresh Mango")) {
+              this.hello.mango += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Raw Banana")) {
+              this.hello.banana += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Small Onion")) {
+              this.hello.onion += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Ladies Fingure")) {
+              this.hello.ladiesFinger += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Green Chilli")) {
+              this.hello.chilli += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Brinjal")) {
+              this.hello.brinjal += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Bitter Guard")) {
+              this.hello.bitter += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Bottle Guard")) {
+              alert("Yes it is coming")
+              this.hello.bottle += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Mango Ripen")) {
+              this.hello.mangoPak += order.noOfItems * order.grossWeight;
+            } else if (order.type.includes("Fresh JackFruit")) {
+              this.hello.jackFruit += order.noOfItems * order.grossWeight;
+            }
+          }
+        )
+      }
+    })
+    console.log(this.hello)
   }
 
 

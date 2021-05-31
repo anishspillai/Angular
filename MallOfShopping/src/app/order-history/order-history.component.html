@@ -79,7 +79,8 @@
 
           <ng-template pTemplate="body" let-grocery>
             <tr>
-              <td>
+
+              <td [ngClass]="{'anish-back-ground': grocery.groceryName.toString().includes('Fresh')  || grocery.groceryName.toString().includes('Vegetableng ')} ">
                 {{grocery.groceryName}}
               </td>
               <td>
