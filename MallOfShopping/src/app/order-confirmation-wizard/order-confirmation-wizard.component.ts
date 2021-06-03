@@ -138,11 +138,17 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   private updateCountOfGroceries(): Observable<any> {
     this.addGroceryToListObservableService.orders.forEach(grocery => {
-        this.firestore.database.ref('admin/stock_count_table/' + grocery.id + '/stockCount').transaction(function (currentRank) {
+        this.firestore.database.ref('admin/stock_count_table/'+grocery.id+'/stockCount').transaction( (currentRank)  => {
           if (currentRank) {
-            return currentRank - grocery.noOfItems;
+            const totalCount = currentRank - grocery.noOfItems
+            if(totalCount <= 0) {
+              this.firestore.database.ref('admin/out_of_stock_table/' + grocery.id).set({
+                count: 0
+              });
+            }
+            return totalCount <= 0 ? 0 : totalCount
           } else {
-            //return 50
+            return 5
           }
         }).then(r => {})
       }

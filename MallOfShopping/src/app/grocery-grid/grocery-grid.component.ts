@@ -9,6 +9,7 @@ import {ErrorLogService} from "../error-log.service";
 import algoliasearch from "algoliasearch/lite";
 import {SearchObservableServiceService} from "../search-observable-service.service";
 import {catchError} from "rxjs/operators";
+import {SnapshotAction} from "@angular/fire/database/interfaces";
 
 
 const searchClient = algoliasearch(
@@ -52,9 +53,11 @@ export class GroceryGridComponent implements OnInit {
 
   groceryCounts: GroceryCount[] = []
 
+  idOfGroceriesWithZeroStock: string[]
+
   ngOnInit() {
 
-    this.groceryCountService.fetchGroceryCount()
+    this.getNullStockDetails()
 
     this.fillUpSortableFields()
 
@@ -133,7 +136,7 @@ export class GroceryGridComponent implements OnInit {
       const FORK_JOIN = forkJoin(
         {
           one: this.searchByProductType(SEARCH_TYPE).pipe(catchError(error => of(error))),
-          two: this.getTheCountOfStockByCategory().pipe(catchError(error => of(error)))
+          //two: this.getNullStockDetails().pipe(catchError(error => of(error)))
         }
       )
 
@@ -200,6 +203,49 @@ export class GroceryGridComponent implements OnInit {
     return of(2)
   }
 
+  private getNullStockDetails(): Observable<any> {
+    this.firestore.list("admin/out_of_stock_table").snapshotChanges().subscribe(value => {
+      this.idOfGroceriesWithZeroStock = []
+        value.forEach(dataSnapshot => {
+            this.idOfGroceriesWithZeroStock.push(dataSnapshot.key)
+          }
+        )
+      }, error => {
+        this.errorLogService.logErrorMessage('Admin', error)
+      }
+    )
+    return of(2)
+  }
+
+  private fetchOrders() {
+    const groceryCountModel: GroceryCount[] = []
+
+    Promise.all(this.populateObservablesForItem()).then(values => {
+        values.forEach(value => {
+          value.subscribe(value1 => {
+            if(value1.payload.val()) {
+              let groceryCount = value1.payload.val()
+              groceryCount.id = value1.payload.key
+              groceryCountModel.push(groceryCount)
+            }
+          }, error =>
+            this.errorLogService.logErrorMessage('Admin', error))
+        });
+
+        console.log(groceryCountModel)
+      }
+    )
+  }
+
+  private populateObservablesForItem() : Observable<any>[]{
+    let fruits: string[] = ['-M8QgYC7praOetD1ndMj', '-M8QhIKqDVZYOPNM1Tz1', '-M8onA7x9p-XhB8I2SvH', 'ö'];
+    let observables: Observable<SnapshotAction<any>>[] = []
+    fruits.forEach(value => {
+      observables.push(this.firestore.object("admin/stock_count_table/" + value).snapshotChanges())
+    })
+
+    return observables;
+  }
 
   private searchByFastMoving() {
     this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
@@ -292,6 +338,8 @@ export class GroceryGridComponent implements OnInit {
       }
     }
   }
+
+
 
   getHeader() {
     if (this.mainGroceryType) {

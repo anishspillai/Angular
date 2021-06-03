@@ -50,7 +50,7 @@
     <div style="width: 250px; padding: 10px">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"
-                              [groceryCount]="groceryCounts">
+                              [groceryCount]="idOfGroceriesWithZeroStock">
       </app-individual-grocery>
     </div>
   </div>
@@ -89,7 +89,8 @@
     <div class="p-col" style="text-align: left; margin-right: 20px" [class.padding-left-for-first] = "i % 2 == 0" [class.padding-right-for-second]="i % 2 != 0">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"
-                              [isDesktopApplication]="false">
+                              [isDesktopApplication]="false"
+                              [groceryCount] = idOfGroceriesWithZeroStock>
       </app-individual-grocery>
     </div>
   </div>
