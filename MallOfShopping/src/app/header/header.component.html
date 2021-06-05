@@ -113,19 +113,8 @@
 </app-review-ordered-items>
 
 <div *ngIf="displayNavigator">
-<!--app-navigator-for-mobile-device [displaySideBarMenuItemForMobileApplication]="displayNavigator"
-                                  (closeSideBarMenuItemForMobileApplication)="displayNavigator = $event"-->
 
-  <p-sidebar [(visible)]="displayNavigator"
-             position="right"
-             styleClass="ui-sidebar-lg"
-             (onHide)="displayNavigator = false"
-             [showCloseIcon]="false"
-             [style]=" {'overflow': 'scroll', left: 0, 'width': '100%', 'background-color': '#7386D5'}">
-
-    <app-navigator [isMobileDevice]="true" (closeNavigationDialogForMobApp)="displayNavigator =  $event"></app-navigator>
-
-  </p-sidebar>
+    <app-navigator [visibleSidebar1]="displayNavigator" [isMobileDevice]="true" (closeNavigationDialogForMobApp)="displayNavigator =  $event"></app-navigator>
 
 
 

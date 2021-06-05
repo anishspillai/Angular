@@ -37,7 +37,7 @@
   text-align: center;
 }
 .isa_info, .isa_success, .isa_warning, .isa_error {
-  margin: 20px 0px;
+  margin: 2px 0px;
   padding:5px;
 
 }

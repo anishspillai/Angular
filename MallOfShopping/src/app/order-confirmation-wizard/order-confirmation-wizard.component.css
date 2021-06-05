@@ -99,3 +99,14 @@ body {
   width: 100%; /* Full width */
   z-index:1; /*Add this*/
 }
+
+
+.jumbotron-local {
+  background-color: #e9ecef;
+  border-radius: 0.3rem;
+}
+
+@media (min-width: 576px) {
+  .jumbotron-local {
+  }
+}

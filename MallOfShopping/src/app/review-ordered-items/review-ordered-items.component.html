@@ -1,34 +1,25 @@
 <p-sidebar [(visible)]="displaySideMenuBar"
            position="right"
+           [baseZIndex]="10000"
            styleClass="ui-sidebar-lg"
            (onHide)="sendCloseEvent()"
            [style]=" isDesktopApplication ? {'overflow': 'scroll', width:'30%', right: 0} : {'overflow': 'scroll', width:'100%', right: 0}"
             [showCloseIcon]="false">
 
-  <button pButton label="Go Back" class="ui-button-warning ui-button-rounded" iconPos="left" icon="pi pi-angle-left" (click)="displaySideMenuBar = false"></button>
 
-  <div *ngIf="getTotalCostOfOrderedItems() <= 400" class="isa_info">
-    Needs delivery charge. Free delivery for more than 400 Kr
-  </div>
 
-  <div *ngIf="getTotalCostOfOrderedItems() > 400" class="isa_success">
-    This order is free of delivery charge
-  </div>
 
-  <div class="p-grid">
+      <button pButton label="Go Back" class="ui-button-warning ui-button-rounded" iconPos="left" icon="pi pi-angle-left" (click)="displaySideMenuBar = false">
+      </button>
 
-    <div id="CheckOut" class="p-col-5; block " (click)="moveToConfirmationPage()">
-      Check out
+  <div class="row mx-md-n5" style="padding: 0; margin: 0;">
+    <div class="col py-3 px-md-5"><button type="button" class="btn btn-success" (click)="moveToConfirmationPage()">Checkout</button>
     </div>
-
-    <div class="p-col-5; redblock" (click)="emptyCart()">
-      Empty cart
+    <div class="col py-3 px-md-5"><button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
     </div>
   </div>
 
-  <hr>
-
-  <br>
+  <hr style="margin-top: 2px; padding:0">
 
   <div *ngFor="let order of ordersAddedByUser; let i = index">
     <div class="p-grid" style="border-bottom: 1px solid lightgrey; padding: 2px" [class.red] = "i % 2 == 0">
@@ -52,33 +43,29 @@
       </div>
 
       <div class="p-col-2" style="text-align: left">
-        <span style="text-align: left"> {{getCostOfIndividualOrder(order)}} Kr </span>
+        <strong style="text-align: left"> {{getCostOfIndividualOrder(order)}} Kr </strong>
       </div>
     </div>
   </div>
 
+  <ul class="list-group list-group-flush">
 
-  <div *ngIf="getTotalCostOfOrderedItems() <= 400" class="p-grid p-justify-end" style="margin-top:10px; margin-bottom: 5px; color: darkred; border: 1px solid orangered; border-radius: 25px" >
-    <div class="p-col-9">
-      <div class="box">
-        <span style="font-weight: bold; font-size: large; font-style: oblique"> Delivery Charge <strong class="text-danger">( 50 if only veggies are in the list )</strong> </span>
+    <li *ngIf="getTotalCostOfOrderedItems() <= 400" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+      <div>
+        <strong class="text-danger">The Delivery Charge</strong>
+        <small class="text-dark font-weight-bolder">
+          <p class="mb-0">(Charge is 50Kr if only veggies worth 350 or less in cart)</p>
+        </small>
       </div>
-    </div>
-    <div class="p-col-3">
-      <span style="padding-left: 30px; font-weight: bold; font-size: large; font-style: oblique">30 Kr </span>
-    </div>
-  </div>
+      <span><strong>Kr 30</strong></span>
+    </li>
 
-
-  <div class="p-grid p-justify-end">
-    <div class="p-col-9">
-      <div class="box">
-        <span style="font-weight: bold; font-size: large; font-style: oblique"> Total (Kr)</span>
+    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+      <div>
+        <strong class="text-danger">Total (Kr)</strong>
       </div>
-    </div>
-    <div class="p-col-3">
-      <span style="padding-left: 20px; font-weight: bold; font-size: large; font-style: oblique">{{  getTotalCostOfOrderedItemsAsString() }} </span>
-    </div>
-  </div>
+      <span><strong>Kr {{  getTotalCostOfOrderedItemsAsString() }}</strong></span>
+    </li>
+  </ul>
 
 </p-sidebar>

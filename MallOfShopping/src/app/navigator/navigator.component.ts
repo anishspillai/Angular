@@ -27,6 +27,8 @@ export class NavigatorComponent  {
 
   @Output() closeNavigationDialogForMobApp = new EventEmitter()
 
+  @Input() visibleSidebar1
+
   items: GroceryMenuItem[];
 
   slideMenu: SlideMenu
@@ -63,9 +65,9 @@ export class NavigatorComponent  {
         const childData = childSnapshot.payload;
 
         if (!Array.isArray(childData.val())) {
-
           let menuItem: GroceryMenuItem = new GroceryMenuItem(childData.val())
           menuItem.items = []
+          menuItem.command = () => { this.closeParentWindowAndSlideMenuForChildWindowForDesktopDevices() }
           this.menuItems_With_Out.push(menuItem)
         } else {
           {
@@ -101,7 +103,7 @@ export class NavigatorComponent  {
 
   navigateToGroceryMain(item: GroceryMenuItem) {
 
-    if(this.isMobileDevice && item.items.length == 0) {
+    if(item.items.length == 0) {
 
       if(this.slideMenu) {
         this.slideMenu.toggle(true)
@@ -116,8 +118,7 @@ export class NavigatorComponent  {
   }
 
   closeParentWindowAndSlideMenuForChildWindowForMobileDevices() {
-
-    if(this.isMobileDevice) {
+    if(!this.isMobileDevice) {
       //this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
       this.triggerEventForClosingNavigationForMobileApp() // Close the side bar for mobile application
     }
@@ -158,5 +159,12 @@ export class NavigatorComponent  {
     }
     this.router.navigate(['/home-page'])
     this.triggerEventForClosingNavigationForMobileApp()
+  }
+
+  private closeParentWindowAndSlideMenuForChildWindowForDesktopDevices() {
+    if(!this.isMobileDevice) {
+      //this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
+      this.triggerEventForClosingNavigationForMobileApp() // Close the side bar for mobile application
+    }
   }
 }

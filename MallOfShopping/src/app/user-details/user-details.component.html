@@ -1,5 +1,5 @@
-
-<h1 *ngIf="displayHeader" style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique"> User Details </h1>
+<div *ngIf="displayHeader">
+<h1 style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique"> User Details </h1>
 
 <hr style="border-width: thick">
 
@@ -88,6 +88,21 @@
              (click)="displayEditUserDialog = true"></button>
   </p-footer>
 </p-card>
+
+</div>
+
+<div *ngIf="!displayHeader">
+    <span class="mb-0 card-body"><strong>{{userDetailsModel.firstName}} {{userDetailsModel.lastName}},</strong> {{userDetailsModel.address}}, {{userDetailsModel.streetName}}, {{userDetailsModel.postNumber}} </span>
+    <p class="mb-0 card-body"><strong>Contact Number :- </strong> {{userDetailsModel.telephoneNumber}}</p>
+
+
+  <p-footer style="float: right">
+
+    <button pButton icon="pi pi-pencil" label="Edit Billing Details" class="ui-button-rounded ui-button-success"
+            (click)="displayEditUserDialog = true"></button>
+  </p-footer>
+
+</div>
 
 <app-edit-user *ngIf="displayEditUserDialog" [displayEditUserDialog] = "displayEditUserDialog"
                [userDetailsModel] = "userDetailsModel"

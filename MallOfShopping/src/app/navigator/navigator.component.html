@@ -1,25 +1,48 @@
-<div *ngIf="isMobileDevice" style="border-width: thin">
-  <button
-    pButton label="Home Page"
-    icon="pi pi-home"
-    class="ui-button-secondary ui-button-rounded"
-    style="width: 100%"
-    (click)="navigateToTheMainPage()">
-  </button>
-  <hr style="border-color: white">
+<p-sidebar [showCloseIcon]="false" [(visible)]="visibleSidebar1"
+           [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"
+           [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': '#343a40 !important'}">
 
-</div>
+  <div *ngIf="isMobileDevice" style="border-width: thin">
+    <button
+      pButton label="Home Page"
+      icon="pi pi-home"
+      class="ui-button-secondary ui-button-rounded"
+      style="width: 100%"
+      (click)="navigateToTheMainPage()">
+    </button>
+    <hr style="border-color: white">
 
-<p-panelMenu [transitionOptions]="'55ms'"
-             [model]="menuItems"
-             [style]="{'width':'310px'}">
-</p-panelMenu>
+  </div>
 
-<nav id="sidebar">
-  <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"
-      style="border: 10px; margin: 0px; padding-left: 5px">
-    <li (click)="navigateToGroceryMain(item)">
-      <a>{{item.label}}</a>
-    </li>
-  </ul>
-</nav>
+
+  <p-accordion>
+    <div  *ngFor="let item of menuItems">
+      <p-accordionTab header="{{item.label}}" id="sidebar-1">
+
+        <ul *ngFor="let subItem of item.items" class="list-unstyled"
+            style="border: 10px; margin: 0px; padding-left: 5px">
+          <li>
+            <a href="grocery-list?groceryType={{subItem.label}}&subMenu=true&main=Rice">{{subItem.label}}</a>
+          </li>
+          <hr style="padding: 0px; margin: 1px;border-color: grey">
+        </ul>
+
+      </p-accordionTab>
+    </div>
+  </p-accordion>
+
+
+
+  <nav id="sidebar">
+    <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"
+        style="border: 10px; margin: 0px; padding-left: 5px">
+      <li (click)="navigateToGroceryMain(item)">
+        <a>{{item.label}}</a>
+      </li>
+      <hr style="padding: 0px; margin: 1px; border-color: grey">
+    </ul>
+  </nav>
+
+
+
+</p-sidebar>

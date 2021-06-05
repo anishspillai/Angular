@@ -1,7 +1,98 @@
-<app-header></app-header>
+<app-header *ngIf="!isDesktopDevice"></app-header>
+
+<!--nav class="navbar navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+</nav-->
+
+<nav *ngIf="isDesktopDevice" class="navbar navbar-dark bg-dark fixed-top">
+
+  <div>
+    <button class="navbar-toggler" type="button">
+      <span (click)="toggleSideBarButton()" class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+
+  <a class="navbar-brand" style="margin-left: 10px" href="#">Mall Of Groceries</a>
+
+  <div>
+
+    <div class="input-group  mr-auto mt-2 mt-lg-0" style="width: 800px">
+      <input class="form-control my-0 py-1" type="text" placeholder="Search product in the store..." aria-label="Search"
+             [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
+      <div class="input-group-append">
+        <span class="input-group-text lighten-3" style="background-color: darkorange;" id="basic-text1"><i
+          style="color: white" class="pi pi-search"></i></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="p-col-1 bg-dark"
+       style="text-align: center; margin-right: 10px; padding-bottom: 0; color: lime; font-size: smaller">
+    <i class="pi pi-phone"> </i> <br>
+    <div class="dropdown">
+      <span style="color: antiquewhite; font-weight: bold">0723980601</span>
+      <div class="dropdown-content">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="btn-group">
+    <button *ngIf="!authService.isLoggedIn" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      Please log in!
+    </button>
+    <button *ngIf="authService.isLoggedIn" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      Hi! <small>{{userName}}</small>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="order-history">Order History</a>
+      <a class="dropdown-item" href="user-details">My Details</a>
+      <div class="dropdown-divider"></div>
+      <a *ngIf="!authService.isLoggedIn" class="dropdown-item" (click)="displayLoginPage = true">Sign In</a>
+      <a *ngIf="authService.isLoggedIn" class="dropdown-item" (click)="logOut()">Sign Out</a>
+    </div>
+  </div>
+
+
+  <button type="button" class="btn btn-outline-success" style="width: 160px" (click)="proceedToNextPage()">
+    <i class="pi pi-shopping-cart"></i> <span class="badge badge-danger">{{getCountOfItems()}}</span> <small
+    class="m-2 font-weight-bold">{{getCostOfItem()}} Kr</small>
+    <span class="sr-only">unread messages</span>
+  </button>
+</nav>
+
 
 <div *ngIf="isDesktopDevice">
-  <app-navigator class="sidenav" style="background-color: #7386D5"></app-navigator>
+  <app-navigator [visibleSidebar1]="displayMenuItems" (closeNavigationDialogForMobApp)="closeNavigator()" id="navbarToggleExternalContent"></app-navigator>
 
   <div class="main">
     <body>
@@ -55,3 +146,19 @@
   conflicts
 
 </p-sidebar>
+
+<div *ngIf="displayLoginPage">
+  <app-sign-in
+    [loadLoginPage]="displayLoginPage"
+    (closeLoginDialogEvent)= "displayLoginPage = $event"
+    [isDesktopApplication]="true">
+  </app-sign-in>
+
+</div>
+
+<app-review-ordered-items [displaySideMenuBar]="displaySideMenuBar"
+                          [isDesktopApplication]="isDesktopDevice"
+                          (closeSideBarMenuEvent)="displaySideMenuBar = $event">
+</app-review-ordered-items>
+
+

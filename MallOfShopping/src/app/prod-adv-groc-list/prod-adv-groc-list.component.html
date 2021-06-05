@@ -1,7 +1,6 @@
-
-<div class="mt-3">
-  <div class="row">
-    <div class="col-5">
+<div class="container-fluid m-1">
+  <div class="row" style="margin: 5px">
+    <div class="col-6">
       <div class="bg-warning" style="border-radius: 24px;">
         <p class="bold-center-aligned-text text-secondary">New products in Stock</p>
         <div id="carousel1" class="carousel slide" data-ride="carousel">
@@ -35,7 +34,7 @@
     </div>
 
 
-    <div class="col-6 bg-dark bg-gradient container-fluid" style="border-radius: 25px">
+    <div class="col-6 bg-secondary" style="border-radius: 25px">
 
 
       <div class="container" style="padding-top: 10px">
@@ -62,13 +61,13 @@
       </div>
 
 
-      <div class="container" style="padding-top: 30px">
+      <div class="container-fluid" style="padding-top: 30px">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-6 float-right">
               <button type="button" class="btn btn-primary" (click)="navigateTo('products')">Click here see New Products</button>
           </div>
-          <div class="col-sm ">
-              <button type="button" class="btn btn-success" (click)="navigateTo('offer')">Click here to see various offers</button>
+          <div class="col-6 float-right">
+              <button type="button" class="btn btn-warning" (click)="navigateTo('offer')">Click here to see various offers</button>
           </div>
         </div>
       </div>

@@ -188,4 +188,13 @@ export class OrderConfirmationWizardComponent implements OnInit{
   getCostOfIndividualOrder(order: Order) {
     return this.groceryService.getSumOfGrocery(order).toFixed(2)
   }
+
+  getTotalCostOfOrderedItemsIncludingDeliveryCharge() {
+    let totalCostOfTheOrder =  this.groceryService.getTotalCostOfOrderedItems(this.addGroceryToListObservableService.orders)
+    if(totalCostOfTheOrder <= 400) {
+      totalCostOfTheOrder += 30
+    }
+
+    return totalCostOfTheOrder
+  }
 }

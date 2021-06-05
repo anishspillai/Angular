@@ -7,7 +7,7 @@ a:focus {
 }
 
 #sidebar {
-  color: #fff;
+  color: whitesmoke;
   transition: all 0.3s;
   font-style: oblique;
   font-family: "Trebuchet MS";
@@ -22,15 +22,13 @@ a:focus {
 }
 
 #sidebar ul li a:hover {
-  color : #7385D5;
-  background: #fff;
+  color : #f8f9fa !important;
   padding-left: 30px;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
   color: #fff;
-  background: #6d7fcc;
 }
 
 a[data-toggle="collapse"] {
@@ -86,7 +84,6 @@ a[data-toggle="collapse"] {
 }
 
 :host>>>.ui-panelmenu .ui-panelmenu-header > a:hover{
-  background-color: white!important;
   color: #7386D5!important;
   padding-left: 30px;
 }
@@ -103,4 +100,51 @@ a[data-toggle="collapse"] {
   color: whitesmoke;
   font-size: small;
   font-weight: bolder;
+}
+
+:host /deep/ .ui-accordion .ui-accordion-header:hover a{
+  color: rebeccapurple;
+}
+
+#sidebar-1 {
+  color: whitesmoke;
+  transition: all 0.3s;
+  font-style: oblique;
+  font-family: "Trebuchet MS";
+  cursor: pointer;
+}
+
+#sidebar-1 ul li a {
+  padding-left: 5px;
+  font-size: 1.1em;
+  display: block;
+  line-height: 2em;
+}
+
+#sidebar-1 ul li a:hover {
+  color : whitesmoke;
+  padding-left: 30px;
+}
+
+#sidebar-1 ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+}
+
+:host /deep/ .ui-sidebar {
+  background-color: #343a40 !important;
+}
+
+:host /deep/ .ui-accordion-header {
+  background-color: rebeccapurple !important;
+}
+
+:host /deep/ .ui-accordion .ui-accordion-header:hover a{
+  text-decoration: none;
+}
+
+:host /deep/ .ui-accordion .ui-accordion-content {
+  background-color: #343a40 !important;
+  color: whitesmoke;
+  border: 2mm ridge lightgrey;
 }

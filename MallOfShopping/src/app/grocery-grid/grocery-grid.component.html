@@ -7,11 +7,9 @@
   <h3  *ngIf="isFastMovingProducts && !isGlobalSearch" style="margin: 0; padding: 5px; font-weight: bolder; font-family: 'Trebuchet MS'; text-align: center"> Fast Moving Products </h3>
 
 
-  <h3  *ngIf="mainGroceryType && !isGlobalSearch" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} </h3>
+  <span><span  *ngIf="mainGroceryType && !isGlobalSearch" class="font-weight-bolder" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} - </span> <a style="margin: 0; padding: 0; font-family: 'Trebuchet MS'">{{searchCategoryType}}</a></span>
 
-  <h4 style="margin: 0; padding: 0; font-family: 'Trebuchet MS'">{{searchCategoryType}}</h4>
-
-  <hr  *ngIf="!isGlobalSearch" style="border-width: medium">
+  <!--hr  *ngIf="!isGlobalSearch" style="border-width: medium">
     <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
 
       <div style="float: right;">
@@ -24,11 +22,8 @@
                 <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"></p-checkbox>
              </span>
           </span>
-     </div>
+     </div-->
   <hr style="border-width: medium">
-</div>
-
-<div id="content-desktop-flex" class="p-grid" style="padding-top: 1em">
 
   <div *ngIf="displayProgressSpinner" class="p-col-12">
     <p-progressSpinner [style]="{width: '50px', height: '50px'}"
@@ -42,18 +37,52 @@
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
 
-  <div *ngIf="searchCategoryType === 'Fresh Fish'" class="p-col-12; warning-dialog">
+  <div *ngIf="searchCategoryType === 'Fresh Fish'" class="p-col-12; bg-danger p-1 center-align mb-3">
     Fishes shall be delivered on week ends and the delivery is based on stock availability!!!
   </div>
 
-  <div *ngFor="let grocery of filteredGroceryList">
-    <div style="width: 250px; padding: 10px">
-      <app-individual-grocery [individualGrocery]="grocery"
-                              [orderedGroceryList]="orderedList"
-                              [groceryCount]="idOfGroceriesWithZeroStock">
-      </app-individual-grocery>
+  <div class="row">
+    <div class="col-2">
+      <!-- Section: Condition -->
+
+      <div class="card bg-transparent border-info mb-3">
+        <div class="card-body">
+          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS';"> Filter by brand: </span><br>
+          <span style="margin-left: 10px" *ngFor="let product of brands">
+                <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands"
+                            (ngModelChange)="applyFilter()">
+                </p-checkbox>
+            <br>
+          </span>
+
+          <br>
+
+          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS'"> Sort: </span><br>
+          <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+        </div>
+      </div>
+
+      <!-- Section: Condition -->
+    </div>
+    <div class="col-10">
+
+      <div class="row">
+
+        <div *ngFor="let grocery of filteredGroceryList">
+          <div style="width: 270px;" class="p-2">
+            <app-individual-grocery [individualGrocery]="grocery"
+                                    [orderedGroceryList]="orderedList"
+                                    [groceryCount]="groceryCounts"
+                                    [groceryCount]="idOfGroceriesWithZeroStock">
+            </app-individual-grocery>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+
+
 </div>
 
 <div id="content-mobile" class="p-grid" style="padding-top: 1em;">
