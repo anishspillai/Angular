@@ -138,7 +138,14 @@ setActualWebsiteLink(id: string, actualWebsiteLink: string) {
     this.angularFireDatabase.database.ref('admin/out_of_stock_table/' + id).set({
       count: 0
     });
+    }
 
 
+
+  removeItemFromOutofStockTable(id: string) {
+
+
+    // @ts-ignore
+    let l = this.angularFireDatabase.database.ref('admin/out_of_stock_table/' + id).remove()
   }
 }

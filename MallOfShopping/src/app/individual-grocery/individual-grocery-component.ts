@@ -149,7 +149,7 @@ export class IndividualGroceryComponent {
   }
 
   makeTheItemInStock1() {
-    this.groceryCountService.updateCountOfGrocery1(this.individualGrocery.id, Number(this.countOfItems))
+    this.groceryCountService.removeItemFromOutofStockTable(this.individualGrocery.id)
 
     this.updateItem = false
 
