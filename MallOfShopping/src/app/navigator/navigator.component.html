@@ -22,7 +22,7 @@
         <ul *ngFor="let subItem of item.items" class="list-unstyled"
             style="border: 10px; margin: 0px; padding-left: 5px">
           <li>
-            <a href="grocery-list?groceryType={{subItem.label}}&subMenu=true&main=Rice">{{subItem.label}}</a>
+            <a href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
           </li>
           <hr style="padding: 0px; margin: 1px;border-color: grey">
         </ul>

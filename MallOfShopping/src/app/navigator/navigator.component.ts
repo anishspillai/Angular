@@ -46,6 +46,7 @@ export class NavigatorComponent  {
 
   getViewPort(item: GroceryMenuItem) {
 
+
     if(item.items.length == 2) {
       return item.items.length * 60
     } else if (item.items.length == 1) {
@@ -166,5 +167,9 @@ export class NavigatorComponent  {
       //this.slideMenu.toggle(false)  // The slideMenu was not closing even after closing the parent window. It was embarassing situation.
       this.triggerEventForClosingNavigationForMobileApp() // Close the side bar for mobile application
     }
+  }
+
+  encodeUri(label: string) {
+    return encodeURIComponent(label)
   }
 }
