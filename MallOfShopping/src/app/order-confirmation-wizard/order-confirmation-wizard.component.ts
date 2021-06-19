@@ -110,7 +110,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
           const JOIN_API = forkJoin(
             {
-              one: this.updateCountOfGroceries().pipe(catchError(() => of(undefined))),
+              //one: this.updateCountOfGroceries().pipe(catchError(() => of(undefined))),
               two: this.emptyShoppingCart(),
               three: this.addDeliveryStatus(orderTimestamp, user)
             }

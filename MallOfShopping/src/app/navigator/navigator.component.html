@@ -2,7 +2,7 @@
            [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"
            [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': '#343a40 !important'}">
 
-  <div *ngIf="isMobileDevice" style="border-width: thin">
+  <!--div *ngIf="isMobileDevice" style="border-width: thin">
     <button
       pButton label="Home Page"
       icon="pi pi-home"
@@ -12,8 +12,16 @@
     </button>
     <hr style="border-color: white">
 
-  </div>
+  </div-->
 
+<div style="margin-bottom: 2px">
+  <button disabled type="button" class="btn btn-dark" style="width: 100%">
+    <a class="navbar-brand" style="margin-left: 10px" href="#">Mall Of Groceries</a>
+
+  </button>
+
+    <hr style="border-color: white; padding: 0; margin: 0">
+</div>
 
   <p-accordion>
     <div  *ngFor="let item of menuItems">
