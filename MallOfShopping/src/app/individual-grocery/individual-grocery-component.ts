@@ -77,6 +77,10 @@ export class IndividualGroceryComponent {
   }
 
   incrementNoOfItems(isMainPage: boolean): void {
+    if(this.individualGrocery.id === '-Ma-c-1ajcPNJGJPeZXY' || this.individualGrocery.id === '5878y') {
+      alert("Sorry, Due to the limited stock, you are allowed to add only one bag into the cart")
+      return
+    }
 
     this.noOfItems++
     if(this.individualGrocery.maxShoppingIsRestricted) {
