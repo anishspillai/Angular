@@ -69,7 +69,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
   private getTotalCostOfOrderedItemsIncludingDeliveryCharge() {
     let totalCostOfTheOrder =  this.groceryService.getTotalCostOfOrderedItems(this.addGroceryToListObservableService.orders)
-    if(totalCostOfTheOrder <= 500) {
+    if(totalCostOfTheOrder <= 400) {
       totalCostOfTheOrder += 30
     }
 

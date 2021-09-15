@@ -74,4 +74,8 @@ export class AddGroceryToListObservableService {
     this.orders = ordersFromTheHistory
     this._orders.next(this.orders)
   }
+
+  public getOrdersArray(): Order[] {
+    return this.orders
+  }
 }

@@ -44,6 +44,16 @@ export class IndividualGroceryComponent {
       this.displayLoginPage = true
       return
     }
+
+    if (this.individualGrocery.id === '-Ma-c-1ajcPNJGJPeZXY' || this.individualGrocery.id === '5878y') {
+      const orders:Order[] =  this.addGroceryToListObservableService.getOrdersArray()
+      if (orders && (orders.find(value => value.id === '-Ma-c-1ajcPNJGJPeZXY') != undefined || orders.find(value => value.id === '5878y') != undefined)) {
+        alert("Sorry, Due to the limited stock, you are allowed to add only one bag of sona masoori rice into the cart")
+        return
+      }
+    }
+
+
     this.isDisplayAddButton = this.isNotAddedIntoTheList()
 
     const order = Order.createThisObjectFromIndividualGrocerObject(this.individualGrocery)
@@ -77,8 +87,9 @@ export class IndividualGroceryComponent {
   }
 
   incrementNoOfItems(isMainPage: boolean): void {
+
     if(this.individualGrocery.id === '-Ma-c-1ajcPNJGJPeZXY' || this.individualGrocery.id === '5878y') {
-      alert("Sorry, Due to the limited stock, you are allowed to add only one bag into the cart")
+      alert("Sorry, Due to the limited stock, you are allowed to add only one bag of sona masoori into the cart")
       return
     }
 
