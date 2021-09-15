@@ -9,6 +9,11 @@
 
   <span><span  *ngIf="mainGroceryType && !isGlobalSearch" class="font-weight-bolder" style="margin: 0; padding: 0; font-weight: bolder">{{mainGroceryType}} - </span> <a style="margin: 0; padding: 0; font-family: 'Trebuchet MS'">{{searchCategoryType}}</a></span>
 
+
+  <div *ngIf="searchCategoryType === 'Sona Masoori'" class="alert alert-danger" role="alert">
+    <h3 style="color: orangered"> Sona Masoori Rice is limited. You can add only one into the cart. Small alert dialog displays on top, if you try to add more. Please close it to proceed further </h3>
+  </div>
+
   <!--hr  *ngIf="!isGlobalSearch" style="border-width: medium">
     <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
 
@@ -92,6 +97,10 @@
   <span  *ngIf="isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5"> Search Results </span>
 
   <div  *ngIf="searchCategoryType && !isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5">{{ getHeader() }}</div>
+
+  <div *ngIf="searchCategoryType === 'Sona Masoori'" class="alert alert-danger" role="alert">
+    <h6 style="color: orangered"> Sona Masoori Rice is limited. You can add only one into the cart. Small alert dialog displays on top, if you try to add more. Please close it and proceed further  </h6>
+  </div>
 
   <hr style="border-width: medium; width: 100%">
 
