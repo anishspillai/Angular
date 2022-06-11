@@ -119,8 +119,7 @@
 
 
 <div *ngIf="isDesktopDevice">
-  <app-navigator [visibleSidebar1]="displayMenuItems" (closeNavigationDialogForMobApp)="closeNavigator()" id="navbarToggleExternalContent"></app-navigator>
-
+  <app-navigator *ngIf="displayGroceryMenuItems()" [visibleSidebar1]="displayMenuItems" (closeNavigationDialogForMobApp)="closeNavigator()" id="navbarToggleExternalContent"></app-navigator>
   <div class="main">
     <body>
     <div>

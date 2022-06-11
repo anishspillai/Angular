@@ -31,6 +31,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   displayMenuItems: boolean = false
 
+  url: string;
+
   constructor(private readonly firestore: AngularFireDatabase,
               private readonly router: Router,
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -43,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
+        this.url = e.url; // To hide menu items ( dal, flour etc ) for not required pages ( order confirmation, order history etc )
         this.initialiseInvites();
       }
     });
@@ -134,5 +137,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   logIn() {
     this.displayLoginPage = true
+  }
+
+  displayGroceryMenuItems(): boolean{
+    if(this.url && (this.url.includes("grocery-list") || this.url === '/')) {
+      return true;
+    } else if(!this.url) {
+      //return true;
+    }
+    return false;
   }
 }
