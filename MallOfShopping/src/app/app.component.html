@@ -42,7 +42,7 @@
 
   <div>
 
-    <div class="input-group  mr-auto mt-2 mt-lg-0" style="width: 800px">
+    <div class="input-group  mr-auto mt-2 mt-lg-0" style="width: 700px">
       <input class="form-control my-0 py-1" type="text" placeholder="Search product in the store..." aria-label="Search"
              [(ngModel)]="searchString" (ngModelChange)="valueChange($event)">
       <div class="input-group-append">
@@ -62,7 +62,13 @@
   </div>
 
 
-  <div class="btn-group">
+  <button type="button" class="btn btn-outline-success" style="width: 160px" (click)="proceedToNextPage()">
+    <i class="pi pi-shopping-cart"></i> <span class="badge badge-danger">{{getCountOfItems()}}</span> <small
+    class="m-2 font-weight-bold">{{getCostOfItem()}} Kr</small>
+    <span class="sr-only">unread messages</span>
+  </button>
+
+  <!--div class="btn-group">
     <button *ngIf="!authService.isLoggedIn" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
       Please log in!
@@ -71,14 +77,14 @@
             aria-haspopup="true" aria-expanded="false">
       Hi! <small>{{userName}}</small>
     </button>
-    <div class="dropdown-menu dropdown-box-style">
-      <a class="dropdown-item" href="order-history">Order History</a>
-      <a class="dropdown-item" href="user-details">My Details</a>
+    <div class="dropdown-menu dropdown-box-style mr-lg-1">
+      <a class="dropdown-item" href="order-history"><small>Order History</small></a>
+      <a class="dropdown-item" href="user-details"><small>My Details</small></a>
       <div class="dropdown-divider"></div>
-      <a *ngIf="!authService.isLoggedIn" class="dropdown-item" (click)="displayLoginPage = true">Sign In</a>
-      <a *ngIf="authService.isLoggedIn" class="dropdown-item" (click)="logOut()">Sign Out</a>
+      <a *ngIf="!authService.isLoggedIn" class="dropdown-item" (click)="displayLoginPage = true"><small>Sign In</small></a>
+      <a *ngIf="authService.isLoggedIn" class="dropdown-item" (click)="logOut()"><small>Sign Out</small></a>
     </div>
-  </div>
+  </div-->
 
 <!--  <div class="p-col-1 bg-dark"-->
 <!--       style="text-align: center; margin-right: 10px; padding-bottom: 0; color: lime; font-size: smaller">-->
@@ -110,11 +116,23 @@
 <!--  </div>-->
 
 
-  <button type="button" class="btn btn-outline-success" style="width: 160px" (click)="proceedToNextPage()">
-    <i class="pi pi-shopping-cart"></i> <span class="badge badge-danger">{{getCountOfItems()}}</span> <small
-    class="m-2 font-weight-bold">{{getCostOfItem()}} Kr</small>
-    <span class="sr-only">unread messages</span>
-  </button>
+  <a href="user-details" class="bi bi-tools text-info font-weight-bolder icon-large-size" data-bs-toggle="tooltip" data-bs-placement="top" title="User Detail"></a>
+  <a href="order-history" class="bi bi-bag-plus-fill text-warning font-weight-bolder icon-large-size" data-bs-toggle="tooltip" data-bs-placement="top" title="Order History"></a>
+
+  <li class="nav-item">
+    <a *ngIf="!authService.isLoggedIn" class="nav-link d-flex flex-column" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Login">
+      <button type="button" class="btn btn-success btn-sm-custom" (click)="displayLoginPage = true">Log In</button>
+      <small class="text-danger">Please login</small>
+    </a>
+
+
+    <a *ngIf="authService.isLoggedIn" class="nav-link d-flex flex-column" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to Log out">
+      <button type="button" class="btn btn-primary btn-sm-custom" (click)="logOut()">Log Out</button>
+      <small class="text-success">Hi, {{userName}}</small>
+    </a>
+  </li>
+
+
 </nav>
 
 
