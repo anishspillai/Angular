@@ -51,10 +51,10 @@
       <!-- Section: Condition -->
 
       <div class="card bg-transparent border-info mb-3">
-        <div class="card-body">
-          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS';"> Filter by brand: </span><br>
+        <div class="card-body bg-color-filter-by-brand">
+          <span class="text-primary"> Filter by brand: </span><br>
           <span style="margin-left: 10px" *ngFor="let product of brands">
-                <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands"
+                <p-checkbox class="text-secondary text-small font-weight-light" label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands"
                             (ngModelChange)="applyFilter()">
                 </p-checkbox>
             <br>
@@ -62,7 +62,7 @@
 
           <br>
 
-          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS'"> Sort: </span><br>
+          <span class="text-primary"> Sort: </span><br>
           <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
         </div>
       </div>

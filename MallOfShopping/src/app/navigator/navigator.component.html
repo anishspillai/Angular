@@ -1,56 +1,123 @@
-<p-sidebar [showCloseIcon]="false" [(visible)]="visibleSidebar1"
-           [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"
-           [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': '#343a40 !important'}">
+<!--<p-sidebar [showCloseIcon]="false" [(visible)]="visibleSidebar1"-->
+<!--           [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"-->
+<!--           [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': '#343a40 !important'}">-->
 
-  <!--div *ngIf="isMobileDevice" style="border-width: thin">
-    <button
-      pButton label="Home Page"
-      icon="pi pi-home"
-      class="ui-button-secondary ui-button-rounded"
-      style="width: 100%"
-      (click)="navigateToTheMainPage()">
-    </button>
-    <hr style="border-color: white">
+<!--  &lt;!&ndash;div *ngIf="isMobileDevice" style="border-width: thin">-->
+<!--    <button-->
+<!--      pButton label="Home Page"-->
+<!--      icon="pi pi-home"-->
+<!--      class="ui-button-secondary ui-button-rounded"-->
+<!--      style="width: 100%"-->
+<!--      (click)="navigateToTheMainPage()">-->
+<!--    </button>-->
+<!--    <hr style="border-color: white">-->
 
-  </div-->
+<!--  </div&ndash;&gt;-->
 
-<div style="margin-bottom: 2px">
-  <button disabled type="button" class="btn btn-dark" style="width: 100%">
-    <a class="navbar-brand" style="margin-left: 10px" href="#">Mall Of Groceries</a>
+<!--<div style="margin-bottom: 2px">-->
+<!--  <button disabled type="button" class="btn btn-dark" style="width: 100%">-->
+<!--    <a class="navbar-brand" style="margin-left: 10px" href="#">Mall Of Groceries</a>-->
 
-  </button>
+<!--  </button>-->
 
-    <hr style="border-color: white; padding: 0; margin: 0">
-</div>
+<!--    <hr style="border-color: white; padding: 0; margin: 0">-->
+<!--</div>-->
 
-  <p-accordion>
-    <div  *ngFor="let item of menuItems">
-      <p-accordionTab header="{{item.label}}" id="sidebar-1">
+<!--  <p-accordion>-->
+<!--    <div  *ngFor="let item of menuItems">-->
+<!--      <p-accordionTab header="{{item.label}}" id="sidebar-1">-->
 
-        <ul *ngFor="let subItem of item.items" class="list-unstyled"
-            style="border: 10px; margin: 0px; padding-left: 5px">
-          <li>
-            <a href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
-          </li>
-          <hr style="padding: 0px; margin: 1px;border-color: grey">
-        </ul>
+<!--        <ul *ngFor="let subItem of item.items" class="list-unstyled"-->
+<!--            style="border: 10px; margin: 0px; padding-left: 5px">-->
+<!--          <li>-->
+<!--            <a href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>-->
+<!--          </li>-->
+<!--          <hr style="padding: 0px; margin: 1px;border-color: grey">-->
+<!--        </ul>-->
 
-      </p-accordionTab>
+<!--      </p-accordionTab>-->
+<!--    </div>-->
+<!--  </p-accordion>-->
+
+
+<!--  <nav id="sidebar">-->
+<!--    <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"-->
+<!--        style="border: 10px; margin: 0px; padding-left: 5px">-->
+<!--      <li (click)="navigateToGroceryMain(item)">-->
+<!--        <a>{{item.label}}</a>-->
+<!--      </li>-->
+<!--      <hr style="padding: 0px; margin: 1px; border-color: grey">-->
+<!--    </ul>-->
+<!--  </nav>-->
+
+
+<!--</p-sidebar>-->
+
+
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu {
+    margin-top: 0;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    $(".dropdown").hover(function () {
+      const dropdownMenu = $(this).children(".dropdown-menu");
+      if (dropdownMenu.is(":visible")) {
+        dropdownMenu.parent().toggleClass("open");
+      }
+    });
+  });
+</script>
+<nav class="navbar navbar-expand-md navbar-light bg-orange-red fixed-top display-top"
+     style="margin: 80px 200px 50px; border-radius: 25px;">
+
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav">
+
+      <div *ngFor="let item of menuItems">
+        <div class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle active p-shadow-10 default-padding-menu-items default-margin-menu-items text-color"
+            data-toggle="dropdown" href="#">{{item.label}}</a>
+
+          <div class="dropdown-menu dropdown-box-background-color">
+            <div *ngFor="let subItem of item.items">
+
+              <a class="dropdown-item text-dark"
+                 href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
+
+              <hr style="padding: 0px; margin: 1px;border-color: grey">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active p-shadow-5 default-padding-menu-items default-margin-menu-items"
+           data-toggle="dropdown" href="#">Others</a>
+
+        <div class="dropdown-menu dropdown-box-background-color">
+          <div *ngFor="let item of menuItems_With_Out">
+
+            <a (click)="navigateToGroceryMain(item)" class="dropdown-item cursor-pointer">{{item.label}}</a>
+
+            <hr style="padding: 0px; margin: 1px;border-color: grey">
+          </div>
+        </div>
+      </div>
+
+
+      <!--div class="nav-item" *ngFor="let item of menuItems_With_Out">
+          <a (click)="navigateToGroceryMain(item)" class="nav-item nav-link active cursor-pointer default-margin-menu-items">{{item.label}}</a>
+      </div-->
+
+
     </div>
-  </p-accordion>
-
-
-
-  <nav id="sidebar">
-    <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"
-        style="border: 10px; margin: 0px; padding-left: 5px">
-      <li (click)="navigateToGroceryMain(item)">
-        <a>{{item.label}}</a>
-      </li>
-      <hr style="padding: 0px; margin: 1px; border-color: grey">
-    </ul>
-  </nav>
-
-
-
-</p-sidebar>
+  </div>
+</nav>

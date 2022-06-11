@@ -28,6 +28,7 @@
     "bn-ng-idle": "^1.0.1",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
+    "bootstrap-icons": "^1.8.3",
     "cdk": "^1.36.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",

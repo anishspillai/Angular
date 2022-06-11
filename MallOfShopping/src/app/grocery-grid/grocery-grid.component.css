@@ -30,3 +30,12 @@
 .padding-right-for-second {
   padding-left: 10px;
 }
+
+.bg-color-filter-by-brand {
+  background-color: #eec0c6;
+  background-image: linear-gradient(315deg, #eec0c6 0%, #7ee8fa 74%);
+}
+
+.text-small {
+  font-size: medium;
+}

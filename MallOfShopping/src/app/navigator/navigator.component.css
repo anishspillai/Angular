@@ -1,150 +1,185 @@
-a,
-a:hover,
-a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
+/*a,*/
+/*a:hover,*/
+/*a:focus {*/
+/*  color: inherit;*/
+/*  text-decoration: none;*/
+/*  transition: all 0.3s;*/
+/*}*/
 
-#sidebar {
-  color: whitesmoke;
-  transition: all 0.3s;
-  font-style: oblique;
-  font-family: "Trebuchet MS";
+/*#sidebar {*/
+/*  color: whitesmoke;*/
+/*  transition: all 0.3s;*/
+/*  font-style: oblique;*/
+/*  font-family: "Trebuchet MS";*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*#sidebar ul li a {*/
+/*  padding-left: 5px;*/
+/*  font-size: 1.1em;*/
+/*  display: block;*/
+/*  line-height: 2em;*/
+/*}*/
+
+/*#sidebar ul li a:hover {*/
+/*  color : #f8f9fa !important;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*#sidebar ul li.active>a,*/
+/*a[aria-expanded="true"] {*/
+/*  color: #fff;*/
+/*}*/
+
+/*a[data-toggle="collapse"] {*/
+/*  position: relative;*/
+/*}*/
+
+/*.dropdown-toggle::after {*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  top: 50%;*/
+/*  right: 20%;*/
+/*  transform: translateY(-50%);*/
+/*}*/
+
+/*:host>>>.ui-state-default {*/
+/*  background: whitesmoke!important;*/
+/*  color:#7386D5!important;*/
+/*}*/
+
+/*:host>>>.ui-menuitem-icon {*/
+/*  color: red!important;*/
+/*}*/
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-content .ui-menuitem-text {*/
+/*  transition: all 0.5s;*/
+/*  font-style: oblique;*/
+/*}*/
+
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-content {*/
+/*  background-color: floralwhite !important;*/
+/*  transition: all 1s;*/
+/*}*/
+
+/*:host>>> .ui-panelmenu .ui-panelmenu-content .ui-submenu-list .ui-menuitem .ui-menuitem-text {*/
+/*  color: #7386D5;*/
+/*  padding-left: 40px;*/
+/*  font-family: "Trebuchet MS";*/
+/*  font-weight: bold;*/
+/*  font-style: italic;*/
+/*}*/
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-header > a{*/
+/*  background-color: #7386D5!important;*/
+/*  color: white;*/
+/*  transition: all 0.5s;*/
+/*  font-family: "Trebuchet MS";*/
+/*  font-style: italic;*/
+/*  font-size: large;*/
+/*  font-weight: lighter;*/
+/*  padding: 5px;*/
+/*  border: 0;*/
+/*}*/
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-header > a:hover{*/
+/*  color: #7386D5!important;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-header.ui-state-active > a{*/
+/*  background-color: gray!important;*/
+/*  color: white!important;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*:host>>>.pi-caret-down{display:none}*/
+
+/*:host>>>.ui-panelmenu .ui-panelmenu-header .ui-panelmenu-icon  {*/
+/*  color: whitesmoke;*/
+/*  font-size: small;*/
+/*  font-weight: bolder;*/
+/*}*/
+
+/*:host /deep/ .ui-accordion .ui-accordion-header:hover a{*/
+/*  color: rebeccapurple;*/
+/*}*/
+
+/*#sidebar-1 {*/
+/*  color: whitesmoke;*/
+/*  transition: all 0.3s;*/
+/*  font-style: oblique;*/
+/*  font-family: "Trebuchet MS";*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*#sidebar-1 ul li a {*/
+/*  padding-left: 5px;*/
+/*  font-size: 1.1em;*/
+/*  display: block;*/
+/*  line-height: 2em;*/
+/*}*/
+
+/*#sidebar-1 ul li a:hover {*/
+/*  color : whitesmoke;*/
+/*  padding-left: 30px;*/
+/*}*/
+
+/*#sidebar-1 ul li.active>a,*/
+/*a[aria-expanded="true"] {*/
+/*  color: #fff;*/
+/*}*/
+
+/*:host /deep/ .ui-sidebar {*/
+/*  background-color: #343a40 !important;*/
+/*}*/
+
+/*:host /deep/ .ui-accordion-header {*/
+/*  background-color: rebeccapurple !important;*/
+/*}*/
+
+/*:host /deep/ .ui-accordion .ui-accordion-header:hover a{*/
+/*  text-decoration: none;*/
+/*}*/
+
+/*:host /deep/ .ui-accordion .ui-accordion-content {*/
+/*  background-color: #343a40 !important;*/
+/*  color: whitesmoke;*/
+/*  border: 2mm ridge lightgrey;*/
+/*}*/
+
+.cursor-pointer {
   cursor: pointer;
 }
 
-#sidebar ul li a {
-  padding-left: 5px;
-  font-size: 1.1em;
-  display: block;
-  line-height: 2em;
+.default-padding-menu-items {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-#sidebar ul li a:hover {
-  color : #f8f9fa !important;
-  padding-left: 30px;
+.default-margin-menu-items {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
+.bg-orange-red {
+  background-color:#861657;
+  background-image: linear-gradient(326deg, #861657 0%, #ffa69e 74%);
 }
 
-a[data-toggle="collapse"] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20%;
-  transform: translateY(-50%);
-}
-
-:host>>>.ui-state-default {
-  background: whitesmoke!important;
-  color:#7386D5!important;
-}
-
-:host>>>.ui-menuitem-icon {
-  color: red!important;
-}
-
-:host>>>.ui-panelmenu .ui-panelmenu-content .ui-menuitem-text {
-  transition: all 0.5s;
-  font-style: oblique;
-}
-
-
-:host>>>.ui-panelmenu .ui-panelmenu-content {
-  background-color: floralwhite !important;
-  transition: all 1s;
-}
-
-:host>>> .ui-panelmenu .ui-panelmenu-content .ui-submenu-list .ui-menuitem .ui-menuitem-text {
-  color: #7386D5;
-  padding-left: 40px;
-  font-family: "Trebuchet MS";
-  font-weight: bold;
-  font-style: italic;
-}
-
-:host>>>.ui-panelmenu .ui-panelmenu-header > a{
-  background-color: #7386D5!important;
-  color: white;
-  transition: all 0.5s;
-  font-family: "Trebuchet MS";
-  font-style: italic;
-  font-size: large;
-  font-weight: lighter;
-  padding: 5px;
-  border: 0;
-}
-
-:host>>>.ui-panelmenu .ui-panelmenu-header > a:hover{
-  color: #7386D5!important;
-  padding-left: 30px;
-}
-
-:host>>>.ui-panelmenu .ui-panelmenu-header.ui-state-active > a{
-  background-color: gray!important;
-  color: white!important;
-  padding-left: 30px;
-}
-
-:host>>>.pi-caret-down{display:none}
-
-:host>>>.ui-panelmenu .ui-panelmenu-header .ui-panelmenu-icon  {
+.text-color {
   color: whitesmoke;
-  font-size: small;
-  font-weight: bolder;
 }
 
-:host /deep/ .ui-accordion .ui-accordion-header:hover a{
-  color: rebeccapurple;
+.dropdown-box-background-color {
+  background-color: #f6f0c4;
+  background-image: linear-gradient(315deg, #f6f0c4 0%, #d99ec9 74%);
+
 }
 
-#sidebar-1 {
-  color: whitesmoke;
-  transition: all 0.3s;
-  font-style: oblique;
-  font-family: "Trebuchet MS";
-  cursor: pointer;
-}
-
-#sidebar-1 ul li a {
-  padding-left: 5px;
-  font-size: 1.1em;
-  display: block;
-  line-height: 2em;
-}
-
-#sidebar-1 ul li a:hover {
-  color : whitesmoke;
-  padding-left: 30px;
-}
-
-#sidebar-1 ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-}
-
-:host /deep/ .ui-sidebar {
-  background-color: #343a40 !important;
-}
-
-:host /deep/ .ui-accordion-header {
-  background-color: rebeccapurple !important;
-}
-
-:host /deep/ .ui-accordion .ui-accordion-header:hover a{
-  text-decoration: none;
-}
-
-:host /deep/ .ui-accordion .ui-accordion-content {
-  background-color: #343a40 !important;
-  color: whitesmoke;
-  border: 2mm ridge lightgrey;
+.display-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top:60px
 }
