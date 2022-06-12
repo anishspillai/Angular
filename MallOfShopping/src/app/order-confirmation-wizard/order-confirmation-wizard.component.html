@@ -108,7 +108,7 @@
               </li>
             </ul>
 
-            <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="placeOrder()">Order Confirmation</button>
+            <button type="button" [disabled]="orderBeingPlaced" class="btn btn-primary btn-block waves-effect waves-light" (click)="placeOrder()">Order Confirmation</button>
 
           </div>
         </div>
@@ -203,7 +203,7 @@
   </div>
   <p-footer>
     <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
-            (click)="displayThankYouDialog = false"></button>
+            (click)="displayThankYouDialog = false; orderBeingPlaced = false"></button>
   </p-footer>
 </p-dialog>
 

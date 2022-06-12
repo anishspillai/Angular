@@ -102,7 +102,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
         this.isOrderPlaced = false
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
           this.isOrderPlaced = true
-          this.orderBeingPlaced = false
           //this.updateCountOfGroceries()
           //this.emptyShoppingCart()
           //this.addDeliveryStatus(orderTimestamp, user)
@@ -116,8 +115,11 @@ export class OrderConfirmationWizardComponent implements OnInit{
             }
           )
 
-          JOIN_API.subscribe(() => this.displayThankYouDialog = true, () => {
-          })
+          JOIN_API.subscribe(() =>
+            this.finishSteps(),
+            (err) => {
+              this.errorLogService.logErrorMessage(user, err)
+            })
 
         })
           .catch(err => {
@@ -159,7 +161,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   navigateToTheMainPage() {
     localStorage.setItem('no-reload', 'no reload')
-    this.router.navigate(['home-page']);
+    this.router.navigate(['order-history']);
   }
 
   private addDeliveryStatus(orderTimestamp: number, user: string) {
@@ -196,5 +198,9 @@ export class OrderConfirmationWizardComponent implements OnInit{
     }
 
     return totalCostOfTheOrder
+  }
+
+  private finishSteps() {
+    this.displayThankYouDialog = true
   }
 }
