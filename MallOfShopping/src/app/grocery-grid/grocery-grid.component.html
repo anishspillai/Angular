@@ -30,14 +30,6 @@
      </div-->
   <hr style="border-width: medium">
 
-  <div *ngIf="displayProgressSpinner" class="p-col-12">
-    <p-progressSpinner [style]="{width: '50px', height: '50px'}"
-                       strokeWidth="8"
-                       fill="#EEEEEE"
-                       animationDuration=".5s">
-    </p-progressSpinner>
-  </div>
-
   <div *ngIf="isFishType" class="p-col-12" >
     <app-fish-market-video-view></app-fish-market-video-view>
   </div>
@@ -108,15 +100,6 @@
     <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
     <span style="padding: 10px"></span>
     <p-multiSelect [filter]="false" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()" [options]="brandNamesForMobileApplication" [showHeader]="false" [displaySelectedLabel]="false" defaultLabel="Filter By Brand"></p-multiSelect>
-  </div>
-
-
-  <div *ngIf="displayProgressSpinner" style="width: 250px">
-    <p-progressSpinner [style]="{width: '50px', height: '50px'}"
-                       strokeWidth="8"
-                       fill="#EEEEEE"
-                       animationDuration=".5s">
-    </p-progressSpinner>
   </div>
 
   <div *ngIf="searchCategoryType === 'Fresh Fish'" class="p-col-12; warning-dialog-mobile">
