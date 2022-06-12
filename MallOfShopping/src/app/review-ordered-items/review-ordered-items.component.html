@@ -14,7 +14,7 @@
       </button>
 
   <div class="row mx-md-n5" style="padding: 0; margin: 0;">
-    <div class="col py-3 px-md-5"><button type="button" class="btn btn-success" (click)="moveToConfirmationPage()">Checkout</button>
+    <div class="col py-3 px-md-5"><button type="button" class="btn btn-primary" (click)="moveToConfirmationPage()">Checkout</button>
     </div>
     <div class="col py-3 px-md-5"><button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
     </div>
@@ -51,7 +51,7 @@
 
   <ul class="list-group list-group-flush">
 
-    <li *ngIf="getTotalCostOfOrderedItems() <= 400" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+    <li *ngIf="getTotalCostOfOrderedItems() <= 400" class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 p-3 total-cost-background">
       <div>
         <strong class="text-danger">The Delivery Charge (Free delivery for 400 Kr )</strong>
         <small class="text-dark font-weight-bolder">
@@ -61,7 +61,7 @@
       <span><strong>Kr 30</strong></span>
     </li>
 
-    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 total-cost-background p-3">
       <div>
         <strong class="text-danger">Total (Kr)</strong>
       </div>
