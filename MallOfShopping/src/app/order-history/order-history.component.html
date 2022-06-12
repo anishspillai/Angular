@@ -1,9 +1,16 @@
-<h1 style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique" [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
+<h1 *ngIf="isMobileDevice" style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique" [ngClass]="{'medium-font-size' : isMobileDevice}">Order History</h1>
+
+<h3 *ngIf="!isMobileDevice" style="margin-top: 80px; text-align: center" class="text-dark">Order History</h3>
 
 <hr style="border-width: thick">
 
 <div *ngIf="!authService.isLoggedIn">
-  <p-card [style]="{'background-color': '#A52A2A', 'width': '100%', 'color' : 'white'}"> <i class="pi pi-times-circle"></i> Please log in and try again!!! </p-card>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container badge-warning">
+      <h3 class="display-4">User is not logged in</h3>
+      <h1 class="lead">Kindly log in and check the page again. There is a log in button on top of the page.</h1>
+    </div>
+  </div>
 </div>
 
 <div *ngIf="authService.isLoggedIn">

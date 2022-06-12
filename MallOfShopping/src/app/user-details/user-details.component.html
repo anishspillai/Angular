@@ -1,9 +1,18 @@
 <div *ngIf="displayHeader">
-<h1 style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique"> User Details </h1>
+<h3 style="text-align: center; font-family: 'Trebuchet MS'; font-style: oblique; margin-top: 80px"> User Details </h3>
 
 <hr style="border-width: thick">
 
-<div *ngIf="!user"> Please log in and try again!!!</div>
+<div *ngIf="!user">
+  <div *ngIf="!authService.isLoggedIn">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container badge-warning">
+        <h3 class="display-4">User is not logged in</h3>
+        <h1 class="lead">Kindly log in and check the page again. There is a log in button on top of the page.</h1>
+      </div>
+    </div>
+  </div>
+</div>
 <p-card *ngIf="user" styleClass="p-card-shadow">
 
   <div *ngIf="displayErrorMessage">
