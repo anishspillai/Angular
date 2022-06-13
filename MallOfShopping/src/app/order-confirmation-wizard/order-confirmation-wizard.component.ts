@@ -160,6 +160,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
   }
 
   navigateToTheMainPage() {
+    this.orderBeingPlaced = false;
+    this.displayThankYouDialog = false
     localStorage.setItem('no-reload', 'no reload')
     this.router.navigate(['order-history']);
   }
