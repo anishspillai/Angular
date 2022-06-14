@@ -142,8 +142,6 @@ export class AppComponent implements OnInit, OnDestroy {
   displayGroceryMenuItems(): boolean{
     if(this.url && (this.url.includes("grocery-list") || this.url === '/') || this.url.includes("home-page")) {
       return true;
-    } else if(!this.url) {
-      //return true;
     }
     return false;
   }

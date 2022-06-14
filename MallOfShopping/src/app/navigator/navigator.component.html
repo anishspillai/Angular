@@ -89,7 +89,7 @@
             <div *ngFor="let subItem of item.items">
 
               <a class="dropdown-item text-dark"
-                 href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
+                 href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{encodeUri(item.label)}}">{{subItem.label}}</a>
 
               <hr style="padding: 0px; margin: 1px;border-color: grey">
             </div>

@@ -55,6 +55,9 @@ export class GroceryGridComponent implements OnInit {
 
   idOfGroceriesWithZeroStock: string[]
 
+  productCategories: string[]
+
+
   ngOnInit() {
 
     this.getNullStockDetails()
@@ -66,6 +69,7 @@ export class GroceryGridComponent implements OnInit {
       this.mainGroceryType = params.get("main")
       this.isSubCategory = params.get("subMenu")
       this.fetchGroceries()
+      this.fetchMenuForSideNavigation()
     })
 
     this.search.getSearchObservable().subscribe(value => {
@@ -347,6 +351,52 @@ export class GroceryGridComponent implements OnInit {
     }
     return this.searchCategoryType
   }
+
+  private fetchMenuForSideNavigation() {
+    // this.searchCategoryType = params.get("groceryType")
+    // this.mainGroceryType = params.get("main")
+    // this.isSubCategory = params.get("subMenu")
+    if(this.isSubCategory) {
+      this.findSubMenu(this.mainGroceryType)
+    } else {
+      this.findMainMenu()
+    }
+  }
+
+
+
+
+  private findSubMenu(productCategory: string): Observable<any> {
+    this.productCategories = [];
+    this.firestore.list("admin/Product_Catagory" + '/'+ productCategory).snapshotChanges().subscribe(productCategories => {
+      productCategories.forEach(dataSnapshot => {
+          this.productCategories.push(dataSnapshot.payload.val() as string)
+        }
+      )
+    })
+    return of(1)
+  }
+
+
+  private findMainMenu() {
+    this.productCategories = [];
+    this.firestore.list("admin/Product_Catagory").snapshotChanges().subscribe(snapshots => {
+      snapshots.forEach(childSnapshot => {
+
+        const childData = childSnapshot.payload;
+
+        if (!Array.isArray(childData.val())) {
+          this.productCategories.push(childData.val() as string)
+        }
+      })
+    })
+    return of(1)
+  }
+
+  encodeUri(label: string) {
+    return encodeURIComponent(label)
+  }
+
 }
 
 interface SortValue {

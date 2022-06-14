@@ -42,6 +42,23 @@
     <div class="col-2">
       <!-- Section: Condition -->
 
+
+      <ul class="list-group border mb-4">
+
+        <p class="text-black-50 border-bottom pl-3">
+          <a style="margin-bottom: 0px; padding: 0" href="#" class="text-reset">{{mainGroceryType ? mainGroceryType : 'Others'}}</a>
+        </p>
+
+
+        <div *ngFor="let menu of productCategories">
+           <span class="text-muted font-weight-light list-item-style">
+              <a *ngIf="isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}&subMenu=true&main={{encodeUri(mainGroceryType)}}" class="text-reset">{{menu}}</a>
+              <a *ngIf="!isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}" class="text-reset">{{menu}}</a>
+
+        </span>
+        </div>
+      </ul>
+
       <div class="card bg-transparent border-info mb-3">
         <div class="card-body bg-color-filter-by-brand">
           <span class="text-primary"> Filter by brand: </span><br>
