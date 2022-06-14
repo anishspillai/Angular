@@ -43,3 +43,10 @@
   position: absolute;
   font-size: medium;
 }
+
+.text-small {
+  font-size: small;
+}
+.text-large {
+  font-size: xx-large;
+}
