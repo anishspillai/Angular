@@ -22,6 +22,7 @@ export class IndividualGrocery {
   catagory? : string
 
   description: string
+  stock: number
 }
 
 export class GroceryResponse {

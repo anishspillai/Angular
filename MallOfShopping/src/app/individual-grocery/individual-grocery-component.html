@@ -40,13 +40,13 @@
       &nbsp;
     </div>
 
-    <span class="sans-serif">{{individualGrocery.brandName}}</span>
+    <span class="medium-font-size text-dark">{{individualGrocery.brandName}}</span>
     <br>
-    <span class="sans-serif-small-font">{{individualGrocery.type}}</span>
+    <span class="text-dark">{{individualGrocery.type}}</span>
     <br>
     <span class="sans-serif-small-font">{{individualGrocery.subType}}</span>
     <br>
-    <span class="sans-serif-italic">{{individualGrocery.weight}} {{individualGrocery.unitOfWeight}} </span>
+    <span class="text-dark">{{individualGrocery.weight}} {{individualGrocery.unitOfWeight}} </span>
 
     <div
       *ngIf="individualGrocery.maxShoppingIsRestricted || individualGrocery.bulkPurchaseOfferAvailable || individualGrocery.offerPrice != 0">
