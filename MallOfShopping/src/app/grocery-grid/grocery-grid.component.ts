@@ -357,7 +357,7 @@ export class GroceryGridComponent implements OnInit {
     // this.mainGroceryType = params.get("main")
     // this.isSubCategory = params.get("subMenu")
     if(this.isSubCategory) {
-      this.findSubMenu(this.mainGroceryType)
+      //this.findSubMenu(this.mainGroceryType) // PROBLEM HERE. THE TOP MENU BAR CONTAINS REPEATED ITEMS
     } else {
       this.findMainMenu()
     }
@@ -369,8 +369,10 @@ export class GroceryGridComponent implements OnInit {
   private findSubMenu(productCategory: string): Observable<any> {
     this.productCategories = [];
     this.firestore.list("admin/Product_Catagory" + '/'+ productCategory).snapshotChanges().subscribe(productCategories => {
-      productCategories.forEach(dataSnapshot => {
-          this.productCategories.push(dataSnapshot.payload.val() as string)
+      productCategories.forEach(childSnapshot => {
+        const childData = childSnapshot.payload;
+
+        this.productCategories.push(childData.val() as string)
         }
       )
     })
