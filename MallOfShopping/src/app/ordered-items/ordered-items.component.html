@@ -1,42 +1,46 @@
-<p-card subheader="Item List"  styleClass="p-card-shadow">
-  <div *ngFor="let order of orders; let i = index">
-    <div class="p-grid">
-
-      <div class="p-col-6">
-        <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
-          <span>{{order.groceryName}}, {{order.type}} </span>
-          <br>
-
-        </div>
-      </div>
-
-
-      <div class="p-col-3">
-
-        <div>
-          <div class="box" style="text-align: left; padding-left: 5px; font-style: italic">
-            <span>{{order.noOfItems}} * {{order.grossWeight}} {{order.unitOfWeight}} </span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="p-col-3" style="text-align: right">
-        {{getCostOfIndividualOrder(order)}} Kr
-      </div>
+<div class="modal-dialog" role="document">
+  <div class="modal-content" style="width: 700px;">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Order History Page</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
-    <hr>
+
+    <div class="modal-body">
+      <table class="table table-success">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Item</th>
+          <th scope="col">Weight</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Cost</th>
+          <th scope="col">Total Cost</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orders; let i = index" class="text-small">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{order.groceryName}}</td>
+          <td>{{order.type}}</td>
+          <td>{{order.grossWeight}} {{order.unitOfWeight}}</td>
+          <td>{{order.noOfItems}}</td>
+          <td>{{order.actualPrice}} Kr</td>
+          <td>{{order.actualPrice * order.noOfItems}} Kr</td>
+        </tr>
+        <tr class="bg-light text-dark font-weight-bold">
+          <td colspan="6" class="text-small">Total Cost</td>
+          <td class="text-small">{{totalCost}} Kr <br>
+            <span class="text-primary text-small">(inclusive of 12% MOMS)</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
   </div>
-
-
-  <div class="p-grid">
-    <div class="p-col-6" style="text-align: left">
-      <span style="font-weight: bold; font-size: large;">Total Cost</span>
-    </div>
-    <div class="p-col-6" style="text-align: right">
-      <span style="font-weight: bold; font-size: large;"> {{totalCost}} Kr </span>
-    </div>
-  </div>
-
-
-</p-card>
+</div>

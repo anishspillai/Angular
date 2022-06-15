@@ -32,9 +32,9 @@
                     (click)="enableEditingExistingOrder(oh); $event.stopImmediatePropagation()"></button>
           </div>
           <div class="p-col-4">
-            <button class="p-col-4" pButton label="View Order History" class="ui-button-rounded ui-button-success"
-                    icon="pi pi-bars" (click)="displayOrderHistoryDialog(oh.orderHistory)"
-                    style="float: right"></button>
+            <button type="button" style="float: right" class="btn btn-primary"  (click)="displayOrderHistoryDialog(oh.orderHistory)" data-toggle="modal" data-target="#orderHistoryDetailsPage">
+              Display Order Details
+            </button>
           </div>
         </div>
       </p-card>
@@ -135,18 +135,7 @@
 </p-dialog>
 
 
-
-
-<p-dialog [(visible)]="displayOrderDetails"
-          [baseZIndex]="10000"
-          header="Order History"
-          [resizable]="true">
-
-
+<!-- Modal -->
+<div class="modal fade" id="orderHistoryDetailsPage" tabindex="-1" role="dialog" aria-labelledby="orderHistoryDetailsPageLabel" aria-hidden="true">
   <app-ordered-items [orders]="this.currentOrders" [totalCost]="getTotalCostOfTheOrder()"></app-ordered-items>
-
-
-  <p-footer>
-    <button type="button" pButton icon="pi pi-times" style="border-radius: 25px" (click)="displayOrderDetails=false" label="Close" class="ui-button-danger"></button>
-  </p-footer>
-</p-dialog>
+</div>
