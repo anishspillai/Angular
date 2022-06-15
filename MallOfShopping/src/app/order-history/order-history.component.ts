@@ -42,6 +42,8 @@ export class OrderHistoryComponent implements OnInit {
   displayOrderDetails = false
   currentOrders: Order[]
 
+  pageBeingLoaded = false;
+
   constructor(private readonly groceryService: GroceryService,
               readonly authService: AuthService,
               private readonly datePipe: DatePipe,
@@ -53,6 +55,7 @@ export class OrderHistoryComponent implements OnInit {
     const user: string = this.authService.getUser()
 
     if (user) {
+      this.pageBeingLoaded = true;
       // @ts-ignore
       this.groceryService.getOrderHistory(user).pipe(mergeMap(value => {
           value.forEach(childSnapshot => {
@@ -95,6 +98,7 @@ export class OrderHistoryComponent implements OnInit {
           return of('')
         }
       )).subscribe(() => {
+        this.pageBeingLoaded = false;
         this.orderHistory.reverse()
       })
 

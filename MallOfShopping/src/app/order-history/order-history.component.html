@@ -13,11 +13,17 @@
   </div>
 </div>
 
-<div *ngIf="authService.isLoggedIn">
+<div *ngIf="pageBeingLoaded" class="d-flex justify-content-center">
+  <div class="spinner-border text-xx-large text-primary" role="status">
+  </div>
+</div>
+
+
+<div *ngIf="authService.isLoggedIn && !pageBeingLoaded">
   <div *ngIf="orderHistory.length == 0">
-    <p-card [style]="{'background-color': '#A52A2A', 'width': '100%', 'color' : 'white'}"><i
-      class="pi pi-times-circle"></i> Order History is empty
-    </p-card>
+    <div class="alert alert-danger" role="alert">
+      Order history is empty!
+    </div>
   </div>
 </div>
 
