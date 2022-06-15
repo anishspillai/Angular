@@ -29,12 +29,9 @@ export class IndividualGroceryComponent {
 
   @Input() isDesktopApplication = true
 
-  @Input() groceryCount: string[] = []
-
   displayLoginPage = false
 
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
-              readonly groceryCountService: GroceryCountService,
               private readonly authService: AuthService) {
   }
 
@@ -60,11 +57,6 @@ export class IndividualGroceryComponent {
 
     this.addGroceryToListObservableService.addGroceryToTheOrderList(order)
   }
-
-  getOrders() {
-    return this.addGroceryToListObservableService.orders.length > 0
-  }
-
 
   isNotAddedIntoTheList() {
     if ( this.addGroceryToListObservableService.orders.length == 0 ) {
@@ -120,39 +112,8 @@ export class IndividualGroceryComponent {
     }
   }
 
-  private updateCountOfItems() {
-    const individualGroceryFromOrderedList = this.orderedGroceryList.find(element => element.id == this.individualGrocery.id)
-    individualGroceryFromOrderedList.noOfItems = this.noOfItems
-  }
-
-  displayDialog() {
-    this.isDisplayDetails = true
-  }
-
   getAlertMessage() {
     return "Offer price is applicable for maximum " + this.individualGrocery.maxShoppingCount+  " per customer. Actual price is applicable after "+ this.individualGrocery.maxShoppingCount
-  }
-
-  getNOOfOrders() {
-    if(this.addGroceryToListObservableService.orders)
-    return this.addGroceryToListObservableService.orders.length
-
-    return 100
-  }
-
-  isStockAvailable(id: string) {
-    return !this.groceryCount.find(value => value === id)
-  }
-
-  getCountOfItem() {
-
-    /**const groceryCount: GroceryCount = this.groceryCount.find(value => value.id === this.individualGrocery.id)
-    if(groceryCount) {
-      return groceryCount.stockCount
-    } else {
-      return "Missing"
-    }*/
-
   }
 
   // Logic for button label
@@ -166,5 +127,9 @@ export class IndividualGroceryComponent {
      }
 
      return "Add To Cart";
+  }
+
+  isStockAvailable(stockCount: number) {
+      return stockCount > 0
   }
 }

@@ -74,13 +74,13 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isDesktopDevice = window.innerWidth > 768
 
-    this.bnIdle.startWatching(60).subscribe((isTimedOut: boolean) => {
+    /**this.bnIdle.startWatching(60).subscribe((isTimedOut: boolean) => {
       if (isTimedOut) {
         if(window.location.pathname.endsWith("/grocery-list")) {
           window.location.reload()
         }
       }
-    });
+    });*/
 
     this.getUserDetails()
 

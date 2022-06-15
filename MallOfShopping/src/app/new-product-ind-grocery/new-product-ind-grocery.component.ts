@@ -13,7 +13,6 @@ import {Order} from "../individual-grocery/model/Order";
 export class NewProductIndGroceryComponent implements OnInit {
 
   constructor(private addGroceryToListObservableService: AddGroceryToListObservableService,
-              readonly groceryCountService: GroceryCountService,
               private readonly authService: AuthService) {
   }
 

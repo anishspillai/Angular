@@ -85,9 +85,7 @@
         <div *ngFor="let grocery of filteredGroceryList">
           <div style="width: 270px;" class="p-2">
             <app-individual-grocery [individualGrocery]="grocery"
-                                    [orderedGroceryList]="orderedList"
-                                    [groceryCount]="groceryCounts"
-                                    [groceryCount]="idOfGroceriesWithZeroStock">
+                                    [orderedGroceryList]="orderedList">
             </app-individual-grocery>
           </div>
         </div>
@@ -127,8 +125,7 @@
     <div class="p-col" style="text-align: left; margin-right: 20px" [class.padding-left-for-first] = "i % 2 == 0" [class.padding-right-for-second]="i % 2 != 0">
       <app-individual-grocery [individualGrocery]="grocery"
                               [orderedGroceryList]="orderedList"
-                              [isDesktopApplication]="false"
-                              [groceryCount] = idOfGroceriesWithZeroStock>
+                              [isDesktopApplication]="false">
       </app-individual-grocery>
     </div>
   </div>

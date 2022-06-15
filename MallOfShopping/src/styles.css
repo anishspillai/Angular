@@ -52,4 +52,11 @@ body {
    font-size: medium;
  }
 
+.large-font-size {
+  font-size: larger;
+}
+.text-xx-large {
+  font-size: xx-large;
+}
+
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core"
 import {forkJoin, Observable, of} from "rxjs"
-import {GroceryCount, IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
+import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
 import {Order} from "../individual-grocery/model/Order"
 import {AngularFireDatabase} from "@angular/fire/database"
 import {ActivatedRoute} from "@angular/router"
@@ -9,8 +9,6 @@ import {ErrorLogService} from "../error-log.service";
 import algoliasearch from "algoliasearch/lite";
 import {SearchObservableServiceService} from "../search-observable-service.service";
 import {catchError} from "rxjs/operators";
-import {SnapshotAction} from "@angular/fire/database/interfaces";
-
 
 const searchClient = algoliasearch(
   'ZT1RBSHBBJ',
@@ -50,17 +48,10 @@ export class GroceryGridComponent implements OnInit {
   isGlobalSearch: boolean;
   isHomePage = false
   isFastMovingProducts = false
-
-  groceryCounts: GroceryCount[] = []
-
-  idOfGroceriesWithZeroStock: string[]
-
   productCategories: string[]
 
 
   ngOnInit() {
-
-    this.getNullStockDetails()
 
     this.fillUpSortableFields()
 
@@ -117,7 +108,7 @@ export class GroceryGridComponent implements OnInit {
       const FORK_JOIN = forkJoin(
         {
           one: this.searchByFastMoving().pipe(catchError(error => of(error))),
-          two: this.getStockByFastMoving().pipe(catchError(error => of(error)))
+          //two: this.getStockByFastMoving().pipe(catchError(error => of(error)))
         }
       )
 
@@ -191,66 +182,6 @@ export class GroceryGridComponent implements OnInit {
     return of(1)
   }
 
-  private getTheCountOfStockByCategory(): Observable<any> {
-    this.firestore.list("admin/stock_count_table", ref => ref.orderByChild("category").equalTo(this.searchCategoryType)).snapshotChanges().subscribe(value => {
-        value.forEach(dataSnapshot => {
-            // @ts-ignore
-            const groceryCountModel: GroceryCount = dataSnapshot.payload.val()
-            groceryCountModel.id = dataSnapshot.key
-            this.groceryCounts.push(groceryCountModel)
-          }
-        )
-      }, error => {
-        this.errorLogService.logErrorMessage('Admin', error)
-      }
-    )
-    return of(2)
-  }
-
-  private getNullStockDetails(): Observable<any> {
-    this.firestore.list("admin/out_of_stock_table").snapshotChanges().subscribe(value => {
-      this.idOfGroceriesWithZeroStock = []
-        value.forEach(dataSnapshot => {
-            this.idOfGroceriesWithZeroStock.push(dataSnapshot.key)
-          }
-        )
-      }, error => {
-        this.errorLogService.logErrorMessage('Admin', error)
-      }
-    )
-    return of(2)
-  }
-
-  private fetchOrders() {
-    const groceryCountModel: GroceryCount[] = []
-
-    Promise.all(this.populateObservablesForItem()).then(values => {
-        values.forEach(value => {
-          value.subscribe(value1 => {
-            if(value1.payload.val()) {
-              let groceryCount = value1.payload.val()
-              groceryCount.id = value1.payload.key
-              groceryCountModel.push(groceryCount)
-            }
-          }, error =>
-            this.errorLogService.logErrorMessage('Admin', error))
-        });
-
-        console.log(groceryCountModel)
-      }
-    )
-  }
-
-  private populateObservablesForItem() : Observable<any>[]{
-    let fruits: string[] = ['-M8QgYC7praOetD1ndMj', '-M8QhIKqDVZYOPNM1Tz1', '-M8onA7x9p-XhB8I2SvH', 'ö'];
-    let observables: Observable<SnapshotAction<any>>[] = []
-    fruits.forEach(value => {
-      observables.push(this.firestore.object("admin/stock_count_table/" + value).snapshotChanges())
-    })
-
-    return observables;
-  }
-
   private searchByFastMoving() {
     this.firestore.list('admin/Products', ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
         value.forEach(dataSnapshot => {
@@ -270,24 +201,6 @@ export class GroceryGridComponent implements OnInit {
     )
     return of(1)
   }
-
-  private getStockByFastMoving(): Observable<any> {
-    this.firestore.list("admin/stock_count_table", ref => ref.orderByChild("isFastMoving").equalTo(true)).snapshotChanges().subscribe(value => {
-        value.forEach(dataSnapshot => {
-            // @ts-ignore
-            const groceryCountModel: GroceryCount = dataSnapshot.payload.val()
-            groceryCountModel.id = dataSnapshot.key
-            this.groceryCounts.push(groceryCountModel)
-          }
-        )
-        console.log(this.groceryCounts)
-      }, error => {
-        this.errorLogService.logErrorMessage('Admin', error)
-      }
-    )
-    return of(2)
-  }
-
 
   private extractBrands() {
     this.groceryList.forEach(value => {

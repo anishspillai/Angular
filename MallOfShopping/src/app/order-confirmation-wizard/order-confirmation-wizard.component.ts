@@ -1,18 +1,13 @@
-import {Component, OnInit, Output, ViewEncapsulation} from '@angular/core';
-//import {MenuItem, MessageService} from "primeng";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ConfirmationService, MenuItem} from "primeng/api";
-import {MessageService} from "primeng/api";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AddGroceryToListObservableService} from "../add-grocery-to-list-observable.service";
-import {User} from "firebase";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {UserDetailsService} from "../user-details/user.details.service";
 import {ErrorLogService} from "../error-log.service";
-import {GroceryCountService} from "../grocery-count.service";
 import {AngularFireDatabase} from "@angular/fire/database";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {AuthService} from "../auth/auth.service";
-import {HttpClient} from "@angular/common/http";
 import {Order} from "../individual-grocery/model/Order";
 import {forkJoin, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -43,6 +38,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
   orderBeingPlaced = false
   isMobileDevice: boolean;
 
+  outOfStockOrders: Order[]
+
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -50,10 +47,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
               private readonly  userDetailsService: UserDetailsService,
               private readonly activatedRoute: ActivatedRoute,
               private readonly errorLogService: ErrorLogService,
-              private readonly groceryCountService: GroceryCountService,
               private  readonly firestore: AngularFireDatabase,
               private readonly authService: AuthService,
-              private readonly http: HttpClient
               ) {
   }
 
@@ -78,9 +73,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
       }
     });
-
-    //localStorage.setItem('foo', 'no reload')
-    //this.router.navigate(['first-component']);
   }
 
   placeOrder() {
@@ -102,14 +94,10 @@ export class OrderConfirmationWizardComponent implements OnInit{
         this.isOrderPlaced = false
         this.groceryService.placeOrderForTheUser(this.addGroceryToListObservableService.orders, user, orderTimestamp).then(() => {
           this.isOrderPlaced = true
-          //this.updateCountOfGroceries()
-          //this.emptyShoppingCart()
-          //this.addDeliveryStatus(orderTimestamp, user)
-          //this.sendOrderAcknowledgementMail()
 
           const JOIN_API = forkJoin(
             {
-              //one: this.updateCountOfGroceries().pipe(catchError(() => of(undefined))),
+              one: this.updateCountOfGroceries(user).pipe(catchError(() => of(undefined))),
               two: this.emptyShoppingCart(),
               three: this.addDeliveryStatus(orderTimestamp, user)
             }
@@ -134,29 +122,33 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   }
 
-  getOrders() : Order[]  {
-    return this.addGroceryToListObservableService.orders
-  }
-
-  private updateCountOfGroceries(): Observable<any> {
-    this.addGroceryToListObservableService.orders.forEach(grocery => {
-        this.firestore.database.ref('admin/stock_count_table/'+grocery.id+'/stockCount').transaction( (currentRank)  => {
-          if (currentRank) {
-            const totalCount = currentRank - grocery.noOfItems
-            if(totalCount <= 0) {
-              this.firestore.database.ref('admin/out_of_stock_table/' + grocery.id).set({
-                count: 0
-              });
-            }
-            return totalCount <= 0 ? 0 : totalCount
-          } else {
-            return 5
-          }
-        }).then(r => {})
+  private updateCountOfGroceries(user: string): Observable<any> {
+    let promises = [];
+    this.outOfStockOrders = []
+    this.addGroceryToListObservableService.orders.forEach(orderedGrocery => {
+        promises.push(
+          this.updateTheCountInDataBase(orderedGrocery)
+        )
       }
     )
 
+    Promise.all(promises).then(() => console.log("")).catch(err => this.errorLogService.logErrorMessage(user, err))
     return of(1)
+  }
+
+  updateTheCountInDataBase(orderedGrocery: Order): Promise<any> {
+    return this.firestore.database.ref('admin/Products/' + orderedGrocery.id + '/stock').transaction((currentStock) => {
+      if (currentStock) {
+        const totalCount = currentStock - orderedGrocery.noOfItems
+        if (totalCount < 0) {
+          this.outOfStockOrders.push(orderedGrocery)
+          return 0
+        }
+        return totalCount
+      } else {
+        return 5
+      }
+    })
   }
 
   navigateToTheMainPage() {
@@ -177,20 +169,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
       () =>
       this.displayThankYouDialog = true
     )
-  }
-
-  private sendOrderAcknowledgementMail() {
-    const user = this.authService.getUserWithAllDetails()
-    console.log("Getting user email " + user.email)
-    this.http.post("http://localhost:3000/api/sendEmail", {email: user.email}).subscribe(value => {
-        //console.log(value)
-        //this.displayThankYouDialog = true
-      }
-    )
-  }
-
-  getCostOfIndividualOrder(order: Order) {
-    return this.groceryService.getSumOfGrocery(order).toFixed(2)
   }
 
   getTotalCostOfOrderedItemsIncludingDeliveryCharge() {

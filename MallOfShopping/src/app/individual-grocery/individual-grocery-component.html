@@ -40,8 +40,18 @@
       &nbsp;
     </div>
 
-    <span class="medium-font-size text-dark">{{individualGrocery.brandName}}</span>
-    <br>
+    <div class="d-flex justify-content-between">
+      <div class="medium-font-size text-dark">{{individualGrocery.brandName}}</div>
+        <div>
+          <i *ngIf="!individualGrocery.stock || individualGrocery.stock <= 0" class="bi bi-battery text-danger large-font-size"></i>
+          <i *ngIf="individualGrocery.stock >0 && individualGrocery.stock <= 10" class="bi bi-battery-half text-warning large-font-size"></i>
+          <i *ngIf="individualGrocery.stock > 10" class="bi bi-battery-full text-success large-font-size"></i>
+        </div>
+      </div>
+
+
+      <!--span class="medium-font-size text-dark">{{individualGrocery.brandName}}</span-->
+
     <span class="text-dark">{{individualGrocery.type}}</span>
     <br>
     <span class="sans-serif-small-font">{{individualGrocery.subType}}</span>
@@ -79,13 +89,11 @@
               (click)="addItemToCart()" disabled="true">
       </button-->
 
-      <div *ngIf="isStockAvailable(individualGrocery.id) ; else elseBlock">
+      <div *ngIf="isStockAvailable(individualGrocery.stock) ; else elseBlock">
         <button pButton type="button" label = "{{ getLabel(individualGrocery) }}" class="ui-button-rounded ui-button-success"
                 (click)="addItemToCart(); $event.stopImmediatePropagation()">
         </button>
       </div>
-
-
 
       <ng-template #elseBlock><button pButton type="button" label="Out of Stock!" class="ui-button-rounded ui-button-danger"
                                       (click)="addItemToCart()" disabled="true">

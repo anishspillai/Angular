@@ -120,3 +120,7 @@ body {
   background-color: #d8dede;
   background-image: linear-gradient(315deg, #d8dede 0%, #e5bdf6 74%);
 }
+
+.text-small {
+  font-size: small;
+}
