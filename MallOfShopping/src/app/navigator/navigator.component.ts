@@ -1,10 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {NavigatorService} from "./navigator.service";
 import {GroceryMenuItem} from "./model/GroceryMenuItem";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {BreadCrumbService} from "../bread-crumb/bread-crumb.service";
 import {SlideMenu} from "primeng/slidemenu";
-import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-navigator',
@@ -13,9 +12,8 @@ import {MenuItem} from "primeng/api";
 })
 export class NavigatorComponent  {
 
-  menuItems: GroceryMenuItem[] = []
-
-  menuItems_With_Out: GroceryMenuItem[] = []
+  menuItems: GroceryMenuItem[]
+  menuItems_With_Out: GroceryMenuItem[]
 
   menuSubItems: GroceryMenuItem[] = []
 
@@ -61,6 +59,8 @@ export class NavigatorComponent  {
   fetchNavigationItems(): void {
 
     this.navigatorService.fetchCategories().subscribe(snapshots => {
+      this.menuItems = []
+      this.menuItems_With_Out = []
       snapshots.forEach(childSnapshot => {
 
         const childData = childSnapshot.payload;

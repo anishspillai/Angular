@@ -43,7 +43,7 @@
       <!-- Section: Condition -->
 
 
-      <ul class="list-group border mb-4">
+      <!--ul class="list-group border border-info border-warning shadow-lg mb-4">
 
         <p class="text-black-50 border-bottom pl-3">
           <a style="margin-bottom: 0px; padding: 0" href="#" class="text-reset">{{mainGroceryType ? mainGroceryType : 'Others'}}</a>
@@ -57,22 +57,38 @@
 
         </span>
         </div>
-      </ul>
+      </ul-->
 
-      <div class="card bg-transparent border-info mb-3">
+      <div class="card side-nav-bar-bg">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">{{mainGroceryType ? mainGroceryType : 'Others'}}</h6>
+
+          <div *ngFor="let menu of productCategories">
+           <span class="text-muted list-item-style">
+              <a *ngIf="isSubCategory"
+                 href="grocery-list?groceryType={{encodeUri(menu)}}&subMenu=true&main={{encodeUri(mainGroceryType)}}"
+                 class="card-link text-dark">{{menu}}</a>
+              <a *ngIf="!isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}"
+                 class="card-link">{{menu}}</a>
+        </span>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="card border mb-3 mt-1">
         <div class="card-body bg-color-filter-by-brand">
-          <span class="text-primary"> Filter by brand: </span><br>
+          <span class="text-primary small-text"> Filter by brand: </span><br>
           <span style="margin-left: 10px" *ngFor="let product of brands">
-                <p-checkbox class="text-secondary text-small font-weight-light" label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands"
+                <p-checkbox class="text-secondary small-text font-weight-light" label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands"
                             (ngModelChange)="applyFilter()">
                 </p-checkbox>
             <br>
           </span>
 
-          <br>
-
-          <span class="text-primary"> Sort: </span><br>
-          <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
+          <span class="text-primary small-text"> Sort: </span><br>
+          <p-dropdown class="small-text" [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
         </div>
       </div>
 

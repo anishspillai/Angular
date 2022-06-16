@@ -266,11 +266,8 @@ export class GroceryGridComponent implements OnInit {
   }
 
   private fetchMenuForSideNavigation() {
-    // this.searchCategoryType = params.get("groceryType")
-    // this.mainGroceryType = params.get("main")
-    // this.isSubCategory = params.get("subMenu")
     if(this.isSubCategory) {
-      //this.findSubMenu(this.mainGroceryType) // PROBLEM HERE. THE TOP MENU BAR CONTAINS REPEATED ITEMS
+      this.findSubMenu(this.mainGroceryType)
     } else {
       this.findMainMenu()
     }
