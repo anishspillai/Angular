@@ -19,6 +19,7 @@ export class UserDetailsComponent implements OnInit {
   displayEditUserDialog = false
   displayErrorMessage = false
   @Input() displayHeader = true
+  pageBeingLoaded = false
 
   constructor(private readonly  userDetailsService: UserDetailsService,
               private readonly authService: AuthService,
@@ -35,6 +36,7 @@ export class UserDetailsComponent implements OnInit {
   fetchUserDetails() {
 
     this.displayErrorMessage  = false
+    this.pageBeingLoaded = true
 
     this.userDetailsService.getUserDetails(this.user).subscribe(value => {
 
@@ -46,10 +48,12 @@ export class UserDetailsComponent implements OnInit {
         this.userDetailsModel.firstName = value[2] as string
         this.userDetailsModel.lastName = value[3] as string
         this.userDetailsModel.address = value[0] as string
+        this.pageBeingLoaded = false
       }
     }, (error) => {
         this.displayErrorMessage = true
         this.errorLogService.logErrorMessage(this.user, error)
+        this.pageBeingLoaded = false
     })
   }
 }

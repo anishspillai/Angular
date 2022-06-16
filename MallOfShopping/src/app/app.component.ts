@@ -145,4 +145,11 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+
+  trimUserName(userName: string) {
+    if(userName && userName.length > 5) {
+      return userName.substr(0, 5) + '..'
+    }
+    return userName
+  }
 }

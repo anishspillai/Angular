@@ -7,16 +7,16 @@
           [responsive]="false"
           [resizable]="false">
 
-  <form [formGroup]="registerForm">
+  <form [formGroup]="registerForm" class="m-2">
 
 
-    <div class="ui-g">
+    <div class="row">
 
-      <div class="ui-g-12 ui-md-4">
-        <label>First Name </label> <span class="red-color-text"> * </span>
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">First Name </label> <span class="red-color-text"> * </span>
       </div>
 
-      <div class="ui-g-12 ui-md-8">
+      <div class="col-8">
         <input [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
                class="form-control"
                formControlName="firstName"
@@ -27,12 +27,15 @@
           <div *ngIf="f.firstName.errors.required">First name is required</div>
         </div>
       </div>
+    </div>
 
-      <div class="ui-g-12 ui-md-4">
-        <label>Last Name </label> <span class="red-color-text"> * </span>
+
+    <div class="row mt-2">
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">Last Name </label> <span class="red-color-text"> * </span>
       </div>
 
-      <div class="ui-g-12 p-col-8">
+      <div class="col-8">
         <input [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" class="form-control"
                formControlName="lastName" pInputText size="30"
                type="text"/>
@@ -41,14 +44,16 @@
           <div *ngIf="f.lastName.errors.required">Last Name is required</div>
         </div>
       </div>
+    </div>
 
-
-      <div class="ui-g-12 ui-md-4">
-        <label>Contact Number </label> <span class="red-color-text"> * </span>
+    <div class="row mt-2">
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">Contact Number </label> <span class="red-color-text"> * </span>
       </div>
 
-      <div class="ui-g-12 ui-md-8">
-        <input [ngClass]="{ 'is-invalid': submitted && f.telephoneNumber.errors }" class="form-control"
+      <div class="col-8">
+        <input [ngClass]="{ 'is-invalid': submitted && f.telephoneNumber.errors }"
+               class="form-control"
                formControlName="telephoneNumber" pInputText
                placeholder="10 digit number starting with 0" size="30"
                type="text"/>
@@ -57,62 +62,61 @@
           <div *ngIf="f.telephoneNumber.errors"> Please provide 10 digit mobile number, starting with 0</div>
         </div>
       </div>
+    </div>
 
+    <div class="row mt-2">
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">Apartment Number </label> <span class="red-color-text"> * </span>
+      </div>
+      <div class="col-8">
+        <input [ngClass]="{ 'is-invalid': submitted && f.apartmentNo.errors }"
+               class="form-control"
+               formControlName="apartmentNo"
+               pInputText size="30"
+               type="text"/>
 
-      <div class="p-grid nested-grid">
-        <div class="p-col-4">
-          <div class="box box-stretched"> &nbsp;&nbsp;Address <span class="red-color-text"> &nbsp;* </span></div>
-        </div>
-
-        <div class="p-col-8">
-          <div class="p-grid">
-
-            <div class="p-col-6">
-              <div class="box">Apartment Number <span style="color: red"> &nbsp;* </span></div>
-            </div>
-
-            <div class="p-col-6">
-              <input [ngClass]="{ 'is-invalid': submitted && f.apartmentNo.errors }" formControlName="apartmentNo"
-                     pInputText size="30"
-                     type="text"/>
-
-              <div *ngIf="submitted && f.apartmentNo.errors" class="red-color-text">
-                <div *ngIf="f.apartmentNo.errors">Please provide apartment no</div>
-              </div>
-            </div>
-
-
-            <div class="p-col-6">
-              <div class="box">Street Name <span class="red-color-text"> &nbsp;* </span></div>
-            </div>
-
-            <div class="p-col-6">
-              <input [ngClass]="{ 'is-invalid': submitted && f.streetName.errors }" formControlName="streetName"
-                     pInputText size="30"
-                     type="text"/>
-
-              <div *ngIf="submitted && f.streetName.errors" class="red-color-text">
-                <div *ngIf="f.streetName.errors">Please provide street name</div>
-              </div>
-            </div>
-
-            <div class="p-col-6">
-              <div class="box">Post Number <span class="red-color-text"> &nbsp;* </span></div>
-            </div>
-            <div class="p-col-6">
-              <input [ngClass]="{ 'is-invalid': submitted && f.postNumber.errors }" formControlName="postNumber"
-                     pInputText placeholder="5 digit number" size="30"
-                     type="text"/>
-
-              <div *ngIf="submitted && f.postNumber.errors" class="red-color-text">
-                <div *ngIf="f.postNumber.errors">Please provide 5 digit numbers ( Add 0 if less than 5)</div>
-              </div>
-            </div>
-
-          </div>
+        <div *ngIf="submitted && f.apartmentNo.errors" class="red-color-text">
+          <div *ngIf="f.apartmentNo.errors">Please provide apartment no</div>
         </div>
       </div>
     </div>
+
+    <div class="row mt-2">
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">Street Name </label> <span class="red-color-text"> * </span>
+      </div>
+
+      <div class="col-8">
+        <input [ngClass]="{ 'is-invalid': submitted && f.streetName.errors }"
+               class="form-control"
+               formControlName="streetName"
+               pInputText size="30"
+               type="text"/>
+
+        <div *ngIf="submitted && f.streetName.errors" class="red-color-text">
+          <div *ngIf="f.streetName.errors">Please provide street name</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+
+      <div class="col-4">
+        <label class="font-weight-bold text-uppercase">Post Number </label> <span class="red-color-text"> * </span>
+      </div>
+      <div class="col-8">
+        <input [ngClass]="{ 'is-invalid': submitted && f.postNumber.errors }"
+               class="form-control"
+               formControlName="postNumber"
+               pInputText placeholder="5 digit number" size="30"
+               type="text"/>
+
+        <div *ngIf="submitted && f.postNumber.errors" class="red-color-text">
+          <div *ngIf="f.postNumber.errors">Please provide 5 digit numbers ( Add 0 if less than 5)</div>
+        </div>
+      </div>
+    </div>
+
   </form>
 
 
