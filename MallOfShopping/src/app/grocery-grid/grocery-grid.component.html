@@ -67,7 +67,7 @@
            <span class="text-muted list-item-style">
               <a *ngIf="isSubCategory"
                  href="grocery-list?groceryType={{encodeUri(menu)}}&subMenu=true&main={{encodeUri(mainGroceryType)}}"
-                 class="card-link text-dark">{{menu}}</a>
+                 class="card-link">{{menu}}</a>
               <a *ngIf="!isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}"
                  class="card-link">{{menu}}</a>
         </span>

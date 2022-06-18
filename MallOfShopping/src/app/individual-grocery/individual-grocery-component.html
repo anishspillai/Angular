@@ -43,9 +43,8 @@
     <div class="d-flex justify-content-between">
       <div class="medium-font-size text-dark">{{individualGrocery.brandName}}</div>
         <div>
-          <i *ngIf="!individualGrocery.stock || individualGrocery.stock <= 0" class="bi bi-battery text-danger large-font-size"></i>
-          <i *ngIf="individualGrocery.stock >0 && individualGrocery.stock <= 10" class="bi bi-battery-half text-warning large-font-size"></i>
-          <i *ngIf="individualGrocery.stock > 10" class="bi bi-battery-full text-success large-font-size"></i>
+          <i *ngIf="!individualGrocery.stock || individualGrocery.stock <= 0" class="text-danger border border-info rounded p-1"><small>no stock</small></i>
+          <i *ngIf="individualGrocery.stock >0 && individualGrocery.stock <= 10" class="text-secondary border border-info rounded p-1"><small>{{individualGrocery.stock}} in stock</small></i>
         </div>
       </div>
 
