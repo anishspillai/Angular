@@ -2,12 +2,12 @@
   background-color: #7f5a83;
   background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
   color: #7386D5;
-  height: 300px;
+  height: 320px;
   position: relative;
 }
 
 .footer-desktop .footer-content {
-  height: 250px;
+  height: 260px;
   display: flex;
   border: 1px solid white;
   color: white;
@@ -28,6 +28,7 @@
   border-box: 1px solid white;
   font-weight: lighter;
   font-family: "Trebuchet MS";
+  padding-bottom: 5px;
 }
 
 .footer-desktop .footer-bottom {
@@ -49,4 +50,7 @@
 }
 .text-large {
   font-size: xx-large;
+}
+.text-medium {
+  font-size: large;
 }
