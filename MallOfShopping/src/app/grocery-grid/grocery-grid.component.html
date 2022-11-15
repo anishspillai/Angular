@@ -14,20 +14,6 @@
     <h3 style="color: orangered"> Sona Masoori Rice is limited. You can add only one into the cart. Small alert dialog displays on top, if you try to add more. Please close it to proceed further </h3>
   </div>
 
-  <!--hr  *ngIf="!isGlobalSearch" style="border-width: medium">
-    <div *ngIf="(!isHomePage && filteredGroceryList && filteredGroceryList.length > 0) && !isGlobalSearch">
-
-      <div style="float: right;">
-        <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>
-      </div>
-
-      <span pInputText>
-          <span style="font-style: normal; font-size: medium; font-family: 'Trebuchet MS'; font-weight: lighter"> Filter by brand: </span>
-              <span style="margin-left: 10px" *ngFor="let product of brands">
-                <p-checkbox label="{{product}}" value="{{product}}" [(ngModel)]="selectedBrands" (ngModelChange)="applyFilter()"></p-checkbox>
-             </span>
-          </span>
-     </div-->
   <hr style="border-width: medium">
 
   <div *ngIf="isFishType" class="p-col-12" >
@@ -59,20 +45,19 @@
         </div>
       </ul-->
 
+      <!-- This one displays the Left hand side menu after clicking the menu on the top -->
       <div class="card side-nav-bar-bg">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-muted">{{mainGroceryType ? mainGroceryType : 'Others'}}</h6>
-
           <div *ngFor="let menu of productCategories">
            <span class="text-muted list-item-style">
               <a *ngIf="isSubCategory"
                  href="grocery-list?groceryType={{encodeUri(menu)}}&subMenu=true&main={{encodeUri(mainGroceryType)}}"
-                 class="card-link">{{menu}}</a>
+                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success'">{{menu}}</a>
               <a *ngIf="!isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}"
-                 class="card-link">{{menu}}</a>
-        </span>
+                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success'">{{menu}}</a>
+            </span>
           </div>
-
         </div>
       </div>
 
