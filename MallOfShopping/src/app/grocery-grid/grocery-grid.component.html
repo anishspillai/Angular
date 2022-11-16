@@ -48,7 +48,7 @@
            <span class="text-muted list-item-style">
               <a *ngIf="isSubCategory"
                  (click)="navigateToTheGroceryItemClickedByUser(menu, mainGroceryType, true)"
-                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success cursor-pointer'">{{menu}}</a>
+                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success font-weight-bold cursor-pointer'">{{menu}}</a>
               <a *ngIf="!isSubCategory"
                  (click)="navigateToTheGroceryItemClickedByUser(menu, mainGroceryType, false)"
                  [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success cursor-pointer'">{{menu}}</a>
