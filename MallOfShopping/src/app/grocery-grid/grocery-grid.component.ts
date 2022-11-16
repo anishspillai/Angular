@@ -3,7 +3,7 @@ import {forkJoin, Observable, of} from "rxjs"
 import {IndividualGrocery} from "../individual-grocery/model/IndividualGrocery"
 import {Order} from "../individual-grocery/model/Order"
 import {AngularFireDatabase} from "@angular/fire/database"
-import {ActivatedRoute} from "@angular/router"
+import {ActivatedRoute, Router} from "@angular/router"
 import {GroceryCountService} from "../grocery-count.service";
 import {ErrorLogService} from "../error-log.service";
 import algoliasearch from "algoliasearch/lite";
@@ -72,7 +72,9 @@ export class GroceryGridComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private readonly groceryCountService: GroceryCountService,
               private readonly errorLogService: ErrorLogService,
-              private readonly search: SearchObservableServiceService) {
+              private readonly search: SearchObservableServiceService,
+              private readonly router: Router,
+  ) {
   }
 
   filterProduct(searchString: string) {
@@ -307,6 +309,24 @@ export class GroceryGridComponent implements OnInit {
 
   encodeUri(label: string) {
     return encodeURIComponent(label)
+  }
+
+
+
+  // I was using ahref for <a> tag for navigating to the specific grocery. But it was reloading the page always.
+  // To stop that, I removed the ahref and added the router.navigate methoda
+  navigateToTheGroceryItemClickedByUser(subItemLabel: string, itemLabel: string, isMainMenu: boolean) {
+    if(isMainMenu) {
+      this.router.navigate(['/grocery-list'], {
+        queryParams: {
+          groceryType: subItemLabel,
+          subMenu: true,
+          main: itemLabel
+        }
+      })
+    } else {
+      this.router.navigate(['/grocery-list'], {queryParams: {groceryType: subItemLabel}})
+    }
   }
 
 }

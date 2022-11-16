@@ -34,7 +34,6 @@ export class NavigatorComponent  {
   constructor(
     private readonly navigatorService: NavigatorService,
     private readonly router: Router,
-    private readonly breadCrumbService: BreadCrumbService
   ) {
   }
 
@@ -115,7 +114,12 @@ export class NavigatorComponent  {
 
 
     this.router.navigate(['/grocery-list'], {queryParams: {groceryType: item.label}})
-    //this.breadCrumbService.updateBreadCrumb([{label: item.label}])
+  }
+
+  // I was using ahref for <a> tag for navigating to the specific grocery. But it was reloading the page always.
+  // To stop that, I removed the ahref and added the router.navigate methoda
+  navigateToTheGroceryItemClickedByUser(subItemLabel: string, itemLabel: string) {
+    this.router.navigate(['/grocery-list'], {queryParams: {groceryType: subItemLabel, subMenu: true, main : itemLabel}})
   }
 
   closeParentWindowAndSlideMenuForChildWindowForMobileDevices() {

@@ -47,10 +47,11 @@
           <div *ngFor="let menu of productCategories">
            <span class="text-muted list-item-style">
               <a *ngIf="isSubCategory"
-                 href="grocery-list?groceryType={{encodeUri(menu)}}&subMenu=true&main={{encodeUri(mainGroceryType)}}"
-                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success'">{{menu}}</a>
-              <a *ngIf="!isSubCategory" href="grocery-list?groceryType={{encodeUri(menu)}}"
-                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success'">{{menu}}</a>
+                 (click)="navigateToTheGroceryItemClickedByUser(menu, mainGroceryType, true)"
+                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success cursor-pointer'">{{menu}}</a>
+              <a *ngIf="!isSubCategory"
+                 (click)="navigateToTheGroceryItemClickedByUser(menu, mainGroceryType, false)"
+                 [ngClass]="searchCategoryType === menu ? 'text-black-50 menu-item-selected' : 'text-success cursor-pointer'">{{menu}}</a>
             </span>
           </div>
         </div>

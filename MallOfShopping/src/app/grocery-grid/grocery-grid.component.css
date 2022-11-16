@@ -59,3 +59,7 @@
   pointer-events: none;
   text-decoration: none;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
