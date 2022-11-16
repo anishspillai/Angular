@@ -59,4 +59,8 @@ body {
   font-size: xx-large;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 

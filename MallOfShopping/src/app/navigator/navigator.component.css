@@ -149,10 +149,6 @@
 /*  border: 2mm ridge lightgrey;*/
 /*}*/
 
-.cursor-pointer {
-  cursor: pointer;
-}
-
 .default-padding-menu-items {
   padding-left: 10px;
   padding-right: 10px;
