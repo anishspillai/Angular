@@ -20,12 +20,12 @@ hr {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: red;
+  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
-  color: #fff;
+  color: ghostwhite;
   position: absolute;
   right: -30px;
   top: -25px;
@@ -40,7 +40,7 @@ hr {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: red;
+  background-color: gray;
   display: flex;
   align-items: center;
   justify-content: center;
