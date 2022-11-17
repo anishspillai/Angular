@@ -182,16 +182,21 @@
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
 
-<!--p-dialog [(visible)]="displayThankYouDialog" header="Order Placed!!!" [style]="{width: '360px'}"
-          (onHide)="navigateToTheMainPage()">
-  <div>
-    Thank you for placing the order!!!. Please check the Order History Page for viewing your orders and status of deliveries.
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog">
+    <div class="modal-content bg-secondary text-white">
+      <div class="modal-header">
+        <h5 class="modal-title">Order is placed!</h5>
+      </div>
+      <div class="modal-body">
+        <p>Thank you for placing the order. You will be navigated to order history page where you can see the order.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="closeDialogAndNavigateToOrderHistoryPage()">Close and move to order history page</button>
+      </div>
+    </div>
   </div>
-  <p-footer>
-    <button pButton type="button" label="close" icon="pi pi-times" class="ui-button-secondary"
-            (click)="displayThankYouDialog = false; orderBeingPlaced = false"></button>
-  </p-footer>
-</p-dialog-->
+</div>
 
 
 <p-dialog [(visible)]="displayErrorDialog" header="Sorry Order not placed!!!" [style]="{width: '360px'}"

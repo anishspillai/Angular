@@ -38,6 +38,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
   orderBeingPlaced = false
   isMobileDevice: boolean;
 
+  display = 'none';
+
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -97,7 +99,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
           )
 
           JOIN_API.subscribe(() =>
-            this.finishSteps(),
+            this.displayThankYouDialogToUser(),
             (err) => {
               this.errorLogService.logErrorMessage(user, err)
             })
@@ -168,7 +170,13 @@ export class OrderConfirmationWizardComponent implements OnInit{
     return totalCostOfTheOrder
   }
 
-  private finishSteps() {
-    this.displayThankYouDialog = true
+  private displayThankYouDialogToUser() {
+    this.display = 'block'
+  }
+
+  closeDialogAndNavigateToOrderHistoryPage() {
+    this.display = 'none'
+    this.orderBeingPlaced = false
+    this.router.navigate(['order-history']);
   }
 }
