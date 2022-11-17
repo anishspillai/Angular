@@ -2,12 +2,12 @@
   <div class="row" style="margin: 5px">
     <div class="col-6">
       <div class="bg-warning" style="border-radius: 24px;">
-        <p class="bold-center-aligned-text text-secondary">New products in Stock</p>
+        <p class="bold-center-aligned-text text-dark">New products in Stock</p>
         <div id="carousel1" class="carousel slide" data-ride="carousel">
           <div style="text-align: center" class="padding-default">
-            <a class="btn-floating" href="#carousel1" data-slide="prev"><i
+            <a class="btn-floating text-dark font-weight-bolder" href="#carousel1" data-slide="prev"><i
               class="pr-3 disabled pi pi-arrow-circle-left"></i></a>
-            <a class="btn-floating" href="#carousel1" data-slide="next"><i
+            <a class="btn-floating text-danger font-weight-bolder" href="#carousel1" data-slide="next"><i
               class="pi pi-arrow-circle-right disabled"></i></a>
           </div>
 
@@ -20,7 +20,7 @@
                   <div *ngFor="let image of carouselArray[i]" class="col-sm" style="margin-left: 20px">
                     <div>
                       <img class="zoom card-img-top size-200" src="{{image.imagePath}}" style="border-radius: 50%"/>
-                      <strong class="row font-small text-primary">{{image.brandName}}</strong>
+                      <strong class="row font-small text-secondary">{{image.brandName}}</strong>
                       <small class="row font-smaller text-muted">{{image.type}}</small>
                     </div>
                   </div>
