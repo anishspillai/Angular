@@ -69,18 +69,8 @@ export class AddGroceriesComponent   {
   }
 
   save() {
-
-    //this.addGroceryModel.dbPath = this.selectedPath.name
-
-
     const  list = this.firestore.list(this.selectedPath.name)
     list.push( this.addGroceryModel )
     console.log(this.addGroceryModel)
-
-    /**const  list = this.firestore.list('stock_count/')
-
-    list.set('1212', 78).then(r => console.log(r));
-    list.set('12000', 78).then(r => console.log(r));
-    list.set('11000', 78).then(r => console.log(r));*/
   }
 }

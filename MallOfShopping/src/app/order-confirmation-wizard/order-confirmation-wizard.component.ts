@@ -76,7 +76,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
     let addressMissing: boolean = false
     const user: string = localStorage.getItem('application_Id')
     this.userDetailsService.getUserDetails(user).subscribe(value => {
-
       if (!value || value.length == 0) {
         this.displayAddressMissingDialog = true
         addressMissing = true
