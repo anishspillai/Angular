@@ -38,8 +38,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
   orderBeingPlaced = false
   isMobileDevice: boolean;
 
-  outOfStockOrders: Order[]
-
   constructor(private confirmationService: ConfirmationService,
               private readonly router: Router,
               readonly addGroceryToListObservableService: AddGroceryToListObservableService,
@@ -60,7 +58,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
     }
 
   cancelThisPage() {
-
     this.confirmationService.confirm({
       message: 'Are you sure that you want to cancel placing this order?',
       header: 'Confirmation',
@@ -76,11 +73,8 @@ export class OrderConfirmationWizardComponent implements OnInit{
   }
 
   placeOrder() {
-
     let addressMissing: boolean = false
-
     const user: string = localStorage.getItem('application_Id')
-
     this.userDetailsService.getUserDetails(user).subscribe(value => {
 
       if (!value || value.length == 0) {
@@ -99,7 +93,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
             {
               one: this.updateCountOfGroceries(user).pipe(catchError(() => of(undefined))),
               two: this.emptyShoppingCart(),
-              three: this.addDeliveryStatus(orderTimestamp, user)
+              //three: this.addDeliveryStatus(orderTimestamp, user)
             }
           )
 
@@ -124,7 +118,6 @@ export class OrderConfirmationWizardComponent implements OnInit{
 
   private updateCountOfGroceries(user: string): Observable<any> {
     let promises = [];
-    this.outOfStockOrders = []
     this.addGroceryToListObservableService.orders.forEach(orderedGrocery => {
         promises.push(
           this.updateTheCountInDataBase(orderedGrocery)
@@ -140,11 +133,7 @@ export class OrderConfirmationWizardComponent implements OnInit{
     return this.firestore.database.ref('admin/Products/' + orderedGrocery.id + '/stock').transaction((currentStock) => {
       if (currentStock) {
         const totalCount = currentStock - orderedGrocery.noOfItems
-        if (totalCount < 0) {
-          this.outOfStockOrders.push(orderedGrocery)
-          return 0
-        }
-        return totalCount
+        return totalCount > 0 ? totalCount : 0;
       } else {
         return 5
       }
