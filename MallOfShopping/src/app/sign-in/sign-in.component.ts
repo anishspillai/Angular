@@ -80,6 +80,7 @@ export class SignInComponent implements OnInit {
 
     this.auth.login(this.userId, this.password)
       .then(() => {
+        location.reload()
         this.triggerEventForClosingDialog()
       })
       .catch((serverLoginError: any) => {
