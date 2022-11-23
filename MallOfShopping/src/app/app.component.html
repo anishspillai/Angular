@@ -64,7 +64,7 @@
 
 
 <div *ngIf="!isDesktopDevice">
-  <i class="footerInfo pi pi-info" (click)="displayInfoDialog = true"></i>
+  <i class="footerInfo pi pi-info bg-dark" (click)="displayInfoDialog = true"></i>
   <i *ngIf="displayScrollToTop" onClick="window.scrollTo(0, 0)" class="pi pi-arrow-up scrollToTopMobile"></i>
   <router-outlet></router-outlet>
 </div>
@@ -97,8 +97,8 @@
     </div>
   </div>
 
-  Problem with the delivery?, Do not worry at all, We shall replace or take it back and refund your money with out any
-  conflicts
+  <span class="alert-info"> Problem with the delivery?, Do not worry at all, We shall replace or take it back and refund your money with out any
+        conflicts </span>
 
 </p-sidebar>
 

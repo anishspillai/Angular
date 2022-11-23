@@ -60,55 +60,37 @@
 
 <p-sidebar *ngIf="isMobileDevice" [showCloseIcon]="false" [(visible)]="visibleSidebar1"
            [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"
-           [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': '#343a40 !important'}">
-
-  <!--div *ngIf="isMobileDevice" style="border-width: thin">
-    <button
-      pButton label="Home Page"
-      icon="pi pi-home"
-      class="ui-button-secondary ui-button-rounded"
-      style="width: 100%"
-      (click)="navigateToTheMainPage()">
-    </button>
-    <hr style="border-color: white">
-
-  </div-->
-
-<div style="margin-bottom: 2px">
-  <button disabled type="button" class="btn btn-dark" style="width: 100%">
-    <a class="navbar-brand" style="margin-left: 10px" href="#">Mall Of Groceries</a>
-
-  </button>
-
+           [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': 'red !important'}">
+  <div style="margin-bottom: 2px">
+    <div class="w-100 p-2 text-center bg-dark text-warning">Mall Of Groceries</div>
     <hr style="border-color: white; padding: 0; margin: 0">
-</div>
+  </div>
 
   <p-accordion>
-    <div  *ngFor="let item of menuItems">
-      <p-accordionTab header="{{item.label}}" id="sidebar-1">
+    <div *ngFor="let item of menuItems" style="{color: #6c757d}">
+      <p-accordionTab header="{{item.label}}" id="sidebar-1" class="text-secondary font-weight-bold" headerClassName='color-red'>
 
         <ul *ngFor="let subItem of item.items" class="list-unstyled"
             style="border: 10px; margin: 0px; padding-left: 5px">
           <li>
-            <a href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
+            <a class="text-secondary pl-3"
+              href="grocery-list?groceryType={{encodeUri(subItem.label)}}&subMenu=true&main={{item.label}}">{{subItem.label}}</a>
           </li>
-          <hr style="padding: 0px; margin: 1px;border-color: grey">
+          <hr class="p-1 m-1">
         </ul>
 
       </p-accordionTab>
     </div>
   </p-accordion>
 
-
   <nav id="sidebar">
-    <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled"
+    <ul *ngFor="let item of menuItems_With_Out" class="list-unstyled mt-1"
         style="border: 10px; margin: 0px; padding-left: 5px">
       <li (click)="navigateToGroceryMain(item)">
-        <a>{{item.label}}</a>
+        <a class="text-secondary font-weight-bold p-1 cursor-pointer">{{item.label}}</a>
       </li>
-      <hr style="padding: 0px; margin: 1px; border-color: grey">
+      <hr class="m-2">
     </ul>
   </nav>
-
 
 </p-sidebar>
