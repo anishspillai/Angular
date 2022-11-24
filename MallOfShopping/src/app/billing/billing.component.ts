@@ -44,9 +44,10 @@ export class BillingComponent implements OnInit {
         this.userDetailsModel.lastName = value[3] as string
         this.userDetailsModel.address = value[0] as string
       }
-      this.printPdfContents()
+      this.billingService.sendDeliveredOrderToTheCustomer(this.userDetailsModel, this.orderHistory)
+      //this.printPdfContents()
     }, (error) => {
-      alert(JSON.stringify('Billing page not loading....' + error))
+      console.log(JSON.stringify('Billing page not loading....' + error))
     })
   }
 
