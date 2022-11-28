@@ -61,6 +61,7 @@
 <p-sidebar *ngIf="isMobileDevice" [showCloseIcon]="false" [(visible)]="visibleSidebar1"
            [baseZIndex]="10000" (onHide)="triggerEventForClosingNavigationForMobileApp()"
            [style]="{width:'310px', 'overflow-y': 'scroll', 'background-color': 'red !important'}">
+  <body>
   <div style="margin-bottom: 2px">
     <div class="w-100 p-2 text-center bg-dark text-warning">Mall Of Groceries</div>
     <hr style="border-color: white; padding: 0; margin: 0">
@@ -92,5 +93,11 @@
       <hr class="m-2">
     </ul>
   </nav>
-
+  </body>
+<footer class="footer-bottom bg-light">
+    <!-- Facebook -->
+    <i class="bi bi-whatsapp text-xx-large pr-5 pl-3 text-success"></i>
+    <i class="bi bi-facebook text-xx-large text-primary"></i>
+    <p class="text-muted pt-5">&copy; mallofgroceries.com | Designed & Developed by Anish S Pillai</p>
+</footer>
 </p-sidebar>

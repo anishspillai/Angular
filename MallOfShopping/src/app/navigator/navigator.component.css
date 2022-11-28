@@ -185,3 +185,12 @@ hr {
   padding: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+.footer-bottom {
+   width: 100%;
+   bottom: 0;
+   left: 0;
+   text-align: center;
+   position: relative;
+   font-size: smaller;
+ }

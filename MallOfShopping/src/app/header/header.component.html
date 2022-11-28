@@ -71,22 +71,39 @@
 
 <div id="content-mobile" class="bg-dark text-white">
 
-      <div class="p-col-2" style="text-align: center">
+      <div class="p-col-1" style="text-align: center">
         <i class="pi pi-align-justify" style="font-size: x-large; font-weight: bolder; color:snow" (click)="displayNavigator=true"></i>
       </div>
 
-      <div class="p-col-5">
-        <span class="font-weight-bold text-warning">Mall Of Groceries</span>
+      <div class="p-col-6">
+        <span class="pl-2 font-weight-bold text-warning">Mall Of Groceries</span>
       </div>
 
-      <div class="p-col-3">
-        <p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
-        <i class="pi pi-user" style="font-size: x-large; color: white" (click)="displayMenuItemsForUser(menu, $event)"></i>
+      <div class="p-col-3" style="font-size: small">
+        <!--<p-menu [style]="{'float': 'left'}" #menu [popup]="true" [model]="items"></p-menu>
+        <i class="pi pi-user" style="font-size: medium; color: #d387ab; font-weight: bolder" (click)="displayMenuItemsForUser(menu, $event)"></i>-->
+        <div class="btn-group">
+          <div class="btn-group dropleft" role="group">
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu bg-light" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item text-dark" href="user-details">User Details</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-dark" href="order-history">Order History</a>
+              <div class="dropdown-divider"></div>
+              <a *ngIf="auth.isLoggedIn" class="dropdown-item text-danger" (click)="logOut()">Log Out</a>
+              <a *ngIf="!auth.isLoggedIn" class="dropdown-item text-success" (click)="logIn()">Log In</a>
+            </div>
+          </div>
+          <button type="button" class="btn btn-secondary disabled">
+            <i class="pi pi-user" style="font-size: small; color: white" ></i>
+          </button>
+        </div>
       </div>
 
       <div class="p-col-2" (click)="loadSideBarMenu()">
         <div style="margin-right: 30px" class="tooltip_cart_count header-right">
-          <i class="pi pi-shopping-cart" style="font-size: x-large; color: white"></i>
+          <i class="pi pi-shopping-cart" style="font-size: medium; color: #d387ab; font-weight: bolder"></i>
           <span class="tooltiptext">{{getCountOfItems()}}</span>
         </div>
       </div>

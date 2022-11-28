@@ -2,7 +2,7 @@
   <app-prod-adv-groc-list></app-prod-adv-groc-list>
   <hr *ngIf="!isGlobalSearch">
 
-  <h3  *ngIf="isGlobalSearch" style="margin: 0; padding: 5px; font-weight: bolder; font-family: 'Trebuchet MS'; text-align: center"> Search Results </h3>
+  <h3  *ngIf="isGlobalSearch" style="margin: 0; padding: 5px; font-weight: bolder; font-family: 'Trebuchet MS'; text-align: center"> Following products are found </h3>
 
   <h3  *ngIf="isFastMovingProducts && !isGlobalSearch" style="margin: 0; padding: 5px; font-weight: bolder; font-family: 'Trebuchet MS'; text-align: center"> Fast Moving Products </h3>
 
@@ -96,17 +96,18 @@
 
 <div id="content-mobile" class="p-grid" style="padding-top: 1em;">
 
-  <span  *ngIf="!isGlobalSearch && isFastMovingProducts" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5"> Fast Moving Products </span>
+  <span  *ngIf="!isGlobalSearch && isFastMovingProducts" class="center-align text-small text-info"> Fast Moving Products </span>
 
-  <span  *ngIf="isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5"> Search Results </span>
+  <span  *ngIf="isGlobalSearch" class="text-info center-align text-small"> Following products are found </span>
 
-  <div  *ngIf="searchCategoryType && !isGlobalSearch" style="font-weight: bolder; font-size: medium; padding-left: 20px; color: #7386D5">{{ getHeader() }}</div>
+  <nav *ngIf="searchCategoryType && !isGlobalSearch" class="w-100 navbar-dark bg-light ml-3 mr-3">
+    <a class="navbar-brand" class="pl-1 text-black-50 font-weight-bolder small-text">{{ getHeader() }}
+    </a>
+  </nav>
 
   <div *ngIf="searchCategoryType === 'Sona Masoori'" class="alert alert-danger" role="alert">
     <h6 style="color: orangered"> Sona Masoori Rice is limited. You can add only one into the cart. Small alert dialog displays on top, if you try to add more. Please close it and proceed further  </h6>
   </div>
-
-  <hr style="border-width: medium; width: 100%">
 
   <div *ngIf="!isHomePage || !isGlobalSearch" style="padding: 10px 10px 10px 30px">
     <p-dropdown [options]="sortValues" optionLabel="name" [(ngModel)]="sortableField" (ngModelChange)="performSorting()"></p-dropdown>

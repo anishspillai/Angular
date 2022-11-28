@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(private readonly router: Router,
-              private readonly auth: AuthService,
+              readonly auth: AuthService,
               private readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly groceryService: GroceryService,
               private readonly searchInput: SearchObservableServiceService) {
@@ -160,32 +160,6 @@ export class HeaderComponent implements OnInit {
   loadSideBarMenu() {
     this.isDesktopApplication = false
     this.proceedToNextPage()
-  }
-
-  displayMenuItemsForUser(menu: Menu, $event) {
-
-
-    if (this.auth.isLoggedIn) {
-      this.items = [{
-        label: 'Options',
-        items: [
-          {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
-          {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
-          {label: 'Logout', icon: 'pi pi-sign-out', command: () => this.logOut()}
-        ]
-      }]
-    } else {
-      this.items = [{
-        label: 'Options',
-        items: [
-          {label: 'Your Details', icon: 'pi pi-user', url: 'user-details'},
-          {label: 'Order History', icon: 'pi pi-shopping-cart', routerLink: ['/order-history']},
-          {label: 'Login', icon: 'pi pi pi-sign-in', command: () => this.logIn(), styleClass: "buttonStyle" }
-        ]
-      }]
-    }
-
-    menu.toggle($event)
   }
 
   valueChange($event: string) {
