@@ -22,7 +22,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const result = await this.afAuth.signInWithEmailAndPassword(email, password);
-    await this.router.navigate(['home-page']);
+    //await this.router.navigate(['home-page']);
   }
 
   async register(email: string, password: string) {

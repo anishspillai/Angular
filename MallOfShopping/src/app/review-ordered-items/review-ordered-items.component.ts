@@ -19,6 +19,7 @@ export class ReviewOrderedItemsComponent implements OnInit {
 
   ordersAddedByUser: Order[] = []
 
+  displayConfirmationDialogForEmptyOrder = 'none'
 
   constructor(readonly addGroceryToListObservableService: AddGroceryToListObservableService,
               private readonly router: Router,
@@ -34,7 +35,12 @@ export class ReviewOrderedItemsComponent implements OnInit {
   }
 
   emptyCart() {
+    this.displayConfirmationDialogForEmptyOrder = 'none'
     this.addGroceryToListObservableService.emptyCart()
+  }
+
+  displayEmptyCartConfirmationDialogToUser() {
+    this.displayConfirmationDialogForEmptyOrder = 'block'
   }
 
   ngOnInit(): void {
@@ -83,9 +89,5 @@ export class ReviewOrderedItemsComponent implements OnInit {
   getCostOfIndividualOrder(order: Order) {
     return this.groceryService.getSumOfGrocery(order).toFixed(2)
   }
-
-
-
-
 
 }

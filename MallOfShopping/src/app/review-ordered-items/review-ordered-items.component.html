@@ -14,9 +14,9 @@
       </button>
 
   <div class="row mx-md-n5" style="padding: 0; margin: 0;">
-    <div class="col py-3 px-md-5"><button type="button" class="btn btn-primary" (click)="moveToConfirmationPage()">Checkout</button>
+    <div class="col py-3 px-md-5"><button type="button" class="btn btn-primary" (click)="moveToConfirmationPage()">Proceed to check out</button>
     </div>
-    <div class="col py-3 px-md-5"><button type="button" class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
+    <div class="col py-3 px-md-5"><button type="button" class="btn btn-danger" (click)="displayEmptyCartConfirmationDialogToUser()">Empty Cart</button>
     </div>
   </div>
 
@@ -68,5 +68,27 @@
       <span><strong>Kr {{  getTotalCostOfOrderedItemsAsString() }}</strong></span>
     </li>
   </ul>
+
+  <div class="modal" tabindex="1" role="dialog" [ngStyle]="{'display':displayConfirmationDialogForEmptyOrder}">
+    <div class="w-100 modal-dialog" role="document">
+      <div class="modal-content bg-secondary">
+      <span class="bg-dark text-center">
+        <span class="modal-title font-weight-bold text-danger">Remove items from cart</span>
+        <i class="pl-3 bi-exclamation-octagon" style="font-size: 2rem; color: orangered;"></i>
+      </span>
+        <div class="modal-body">
+          <div class="alert alert-light" role="alert">
+            <span class="alert-heading text-info">Are you sure you want to remove all items from the cart?.</span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" (click)="displayConfirmationDialogForEmptyOrder='none'">Do not
+              remove
+            </button>
+            <button type="button" class="btn btn-danger" (click)="emptyCart()">Yes, Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </p-sidebar>
