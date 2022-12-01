@@ -3,6 +3,9 @@
                                       'background-color': '#ffffff',
                                       'box-shadow': 'rgba(50, 50, 93, 0.0.50) 0px 50px 100px -20px, rgba(0, 0, 0, 0.1) 0px 30px 60px -30px, rgba(10, 37, 64, 0.14) 0px -2px 6px 0px inset'
                                       }">
+
+
+
   <div>
     <div class="boxfd">
 
@@ -41,7 +44,7 @@
       <div class="text-dark font-weight-bold">{{individualGrocery.brandName}}</div>
         <div *ngIf="isDesktopApplication">
           <i *ngIf="!individualGrocery.stock || individualGrocery.stock <= 0" class="text-danger border border-info rounded p-1"><small>no stock</small></i>
-          <i *ngIf="individualGrocery.stock >0 && individualGrocery.stock <= 10" class="text-secondary border border-info rounded p-1"><small>{{individualGrocery.stock}} in stock</small></i>
+          <i *ngIf="individualGrocery.stock >0 && individualGrocery.stock <= 5" class="text-secondary border border-info rounded p-1"><small>{{individualGrocery.stock}} in stock</small></i>
         </div>
       </div>
 

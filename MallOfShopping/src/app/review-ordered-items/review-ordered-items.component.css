@@ -97,3 +97,15 @@
   background-color: #d9e4f5;
   background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
 }
+
+.modal-content {
+  background-color: #F8F8F8;
+}
+
+.modal-header .close {
+   display:none;
+ }
+
+.model-header-bg {
+  background-color: #d8ecf3
+}

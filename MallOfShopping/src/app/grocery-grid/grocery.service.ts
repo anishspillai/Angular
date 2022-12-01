@@ -3,6 +3,8 @@ import { AngularFireDatabase } from "@angular/fire/database";
 import {Order} from "../individual-grocery/model/Order";
 import {OrderDeliveryStatus} from "../individual-grocery/model/OrderDeliveryStatus";
 import {OrderRequest} from "../individual-grocery/model/OrderRequest";
+import {Observable} from "rxjs";
+import {SnapshotAction} from "@angular/fire/database/interfaces";
 
 @Injectable()
 export class GroceryService {
@@ -161,4 +163,7 @@ export class GroceryService {
         .update({ commentsFromCustomer: commentFromUser })
   }
 
+  getIndividualGroceryDetails(id: string) : Observable<SnapshotAction<any>> {
+    return this.angularFireDatabase.object("admin/Products/" + id).snapshotChanges()
+  }
 }

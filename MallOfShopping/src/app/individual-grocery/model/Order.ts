@@ -17,8 +17,9 @@ export class Order {
     public bulkPurchaseOfferCount: number = 2,
     public bulkPurchaseOfferPrice: number = 78.45,
     public offerPrice: number = 12,
-    public subType: string = ""
-
+    public subType: string = "",
+    public priceChangeTracker: PriceChangeTracker = null,
+    public countChangeTracker: CountChangeTracker = null,
   ) {
   }
 
@@ -41,5 +42,21 @@ export class Order {
       individualGrocery.offerPrice,
       individualGrocery.subType
     )
+  }
+}
+
+export class PriceChangeTracker {
+  constructor(
+    public oldCost= 0, // Old Cost of the item. What if user uses the order history items in the cart.
+    public newCost = 0, // This one is added if the stock price changed after user keeps item in cart ( Remember solna case, He keeps rice with price 80 always )
+  ) {
+  }
+}
+
+export class CountChangeTracker {
+  constructor(
+    public oldCount = 0, //This one is added if the stock count changed after user keeps item in cart ( some one else placed order for same item and updated count )
+    public newCount = 0, // What is the latest stock count in the database for the item.
+  ) {
   }
 }

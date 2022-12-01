@@ -10,15 +10,13 @@
            [showCloseIcon]="false">
 
 
-      <button pButton label="Go Back" class="ui-button-warning ui-button-rounded" iconPos="left" icon="pi pi-angle-left" (click)="displaySideMenuBar = false">
-      </button>
+  <button pButton label="Go Back" class="ui-button-warning ui-button-rounded" iconPos="left" icon="pi pi-angle-left"
+          (click)="displaySideMenuBar = false"></button>
+  <button style="float:right; margin: 2px" pButton label="Empty Cart" class="ui-button-danger ui-button-rounded"
+          iconPos="left" icon="pi pi-trash" (click)="displayConfirmationDialogForItemsFromCart()">
+  </button>
 
-  <div class="row mx-md-n5" style="padding: 0; margin: 0;">
-    <div class="col py-3 px-md-5"><button type="button" class="btn btn-primary" (click)="moveToConfirmationPage()">Proceed to check out</button>
-    </div>
-    <div class="col py-3 px-md-5"><button type="button" class="btn btn-danger" (click)="displayEmptyCartConfirmationDialogToUser()">Empty Cart</button>
-    </div>
-  </div>
+  <button type="button" class="btn btn-primary btn-lg btn-block font-weight-normal text-white mt-2" [disabled]="addGroceryToListObservableService.orders.length == 0" (click)="confirmOrderInCartAndMoveToConfirmationPage()">Proceed to check out</button>
 
   <hr style="margin-top: 2px; padding:0">
 
@@ -92,3 +90,102 @@
   </div>
 
 </p-sidebar>
+
+
+<div class="backdrop" [ngStyle]="{'display':display}"></div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <span class="text-center model-header-bg">
+        <span class="modal-title text-center pt-2 pb-2">Changes in the stock</span>
+        <i class="pl-3 bi-exclamation-octagon" style="font-size: 2rem; color: orangered;"></i>
+      </span>
+      <div class="modal-body">
+        <div class="alert alert-light" role="alert">
+          <span class="alert-heading text-info">Unfortunately there are changes in the items in the cart. The price of the item is changed or number of items in the stock is changed.</span>
+        </div>
+
+
+        <div *ngIf="stockCountChangedOrders && stockCountChangedOrders.length > 0">
+          <div class="alert alert-primary text-dark medium-font-size" role="alert" style="margin-bottom: 0">
+            Following stock count is reduced!. Adjusted the stock count as per the latest count in our warehouse.
+          </div>
+          <table class="table table-striped table-active mt-0">
+            <thead>
+            <tr class="font-weight-normal">
+              <th scope="col">#</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Item</th>
+              <th scope="col">Previous Count</th>
+              <th scope="col">New Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let changedOrder of stockCountChangedOrders; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{changedOrder.type}}</td>
+              <td>{{changedOrder.groceryName}}</td>
+              <td>{{changedOrder.countChangeTracker?.oldCount}}</td>
+              <td class="font-weight-bold bg-danger text-white">{{changedOrder.countChangeTracker?.newCount}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="priceChangedOrders && priceChangedOrders.length > 0">
+          <div class="alert alert-primary text-dark medium-font-size" role="alert" style="margin-bottom: 0">
+            Following stock price is changed!. Changed the price according to the latest price of the item.
+          </div>
+          <table class="table table-striped table-active mt-0">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Item</th>
+              <th scope="col">Price before</th>
+              <th scope="col">New Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let changedOrder of priceChangedOrders; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{changedOrder.type}}</td>
+              <td>{{changedOrder.groceryName}}</td>
+              <td>{{changedOrder.priceChangeTracker?.oldCost}}</td>
+              <td class="font-weight-bold bg-danger text-white">{{changedOrder.priceChangeTracker?.newCost}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="ordersRemovedFromCart && ordersRemovedFromCart.length > 0">
+          <div class="alert alert-primary" style="margin-bottom: 0" role="alert">
+            Unfortunately following items are out of stock now. It will be removed from the cart.
+          </div>
+          <table class="table table-striped table-light">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Item</th>
+              <th scope="col">Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let changedOrder of ordersRemovedFromCart; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{changedOrder.groceryName}}</td>
+              <td>{{changedOrder.type}}</td>
+              <td>{{changedOrder.grossWeight + ' ' + changedOrder.unitOfWeight}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModelDialog()">Close Dialog</button>
+        <button type="button" class="btn btn-warning" (click)="updateShoppingCartDatabaseAndCloseDialog()">Accept changes and proceed</button>
+      </div>
+    </div>
+  </div>
+</div>
