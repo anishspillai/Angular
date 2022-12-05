@@ -82,7 +82,7 @@ export class AddGroceriesComponent   {
     // @ts-ignore
     this.addGroceryModel.isFastMoving = "Yes" === this.isFastMoving ? true : false
     list.push(this.addGroceryModel).then(ref => {
-        this.firestore.object('admin/New_Products/' + ref.key).set(this.addGroceryModel)
+        this.firestore.object('admin/New_Products/' + ref.key).set(this.addGroceryModel).then(console.log)
 
       }
     )

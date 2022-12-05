@@ -1,4 +1,4 @@
-<div>ActualPrice</div>
+<!--<div>ActualPrice</div>
 <input pInputText type="number" size="100" [(ngModel)]="addGroceryModel.actualPrice"/>
 <br>
 <br>
@@ -67,11 +67,125 @@ maxShoppingIsRestricted
 <br><br>
 
 <div>DATABASE PATH</div>
-<!--input pInputText size="100" type="text" [(ngModel)]="dbPath" placeholder="Required"/-->
-<!--p-dropdown [options]="menuItems" [(ngModel)]="selectedPath" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown-->
+&lt;!&ndash;input pInputText size="100" type="text" [(ngModel)]="dbPath" placeholder="Required"/&ndash;&gt;
+&lt;!&ndash;p-dropdown [options]="menuItems" [(ngModel)]="selectedPath" placeholder="Select a City" optionLabel="name" [showClear]="true"></p-dropdown&ndash;&gt;
 
 <input type="text" [ngModel]="input" />
 
+
+<button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
+        (click)="save()"></button>-->
+
+
+
+
+<div class="ui-grid">
+  <div class="with-divider">
+    <div class="ui-grid-col-3">Actual Price of the product</div>
+    <div class="ui-grid-col-3"><input pInputText type="number" [(ngModel)]="addGroceryModel.actualPrice"/>
+    </div>
+    <div class="ui-grid-col-3">What is the brand name</div>
+    <input pInputText type="text" [(ngModel)]="addGroceryModel.brandName" placeholder="Required"/>
+  </div>
+  <hr>
+  <!--div class="with-divider">
+
+    <div class="ui-grid-col-3">Id ( Please provide the value 0 always )</div>
+    <input pInputText type="text" [(ngModel)]="addGroceryModel.id" placeholder="Required"/>
+  </div-->
+
+
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Image Path ( Where is the image of the product available )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.imagePath"
+           placeholder="Required"/>
+  </div>
+  <hr>
+  <div class="with-divider">
+
+    <div class="ui-grid-col-6">Offer price ( Is the product selling for offer? )</div>
+    <input pInputText type="text" [(ngModel)]="addGroceryModel.offerPrice" placeholder="Required"/>
+  </div>
+  <hr>
+  <div class="with-divider">
+    <div class="ui-grid-col-3">Unit of weight (Liter, Kg, Grams etc)</div>
+    <input class="ui-grid-col-3" pInputText type="text" [(ngModel)]="addGroceryModel.unitOfWeight"
+           placeholder="Required"/>
+
+    <div class="ui-grid-col-3">Weight of the product </div>
+    <input pInputText type="text" [(ngModel)]="addGroceryModel.weight" placeholder="Required"/>
+  </div>
+  <hr>
+  <div class="with-divider">
+    <div class="ui-grid-col-3">What is the catagory of the product</div>
+    <input class="ui-grid-col-3" pInputText type="text" [(ngModel)]="addGroceryModel.catagory"
+           placeholder="Required"/>
+
+    <div class="ui-grid-col-3">What is the sub catagery of the product </div>
+    <input pInputText type="text" [(ngModel)]="addGroceryModel.subCatagory" placeholder="Required"/>
+  </div>
+  <hr>
+  <div class="with-divider">
+    <div class="ui-grid-col-3">Is the product selling as a part of any campaign or promotion</div>
+    <input class="ui-grid-col-3" pInputText type="text" [(ngModel)]="isCampaign"
+           placeholder="Required"/>
+
+    <div class="ui-grid-col-3">Is the product a fast moving one? </div>
+    <input pInputText type="text" [(ngModel)]="isFastMoving" placeholder="Required"/>
+  </div>
+  <hr>
+  <div class="with-divider">
+    <div class="ui-grid-col-3">Description about the product. This is very important. Users search string should be available here</div>
+    <textarea rows="2" cols="100" pInputTextarea [(ngModel)]="addGroceryModel.description"></textarea>
+  </div>
+</div>
+<!--p-card header="Bulk Purchase Options">
+
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk PurchaseOffer Available (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferAvailable"
+           placeholder="Required"/>
+  </div>
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk Purchase Offer Price (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferPrice" placeholder="Required"/>
+  </div>
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk Purchase Offer Price (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferPrice"
+           placeholder="Required"/>
+  </div>
+</p-card-->
+
+<p-card header="Bulk Offer Options" [style]="{height: '160px'}" styleClass="p-card-shadow">
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk PurchaseOffer Available (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferAvailable"
+           placeholder="Required"/>
+  </div>
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk Purchase Offer Price (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferPrice" placeholder="Required"/>
+  </div>
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Bulk Purchase Offer Price (Example Buy 2 get 1 free )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.bulkPurchaseOfferPrice"
+           placeholder="Required"/>
+  </div>
+</p-card>
+
+<br>
+
+<p-card header="Maximum shopping Options" [style]="{height: '150px'}" styleClass="p-card-shadow">
+  <div class="with-divider">
+    <div class="ui-grid-col-6">Max Shopping Count ( For limited stocks or offers, this field can be used )</div>
+    <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.maxShoppingCount" placeholder="Required"/>
+  </div>
+
+  <div class="ui-grid-col-6">Max Shopping is Restricted ? ( For limited stocks or offers, this field can be used )</div>
+  <input class="ui-grid-col-6" pInputText type="text" [(ngModel)]="addGroceryModel.maxShoppingIsRestricted"
+         placeholder="Required"/>
+</p-card>
 
 <button pButton type="button" label="Register" class="ui-button-rounded ui-button-success"
         (click)="save()"></button>

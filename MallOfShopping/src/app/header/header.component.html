@@ -1,4 +1,4 @@
-<div id="content-desktop" style="margin: -8px; background-color:orangered; color: white" class="nav-bar">
+<div id="content-desktop" style="margin: -8px; background-color:grey; color: white" class="nav-bar">
 
   <div class="p-grid">
 
@@ -7,11 +7,17 @@
     </div>
 
     <div class="p-col-6" style="margin-top: 25px">
-      <div class="ui-inputgroup">
-        <input type="text" pInputText placeholder="Under Construction - Kindly wait until next release" [(ngModel)]="searchString"
-               style="width: 90%; border-radius: 25px">
-        <button pButton type="button" label="Find" style="border-radius: 25px" (click)="filterProduct()"></button>
-      </div>
+      <button style="padding: 5px; margin: 5px; border-radius: 25px; color: lawngreen">
+        <a href="user-details" style="color: black; font-weight: bolder">Add New Product to the stores</a>
+<!--        <button pButton type="button" label="Find" style="border-radius: 25px" (click)="filterProduct()"></button>-->
+      </button>
+
+
+      <button style="padding: 5px; margin: 5px; border-radius: 25px">
+        <a href="order-history" style="color: #723636; font-weight: bolder">See Order History</a>
+        <!--        <button pButton type="button" label="Find" style="border-radius: 25px" (click)="filterProduct()"></button>-->
+      </button>
+
     </div>
 
     <div class="p-col-3 p-col-fixed">

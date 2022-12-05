@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
               private readonly breadCrumbService: BreadCrumbService) {
 
     this.menuItems = [
-      {label: 'My Details', target: 'user-details'},
+      {label: 'Add New Product to the store', target: 'user-details'},
       {label: 'Order History', target: 'order-history'}
     ];
 

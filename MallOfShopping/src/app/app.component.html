@@ -15,33 +15,8 @@
 </div-->
 
 
-<div class="p-grid p-dir-col">
-  <div id="content-desktop">
-    <div *ngIf="isDesktopDevice" class="p-col-12">
-      <app-landing-page></app-landing-page>
-    </div>
+<div class="p-grid p-dir-col" style="margin-top: 100px">
 
-    <div class="holder">
-      <div class="news">Coming soon!!!. Wanna eat yummy veg & non-veg food? We will deliver your order from The South Indian Restaurant</div>
-    </div>
-
-    <div *ngIf="isDesktopDevice" class="p-col">
-      <!--div class="box">
-        <app-bread-crumb></app-bread-crumb>
-      </div-->
-      <div class="p-grid">
-        <div class="p-col-6">
-          <div class="box"><app-bread-crumb></app-bread-crumb></div>
-        </div>
-        <div class="p-col-6">
-          <div>
-            <!--button pButton class="ui-button-rounded ui-button-success" label="Take me to Fresh Fishes"></button-->
-            <app-fish-view-button [isDesktopDevice]="true"></app-fish-view-button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="p-col">
     <div class="box">
