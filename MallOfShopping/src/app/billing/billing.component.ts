@@ -2,12 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Order} from "../individual-grocery/model/Order";
 import {GroceryService} from "../grocery-grid/grocery.service";
 import {OrderHistoryModel} from "../order-history/OrderHistory.model";
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
 import {UserDetailsModel} from "../user-details/model/user.details.model";
 import {UserDetailsService} from "../user-details/user.details.service";
 import {BillingService} from "./billing.service";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-billing',
@@ -236,7 +233,7 @@ export class BillingComponent implements OnInit {
       }
     }
 
-    pdfMake.createPdf(docDefinition).open();
+    //pdfMake.createPdf(docDefinition).open();
     //const pdfDocGenerator = pdfMake.createPdf(docDefinition)
 
 
